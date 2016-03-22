@@ -11,8 +11,20 @@
 int funSqrt(int x); // ==> Declaration is always in the beginning of the file.
 
 int funPow(int x, int n, int d) {
-	//Your implementation
-	//Declaration + Variabl initializing at the beginning of the function
+	if (n == 0)
+		return 1;
+	if (n == 1)
+			return x % d;
+	else if ( n % 2 == 0)
+	{
+		int pow = funPow(x, n/2, d);
+		return (pow * pow) % d;
+	}
+	else
+	{
+		int pow = funPow(x, (n-1)/2, d);
+		return (pow * pow * x) % d;
+	}
 }
 
 int funSqrt(int x) {
