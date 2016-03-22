@@ -4,7 +4,7 @@
  *  Created on: Mar 22, 2016
  *      Author: Tom
  */
-#include <MathIsFun.c>
+#include "MathIsFun.h"
 
 int main()
 {
