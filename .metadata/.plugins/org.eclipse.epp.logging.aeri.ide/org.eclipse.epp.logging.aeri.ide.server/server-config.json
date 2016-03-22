@@ -53,5 +53,9 @@
     ":org.eclipse.ecf.filetransfer.*:",
     ":java.net.*:"
   ],
+<<<<<<< Updated upstream
   "problemsZipLastDownloadTimestamp": 1458645095537
+=======
+  "problemsZipLastDownloadTimestamp": 1458130838813
+>>>>>>> Stashed changes
 }
