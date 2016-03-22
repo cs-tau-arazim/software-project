@@ -59,25 +59,13 @@ bool funPrimeCheck(int x) {
 }
 
 bool funPalindromeCheck(int x) {
-
 	if (x < 0)
 		return false;
-	else if (x == 0)
-		return true;
-	int i = 10;
-	int log = 1;
+
+	int i = 0;
 	while (i < x)
 	{
 		i *= 10;
-		log += 1;
 	}
-
-	char str[log];
-	sprintf(str, "%d", x);
-	int index = 0;
-	while (index < log) {
-		if (str[index] != str[log - index - 1])
-			return false;
-	return true;
-	}
+	i /= 10;
 }

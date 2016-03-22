@@ -65,19 +65,10 @@ bool funPalindromeCheck(int x) {
 	else if (x == 0)
 		return true;
 	int i = 10;
-	int log = 1;
 	while (i < x)
 	{
 		i *= 10;
-		log += 1;
 	}
 
-	char str[log];
-	sprintf(str, "%d", x);
-	int index = 0;
-	while (index < log) {
-		if (str[index] != str[log - index - 1])
-			return false;
-	return true;
-	}
+	char str[i];
 }

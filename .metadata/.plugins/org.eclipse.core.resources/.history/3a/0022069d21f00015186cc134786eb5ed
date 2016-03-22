@@ -76,7 +76,7 @@ bool funPalindromeCheck(int x) {
 	sprintf(str, "%d", x);
 	int index = 0;
 	while (index < log) {
-		if (str[index] != str[log - index - 1])
+		if (str[index] != str[log - index])
 			return false;
 	return true;
 	}

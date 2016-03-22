@@ -28,56 +28,16 @@ int funPow(int x, int n, int d) {
 }
 
 int funSqrt(int x) {
-	 int big = x;
-	 int small = 1;
-
-	 while ((small+1)*(small+1) <= x)
-	 {
-		 int mid = (big+small)/2;
-		 if (mid*mid > x)
-		 {
-			 big = mid;
-		 }
-		 else
-		 {
-			 small = mid;
-		 }
-	 }
-	 return small;
+	//Your implementation
+	//Declaration + Variabl initializing at the beginning of the function
 }
 
 bool funPrimeCheck(int x) {
-	bool isPrime = true;
-	for (int i = 2 ; i <= funSqrt(x) ; i++)
-	{
-		if (x % i == 0)
-		{
-			isPrime = false;
-		}
-	}
-	return isPrime;
+	//Your implementation
+	//Declaration + Variabl initializing at the beginning of the function
 }
 
 bool funPalindromeCheck(int x) {
-
-	if (x < 0)
-		return false;
-	else if (x == 0)
-		return true;
-	int i = 10;
-	int log = 1;
-	while (i < x)
-	{
-		i *= 10;
-		log += 1;
-	}
-
-	char str[log];
-	sprintf(str, "%d", x);
-	int index = 0;
-	while (index < log) {
-		if (str[index] != str[log - index - 1])
-			return false;
-	return true;
-	}
+	//Your implementation
+	//Declaration + Variabl initializing at the beginning of the function
 }
