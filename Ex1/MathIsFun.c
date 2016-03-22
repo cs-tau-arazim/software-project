@@ -13,8 +13,10 @@ int funSqrt(int x); // ==> Declaration is always in the beginning of the file.
 int funPow(int x, int n, int d) {
 	if (n == 0)
 		return 1;
+	if (x < 0)
+		x += d;
 	if (n == 1)
-			return x % d;
+		return x % d;
 	else if ( n % 2 == 0)
 	{
 		int pow = funPow(x, n/2, d);
@@ -47,31 +49,32 @@ int funSqrt(int x) {
 }
 
 bool funPrimeCheck(int x) {
-	bool isPrime = true;
+	if (x <= 1)
+		return false;
 	for (int i = 2 ; i <= funSqrt(x) ; i++)
 	{
 		if (x % i == 0)
 		{
-			isPrime = false;
+			return false;
 		}
 	}
-	return isPrime;
+	return true;
 }
 
 bool funPalindromeCheck(int x) {
-	if (x < 0)
+	int y = x; 	
+	if (y < 0)
 		return false;
-
-	else if (x == 0)
+	
+	else if (y == 0)
 		return true;
 
 	int new = 0;
-	while (x > 0)
+	while (y > 0)
 	{
 		new *= 10;
-		new += x % 10;
-		x /= 10;
+		new += y % 10;
+		y /= 10;
 	}
-
 	return x == new;
 }
