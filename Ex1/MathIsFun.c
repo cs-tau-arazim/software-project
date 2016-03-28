@@ -1,4 +1,5 @@
 #include "MathIsFun.h"
+#include <stdio.h>
 
 /*
  * Calculates the largest integer less or equal than the square root of x.
@@ -13,19 +14,19 @@ int funSqrt(int x); // ==> Declaration is always in the beginning of the file.
 int funPow(int x, int n, int d) {
 	if (n == 0)
 		return 1;
-	if (x < 0)
+	while (x < 0)
 		x += d;
 	if (n == 1)
 		return x % d;
 	else if ( n % 2 == 0)
 	{
-		int pow = funPow(x, n/2, d);
+		int pow = funPow(x, n/2, d) % d;
 		return (pow * pow) % d;
 	}
 	else
 	{
-		int pow = funPow(x, (n-1)/2, d);
-		return (pow * pow * x) % d;
+		int pow = funPow(x, (n-1)/2, d) % d;
+		return (((pow * pow) % d) * x) % d;
 	}
 }
 
