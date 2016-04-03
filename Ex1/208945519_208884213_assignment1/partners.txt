@@ -1,0 +1,7 @@
+Full Name 1: Gal Wiernik
+Id No 1: 208884213
+User Name 1: galwiernik
+Full Name 2: Tom Segal
+Id No 2: 208945519
+User Name 2: tomsegal
+Assignment No: 1
