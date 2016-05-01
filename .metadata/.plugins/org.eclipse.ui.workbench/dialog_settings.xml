@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.internal.QuickAccess">
+<<<<<<< HEAD
 		<item value="675" key="dialogHeight"/>
 		<item value="1200" key="dialogWidth"/>
+=======
+		<item value="563" key="dialogHeight"/>
+		<item value="900" key="dialogWidth"/>
+>>>>>>> 6f001242be8c8857cb027ea86b30596175ef8e1b
 		<list key="textEntries">
 		</list>
 		<list key="orderedElements">
@@ -11,5 +16,11 @@
 		</list>
 		<list key="textArray">
 		</list>
+	</section>
+	<section name="NewWizardAction">
+	</section>
+	<section name="ImportExportAction">
+	</section>
+	<section name="FileSystemImportWizard">
 	</section>
 </section>

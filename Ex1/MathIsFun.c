@@ -12,6 +12,7 @@
 int funSqrt(int x); // ==> Declaration is always in the beginning of the file.
 
 int funPow(int x, int n, int d) {
+
 	if (n == 0)
 		return 1;
 	while (x < 0)
@@ -20,12 +21,24 @@ int funPow(int x, int n, int d) {
 		return x % d;
 	else if ( n % 2 == 0)
 	{
+<<<<<<< Updated upstream
 		int pow = funPow(x, n/2, d) % d;
+=======
+		int pow = funPow(x, n/2, d);
+		printf("x = %d n = %d d = %d pow = %d\n" , x, n/2, d, pow);
+		printf("res = %d\n" , (pow * pow)  );
+>>>>>>> Stashed changes
 		return (pow * pow) % d;
 	}
 	else
 	{
+<<<<<<< Updated upstream
 		int pow = funPow(x, (n-1)/2, d) % d;
+=======
+		int pow = funPow(x, (n-1)/2, d);
+		printf("x = %d n = %d d = %d pow = %d\n" , x, (n-1)/2, d, pow);
+		printf("res = %d\n" , (pow * pow * x) );
+>>>>>>> Stashed changes
 		return (((pow * pow) % d) * x) % d;
 	}
 }
