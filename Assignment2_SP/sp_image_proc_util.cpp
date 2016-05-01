@@ -65,7 +65,7 @@ int** spGetRGBHist(char* str, int nBins)
 	}
 	return histInt;
 }
-
+/*
 int main(){
 	Mat src;
 
@@ -101,7 +101,7 @@ int main(){
 	calcHist(&bgr_planes[1], nImages, 0, Mat(), g_hist, 1, &nBins, &histRange);
 	calcHist(&bgr_planes[2], nImages, 0, Mat(), r_hist, 1, &nBins, &histRange);
 		return 0;
-}
+}*/
 
 
 

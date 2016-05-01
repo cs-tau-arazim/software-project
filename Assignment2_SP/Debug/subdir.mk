@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../main.cpp \
 ../sp_image_proc_util.cpp 
 
 OBJS += \
+./main.o \
 ./sp_image_proc_util.o 
 
 CPP_DEPS += \
+./main.d \
 ./sp_image_proc_util.d 
 
 
