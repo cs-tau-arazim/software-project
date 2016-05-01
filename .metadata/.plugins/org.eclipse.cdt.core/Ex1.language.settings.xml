@@ -4,7 +4,7 @@
 		<extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
 			<provider id="org.eclipse.cdt.build.crossgcc.CrossGCCBuiltinSpecsDetector">
 				<language id="org.eclipse.cdt.core.gcc">
-					<entry kind="includePath" name="/Library/Developer/CommandLineTools/usr/lib/clang/7.0.2/include">
+					<entry kind="includePath" name="/Library/Developer/CommandLineTools/usr/lib/clang/7.3.0/include">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="includePath" name="/Library/Developer/CommandLineTools/usr/include">
@@ -70,6 +70,9 @@
 					<entry kind="macro" name="__CONSTANT_CFSTRINGS__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
+					<entry kind="macro" name="__DBL_DECIMAL_DIG__" value="17">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
 					<entry kind="macro" name="__DBL_DENORM_MIN__" value="4.9406564584124654e-324">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
@@ -109,16 +112,19 @@
 					<entry kind="macro" name="__DBL_MIN__" value="2.2250738585072014e-308">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__DECIMAL_DIG__" value="21">
+					<entry kind="macro" name="__DECIMAL_DIG__" value="__LDBL_DECIMAL_DIG__">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__DYNAMIC__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__" value="101000">
+					<entry kind="macro" name="__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__" value="101100">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__FINITE_MATH_ONLY__" value="0">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
+					<entry kind="macro" name="__FLT_DECIMAL_DIG__" value="9">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__FLT_DENORM_MIN__" value="1.40129846e-45F">
@@ -164,6 +170,9 @@
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__FLT_RADIX__" value="2">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
+					<entry kind="macro" name="__FXSR__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__GCC_ATOMIC_BOOL_LOCK_FREE" value="2">
@@ -422,6 +431,9 @@
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__INT_MAX__" value="2147483647">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
+					<entry kind="macro" name="__LDBL_DECIMAL_DIG__" value="21">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__LDBL_DENORM_MIN__" value="3.64519953188247460253e-4951L">
@@ -907,7 +919,7 @@
 					<entry kind="macro" name="__USER_LABEL_PREFIX__" value="_">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__VERSION__" value="&quot;4.2.1 Compatible Apple LLVM 7.0.2 (clang-700.1.81)&quot;">
+					<entry kind="macro" name="__VERSION__" value="&quot;4.2.1 Compatible Apple LLVM 7.3.0 (clang-703.0.29)&quot;">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__WCHAR_MAX__" value="2147483647">
@@ -931,7 +943,7 @@
 					<entry kind="macro" name="__amd64__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__apple_build_version__" value="7000181">
+					<entry kind="macro" name="__apple_build_version__" value="7030029">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__block" value="__attribute__((__blocks__(byref)))">
@@ -943,13 +955,13 @@
 					<entry kind="macro" name="__clang_major__" value="7">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__clang_minor__" value="0">
+					<entry kind="macro" name="__clang_minor__" value="3">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__clang_patchlevel__" value="2">
+					<entry kind="macro" name="__clang_patchlevel__" value="0">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__clang_version__" value="&quot;7.0.2 (clang-700.1.81)&quot;">
+					<entry kind="macro" name="__clang_version__" value="&quot;7.3.0 (clang-703.0.29)&quot;">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__core2" value="1">
@@ -996,7 +1008,7 @@
 					<entry kind="includePath" name="/Library/Developer/CommandLineTools/usr/include/c++/v1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="includePath" name="/Library/Developer/CommandLineTools/usr/lib/clang/7.0.2/include">
+					<entry kind="includePath" name="/Library/Developer/CommandLineTools/usr/lib/clang/7.3.0/include">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="includePath" name="/Library/Developer/CommandLineTools/usr/include">
@@ -1062,6 +1074,9 @@
 					<entry kind="macro" name="__CONSTANT_CFSTRINGS__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
+					<entry kind="macro" name="__DBL_DECIMAL_DIG__" value="17">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
 					<entry kind="macro" name="__DBL_DENORM_MIN__" value="4.9406564584124654e-324">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
@@ -1101,7 +1116,7 @@
 					<entry kind="macro" name="__DBL_MIN__" value="2.2250738585072014e-308">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__DECIMAL_DIG__" value="21">
+					<entry kind="macro" name="__DECIMAL_DIG__" value="__LDBL_DECIMAL_DIG__">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__DEPRECATED" value="1">
@@ -1110,13 +1125,16 @@
 					<entry kind="macro" name="__DYNAMIC__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__" value="101000">
+					<entry kind="macro" name="__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__" value="101100">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__EXCEPTIONS" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__FINITE_MATH_ONLY__" value="0">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
+					<entry kind="macro" name="__FLT_DECIMAL_DIG__" value="9">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__FLT_DENORM_MIN__" value="1.40129846e-45F">
@@ -1162,6 +1180,9 @@
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__FLT_RADIX__" value="2">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
+					<entry kind="macro" name="__FXSR__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__GCC_ATOMIC_BOOL_LOCK_FREE" value="2">
@@ -1426,6 +1447,9 @@
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__INT_MAX__" value="2147483647">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
+					<entry kind="macro" name="__LDBL_DECIMAL_DIG__" value="21">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__LDBL_DENORM_MIN__" value="3.64519953188247460253e-4951L">
@@ -1908,7 +1932,7 @@
 					<entry kind="macro" name="__USER_LABEL_PREFIX__" value="_">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__VERSION__" value="&quot;4.2.1 Compatible Apple LLVM 7.0.2 (clang-700.1.81)&quot;">
+					<entry kind="macro" name="__VERSION__" value="&quot;4.2.1 Compatible Apple LLVM 7.3.0 (clang-703.0.29)&quot;">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__WCHAR_MAX__" value="2147483647">
@@ -1932,7 +1956,7 @@
 					<entry kind="macro" name="__amd64__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__apple_build_version__" value="7000181">
+					<entry kind="macro" name="__apple_build_version__" value="7030029">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__block" value="__attribute__((__blocks__(byref)))">
@@ -1944,13 +1968,13 @@
 					<entry kind="macro" name="__clang_major__" value="7">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__clang_minor__" value="0">
+					<entry kind="macro" name="__clang_minor__" value="3">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__clang_patchlevel__" value="2">
+					<entry kind="macro" name="__clang_patchlevel__" value="0">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__clang_version__" value="&quot;7.0.2 (clang-700.1.81)&quot;">
+					<entry kind="macro" name="__clang_version__" value="&quot;7.3.0 (clang-703.0.29)&quot;">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__core2" value="1">
@@ -2012,7 +2036,7 @@
 		<extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
 			<provider id="org.eclipse.cdt.build.crossgcc.CrossGCCBuiltinSpecsDetector">
 				<language id="org.eclipse.cdt.core.gcc">
-					<entry kind="includePath" name="/Library/Developer/CommandLineTools/usr/lib/clang/7.0.2/include">
+					<entry kind="includePath" name="/Library/Developer/CommandLineTools/usr/lib/clang/7.3.0/include">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="includePath" name="/Library/Developer/CommandLineTools/usr/include">
@@ -2078,6 +2102,9 @@
 					<entry kind="macro" name="__CONSTANT_CFSTRINGS__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
+					<entry kind="macro" name="__DBL_DECIMAL_DIG__" value="17">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
 					<entry kind="macro" name="__DBL_DENORM_MIN__" value="4.9406564584124654e-324">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
@@ -2117,16 +2144,19 @@
 					<entry kind="macro" name="__DBL_MIN__" value="2.2250738585072014e-308">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__DECIMAL_DIG__" value="21">
+					<entry kind="macro" name="__DECIMAL_DIG__" value="__LDBL_DECIMAL_DIG__">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__DYNAMIC__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__" value="101000">
+					<entry kind="macro" name="__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__" value="101100">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__FINITE_MATH_ONLY__" value="0">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
+					<entry kind="macro" name="__FLT_DECIMAL_DIG__" value="9">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__FLT_DENORM_MIN__" value="1.40129846e-45F">
@@ -2172,6 +2202,9 @@
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__FLT_RADIX__" value="2">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
+					<entry kind="macro" name="__FXSR__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__GCC_ATOMIC_BOOL_LOCK_FREE" value="2">
@@ -2430,6 +2463,9 @@
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__INT_MAX__" value="2147483647">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
+					<entry kind="macro" name="__LDBL_DECIMAL_DIG__" value="21">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__LDBL_DENORM_MIN__" value="3.64519953188247460253e-4951L">
@@ -2915,7 +2951,7 @@
 					<entry kind="macro" name="__USER_LABEL_PREFIX__" value="_">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__VERSION__" value="&quot;4.2.1 Compatible Apple LLVM 7.0.2 (clang-700.1.81)&quot;">
+					<entry kind="macro" name="__VERSION__" value="&quot;4.2.1 Compatible Apple LLVM 7.3.0 (clang-703.0.29)&quot;">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__WCHAR_MAX__" value="2147483647">
@@ -2939,7 +2975,7 @@
 					<entry kind="macro" name="__amd64__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__apple_build_version__" value="7000181">
+					<entry kind="macro" name="__apple_build_version__" value="7030029">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__block" value="__attribute__((__blocks__(byref)))">
@@ -2951,13 +2987,13 @@
 					<entry kind="macro" name="__clang_major__" value="7">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__clang_minor__" value="0">
+					<entry kind="macro" name="__clang_minor__" value="3">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__clang_patchlevel__" value="2">
+					<entry kind="macro" name="__clang_patchlevel__" value="0">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__clang_version__" value="&quot;7.0.2 (clang-700.1.81)&quot;">
+					<entry kind="macro" name="__clang_version__" value="&quot;7.3.0 (clang-703.0.29)&quot;">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__core2" value="1">
@@ -3004,7 +3040,7 @@
 					<entry kind="includePath" name="/Library/Developer/CommandLineTools/usr/include/c++/v1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="includePath" name="/Library/Developer/CommandLineTools/usr/lib/clang/7.0.2/include">
+					<entry kind="includePath" name="/Library/Developer/CommandLineTools/usr/lib/clang/7.3.0/include">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="includePath" name="/Library/Developer/CommandLineTools/usr/include">
@@ -3070,6 +3106,9 @@
 					<entry kind="macro" name="__CONSTANT_CFSTRINGS__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
+					<entry kind="macro" name="__DBL_DECIMAL_DIG__" value="17">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
 					<entry kind="macro" name="__DBL_DENORM_MIN__" value="4.9406564584124654e-324">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
@@ -3109,7 +3148,7 @@
 					<entry kind="macro" name="__DBL_MIN__" value="2.2250738585072014e-308">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__DECIMAL_DIG__" value="21">
+					<entry kind="macro" name="__DECIMAL_DIG__" value="__LDBL_DECIMAL_DIG__">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__DEPRECATED" value="1">
@@ -3118,13 +3157,16 @@
 					<entry kind="macro" name="__DYNAMIC__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__" value="101000">
+					<entry kind="macro" name="__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__" value="101100">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__EXCEPTIONS" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__FINITE_MATH_ONLY__" value="0">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
+					<entry kind="macro" name="__FLT_DECIMAL_DIG__" value="9">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__FLT_DENORM_MIN__" value="1.40129846e-45F">
@@ -3170,6 +3212,9 @@
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__FLT_RADIX__" value="2">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
+					<entry kind="macro" name="__FXSR__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__GCC_ATOMIC_BOOL_LOCK_FREE" value="2">
@@ -3434,6 +3479,9 @@
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__INT_MAX__" value="2147483647">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
+					<entry kind="macro" name="__LDBL_DECIMAL_DIG__" value="21">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__LDBL_DENORM_MIN__" value="3.64519953188247460253e-4951L">
@@ -3916,7 +3964,7 @@
 					<entry kind="macro" name="__USER_LABEL_PREFIX__" value="_">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__VERSION__" value="&quot;4.2.1 Compatible Apple LLVM 7.0.2 (clang-700.1.81)&quot;">
+					<entry kind="macro" name="__VERSION__" value="&quot;4.2.1 Compatible Apple LLVM 7.3.0 (clang-703.0.29)&quot;">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__WCHAR_MAX__" value="2147483647">
@@ -3940,7 +3988,7 @@
 					<entry kind="macro" name="__amd64__" value="1">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__apple_build_version__" value="7000181">
+					<entry kind="macro" name="__apple_build_version__" value="7030029">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__block" value="__attribute__((__blocks__(byref)))">
@@ -3952,13 +4000,13 @@
 					<entry kind="macro" name="__clang_major__" value="7">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__clang_minor__" value="0">
+					<entry kind="macro" name="__clang_minor__" value="3">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__clang_patchlevel__" value="2">
+					<entry kind="macro" name="__clang_patchlevel__" value="0">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__clang_version__" value="&quot;7.0.2 (clang-700.1.81)&quot;">
+					<entry kind="macro" name="__clang_version__" value="&quot;7.3.0 (clang-703.0.29)&quot;">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__core2" value="1">
