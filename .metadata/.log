@@ -9990,3 +9990,145 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-01 12:37:46.891
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.egit.ui 4 0 2016-05-01 12:42:30.649
+!MESSAGE Failed to refresh projects from index changes
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Errors occurred while refreshing resources with the local file system.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refreshResource(FileSystemResourceManager.java:960)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refresh(FileSystemResourceManager.java:941)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1593)
+	at org.eclipse.egit.ui.Activator$ResourceRefreshJob$1.run(Activator.java:446)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2241)
+	at org.eclipse.egit.ui.Activator$ResourceRefreshJob.run(Activator.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: The project description file (.project) for 'RemoteSystemsTempFiles' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+!SUBENTRY 1 org.eclipse.core.resources 4 271 2016-05-01 12:42:30.649
+!MESSAGE Errors occurred while refreshing resources with the local file system.
+!SUBENTRY 2 org.eclipse.core.resources 4 567 2016-05-01 12:42:30.649
+!MESSAGE The project description file (.project) for 'RemoteSystemsTempFiles' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+
+!ENTRY org.eclipse.core.resources 4 566 2016-05-01 12:47:30.693
+!MESSAGE Cannot set lower sequence number for root (previous: 4, new: 3). Ignoring the new value.
+!STACK 0
+java.lang.IllegalArgumentException: Cannot set lower sequence number for root (previous: 4, new: 3). Ignoring the new value.
+	at org.eclipse.core.internal.resources.SaveManager$MasterTable.put(SaveManager.java:50)
+	at java.util.Properties.load0(Properties.java:392)
+	at java.util.Properties.load(Properties.java:341)
+	at org.eclipse.core.internal.resources.SaveManager.validateMasterTableBeforeSave(SaveManager.java:1613)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1283)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1275)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1252)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1163)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:52)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.resources 4 566 2016-05-01 12:47:30.694
+!MESSAGE Cannot set lower sequence number for root (previous: 4, new: 3). Ignoring the new value.
+!STACK 0
+java.lang.IllegalArgumentException: Cannot set lower sequence number for root (previous: 4, new: 3). Ignoring the new value.
+	at org.eclipse.core.internal.resources.SaveManager$MasterTable.put(SaveManager.java:50)
+	at java.util.Properties.load0(Properties.java:392)
+	at java.util.Properties.load(Properties.java:341)
+	at org.eclipse.core.internal.resources.SaveManager.validateMasterTableBeforeSave(SaveManager.java:1613)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1283)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1275)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1252)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1163)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:52)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.resources 4 566 2016-05-01 12:47:30.694
+!MESSAGE Cannot set lower sequence number for root (previous: 4, new: 3). Ignoring the new value.
+!STACK 0
+java.lang.IllegalArgumentException: Cannot set lower sequence number for root (previous: 4, new: 3). Ignoring the new value.
+	at org.eclipse.core.internal.resources.SaveManager$MasterTable.put(SaveManager.java:50)
+	at java.util.Properties.load0(Properties.java:392)
+	at java.util.Properties.load(Properties.java:341)
+	at org.eclipse.core.internal.resources.SaveManager.validateMasterTableBeforeSave(SaveManager.java:1613)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1283)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1275)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1252)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1163)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:52)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.resources 4 566 2016-05-01 12:47:30.698
+!MESSAGE Cannot set lower sequence number for root (previous: 4, new: 3). Ignoring the new value.
+!STACK 0
+java.lang.IllegalArgumentException: Cannot set lower sequence number for root (previous: 4, new: 3). Ignoring the new value.
+	at org.eclipse.core.internal.resources.SaveManager$MasterTable.put(SaveManager.java:50)
+	at java.util.Properties.load0(Properties.java:392)
+	at java.util.Properties.load(Properties.java:341)
+	at org.eclipse.core.internal.resources.SaveManager.validateMasterTableBeforeSave(SaveManager.java:1613)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1283)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1275)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1252)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1163)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:52)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.resources 4 566 2016-05-01 12:47:30.699
+!MESSAGE Cannot set lower sequence number for root (previous: 4, new: 3). Ignoring the new value.
+!STACK 0
+java.lang.IllegalArgumentException: Cannot set lower sequence number for root (previous: 4, new: 3). Ignoring the new value.
+	at org.eclipse.core.internal.resources.SaveManager$MasterTable.put(SaveManager.java:50)
+	at java.util.Properties.load0(Properties.java:392)
+	at java.util.Properties.load(Properties.java:341)
+	at org.eclipse.core.internal.resources.SaveManager.validateMasterTableBeforeSave(SaveManager.java:1613)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1283)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1275)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1252)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1163)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:52)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.resources 4 566 2016-05-01 12:47:30.702
+!MESSAGE Cannot set lower sequence number for root (previous: 4, new: 3). Ignoring the new value.
+!STACK 0
+java.lang.IllegalArgumentException: Cannot set lower sequence number for root (previous: 4, new: 3). Ignoring the new value.
+	at org.eclipse.core.internal.resources.SaveManager$MasterTable.put(SaveManager.java:50)
+	at java.util.Properties.load0(Properties.java:392)
+	at java.util.Properties.load(Properties.java:341)
+	at org.eclipse.core.internal.resources.SaveManager.validateMasterTableBeforeSave(SaveManager.java:1613)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1283)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1275)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1252)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1163)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:52)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.resources 4 566 2016-05-01 12:47:30.702
+!MESSAGE Cannot set lower sequence number for root (previous: 4, new: 3). Ignoring the new value.
+!STACK 0
+java.lang.IllegalArgumentException: Cannot set lower sequence number for root (previous: 4, new: 3). Ignoring the new value.
+	at org.eclipse.core.internal.resources.SaveManager$MasterTable.put(SaveManager.java:50)
+	at java.util.Properties.load0(Properties.java:392)
+	at java.util.Properties.load(Properties.java:341)
+	at org.eclipse.core.internal.resources.SaveManager.validateMasterTableBeforeSave(SaveManager.java:1613)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1283)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1275)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1252)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1163)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:52)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.resources 4 566 2016-05-01 12:47:30.705
+!MESSAGE Cannot set lower sequence number for root (previous: 4, new: 3). Ignoring the new value.
+!STACK 0
+java.lang.IllegalArgumentException: Cannot set lower sequence number for root (previous: 4, new: 3). Ignoring the new value.
+	at org.eclipse.core.internal.resources.SaveManager$MasterTable.put(SaveManager.java:50)
+	at java.util.Properties.load0(Properties.java:392)
+	at java.util.Properties.load(Properties.java:341)
+	at org.eclipse.core.internal.resources.SaveManager.validateMasterTableBeforeSave(SaveManager.java:1613)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1283)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1275)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1252)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1163)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:52)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.resources 2 2 2016-05-01 12:47:30.706
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2016-05-01 12:47:30.706
+!MESSAGE The project description file (.project) for 'RemoteSystemsTempFiles' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.

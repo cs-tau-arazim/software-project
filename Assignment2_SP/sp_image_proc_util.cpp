@@ -16,6 +16,37 @@ using namespace cv;
  * @return NULL if str is NULL or nBins <= 0 or allocation error occurred,
  *  otherwise a two dimensional array representing the histogram.
  */
+
+double spL2SquaredDistance(double* featureA, double* featureB)
+{
+	double dis;
+	for (int j = 0 ; j < sizeof(featureA) ; j++)
+		{
+			dis += (featureA[i][j] - featureB[i][j])*(featureA[i][j] - featureB[i][j]);
+		}
+	return dis;
+}
+
+double** spGetSiftDescriptors(char* str, int maxNFeautres, int *nFeatures)
+{
+
+}
+
+double spRGBHistL2Distance(int** histA, int** histB, int nBins)
+{
+	double dis;
+	for (int i = 0; i < 3 ; i++)
+	{
+		for (int j = 0 ; j < sizeof(histA[0]) ; j++)
+		{
+			dis += (histA[i][j] - histB[i][j])*(histA[i][j] - histB[i][j]);
+		}
+	}
+	dis *= 0.33;
+	return dis;
+
+}
+
 int** spGetRGBHist(char* str, int nBins)
 {
 	/// Load image
