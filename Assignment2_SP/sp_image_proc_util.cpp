@@ -22,6 +22,37 @@ using namespace cv;
  * @return NULL if str is NULL or nBins <= 0 or allocation error occurred,
  *  otherwise a two dimensional array representing the histogram.
  */
+
+double spL2SquaredDistance(double* featureA, double* featureB)
+{
+	double dis;
+	for (int j = 0 ; j < sizeof(featureA) ; j++)
+		{
+			dis += (featureA[j] - featureB[j])*(featureA[j] - featureB[j]);
+		}
+	return dis;
+}
+
+double** spGetSiftDescriptors(char* str, int maxNFeautres, int *nFeatures)
+{
+
+}
+
+double spRGBHistL2Distance(int** histA, int** histB, int nBins)
+{
+	double dis;
+	for (int i = 0; i < 3 ; i++)
+	{
+		for (int j = 0 ; j < sizeof(histA[0]) ; j++)
+		{
+			dis += (histA[i][j] - histB[i][j])*(histA[i][j] - histB[i][j]);
+		}
+	}
+	dis *= 0.33;
+	return dis;
+
+}
+
 int** spGetRGBHist(char* str, int nBins)
 {
 	/// Load image
@@ -65,43 +96,5 @@ int** spGetRGBHist(char* str, int nBins)
 	}
 	return histInt;
 }
-/*
-int main(){
-	Mat src;
-
-	/// Load image
-	src = imread("baboon.png", CV_LOAD_IMAGE_COLOR);
-
-	if (src.empty()) {
-		return -1;
-	}
-
-	/// Separate the image in 3 places ( B, G and R )
-	std::vector<Mat> bgr_planes;
-	split(src, bgr_planes);
-
-	/// Establish the number of bins
-	int nBins = 256;
-
-	/// Set the ranges ( for B,G,R) )
-	float range[] = { 0, 256 };
-	const float* histRange = { range };
-
-	/// Set the other parameters:
-	int nImages = 1;
-
-
-	//Output
-	Mat b_hist, g_hist, r_hist;
-
-	/// Compute the histograms:
-	/// The results will be store in b_hist,g_hist,r_hist.
-	/// The output type of the matrices is CV_32F (float)
-	calcHist(&bgr_planes[0], nImages, 0, Mat(), b_hist, 1, &nBins, &histRange);
-	calcHist(&bgr_planes[1], nImages, 0, Mat(), g_hist, 1, &nBins, &histRange);
-	calcHist(&bgr_planes[2], nImages, 0, Mat(), r_hist, 1, &nBins, &histRange);
-		return 0;
-}*/
-
 
 
