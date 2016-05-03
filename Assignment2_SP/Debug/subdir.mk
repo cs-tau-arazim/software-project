@@ -4,16 +4,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../main.cpp \
-../sp_image_proc_util.cpp 
+../sp_image_proc_util.cpp \
+../tirgul3.cpp 
 
 OBJS += \
-./main.o \
-./sp_image_proc_util.o 
+./sp_image_proc_util.o \
+./tirgul3.o 
 
 CPP_DEPS += \
-./main.d \
-./sp_image_proc_util.d 
+./sp_image_proc_util.d \
+./tirgul3.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

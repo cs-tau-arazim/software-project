@@ -10,7 +10,6 @@
 
 using namespace cv;
 
-
 /*
  * Calculates the RGB channels histogram. The histogram will be stored in a
  * two dimensional array of dimensions 3XnBins . The first row is the
@@ -22,36 +21,6 @@ using namespace cv;
  * @return NULL if str is NULL or nBins <= 0 or allocation error occurred,
  *  otherwise a two dimensional array representing the histogram.
  */
-
-double spL2SquaredDistance(double* featureA, double* featureB)
-{
-	double dis;
-	for (int j = 0 ; j < sizeof(featureA) ; j++)
-		{
-			dis += (featureA[j] - featureB[j])*(featureA[j] - featureB[j]);
-		}
-	return dis;
-}
-
-double** spGetSiftDescriptors(char* str, int maxNFeautres, int *nFeatures)
-{
-
-}
-
-double spRGBHistL2Distance(int** histA, int** histB, int nBins)
-{
-	double dis;
-	for (int i = 0; i < 3 ; i++)
-	{
-		for (int j = 0 ; j < sizeof(histA[0]) ; j++)
-		{
-			dis += (histA[i][j] - histB[i][j])*(histA[i][j] - histB[i][j]);
-		}
-	}
-	dis *= 0.33;
-	return dis;
-
-}
 
 int** spGetRGBHist(char* str, int nBins)
 {
@@ -95,6 +64,98 @@ int** spGetRGBHist(char* str, int nBins)
 		histInt[i][2] = r_hist.at<int>(i,0);
 	}
 	return histInt;
+}
+
+
+double spRGBHistL2Distance(int** histA, int** histB, int nBins)
+{
+	double dis;
+	for (int i = 0; i < 3 ; i++)
+	{
+		for (int j = 0 ; j < sizeof(histA[0]) ; j++)
+		{
+			dis += (histA[i][j] - histB[i][j])*(histA[i][j] - histB[i][j]);
+		}
+	}
+	dis *= 0.33;
+	return dis;
+
+}
+
+
+double** spGetSiftDescriptors(char* str, int maxNFeautres, int *nFeatures)
+{
+	// TODO
+}
+
+
+double spL2SquaredDistance(double* featureA, double* featureB)
+{
+	double dis;
+	for (int j = 0 ; j < sizeof(featureA) ; j++)
+		{
+			dis += (featureA[j] - featureB[j])*(featureA[j] - featureB[j]);
+		}
+	return dis;
+}
+
+
+/**
+ * Given sift descriptors of the images in the database (databaseFeatures), finds the
+ * closest bestNFeatures to a given SIFT feature (featureA). The function returns the
+ * INDEXES of the images to which the closest features belong, stored in ascending order
+ * (Closest feature image index is first, second closest feature image index is second, etc...).
+ * Assumptions:
+ *   - Tie break - In case featureA has the same distance (L2Squared distance) from two features,
+ *     then the feature that corresponds to the smallest image
+ *     index in the database is closer.
+ *
+ *   - The returned result may contain duplicates in case two features belongs to the same image.
+ *
+ *   - databaseFeatures is an array of two dimensional arrays, the number of elements
+ *     in databaseFeatures is numberOfImages.
+ *
+ *   - Each entry in databaseFeatures corresponds to the features of some image in the database.
+ *     The ith entry corresponds to the features of image_i in the database, and it is a two dimensional
+ *     array of dimension nFeaturesPerImage[i]X128.
+ *
+ *   - The number of descriptors for the ith image is nFeaturesPerImage[i]
+ *
+ * @param bestNFeatures     - The number of indexes to return.
+ * @param featureA          - A sift descriptor which will be compared with the other descriptor
+ * 							  (Assumption dimension(bestNFeatures) = 128)
+ * @param databaseFeatures  - An array of two dimensional array, in which the descriptors of the images are stored.
+ * 							  The ith entry of the array corresponds to the features of the ith image in the database
+ * @param numberOfImages    - The number of images in the database. (Number of entries in databaseFeatures)
+ * @param nFeaturesPerImage - The number of features for each image. (i.e databaseFeatures[i] is two dimensional
+ * 							  array with the dimension nFeaturesPerImage[i]X128
+ * @return - NULL if either the following:
+ * 			 * featureA is NULL
+ * 			 * databaseFeatures is NULL
+ * 			 * numberOfImages <= 1
+ * 			 * nFeaturesPerImage is NULL
+ * 			 * allocation error occurred
+ * 			 otherwise, an array of size bestNFeatures is returned such that:
+ * 			 * Given that f1, f2, ... the closest features to featureA (i.e d(featureA,f1) <= d(featureA,f2) <= ...)
+ * 			 * i1, i2, .... are the indexes of the images to which fi belongs (i.e f1 is a SIFT descriptor of image i1,
+ * 			   f2 is a SIFT descriptor of image i2 etc..)
+ * 			 Then the array returned is {i1,i2,...,i_bestNFeatures}
+ */
+int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
+		double*** databaseFeatures, int numberOfImages,
+		int* nFeaturesPerImage)
+{
+	// for each image
+	for(int i = 0; i < numberOfImages; i++) {
+
+		// calculate all the distances of specific photo from featureA
+		double distList[nFeaturesPerImage[i]];
+		for (int j = 0; j < nFeaturesPerImage[i]; j++) {
+			distList[j] = spL2SquaredDistance(featureA, databaseFeatures[i][j]);
+		}
+		qsort(*distList, )
+		// TODO
+	}
 }
 
 
