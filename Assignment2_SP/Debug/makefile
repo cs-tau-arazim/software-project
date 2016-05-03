@@ -43,7 +43,7 @@ all: Assignment2_SP
 Assignment2_SP: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L/usr/local/lib/opencv-3.1.0/lib/ -o "Assignment2_SP" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L/usr/local/lib/opencv-3.1.0/lib -o "Assignment2_SP" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
