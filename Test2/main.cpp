@@ -51,6 +51,7 @@ int** spGetRGBHist(char* str, int nBins)
 
 int main() {
 	spGetRGBHist((char*)("baboon.png"), 256);
+
 	/*
 	Mat src;
 
