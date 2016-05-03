@@ -1,3 +1,5 @@
+#include <stdio.h>
+/*
 int main()
 {
 	printf("Enter images directory path:\n");
@@ -38,8 +40,10 @@ int main()
 
 	for (int i = 0 ; i < n ; i++)
 	{
-		char* currentDir = dir+prefix+i+suffix; // TODO
+		//char* currentDir = dir+prefix+i+suffix; // TODO
+		// try to use atoi(number) to convert string to int -gal
 		// TODO save rgb hist and features for each image
 	}
 }
 
+*/

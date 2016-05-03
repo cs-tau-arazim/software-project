@@ -100,6 +100,12 @@ double spL2SquaredDistance(double* featureA, double* featureB)
 }
 
 
+int cmpfunc (const void * a, const void * b)
+{
+   return ( *(int*)a - *(int*)b );
+}
+
+
 /**
  * Given sift descriptors of the images in the database (databaseFeatures), finds the
  * closest bestNFeatures to a given SIFT feature (featureA). The function returns the
@@ -145,15 +151,29 @@ int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 		double*** databaseFeatures, int numberOfImages,
 		int* nFeaturesPerImage)
 {
+
+
+
 	// for each image
 	for(int i = 0; i < numberOfImages; i++) {
 
-		// calculate all the distances of specific photo from featureA
+		int nFeaturesImageI = nFeaturesPerImage[i];
+		// array of distances for each feature
 		double distList[nFeaturesPerImage[i]];
-		for (int j = 0; j < nFeaturesPerImage[i]; j++) {
+
+		// calculate all the distances of specific photo from featureA
+		for (int j = 0; j < nFeaturesImageI; j++) {
 			distList[j] = spL2SquaredDistance(featureA, databaseFeatures[i][j]);
 		}
-		qsort(*distList, )
+
+		qsort(distList, nFeaturesImageI, sizeof(double), cmpfunc);
+
+		// calculate sum of shortest distances
+		double distance = 0;
+
+		// safety calculation of minimum
+		int min = bestNFeatures ^ ((nFeaturesImageI ^ bestNFeatures) & -(nFeaturesImageI < bestNFeatures));
+
 		// TODO
 	}
 }
