@@ -15,6 +15,7 @@
 #include <vector>
 #include "main_aux.h"
 
+// valgrind --leak-check=full --track-origins=yes Assignment2_SP
 
 using namespace cv;
 
