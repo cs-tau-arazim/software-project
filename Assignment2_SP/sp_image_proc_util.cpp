@@ -14,6 +14,8 @@
 #include <opencv2/features2d.hpp>
 #include <vector>
 #include "main_aux.cpp"
+
+
 using namespace cv;
 
 /*
@@ -124,7 +126,6 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 
 	// TODO confirm nFeatures pointer value
 	*nFeatures = ds1.rows;
-
 	return descriptors;
 }
 
