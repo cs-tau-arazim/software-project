@@ -109,7 +109,6 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 	detect->detect(src, kp1, cv::Mat());
 	detect->compute(src, kp1, ds1);
 
-	// TODO return nFeatures pointer value
 
 	double ** descriptors;
 	descriptors = (double **)malloc(128* sizeof(*descriptors));
@@ -117,12 +116,15 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 		descriptors[i]  = (double*)malloc(ds1.rows * sizeof(*(descriptors[i])));
 	}
 
-
-	//
-	//for (int i = 0; i < 128; i++) {
-
-	//	descriptors[i]  = (double*)malloc(ds1.rows * sizeof(*(descriptors[i])));
+	for (int i = 0; i < 128; i++) {
+		for (int j = 0; j < ds1.rows; j++) {
+			descriptors[i][j] = ds1.at<double>(i,0);
+		}
 	}
+
+	// TODO confirm nFeatures pointer value
+	*nFeatures = ds1.rows;
+
 	return descriptors;
 }
 
