@@ -16,74 +16,105 @@
 #include "sp_image_proc_util.h"
 #include "main_aux.h"
 
+#define LINE 1024
+#define fgets_fixed(str) { \
+	fgets (str, sizeof(str), stdin);\
+	if (str == NULL) {\
+		exit(10);}\
+	strtok(str, "\n");}
+
 int main()
 {
+	setvbuf(stdout, NULL, _IONBF, 0);
+	char strToInt[LINE];
 	printf("Enter images directory path:\n");
-	char* dir;
-	scanf("%s", &dir);
+	char dir[LINE];
+	//fgets (dir, sizeof(dir), stdin);
+	fgets_fixed(dir);
 
 	printf("Enter images prefix:\n");
-	char* prefix;
-	scanf("%s", &prefix);
+	char prefix[LINE];
+	//fgets (prefix, sizeof(prefix), stdin);
+	fgets_fixed(prefix);
 
 	printf("Enter number of images:\n");
-	int n = 0;
-	scanf("%d", &n);
+	int n; // TODO change!
+	fgets_fixed (strToInt);
+	n = atoi(strToInt);
 	if (n < 1)
 	{
 		printf("An error occurred - invalid number of images\n");
 	}
 
 	printf("Enter images suffix:\n");
-	char* suffix;
-	scanf("%s", &suffix);
+	char suffix[LINE];
+	fgets_fixed(suffix);
+
 
 	printf("Enter number of bins:\n");
-	int nBins = 0;
-	scanf("%d", &nBins);
+	int nBins;
+	fgets_fixed(strToInt);
+	nBins = atoi(strToInt);
 	if (n < 1)
 	{
 		printf("An error occurred - invalid number of bins\n");
 	}
 
+
 	printf("Enter number of features:\n");
-	int maxNFeatures = 0;
-	scanf("%d", &maxNFeatures);
+
+	int maxNFeatures;
+	fgets_fixed(strToInt);
+	maxNFeatures = atoi(strToInt);
 	if (n < 1)
 	{
 		printf("An error occurred - invalid number of features\n");
 	}
 
-
-
+	//TODO remove
+	printf("%s%s%d%s, %d, %d\n",dir,prefix,n,suffix,nBins,maxNFeatures);
+	printf("all's good so far\n");
 	//7
 	int *nFeaturesPerImage;
 	nFeaturesPerImage = (int*)malloc(n*sizeof(int));
+
 	int*** rgb;
-	rgb = (int***)malloc(n*sizeof(int));
+	rgb = (int***)alloc_3d_int(n, 3, nBins);
+
 
 	double*** sift;
 	sift = (double***)malloc(n*sizeof(int));
 
+	printf("malloc success 1\n");
+
+
+
+	char currentDir[LINE];
 
 	for (int i = 0 ; i < n ; i++)
 	{
-		char* iStr;
+		char iStr[LINE*4];
 		sprintf(iStr, "%d", i);
-		char* currentDir = dir; //+prefix+i+suffix
+
+		strcpy(currentDir,dir);
+		 //+prefix+i+suffix
 		strcat(currentDir, prefix);
 		strcat(currentDir, iStr);
 		strcat(currentDir, suffix);
-		rgb[i] = spGetRGBHist(currentDir, nBins);
+		printf(currentDir);
+		//rgb[i] = spGetRGBHist(currentDir, nBins);
+		printf("success with RGBHIst\n");
 		sift[i] = spGetSiftDescriptors(currentDir,  maxNFeatures, &(nFeaturesPerImage[i]));
+		printf("success with SiftDescriptors\n");
+
 	}
 
 	while(true)
 	{
 		//8
 		printf("Enter a query image or # to terminate:\n");
-		char* query;
-		scanf("%s", &query);
+		char query[LINE];
+		fgets_fixed(query);
 
 		//9
 		if(strcmp("#",query) == 0)

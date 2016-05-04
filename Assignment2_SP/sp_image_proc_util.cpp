@@ -33,7 +33,7 @@ using namespace cv;
 int** spGetRGBHist(char* str, int nBins)
 {
 	/// Load image
-	Mat src = imread("baboon.png", CV_LOAD_IMAGE_COLOR);
+	Mat src = imread("baboon", CV_LOAD_IMAGE_COLOR); //TODO change
 
 	/// Separate the image in 3 places ( B, G and R )
 	std::vector<Mat> bgr_planes;
@@ -96,7 +96,7 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 
 	//Loading img - NOTE: Gray scale mode!
 	Mat src;
-	src = imread("baboon.png", CV_LOAD_IMAGE_GRAYSCALE);
+	src = imread(str, CV_LOAD_IMAGE_GRAYSCALE);
 
 	//Key points will be stored in kp1;
 	std::vector<KeyPoint> kp1;

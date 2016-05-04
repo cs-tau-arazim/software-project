@@ -1,5 +1,22 @@
 #include <stdlib.h>// Mat
 #include "main_aux.h"
+#include <iostream>
+#include <cstdio>
+#include <stdio.h>
+#include <string.h>
+
+
+
+/*void fgets_fixed(char* str) {
+	fgets (str, sizeof(str), stdin);
+	if (str == NULL) {
+		exit(10);
+	}
+	strtok(str, "\n");
+
+}*/
+
+
 
 
 
@@ -58,5 +75,73 @@ int compareHits (const void * a, const void * b)
 }
 
 
+int ***alloc_3d_int(size_t xlen, size_t ylen, size_t zlen)
+{
+    int ***p;
+    size_t i, j;
 
+    if ((p = (int***)malloc(xlen * sizeof *p)) == NULL) {
+        perror("malloc 1");
+        return NULL;
+    }
+
+    for (i=0; i < xlen; ++i)
+        p[i] = NULL;
+
+    for (i=0; i < xlen; ++i)
+        if ((p[i] = (int**)malloc(ylen * sizeof *p[i])) == NULL) {
+            perror("malloc 2");
+            free_3d_int(p, xlen, ylen);
+            return NULL;
+        }
+
+    for (i=0; i < xlen; ++i)
+        for (j=0; j < ylen; ++j)
+            p[i][j] = NULL;
+
+    for (i=0; i < xlen; ++i)
+        for (j=0; j < ylen; ++j)
+            if ((p[i][j] =(int*) malloc(zlen * sizeof *p[i][j])) == NULL) {
+                perror("malloc 3");
+                free_3d_int(p, xlen, ylen);
+                return NULL;
+            }
+
+    return p;
+}
+
+double ***alloc_3d_double(size_t xlen, size_t ylen, size_t zlen)
+{
+    double ***p;
+    size_t i, j;
+
+    if ((p = (double***)malloc(xlen * sizeof *p)) == NULL) {
+        perror("malloc 1");
+        return NULL;
+    }
+
+    for (i=0; i < xlen; ++i)
+        p[i] = NULL;
+
+    for (i=0; i < xlen; ++i)
+        if ((p[i] = (double**)malloc(ylen * sizeof *p[i])) == NULL) {
+            perror("malloc 2");
+            free_3d_double(p, xlen, ylen);
+            return NULL;
+        }
+
+    for (i=0; i < xlen; ++i)
+        for (j=0; j < ylen; ++j)
+            p[i][j] = NULL;
+
+    for (i=0; i < xlen; ++i)
+        for (j=0; j < ylen; ++j)
+            if ((p[i][j] =(double*) malloc(zlen * sizeof *p[i][j])) == NULL) {
+                perror("malloc 3");
+                free_3d_double(p, xlen, ylen);
+                return NULL;
+            }
+
+    return p;
+}
 
