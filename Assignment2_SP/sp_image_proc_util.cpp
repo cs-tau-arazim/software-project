@@ -111,21 +111,26 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 	detect->detect(src, kp1, cv::Mat());
 	detect->compute(src, kp1, ds1);
 
+	*nFeatures = ds1.rows;
 
 	double ** descriptors;
-	descriptors = (double **)malloc(128* sizeof(*descriptors));
-	for (int i = 0; i < 128; i++) {
-		descriptors[i]  = (double*)malloc(ds1.rows * sizeof(*(descriptors[i])));
+	descriptors = (double **)malloc((*nFeatures)* sizeof(*descriptors));
+	if (descriptors == NULL) {
+		return NULL;
 	}
 
-	for (int i = 0; i < 128; i++) {
-		for (int j = 0; j < ds1.rows; j++) {
+	for (int i = 0; i < (*nFeatures); i++) {
+		descriptors[i]  = (double*)malloc(128 * sizeof(*(descriptors[i])));
+		if (descriptors[i] == NULL) {
+			return NULL;
+		}
+
+		for (int j = 0; j < 128; j++) {
 			descriptors[i][j] = ds1.at<double>(i,0);
 		}
 	}
 
 	// TODO confirm nFeatures pointer value
-	*nFeatures = ds1.rows;
 	return descriptors;
 }
 
@@ -193,8 +198,8 @@ int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 		totalNumFeatures += nFeaturesPerImage[i];
 	}
 
-	// create big list of pairs
-	struct TupleDI * featureList = (TupleDI*)malloc(totalNumFeatures*sizeof(TupleDI));
+	// create a big list of pairs- distance and image index
+	TupleDI * featureList = (TupleDI*)malloc(totalNumFeatures*sizeof(TupleDI));
 	int index = 0;
 	// for each image
 	for(int i = 0; i < numberOfImages; i++) {

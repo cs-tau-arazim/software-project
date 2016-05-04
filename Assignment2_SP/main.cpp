@@ -14,8 +14,6 @@
 #include <opencv2/features2d.hpp>
 #include <vector>
 #include "sp_image_proc_util.h"
-#include "main_aux.h"
-
 
 int main()
 {
