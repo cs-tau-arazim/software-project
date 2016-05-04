@@ -7,6 +7,12 @@
 #include <opencv2/highgui.hpp>
 #include <vector>
 #include <iostream>
+#include <opencv2/highgui.hpp> //imshow, drawKeypoints, waitKey
+#include <opencv2/imgproc.hpp>
+#include <opencv2/core.hpp>//Mat
+#include <opencv2/xfeatures2d.hpp>//SiftDescriptorExtractor
+#include <opencv2/features2d.hpp>
+#include <vector>
 
 using namespace cv;
 
@@ -83,9 +89,41 @@ double spRGBHistL2Distance(int** histA, int** histB, int nBins)
 }
 
 
-double** spGetSiftDescriptors(char* str, int maxNFeautres, int *nFeatures)
+double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 {
-	// TODO
+
+	//Loading img - NOTE: Gray scale mode!
+	Mat src;
+	src = imread("baboon.png", CV_LOAD_IMAGE_GRAYSCALE);
+
+	//Key points will be stored in kp1;
+	std::vector<KeyPoint> kp1;
+	//Feature values will be stored in ds1;
+	Mat ds1;
+	//Creating  a Sift Descriptor extractor
+	Ptr<xfeatures2d::SiftDescriptorExtractor> detect =
+			xfeatures2d::SIFT::create(maxNFeatures);
+	//Extracting features
+	//The features will be stored in ds1
+	//The output type of ds1 is CV_32F (float)
+	detect->detect(src, kp1, cv::Mat());
+	detect->compute(src, kp1, ds1);
+
+	// TODO return nFeatures pointer value
+
+	double ** descriptors;
+	descriptors = (double **)malloc(128* sizeof(*descriptors));
+	for (int i = 0; i < 128; i++) {
+		descriptors[i]  = (double*)malloc(ds1.rows * sizeof(*(descriptors[i])));
+	}
+
+
+	//
+	//for (int i = 0; i < 128; i++) {
+
+	//	descriptors[i]  = (double*)malloc(ds1.rows * sizeof(*(descriptors[i])));
+	}
+	return descriptors;
 }
 
 
