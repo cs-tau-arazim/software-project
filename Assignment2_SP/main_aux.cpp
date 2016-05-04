@@ -29,6 +29,13 @@ void free_data(double ***data, size_t xlen, size_t ylen)
     free(data);
 }
 
+int compareHits (const void * a, const void * b)
+{
+	const int *a_ = *(const int **)a;
+	const int *b_ = *(const int **)b;
+	return ( a_[1] - b_[1] );
+}
+
 
 
 

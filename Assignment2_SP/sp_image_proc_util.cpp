@@ -125,12 +125,6 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 
 	// TODO confirm nFeatures pointer value
 	*nFeatures = ds1.rows;
-
-<<<<<<< HEAD
-	//	descriptors[i]  = (double*)malloc(ds1.rows * sizeof(*(descriptors[i])));
-
-=======
->>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 	return descriptors;
 }
 
