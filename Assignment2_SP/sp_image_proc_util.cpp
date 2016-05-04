@@ -192,8 +192,6 @@ int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 		int* nFeaturesPerImage)
 {
 
-
-
 	// for each image
 	for(int i = 0; i < numberOfImages; i++) {
 
