@@ -33,7 +33,9 @@ int compareHits (const void * a, const void * b)
 {
 	const int *a_ = *(const int **)a;
 	const int *b_ = *(const int **)b;
-	return ( a_[1] - b_[1] );
+	if (a_[1] - b_[1] == 0)
+		return ( a_[0] - b_[0] );
+	return ( b_[1] - a_[1] );
 }
 
 
