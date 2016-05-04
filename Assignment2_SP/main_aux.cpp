@@ -1,4 +1,6 @@
-#include <opencv2/core.hpp>// Mat
+#include <stdlib.h>// Mat
+#include "main_aux.h"
+
 
 
 int cmpfunc (const void * a, const void * b)
@@ -6,11 +8,15 @@ int cmpfunc (const void * a, const void * b)
    return ( *(int*)a - *(int*)b );
 }
 
-
 int cmpTupleDI (const void * tupA, const void * tupB)
 {
-   return ( *(int*)tupA.a - *(int*)tupB.a );
+
+  TupleDI *iTupA = (TupleDI *)tupA;
+  TupleDI *iTupB = (TupleDI *)tupB;
+
+  return ( iTupB->a - iTupA->a );
 }
+
 
 void free_3d_int(int ***data, size_t xlen, size_t ylen)
 {
@@ -40,10 +46,7 @@ void free_3d_double(double ***data, size_t xlen, size_t ylen)
     free(data);
 }
 
-struct TupleDI{
-   double a;
-   int b;
-};
+
 
 int compareHits (const void * a, const void * b)
 {

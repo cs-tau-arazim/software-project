@@ -16,7 +16,6 @@
 #include "sp_image_proc_util.h"
 #include "main_aux.h"
 
-
 int main()
 {
 	printf("Enter images directory path:\n");
