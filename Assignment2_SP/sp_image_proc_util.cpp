@@ -13,6 +13,7 @@
 #include <opencv2/xfeatures2d.hpp>//SiftDescriptorExtractor
 #include <opencv2/features2d.hpp>
 #include <vector>
+#include "main_aux.cpp"
 
 
 using namespace cv;
@@ -140,12 +141,6 @@ double spL2SquaredDistance(double* featureA, double* featureB)
 }
 
 
-int cmpfunc (const void * a, const void * b)
-{
-   return ( *(int*)a - *(int*)b );
-}
-
-
 /**
  * Given sift descriptors of the images in the database (databaseFeatures), finds the
  * closest bestNFeatures to a given SIFT feature (featureA). The function returns the
@@ -187,33 +182,41 @@ int cmpfunc (const void * a, const void * b)
  * 			   f2 is a SIFT descriptor of image i2 etc..)
  * 			 Then the array returned is {i1,i2,...,i_bestNFeatures}
  */
+
 int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 		double*** databaseFeatures, int numberOfImages,
 		int* nFeaturesPerImage)
 {
 
+	int totalNumFeatures = 0;
+	for(int i = 0; i < numberOfImages; i++) {
+		totalNumFeatures += nFeaturesPerImage[i];
+	}
+
+	// create big list of pairs
+	struct TupleDI * featureList = (TupleDI*)malloc(totalNumFeatures*sizeof(TupleDI));
+	int index = 0;
 	// for each image
 	for(int i = 0; i < numberOfImages; i++) {
 
-		int nFeaturesImageI = nFeaturesPerImage[i];
-		// array of distances for each feature
-		double distList[nFeaturesPerImage[i]];
-
 		// calculate all the distances of specific photo from featureA
-		for (int j = 0; j < nFeaturesImageI; j++) {
-			distList[j] = spL2SquaredDistance(featureA, databaseFeatures[i][j]);
+		for (int j = 0; j < nFeaturesPerImage[i]; j++) {
+			featureList[index].a = i;
+			featureList[index].b = spL2SquaredDistance(featureA, databaseFeatures[i][j]);
+			index++;
 		}
 
-		qsort(distList, nFeaturesImageI, sizeof(double), cmpfunc);
-
-		// calculate sum of shortest distances
-		double distance = 0;
-
-		// safety calculation of minimum
-		int min = bestNFeatures ^ ((nFeaturesImageI ^ bestNFeatures) & -(nFeaturesImageI < bestNFeatures));
-
-		// TODO
 	}
+
+	qsort(featureList, totalNumFeatures, sizeof(TupleDI), cmpTupleDI);
+
+	int * results = (int*)malloc(bestNFeatures*sizeof(int));
+	for (int i = 0; i < bestNFeatures; i++) {
+		results[i] = featureList[i].b;
+	}
+
+	free(featureList);
+	return results;
 }
 
 
