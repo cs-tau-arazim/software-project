@@ -1,10 +1,15 @@
+<<<<<<< HEAD
 !SESSION 2016-05-04 16:19:56.938 -----------------------------------------------
+=======
+!SESSION 2016-05-04 16:14:06.634 -----------------------------------------------
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 eclipse.buildId=M20120914-1800
 java.version=1.8.0_25
 java.vendor=Oracle Corporation
 BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
 Command-line arguments:  -data /specific/a/home/cc/students/cs/tomsegal/software-project -os linux -ws gtk -arch x86_64
 
+<<<<<<< HEAD
 This is a continuation of log file /specific/a/home/cc/students/cs/tomsegal/software-project/.metadata/.bak_4.log
 Created Time: 2016-05-04 17:08:17.849
 
@@ -4816,6 +4821,12 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:10:40.092
+=======
+This is a continuation of log file /specific/a/home/cc/students/cs/galwiernik/software-project/.metadata/.bak_1.log
+Created Time: 2016-05-04 16:56:24.607
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 16:56:24.608
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -4877,12 +4888,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.093
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.093
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:10:40.094
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.608
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.608
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 16:56:24.610
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -4944,12 +4964,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.094
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.094
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:10:40.095
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.610
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.610
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 16:56:24.611
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -5011,12 +5040,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.095
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.095
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:10:40.100
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.611
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.611
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 16:56:24.616
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -5078,12 +5116,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.100
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.100
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:10:40.101
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.616
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.616
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 16:56:24.617
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -5145,12 +5192,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.101
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.101
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:10:40.103
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.618
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.618
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 16:56:24.618
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -5212,12 +5268,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.103
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.103
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:10:40.104
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.619
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.619
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 16:56:24.622
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -5279,12 +5344,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.104
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.104
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:10:40.106
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.623
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.623
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 16:56:24.623
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -5346,12 +5420,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.106
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.106
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:10:40.110
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.624
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.624
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 16:56:24.624
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -5413,12 +5496,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.110
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.110
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:10:40.111
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.624
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.624
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 16:56:24.628
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -5480,12 +5572,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.111
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.111
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:10:40.113
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.628
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.628
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 16:56:24.629
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -5547,12 +5648,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.113
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.113
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:10:40.114
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.629
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.629
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 16:56:24.630
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -5614,6 +5724,7 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.114
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:10:40.114
@@ -6071,6 +6182,14 @@ java.io.FileNotFoundException: /IMG_ETOOL_DELETE
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
 
 !ENTRY org.eclipse.jface 4 0 2016-05-04 17:11:14.335
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.630
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 16:56:24.630
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.jface 4 0 2016-05-04 17:06:03.874
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE /IMG_TOOL_COPY
 !STACK 0
 java.io.FileNotFoundException: /IMG_TOOL_COPY
@@ -6150,7 +6269,11 @@ java.io.FileNotFoundException: /IMG_TOOL_COPY
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.jface 4 0 2016-05-04 17:11:14.337
+=======
+!ENTRY org.eclipse.jface 4 0 2016-05-04 17:06:03.880
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE /IMG_ETOOL_DELETE
 !STACK 0
 java.io.FileNotFoundException: /IMG_ETOOL_DELETE
@@ -6230,7 +6353,11 @@ java.io.FileNotFoundException: /IMG_ETOOL_DELETE
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.jface 4 0 2016-05-04 17:11:14.339
+=======
+!ENTRY org.eclipse.jface 4 0 2016-05-04 17:06:03.882
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE /IMG_ETOOL_DELETE
 !STACK 0
 java.io.FileNotFoundException: /IMG_ETOOL_DELETE
@@ -6310,7 +6437,11 @@ java.io.FileNotFoundException: /IMG_ETOOL_DELETE
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.jface 4 0 2016-05-04 17:11:14.340
+=======
+!ENTRY org.eclipse.jface 4 0 2016-05-04 17:06:03.885
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE /IMG_OBJ_ADD
 !STACK 0
 java.io.FileNotFoundException: /IMG_OBJ_ADD
@@ -6390,7 +6521,11 @@ java.io.FileNotFoundException: /IMG_OBJ_ADD
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.jface 4 0 2016-05-04 17:11:14.342
+=======
+!ENTRY org.eclipse.jface 4 0 2016-05-04 17:06:03.887
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE /IMG_TOOL_COPY
 !STACK 0
 java.io.FileNotFoundException: /IMG_TOOL_COPY
@@ -6470,6 +6605,7 @@ java.io.FileNotFoundException: /IMG_TOOL_COPY
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:11:16.266
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
@@ -6577,6 +6713,49 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
 	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3529)
 	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3182)
+=======
+!ENTRY org.eclipse.jface 4 0 2016-05-04 17:06:03.888
+!MESSAGE /IMG_ETOOL_DELETE
+!STACK 0
+java.io.FileNotFoundException: /IMG_ETOOL_DELETE
+	at org.eclipse.osgi.framework.internal.protocol.bundleentry.Handler.findBundleEntry(Handler.java:44)
+	at org.eclipse.osgi.framework.internal.core.BundleResourceHandler.openConnection(BundleResourceHandler.java:175)
+	at java.net.URL.openConnection(URL.java:972)
+	at org.eclipse.core.internal.boot.PlatformURLConnection.connect(PlatformURLConnection.java:110)
+	at org.eclipse.core.internal.boot.PlatformURLConnection.getURLAsLocal(PlatformURLConnection.java:238)
+	at org.eclipse.core.internal.runtime.PlatformURLConverter.toFileURL(PlatformURLConverter.java:36)
+	at org.eclipse.core.runtime.FileLocator.toFileURL(FileLocator.java:206)
+	at org.eclipse.jface.resource.URLImageDescriptor.getFilePath(URLImageDescriptor.java:137)
+	at org.eclipse.jface.resource.URLImageDescriptor.createImage(URLImageDescriptor.java:157)
+	at org.eclipse.jface.resource.ImageDescriptor.createResource(ImageDescriptor.java:165)
+	at org.eclipse.jface.resource.DeviceResourceManager.allocate(DeviceResourceManager.java:56)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:88)
+	at org.eclipse.jface.resource.LocalResourceManager.allocate(LocalResourceManager.java:82)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:88)
+	at org.eclipse.jface.resource.ResourceManager.createImage(ResourceManager.java:172)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.getImage(HandledContributionItem.java:598)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.updateIcons(HandledContributionItem.java:571)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.update(HandledContributionItem.java:471)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.fill(HandledContributionItem.java:355)
+	at org.eclipse.jface.action.MenuManager.doItemFill(MenuManager.java:746)
+	at org.eclipse.jface.action.MenuManager.update(MenuManager.java:827)
+	at org.eclipse.jface.action.MenuManager.update(MenuManager.java:687)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerRenderer.processContents(MenuManagerRenderer.java:520)
+	at org.eclipse.ui.internal.PopupMenuExtender.addMenuContributions(PopupMenuExtender.java:408)
+	at org.eclipse.ui.internal.PopupMenuExtender.menuAboutToShow(PopupMenuExtender.java:379)
+	at org.eclipse.jface.action.MenuManager.fireAboutToShow(MenuManager.java:343)
+	at org.eclipse.jface.action.MenuManager.handleAboutToShow(MenuManager.java:475)
+	at org.eclipse.jface.action.MenuManager.access$1(MenuManager.java:470)
+	at org.eclipse.jface.action.MenuManager$2.menuShown(MenuManager.java:500)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:255)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1276)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1300)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1281)
+	at org.eclipse.swt.widgets.Menu._setVisible(Menu.java:198)
+	at org.eclipse.swt.widgets.Display.runPopups(Display.java:3596)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3169)
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1029)
 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:923)
@@ -6604,6 +6783,7 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:11:16.268
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:11:16.269
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
@@ -6644,6 +6824,65 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
 	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3529)
 	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3182)
+=======
+!ENTRY org.eclipse.jface 4 0 2016-05-04 17:06:03.904
+!MESSAGE /IMG_TOOL_COPY
+!STACK 0
+java.io.FileNotFoundException: /IMG_TOOL_COPY
+	at org.eclipse.osgi.framework.internal.protocol.bundleentry.Handler.findBundleEntry(Handler.java:44)
+	at org.eclipse.osgi.framework.internal.core.BundleResourceHandler.openConnection(BundleResourceHandler.java:175)
+	at java.net.URL.openConnection(URL.java:972)
+	at org.eclipse.core.internal.boot.PlatformURLConnection.connect(PlatformURLConnection.java:110)
+	at org.eclipse.core.internal.boot.PlatformURLConnection.getURLAsLocal(PlatformURLConnection.java:238)
+	at org.eclipse.core.internal.runtime.PlatformURLConverter.toFileURL(PlatformURLConverter.java:36)
+	at org.eclipse.core.runtime.FileLocator.toFileURL(FileLocator.java:206)
+	at org.eclipse.jface.resource.URLImageDescriptor.getFilePath(URLImageDescriptor.java:137)
+	at org.eclipse.jface.resource.URLImageDescriptor.createImage(URLImageDescriptor.java:157)
+	at org.eclipse.jface.resource.ImageDescriptor.createResource(ImageDescriptor.java:165)
+	at org.eclipse.jface.resource.DeviceResourceManager.allocate(DeviceResourceManager.java:56)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:88)
+	at org.eclipse.jface.resource.LocalResourceManager.allocate(LocalResourceManager.java:82)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:88)
+	at org.eclipse.jface.resource.ResourceManager.createImage(ResourceManager.java:172)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.getImage(HandledContributionItem.java:598)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.updateIcons(HandledContributionItem.java:571)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.update(HandledContributionItem.java:471)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.update(HandledContributionItem.java:461)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerRenderer$4.handleEvent(MenuManagerRenderer.java:202)
+	at org.eclipse.e4.ui.services.internal.events.UIEventHandler$1.run(UIEventHandler.java:41)
+	at org.eclipse.swt.widgets.Synchronizer.syncExec(Synchronizer.java:180)
+	at org.eclipse.ui.internal.UISynchronizer.syncExec(UISynchronizer.java:150)
+	at org.eclipse.swt.widgets.Display.syncExec(Display.java:4291)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application$1.syncExec(E4Application.java:187)
+	at org.eclipse.e4.ui.services.internal.events.UIEventHandler.handleEvent(UIEventHandler.java:38)
+	at org.eclipse.equinox.internal.event.EventHandlerWrapper.handleEvent(EventHandlerWrapper.java:197)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(EventHandlerTracker.java:197)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(EventHandlerTracker.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(ListenerQueue.java:148)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.dispatchEvent(EventAdminImpl.java:135)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.sendEvent(EventAdminImpl.java:78)
+	at org.eclipse.equinox.internal.event.EventComponent.sendEvent(EventComponent.java:39)
+	at org.eclipse.e4.ui.services.internal.events.EventBroker.send(EventBroker.java:81)
+	at org.eclipse.e4.ui.internal.workbench.UIEventPublisher.notifyChanged(UIEventPublisher.java:58)
+	at org.eclipse.emf.common.notify.impl.BasicNotifierImpl.eNotify(BasicNotifierImpl.java:374)
+	at org.eclipse.e4.ui.model.application.ui.menu.impl.ItemImpl.setEnabled(ItemImpl.java:264)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerRendererFilter.updateElementVisibility(MenuManagerRendererFilter.java:215)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerShowProcessor.showMenu(MenuManagerShowProcessor.java:139)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerShowProcessor.menuAboutToHide(MenuManagerShowProcessor.java:101)
+	at org.eclipse.jface.internal.MenuManagerEventHelper.showEventPostHelper(MenuManagerEventHelper.java:55)
+	at org.eclipse.jface.action.MenuManager.handleAboutToShow(MenuManager.java:476)
+	at org.eclipse.jface.action.MenuManager.access$1(MenuManager.java:470)
+	at org.eclipse.jface.action.MenuManager$2.menuShown(MenuManager.java:500)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:255)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1276)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1300)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1281)
+	at org.eclipse.swt.widgets.Menu._setVisible(Menu.java:198)
+	at org.eclipse.swt.widgets.Display.runPopups(Display.java:3596)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3169)
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1029)
 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:923)
@@ -6671,6 +6910,7 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:11:16.269
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:11:16.271
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
@@ -6711,6 +6951,65 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
 	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3529)
 	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3182)
+=======
+!ENTRY org.eclipse.jface 4 0 2016-05-04 17:06:03.906
+!MESSAGE /IMG_ETOOL_DELETE
+!STACK 0
+java.io.FileNotFoundException: /IMG_ETOOL_DELETE
+	at org.eclipse.osgi.framework.internal.protocol.bundleentry.Handler.findBundleEntry(Handler.java:44)
+	at org.eclipse.osgi.framework.internal.core.BundleResourceHandler.openConnection(BundleResourceHandler.java:175)
+	at java.net.URL.openConnection(URL.java:972)
+	at org.eclipse.core.internal.boot.PlatformURLConnection.connect(PlatformURLConnection.java:110)
+	at org.eclipse.core.internal.boot.PlatformURLConnection.getURLAsLocal(PlatformURLConnection.java:238)
+	at org.eclipse.core.internal.runtime.PlatformURLConverter.toFileURL(PlatformURLConverter.java:36)
+	at org.eclipse.core.runtime.FileLocator.toFileURL(FileLocator.java:206)
+	at org.eclipse.jface.resource.URLImageDescriptor.getFilePath(URLImageDescriptor.java:137)
+	at org.eclipse.jface.resource.URLImageDescriptor.createImage(URLImageDescriptor.java:157)
+	at org.eclipse.jface.resource.ImageDescriptor.createResource(ImageDescriptor.java:165)
+	at org.eclipse.jface.resource.DeviceResourceManager.allocate(DeviceResourceManager.java:56)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:88)
+	at org.eclipse.jface.resource.LocalResourceManager.allocate(LocalResourceManager.java:82)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:88)
+	at org.eclipse.jface.resource.ResourceManager.createImage(ResourceManager.java:172)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.getImage(HandledContributionItem.java:598)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.updateIcons(HandledContributionItem.java:571)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.update(HandledContributionItem.java:471)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.update(HandledContributionItem.java:461)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerRenderer$4.handleEvent(MenuManagerRenderer.java:202)
+	at org.eclipse.e4.ui.services.internal.events.UIEventHandler$1.run(UIEventHandler.java:41)
+	at org.eclipse.swt.widgets.Synchronizer.syncExec(Synchronizer.java:180)
+	at org.eclipse.ui.internal.UISynchronizer.syncExec(UISynchronizer.java:150)
+	at org.eclipse.swt.widgets.Display.syncExec(Display.java:4291)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application$1.syncExec(E4Application.java:187)
+	at org.eclipse.e4.ui.services.internal.events.UIEventHandler.handleEvent(UIEventHandler.java:38)
+	at org.eclipse.equinox.internal.event.EventHandlerWrapper.handleEvent(EventHandlerWrapper.java:197)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(EventHandlerTracker.java:197)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(EventHandlerTracker.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(ListenerQueue.java:148)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.dispatchEvent(EventAdminImpl.java:135)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.sendEvent(EventAdminImpl.java:78)
+	at org.eclipse.equinox.internal.event.EventComponent.sendEvent(EventComponent.java:39)
+	at org.eclipse.e4.ui.services.internal.events.EventBroker.send(EventBroker.java:81)
+	at org.eclipse.e4.ui.internal.workbench.UIEventPublisher.notifyChanged(UIEventPublisher.java:58)
+	at org.eclipse.emf.common.notify.impl.BasicNotifierImpl.eNotify(BasicNotifierImpl.java:374)
+	at org.eclipse.e4.ui.model.application.ui.menu.impl.ItemImpl.setEnabled(ItemImpl.java:264)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerRendererFilter.updateElementVisibility(MenuManagerRendererFilter.java:215)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerShowProcessor.showMenu(MenuManagerShowProcessor.java:139)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerShowProcessor.menuAboutToHide(MenuManagerShowProcessor.java:101)
+	at org.eclipse.jface.internal.MenuManagerEventHelper.showEventPostHelper(MenuManagerEventHelper.java:55)
+	at org.eclipse.jface.action.MenuManager.handleAboutToShow(MenuManager.java:476)
+	at org.eclipse.jface.action.MenuManager.access$1(MenuManager.java:470)
+	at org.eclipse.jface.action.MenuManager$2.menuShown(MenuManager.java:500)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:255)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1276)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1300)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1281)
+	at org.eclipse.swt.widgets.Menu._setVisible(Menu.java:198)
+	at org.eclipse.swt.widgets.Display.runPopups(Display.java:3596)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3169)
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1029)
 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:923)
@@ -6738,6 +7037,7 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:11:16.271
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:11:16.272
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
@@ -6778,6 +7078,65 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
 	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3529)
 	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3182)
+=======
+!ENTRY org.eclipse.jface 4 0 2016-05-04 17:06:03.907
+!MESSAGE /IMG_ETOOL_DELETE
+!STACK 0
+java.io.FileNotFoundException: /IMG_ETOOL_DELETE
+	at org.eclipse.osgi.framework.internal.protocol.bundleentry.Handler.findBundleEntry(Handler.java:44)
+	at org.eclipse.osgi.framework.internal.core.BundleResourceHandler.openConnection(BundleResourceHandler.java:175)
+	at java.net.URL.openConnection(URL.java:972)
+	at org.eclipse.core.internal.boot.PlatformURLConnection.connect(PlatformURLConnection.java:110)
+	at org.eclipse.core.internal.boot.PlatformURLConnection.getURLAsLocal(PlatformURLConnection.java:238)
+	at org.eclipse.core.internal.runtime.PlatformURLConverter.toFileURL(PlatformURLConverter.java:36)
+	at org.eclipse.core.runtime.FileLocator.toFileURL(FileLocator.java:206)
+	at org.eclipse.jface.resource.URLImageDescriptor.getFilePath(URLImageDescriptor.java:137)
+	at org.eclipse.jface.resource.URLImageDescriptor.createImage(URLImageDescriptor.java:157)
+	at org.eclipse.jface.resource.ImageDescriptor.createResource(ImageDescriptor.java:165)
+	at org.eclipse.jface.resource.DeviceResourceManager.allocate(DeviceResourceManager.java:56)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:88)
+	at org.eclipse.jface.resource.LocalResourceManager.allocate(LocalResourceManager.java:82)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:88)
+	at org.eclipse.jface.resource.ResourceManager.createImage(ResourceManager.java:172)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.getImage(HandledContributionItem.java:598)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.updateIcons(HandledContributionItem.java:571)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.update(HandledContributionItem.java:471)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.update(HandledContributionItem.java:461)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerRenderer$4.handleEvent(MenuManagerRenderer.java:202)
+	at org.eclipse.e4.ui.services.internal.events.UIEventHandler$1.run(UIEventHandler.java:41)
+	at org.eclipse.swt.widgets.Synchronizer.syncExec(Synchronizer.java:180)
+	at org.eclipse.ui.internal.UISynchronizer.syncExec(UISynchronizer.java:150)
+	at org.eclipse.swt.widgets.Display.syncExec(Display.java:4291)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application$1.syncExec(E4Application.java:187)
+	at org.eclipse.e4.ui.services.internal.events.UIEventHandler.handleEvent(UIEventHandler.java:38)
+	at org.eclipse.equinox.internal.event.EventHandlerWrapper.handleEvent(EventHandlerWrapper.java:197)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(EventHandlerTracker.java:197)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(EventHandlerTracker.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(ListenerQueue.java:148)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.dispatchEvent(EventAdminImpl.java:135)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.sendEvent(EventAdminImpl.java:78)
+	at org.eclipse.equinox.internal.event.EventComponent.sendEvent(EventComponent.java:39)
+	at org.eclipse.e4.ui.services.internal.events.EventBroker.send(EventBroker.java:81)
+	at org.eclipse.e4.ui.internal.workbench.UIEventPublisher.notifyChanged(UIEventPublisher.java:58)
+	at org.eclipse.emf.common.notify.impl.BasicNotifierImpl.eNotify(BasicNotifierImpl.java:374)
+	at org.eclipse.e4.ui.model.application.ui.menu.impl.ItemImpl.setEnabled(ItemImpl.java:264)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerRendererFilter.updateElementVisibility(MenuManagerRendererFilter.java:215)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerShowProcessor.showMenu(MenuManagerShowProcessor.java:139)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerShowProcessor.menuAboutToHide(MenuManagerShowProcessor.java:101)
+	at org.eclipse.jface.internal.MenuManagerEventHelper.showEventPostHelper(MenuManagerEventHelper.java:55)
+	at org.eclipse.jface.action.MenuManager.handleAboutToShow(MenuManager.java:476)
+	at org.eclipse.jface.action.MenuManager.access$1(MenuManager.java:470)
+	at org.eclipse.jface.action.MenuManager$2.menuShown(MenuManager.java:500)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:255)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1276)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1300)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1281)
+	at org.eclipse.swt.widgets.Menu._setVisible(Menu.java:198)
+	at org.eclipse.swt.widgets.Display.runPopups(Display.java:3596)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3169)
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1029)
 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:923)
@@ -6805,6 +7164,7 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:11:16.273
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:11:16.277
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
@@ -6845,6 +7205,65 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
 	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3529)
 	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3182)
+=======
+!ENTRY org.eclipse.jface 4 0 2016-05-04 17:06:03.908
+!MESSAGE /IMG_OBJ_ADD
+!STACK 0
+java.io.FileNotFoundException: /IMG_OBJ_ADD
+	at org.eclipse.osgi.framework.internal.protocol.bundleentry.Handler.findBundleEntry(Handler.java:44)
+	at org.eclipse.osgi.framework.internal.core.BundleResourceHandler.openConnection(BundleResourceHandler.java:175)
+	at java.net.URL.openConnection(URL.java:972)
+	at org.eclipse.core.internal.boot.PlatformURLConnection.connect(PlatformURLConnection.java:110)
+	at org.eclipse.core.internal.boot.PlatformURLConnection.getURLAsLocal(PlatformURLConnection.java:238)
+	at org.eclipse.core.internal.runtime.PlatformURLConverter.toFileURL(PlatformURLConverter.java:36)
+	at org.eclipse.core.runtime.FileLocator.toFileURL(FileLocator.java:206)
+	at org.eclipse.jface.resource.URLImageDescriptor.getFilePath(URLImageDescriptor.java:137)
+	at org.eclipse.jface.resource.URLImageDescriptor.createImage(URLImageDescriptor.java:157)
+	at org.eclipse.jface.resource.ImageDescriptor.createResource(ImageDescriptor.java:165)
+	at org.eclipse.jface.resource.DeviceResourceManager.allocate(DeviceResourceManager.java:56)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:88)
+	at org.eclipse.jface.resource.LocalResourceManager.allocate(LocalResourceManager.java:82)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:88)
+	at org.eclipse.jface.resource.ResourceManager.createImage(ResourceManager.java:172)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.getImage(HandledContributionItem.java:598)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.updateIcons(HandledContributionItem.java:571)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.update(HandledContributionItem.java:471)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.update(HandledContributionItem.java:461)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerRenderer$4.handleEvent(MenuManagerRenderer.java:202)
+	at org.eclipse.e4.ui.services.internal.events.UIEventHandler$1.run(UIEventHandler.java:41)
+	at org.eclipse.swt.widgets.Synchronizer.syncExec(Synchronizer.java:180)
+	at org.eclipse.ui.internal.UISynchronizer.syncExec(UISynchronizer.java:150)
+	at org.eclipse.swt.widgets.Display.syncExec(Display.java:4291)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application$1.syncExec(E4Application.java:187)
+	at org.eclipse.e4.ui.services.internal.events.UIEventHandler.handleEvent(UIEventHandler.java:38)
+	at org.eclipse.equinox.internal.event.EventHandlerWrapper.handleEvent(EventHandlerWrapper.java:197)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(EventHandlerTracker.java:197)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(EventHandlerTracker.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(ListenerQueue.java:148)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.dispatchEvent(EventAdminImpl.java:135)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.sendEvent(EventAdminImpl.java:78)
+	at org.eclipse.equinox.internal.event.EventComponent.sendEvent(EventComponent.java:39)
+	at org.eclipse.e4.ui.services.internal.events.EventBroker.send(EventBroker.java:81)
+	at org.eclipse.e4.ui.internal.workbench.UIEventPublisher.notifyChanged(UIEventPublisher.java:58)
+	at org.eclipse.emf.common.notify.impl.BasicNotifierImpl.eNotify(BasicNotifierImpl.java:374)
+	at org.eclipse.e4.ui.model.application.ui.menu.impl.ItemImpl.setEnabled(ItemImpl.java:264)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerRendererFilter.updateElementVisibility(MenuManagerRendererFilter.java:215)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerShowProcessor.showMenu(MenuManagerShowProcessor.java:139)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerShowProcessor.menuAboutToHide(MenuManagerShowProcessor.java:101)
+	at org.eclipse.jface.internal.MenuManagerEventHelper.showEventPostHelper(MenuManagerEventHelper.java:55)
+	at org.eclipse.jface.action.MenuManager.handleAboutToShow(MenuManager.java:476)
+	at org.eclipse.jface.action.MenuManager.access$1(MenuManager.java:470)
+	at org.eclipse.jface.action.MenuManager$2.menuShown(MenuManager.java:500)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:255)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1276)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1300)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1281)
+	at org.eclipse.swt.widgets.Menu._setVisible(Menu.java:198)
+	at org.eclipse.swt.widgets.Display.runPopups(Display.java:3596)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3169)
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1029)
 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:923)
@@ -6872,6 +7291,7 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:11:16.277
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:11:16.279
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
@@ -6912,6 +7332,65 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
 	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3529)
 	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3182)
+=======
+!ENTRY org.eclipse.jface 4 0 2016-05-04 17:06:03.909
+!MESSAGE /IMG_TOOL_COPY
+!STACK 0
+java.io.FileNotFoundException: /IMG_TOOL_COPY
+	at org.eclipse.osgi.framework.internal.protocol.bundleentry.Handler.findBundleEntry(Handler.java:44)
+	at org.eclipse.osgi.framework.internal.core.BundleResourceHandler.openConnection(BundleResourceHandler.java:175)
+	at java.net.URL.openConnection(URL.java:972)
+	at org.eclipse.core.internal.boot.PlatformURLConnection.connect(PlatformURLConnection.java:110)
+	at org.eclipse.core.internal.boot.PlatformURLConnection.getURLAsLocal(PlatformURLConnection.java:238)
+	at org.eclipse.core.internal.runtime.PlatformURLConverter.toFileURL(PlatformURLConverter.java:36)
+	at org.eclipse.core.runtime.FileLocator.toFileURL(FileLocator.java:206)
+	at org.eclipse.jface.resource.URLImageDescriptor.getFilePath(URLImageDescriptor.java:137)
+	at org.eclipse.jface.resource.URLImageDescriptor.createImage(URLImageDescriptor.java:157)
+	at org.eclipse.jface.resource.ImageDescriptor.createResource(ImageDescriptor.java:165)
+	at org.eclipse.jface.resource.DeviceResourceManager.allocate(DeviceResourceManager.java:56)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:88)
+	at org.eclipse.jface.resource.LocalResourceManager.allocate(LocalResourceManager.java:82)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:88)
+	at org.eclipse.jface.resource.ResourceManager.createImage(ResourceManager.java:172)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.getImage(HandledContributionItem.java:598)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.updateIcons(HandledContributionItem.java:571)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.update(HandledContributionItem.java:471)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.update(HandledContributionItem.java:461)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerRenderer$4.handleEvent(MenuManagerRenderer.java:202)
+	at org.eclipse.e4.ui.services.internal.events.UIEventHandler$1.run(UIEventHandler.java:41)
+	at org.eclipse.swt.widgets.Synchronizer.syncExec(Synchronizer.java:180)
+	at org.eclipse.ui.internal.UISynchronizer.syncExec(UISynchronizer.java:150)
+	at org.eclipse.swt.widgets.Display.syncExec(Display.java:4291)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application$1.syncExec(E4Application.java:187)
+	at org.eclipse.e4.ui.services.internal.events.UIEventHandler.handleEvent(UIEventHandler.java:38)
+	at org.eclipse.equinox.internal.event.EventHandlerWrapper.handleEvent(EventHandlerWrapper.java:197)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(EventHandlerTracker.java:197)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(EventHandlerTracker.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(ListenerQueue.java:148)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.dispatchEvent(EventAdminImpl.java:135)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.sendEvent(EventAdminImpl.java:78)
+	at org.eclipse.equinox.internal.event.EventComponent.sendEvent(EventComponent.java:39)
+	at org.eclipse.e4.ui.services.internal.events.EventBroker.send(EventBroker.java:81)
+	at org.eclipse.e4.ui.internal.workbench.UIEventPublisher.notifyChanged(UIEventPublisher.java:58)
+	at org.eclipse.emf.common.notify.impl.BasicNotifierImpl.eNotify(BasicNotifierImpl.java:374)
+	at org.eclipse.e4.ui.model.application.ui.menu.impl.ItemImpl.setEnabled(ItemImpl.java:264)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerRendererFilter.updateElementVisibility(MenuManagerRendererFilter.java:215)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerShowProcessor.showMenu(MenuManagerShowProcessor.java:139)
+	at org.eclipse.e4.ui.workbench.renderers.swt.MenuManagerShowProcessor.menuAboutToHide(MenuManagerShowProcessor.java:101)
+	at org.eclipse.jface.internal.MenuManagerEventHelper.showEventPostHelper(MenuManagerEventHelper.java:55)
+	at org.eclipse.jface.action.MenuManager.handleAboutToShow(MenuManager.java:476)
+	at org.eclipse.jface.action.MenuManager.access$1(MenuManager.java:470)
+	at org.eclipse.jface.action.MenuManager$2.menuShown(MenuManager.java:500)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:255)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1276)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1300)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1281)
+	at org.eclipse.swt.widgets.Menu._setVisible(Menu.java:198)
+	at org.eclipse.swt.widgets.Display.runPopups(Display.java:3596)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3169)
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1029)
 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:923)
@@ -6939,7 +7418,11 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:11:16.279
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:11:16.280
+=======
+!ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:06:06.701
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -6962,6 +7445,8 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.jface.viewers.AbstractTreeViewer.updateChildren(AbstractTreeViewer.java:2643)
 	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1923)
 	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:721)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1930)
+	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:721)
 	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1898)
 	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1855)
 	at org.eclipse.ui.navigator.CommonViewer.internalRefresh(CommonViewer.java:561)
@@ -6971,10 +7456,17 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1404)
 	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1533)
 	at org.eclipse.jface.viewers.ColumnViewer.refresh(ColumnViewer.java:548)
+<<<<<<< HEAD
 	at org.eclipse.ui.navigator.CommonViewer.refresh(CommonViewer.java:350)
 	at org.eclipse.ui.navigator.CommonViewer.refresh(CommonViewer.java:510)
 	at org.eclipse.cdt.ui.CElementContentProvider$RefreshElement.refresh(CElementContentProvider.java:369)
 	at org.eclipse.cdt.ui.CElementContentProvider$1.run(CElementContentProvider.java:448)
+=======
+	at org.eclipse.ui.navigator.CommonViewer.refresh(CommonViewer.java:353)
+	at org.eclipse.ui.navigator.CommonViewer.refresh(CommonViewer.java:510)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1465)
+	at org.eclipse.ui.internal.navigator.resources.actions.ResourceMgmtActionProvider$4.run(ResourceMgmtActionProvider.java:220)
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
 	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
 	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3529)
@@ -7001,12 +7493,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:11:16.280
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:11:16.280
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:11:16.282
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:06:06.702
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:06:06.702
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:06:06.702
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -7029,6 +7530,8 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.jface.viewers.AbstractTreeViewer.updateChildren(AbstractTreeViewer.java:2643)
 	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1923)
 	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:721)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1930)
+	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:721)
 	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1898)
 	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1855)
 	at org.eclipse.ui.navigator.CommonViewer.internalRefresh(CommonViewer.java:561)
@@ -7038,10 +7541,17 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1404)
 	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1533)
 	at org.eclipse.jface.viewers.ColumnViewer.refresh(ColumnViewer.java:548)
+<<<<<<< HEAD
 	at org.eclipse.ui.navigator.CommonViewer.refresh(CommonViewer.java:350)
 	at org.eclipse.ui.navigator.CommonViewer.refresh(CommonViewer.java:510)
 	at org.eclipse.cdt.ui.CElementContentProvider$RefreshElement.refresh(CElementContentProvider.java:369)
 	at org.eclipse.cdt.ui.CElementContentProvider$1.run(CElementContentProvider.java:448)
+=======
+	at org.eclipse.ui.navigator.CommonViewer.refresh(CommonViewer.java:353)
+	at org.eclipse.ui.navigator.CommonViewer.refresh(CommonViewer.java:510)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1465)
+	at org.eclipse.ui.internal.navigator.resources.actions.ResourceMgmtActionProvider$4.run(ResourceMgmtActionProvider.java:220)
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
 	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
 	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3529)
@@ -7068,12 +7578,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:11:16.282
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:11:16.282
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:11:16.283
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:06:06.703
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:06:06.703
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-05-04 17:06:06.703
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -7096,6 +7615,8 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.jface.viewers.AbstractTreeViewer.updateChildren(AbstractTreeViewer.java:2643)
 	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1923)
 	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:721)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1930)
+	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:721)
 	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1898)
 	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1855)
 	at org.eclipse.ui.navigator.CommonViewer.internalRefresh(CommonViewer.java:561)
@@ -7105,6 +7626,7 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1404)
 	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1533)
 	at org.eclipse.jface.viewers.ColumnViewer.refresh(ColumnViewer.java:548)
+<<<<<<< HEAD
 	at org.eclipse.ui.navigator.CommonViewer.refresh(CommonViewer.java:350)
 	at org.eclipse.ui.navigator.CommonViewer.refresh(CommonViewer.java:510)
 	at org.eclipse.cdt.ui.CElementContentProvider$RefreshElement.refresh(CElementContentProvider.java:369)
@@ -11357,6 +11879,12 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.ui.navigator.CommonViewer.refresh(CommonViewer.java:510)
 	at org.eclipse.cdt.ui.CElementContentProvider$RefreshElement.refresh(CElementContentProvider.java:369)
 	at org.eclipse.cdt.ui.CElementContentProvider$1.run(CElementContentProvider.java:448)
+=======
+	at org.eclipse.ui.navigator.CommonViewer.refresh(CommonViewer.java:353)
+	at org.eclipse.ui.navigator.CommonViewer.refresh(CommonViewer.java:510)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1465)
+	at org.eclipse.ui.internal.navigator.resources.actions.ResourceMgmtActionProvider$4.run(ResourceMgmtActionProvider.java:220)
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
 	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
 	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3529)
@@ -11383,7 +11911,13 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:25:11.782
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:25:11.782
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:06:06.703
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-05-04 17:06:06.703
+>>>>>>> 0ab83a1e2e42b78a669bf78e7dc0f55c90f20455
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
