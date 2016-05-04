@@ -1,12 +1,11 @@
-/*
 int main()
 {
 	printf("Enter images directory path:\n");
-	char* dir = 0;
+	char* dir;
 	scanf("%s", &dir);
 
 	printf("Enter images prefix:\n");
-	char* prefix = 0;
+	char* prefix;
 	scanf("%s", &prefix);
 
 	printf("Enter number of images:\n");
@@ -18,7 +17,7 @@ int main()
 	}
 
 	printf("Enter images suffix:\n");
-	char* suffix = 0;
+	char* suffix;
 	scanf("%s", &suffix);
 
 	printf("Enter number of bins:\n");
@@ -37,53 +36,84 @@ int main()
 		printf("An error occurred - invalid number of features\n");
 	}
 
+	//7
+	int* nFeaturesPerImage;
+	nFeaturesPerImage = malloc(n*sizeof(int));
+	int*** rgb;
+	rgb = malloc(n*sizeof(int));
+	double*** sift;
+	sift = malloc(n*sizeof(int));
+
+
 	for (int i = 0 ; i < n ; i++)
 	{
-		//char* currentDir = dir+prefix+i+suffix; // TODO
-		// try to use atoi(number) to convert string to int -gal
-		// TODO save rgb hist and features for each image
+		char* currentDir = dir+prefix+i+suffix;
+		rgb[i] = spGetRGBHist(currentDir, nBins);
+		sift[i] = spGetSiftDescriptors(currentDir,  maxNFeatures, &(nFeaturesPerImage[i]));
 	}
+
+	//8
+	printf("Enter a query image or # to terminate:\n");
+	char* query;
+	scanf("%s", &query);
+
+	if(strcmp("#",query) == 0)
+	{
+		printf("Exiting...\n");
+	}
+
+	free_data(***rgb,n,3);
+	free_data(***sift,n, maxNFeatures);
+
 }
 
-*/
 
-#include <opencv2/highgui.hpp> //imshow, drawKeypoints, waitKey
-#include <opencv2/imgproc.hpp>
-#include <opencv2/core.hpp>//Mat
-#include <opencv2/xfeatures2d.hpp>//SiftDescriptorExtractor
-#include <opencv2/features2d.hpp>
-#include <vector>
+int ***alloc_data(size_t xlen, size_t ylen, size_t zlen)
+{
+    int ***p;
+    size_t i, j;
 
-int main() {
-	//Loading img - NOTE: Gray scale mode!
-	cv::Mat src;
-	src = cv::imread("baboon.png", CV_LOAD_IMAGE_GRAYSCALE);
-	if (src.empty()) {
-		return -1;
-	}
+    if ((p = malloc(xlen * sizeof *p)) == NULL) {
+        perror("malloc 1");
+        return NULL;
+    }
 
-	//Total number of features we will try to extract
-	int maxNumberOfFeatures = 512;
+    for (i=0; i < xlen; ++i)
+        p[i] = NULL;
 
-	//Key points will be stored in kp1;
-	std::vector<cv::KeyPoint> kp1;
-	//Feature values will be stored in ds1;
-	cv::Mat ds1;
-	//Creating  a Sift Descriptor extractor
-	cv::Ptr<cv::xfeatures2d::SiftDescriptorExtractor> detect =
-			cv::xfeatures2d::SIFT::create(maxNumberOfFeatures);
-	//Extracting features
-	//The features will be stored in ds1
-	//The output type of ds1 is CV_32F (float)
-	detect->detect(src, kp1, cv::Mat());
-	detect->compute(src, kp1, ds1);
+    for (i=0; i < xlen; ++i)
+        if ((p[i] = malloc(ylen * sizeof *p[i])) == NULL) {
+            perror("malloc 2");
+            free_data(p, xlen, ylen);
+            return NULL;
+        }
 
-	//This is not relevant for the purpose of assignment 2
-	//The following lines draw the extracted key points
-	//to the image and show the result in a window
-	cv::drawKeypoints(src,kp1,src,0);
-	cv::imshow("Baboon - SIFT",src);
-	cv::waitKey(0);
-	return 0;
+    for (i=0; i < xlen; ++i)
+        for (j=0; j < ylen; ++j)
+            p[i][j] = NULL;
+
+    for (i=0; i < xlen; ++i)
+        for (j=0; j < ylen; ++j)
+            if ((p[i][j] = malloc(zlen * sizeof *p[i][j])) == NULL) {
+                perror("malloc 3");
+                free_data(p, xlen, ylen);
+                return NULL;
+            }
+
+    return p;
+}
+
+void free_data(int ***data, size_t xlen, size_t ylen)
+{
+    size_t i, j;
+
+    for (i=0; i < xlen; ++i) {
+        if (data[i] != NULL) {
+            for (j=0; j < ylen; ++j)
+                free(data[i][j]);
+            free(data[i]);
+        }
+    }
+    free(data);
 }
 
