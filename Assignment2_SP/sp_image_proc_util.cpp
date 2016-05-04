@@ -187,6 +187,7 @@ int cmpfunc (const void * a, const void * b)
  * 			   f2 is a SIFT descriptor of image i2 etc..)
  * 			 Then the array returned is {i1,i2,...,i_bestNFeatures}
  */
+
 int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 		double*** databaseFeatures, int numberOfImages,
 		int* nFeaturesPerImage)
@@ -195,22 +196,21 @@ int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 	// for each image
 	for(int i = 0; i < numberOfImages; i++) {
 
-		int nFeaturesImageI = nFeaturesPerImage[i];
 		// array of distances for each feature
-		double distList[nFeaturesPerImage[i]];
+		double *distList = (double*)malloc(nFeaturesPerImage[i] * sizeof(double));
 
 		// calculate all the distances of specific photo from featureA
-		for (int j = 0; j < nFeaturesImageI; j++) {
+		for (int j = 0; j < nFeaturesPerImage[i]; j++) {
 			distList[j] = spL2SquaredDistance(featureA, databaseFeatures[i][j]);
 		}
 
-		qsort(distList, nFeaturesImageI, sizeof(double), cmpfunc);
+		qsort(distList, nFeaturesPerImage[i], sizeof(double), cmpfunc);
 
 		// calculate sum of shortest distances
 		double distance = 0;
 
 		// safety calculation of minimum
-		int min = bestNFeatures ^ ((nFeaturesImageI ^ bestNFeatures) & -(nFeaturesImageI < bestNFeatures));
+		int min = bestNFeatures ^ ((nFeaturesPerImage[i] ^ bestNFeatures) & -(nFeaturesPerImage[i] < bestNFeatures));
 
 		// TODO
 	}
