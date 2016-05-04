@@ -1,3 +1,22 @@
+#include <opencv2/core.hpp>// Mat
+#include <opencv2/highgui.hpp>  //imshow
+#include <opencv2/imgcodecs.hpp>//imread
+#include <cstdio>
+#include <opencv2/imgproc.hpp>//calcHist
+#include <opencv2/core.hpp>//Mat
+#include <opencv2/highgui.hpp>
+#include <vector>
+#include <iostream>
+#include <opencv2/highgui.hpp> //imshow, drawKeypoints, waitKey
+#include <opencv2/imgproc.hpp>
+#include <opencv2/core.hpp>//Mat
+#include <opencv2/xfeatures2d.hpp>//SiftDescriptorExtractor
+#include <opencv2/features2d.hpp>
+#include <vector>
+#include "sp_image_proc_util.h"
+#include "main_aux.h"
+
+
 int main()
 {
 	printf("Enter images directory path:\n");
@@ -36,18 +55,25 @@ int main()
 		printf("An error occurred - invalid number of features\n");
 	}
 
+
+
 	//7
-	int* nFeaturesPerImage;
-	nFeaturesPerImage = malloc(n*sizeof(int));
+	int *nFeaturesPerImage;
+	nFeaturesPerImage = (int*)malloc(n*sizeof(int));
 	int*** rgb;
-	rgb = malloc(n*sizeof(int));
+	rgb = (int***)malloc(n*sizeof(int));
 	double*** sift;
-	sift = malloc(n*sizeof(int));
+	sift = (double***)malloc(n*sizeof(int));
 
 
 	for (int i = 0 ; i < n ; i++)
 	{
-		char* currentDir = dir+prefix+i+suffix;
+		char* iStr;
+		sprintf(iStr, "%d", i);
+		char* currentDir = dir; //+prefix+i+suffix
+		strcat(currentDir, prefix);
+		strcat(currentDir, iStr);
+		strcat(currentDir, suffix);
 		rgb[i] = spGetRGBHist(currentDir, nBins);
 		sift[i] = spGetSiftDescriptors(currentDir,  maxNFeatures, &(nFeaturesPerImage[i]));
 	}
@@ -57,63 +83,35 @@ int main()
 	char* query;
 	scanf("%s", &query);
 
+	//9
 	if(strcmp("#",query) == 0)
 	{
 		printf("Exiting...\n");
+		free_data(rgb,n,3);
+		free_data(sift,n, maxNFeatures);
 	}
 
-	free_data(***rgb,n,3);
-	free_data(***sift,n, maxNFeatures);
+	//10
+	int *nFeaturesQuery;
+	int** queryRGB = spGetRGBHist(query, nBins);
+	double** querySift = spGetSiftDescriptors(query,  maxNFeatures, nFeaturesQuery);
+
+	// TODO global search
+
+	//Search using Local Features:
+	//int**
+	for (int i = 0 ; i < *nFeaturesQuery ; i++)
+	{
+		//spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
+			//	double*** databaseFeatures, int numberOfImages,
+				//int* nFeaturesPerImage);
+	}
+
 
 }
 
 
-int ***alloc_data(size_t xlen, size_t ylen, size_t zlen)
-{
-    int ***p;
-    size_t i, j;
 
-    if ((p = malloc(xlen * sizeof *p)) == NULL) {
-        perror("malloc 1");
-        return NULL;
-    }
 
-    for (i=0; i < xlen; ++i)
-        p[i] = NULL;
 
-    for (i=0; i < xlen; ++i)
-        if ((p[i] = malloc(ylen * sizeof *p[i])) == NULL) {
-            perror("malloc 2");
-            free_data(p, xlen, ylen);
-            return NULL;
-        }
-
-    for (i=0; i < xlen; ++i)
-        for (j=0; j < ylen; ++j)
-            p[i][j] = NULL;
-
-    for (i=0; i < xlen; ++i)
-        for (j=0; j < ylen; ++j)
-            if ((p[i][j] = malloc(zlen * sizeof *p[i][j])) == NULL) {
-                perror("malloc 3");
-                free_data(p, xlen, ylen);
-                return NULL;
-            }
-
-    return p;
-}
-
-void free_data(int ***data, size_t xlen, size_t ylen)
-{
-    size_t i, j;
-
-    for (i=0; i < xlen; ++i) {
-        if (data[i] != NULL) {
-            for (j=0; j < ylen; ++j)
-                free(data[i][j]);
-            free(data[i]);
-        }
-    }
-    free(data);
-}
 

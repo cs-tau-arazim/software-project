@@ -14,6 +14,7 @@
 #include <opencv2/features2d.hpp>
 #include <vector>
 
+
 using namespace cv;
 
 /*
@@ -122,7 +123,7 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 	//for (int i = 0; i < 128; i++) {
 
 	//	descriptors[i]  = (double*)malloc(ds1.rows * sizeof(*(descriptors[i])));
-	}
+
 	return descriptors;
 }
 
