@@ -166,7 +166,7 @@ int main()
 		for (int i=0; i < 5; i++)
 		{
 
-			printf("%d, \0" , (int)RGBDistList[i].b);
+			printf("%d, " , (int)RGBDistList[i].b);
 		}
 		printf("\n");
 

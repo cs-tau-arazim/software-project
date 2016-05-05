@@ -14,8 +14,17 @@
 #include <opencv2/features2d.hpp>
 #include <vector>
 #include "main_aux.h"
+#define min(a,b) \
+   ({ __typeof__ (a) _a = (a); \
+       __typeof__ (b) _b = (b); \
+     _a < _b ? _a : _b; })
 
-// valgrind --leak-check=full --track-origins=yes Assignment2_SP
+
+/* For Testing:
+* source init.sh
+* make
+* valgrind --leak-check=full --track-origins=yes --show-reachable=yes ex2
+*/
 
 using namespace cv;
 
@@ -35,7 +44,6 @@ int** spGetRGBHist(char* str, int nBins)
 {
 	/// Load image
 	Mat src = imread(str, CV_LOAD_IMAGE_COLOR); //TODO change
-	printf("read sucsses\n");
 	/// Separate the image in 3 places ( B, G and R )
 	std::vector<Mat> bgr_planes;
 	split(src, bgr_planes);
@@ -57,8 +65,6 @@ int** spGetRGBHist(char* str, int nBins)
 	calcHist(&bgr_planes[1], nImages, 0, Mat(), g_hist, 1, &nBins, &histRange);
 	calcHist(&bgr_planes[2], nImages, 0, Mat(), r_hist, 1, &nBins, &histRange);
 
-
-	printf("calcHist sucsses\n");
 	int **histInt;
 	histInt=(int **) malloc(3 * sizeof(*histInt));
 	for (int i = 0; i < 3; i++)
@@ -66,7 +72,6 @@ int** spGetRGBHist(char* str, int nBins)
 
 	printf("histInt malloc sucsses\n");
 
-	;
 	//printf("BHIST cols: %d\n", b_hist.cols);
 	for (int i = 0; i <  b_hist.rows; i++) {
 		//printf("BHIST: %d\n", cvRound(b_hist.at<float>(i)));
@@ -103,14 +108,33 @@ double spRGBHistL2Distance(int** histA, int** histB, int nBins)
 
 }
 
-
+/**
+ * Extracts AT MOST maxNFeatures SIFT descriptors from the image given by str.
+ * The result will be stored in two dimensional matrix with nFeatures
+ * rows and 128 columns. Each row represents a SIFT feature corresponding
+ * to some keypoint.
+ *
+ * @param str - A string representing the path of the image
+ * @param maxNFeautres - The max number of features features to retain
+ * @param nFeatures - A pointer in which the actual number of features retained
+ * will be stored.
+ * @return NULL in case of:
+ * 		   - str is NULL
+ * 		   - the image given by str didn't open
+ * 		   - nFeatures is NULL
+ * 		   - maxNFeatures <= 0
+ * 		   - Memory allocation failure
+ * 		   otherwise, the total number of features retained will be stored in
+ * 		   nFeatures, and the actual features will be returned.
+ */
 double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 {
-
+	if (str == NULL || nFeatures == NULL || maxNFeatures <= 0) {
+		return NULL;
+	}
 	//Loading img - NOTE: Gray scale mode!
 	Mat src;
 	src = imread(str, CV_LOAD_IMAGE_GRAYSCALE);
-	printf("read sucsses\n");
 	//Key points will be stored in kp1;
 	std::vector<KeyPoint> kp1;
 	//Feature values will be stored in ds1;
@@ -121,30 +145,29 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 	//Extracting features
 	//The features will be stored in ds1
 	//The output type of ds1 is CV_32F (float)
-	printf("detect begins\n");
 	detect->detect(src, kp1, cv::Mat());
-	printf("detect sucsses\n");
 	detect->compute(src, kp1, ds1);
-	printf("compute sucsses\n");
 
-	*nFeatures = ds1.rows;
+	int resultSize = min(ds1.rows, maxNFeatures);
+
+	*nFeatures = resultSize;
 	printf("nFeatures = dsl.rows\n");
 
 	double ** descriptors;
-	descriptors = (double **)malloc((*nFeatures)* sizeof(*descriptors));
+	descriptors = (double **)malloc(resultSize* sizeof(*descriptors));
 	if (descriptors == NULL) {
 		printf("descriptors malloc FAILED\n");
 		return NULL;
 	}
 	printf("descriptors malloc sucsses\n");
-	for (int i = 0; i < (*nFeatures); i++) {
+	for (int i = 0; i < resultSize; i++) {
 		descriptors[i]  = (double*)malloc(128 * sizeof(*(descriptors[i])));
 		if (descriptors[i] == NULL) {
 			return NULL;
 		}
 
 		for (int j = 0; j < 128; j++) {
-			descriptors[i][j] = ds1.at<double>(i,0);
+			descriptors[i][j] = ds1.at<double>(i,j);
 		}
 	}
 
