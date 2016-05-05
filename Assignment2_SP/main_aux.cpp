@@ -31,7 +31,12 @@ int cmpTupleDI (const void * tupA, const void * tupB)
   TupleDI *iTupA = (TupleDI *)tupA;
   TupleDI *iTupB = (TupleDI *)tupB;
 
-  return ( iTupB->a - iTupA->a );
+  if (( iTupB->a - iTupA->a ) < 0) {
+		  return 1;
+  }
+  else {
+	  return -1;
+  }
 }
 
 

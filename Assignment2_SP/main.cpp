@@ -106,7 +106,7 @@ int main()
 		strcat(currentDir, prefix);
 		strcat(currentDir, iStr);
 		strcat(currentDir, suffix);
-		printf(currentDir);
+		printf("%s", currentDir);
 		printf("\n");
 		//rgb[i] = spGetRGBHist(currentDir, nBins);
 		//printf("success with RGBHIst\n");
@@ -134,9 +134,9 @@ int main()
 		}
 
 		//10
-		int nFeaturesQuery[LINE];
+		//int nFeaturesQuery[LINE];
 		int** queryRGB = spGetRGBHist(query, nBins);
-		double** querySift = spGetSiftDescriptors(query,  maxNFeatures, nFeaturesQuery);
+		//double** querySift = spGetSiftDescriptors(query,  maxNFeatures, nFeaturesQuery);
 
 		// Search using Global Features:
 
@@ -146,22 +146,27 @@ int main()
 			RGBCompare[i]  = (double*)malloc(2 * sizeof(*(RGBCompare[i])));
 		}
 
+		// attempt with tuple
+		TupleDI* RGBDistList = (TupleDI*)malloc(n * sizeof(TupleDI*));
 		for (int i = 0; i < n; i++) {
-			RGBCompare[i][0] = i;
-			RGBCompare[i][1] = spRGBHistL2Distance(queryRGB, rgb[i], nBins);
-			//printf("%d, %d\n", queryRGB[0][0], rgb[i][0][0]);
-			//printf("%d, %d\n", i ,RGBCompare[i][1]);
-		}
-		qsort(RGBCompare, n, sizeof(int*), compareHits);
-
-		printf("Nearest images using global descriptors:\n");
-
-		for (int i=0; i<5; i++)
-		{
-			printf("%d, " , (int)RGBCompare[i][0]);
+			RGBDistList[i].a = spRGBHistL2Distance(queryRGB, rgb[i], nBins);
+			RGBDistList[i].b = i;
+			printf("(%f, %d), ", RGBDistList[i].a, RGBDistList[i].b);
 		}
 		printf("\n");
 
+		qsort(RGBDistList, n, sizeof(TupleDI), cmpTupleDI);
+		for (int i = 0; i < n; i++) {
+			printf("(%f, %d), ", RGBDistList[i].a, RGBDistList[i].b);
+		}
+		printf("TUPLE Nearest images using global descriptors:\n");
+
+		for (int i=0; i<5; i++)
+		{
+
+			printf("%d, " , (int)RGBDistList[i].b);
+		}
+		printf("\n");
 
 		/*
 		// Search using Local Features:

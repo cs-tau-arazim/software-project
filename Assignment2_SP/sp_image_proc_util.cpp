@@ -99,9 +99,6 @@ double spRGBHistL2Distance(int** histA, int** histB, int nBins)
 
 
 	}
-	printf("\n");
-	dis *= 0.33;
-	printf("dis: %f\n", dis);
 	return dis;
 
 }
