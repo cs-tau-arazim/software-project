@@ -137,16 +137,12 @@ int main()
 
 		//10
 		int nFeaturesQuery[LINE];
-		int** queryRGB = spGetRGBHist(query, 3);
+		int** queryRGB = spGetRGBHist(query, nBins);
 		double** querySift = spGetSiftDescriptors(query,  maxNFeatures, nFeaturesQuery);
 
 		// Search using Global Features:
 
-		double ** RGBCompare;
-		RGBCompare = (double **)malloc(n* sizeof(*RGBCompare));
-		for (int i = 0; i < n; i++) {
-			RGBCompare[i]  = (double*)malloc(2 * sizeof(*(RGBCompare[i])));
-		}
+
 
 		// attempt with tuple
 		TupleDI* RGBDistList = (TupleDI*)malloc(n * sizeof(TupleDI*));
@@ -173,10 +169,9 @@ int main()
 		//free mem
 		free_2d_int(queryRGB, 3);
 		printf("freed rgb\n");
-		free_2d_double(RGBCompare, n);
-		printf("freed comp\n");
+
 		free(RGBDistList);
-		printf("freed list\n");
+		printf("freed rgb\n");
 
 		// Search using Local Features:
 		int** featuresCompare;
