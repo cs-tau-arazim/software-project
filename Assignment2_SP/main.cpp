@@ -137,7 +137,7 @@ int main()
 
 		//10
 		int nFeaturesQuery[LINE];
-		int** queryRGB = spGetRGBHist(query, nBins);
+		int** queryRGB = spGetRGBHist(query, 3);
 		double** querySift = spGetSiftDescriptors(query,  maxNFeatures, nFeaturesQuery);
 
 		// Search using Global Features:
@@ -170,11 +170,17 @@ int main()
 		}
 		printf("\n");
 
-
+		//free mem
+		free_2d_int(queryRGB, 3);
+		printf("freed rgb\n");
+		free_2d_double(RGBCompare, n);
+		printf("freed comp\n");
+		free(RGBDistList);
+		printf("freed list\n");
 
 		// Search using Local Features:
 		int** featuresCompare;
-		printf("featuresCompare malloc\n");
+		printf("featuresCompare malloc begins\n");
 		featuresCompare = (int**)malloc(n* sizeof(int*));
 
 		printf("featuresCompare malloc success\n");

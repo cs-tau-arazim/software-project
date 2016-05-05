@@ -144,7 +144,7 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 		}
 
 		for (int j = 0; j < 128; j++) {
-			descriptors[i][j] = ds1.at<double>(i,0);
+			descriptors[i][j] = ds1.at<double>(i,j);
 		}
 	}
 

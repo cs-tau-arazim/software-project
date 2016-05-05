@@ -39,6 +39,31 @@ int cmpTupleDI (const void * tupA, const void * tupB)
   }
 }
 
+void free_2d_int(int **data, size_t xlen)
+{
+	if (data != NULL) {
+		//printf("not null\n");
+		for (size_t i = 0; i < xlen; ++i)
+		{
+			int* currentIntPtr = data[i];
+			printf("%d\n", i);
+			free(currentIntPtr);
+		}
+		free(data);
+	}
+}
+
+void free_2d_double(double **data, size_t xlen)
+{
+	if (data != NULL) {
+		for (size_t i = 0; i < xlen; ++i)
+		{
+			double* currentIntPtr = data[i];
+			free(currentIntPtr);
+		}
+		free(data);
+	}
+}
 
 void free_3d_int(int ***data, size_t xlen, size_t ylen)
 {
