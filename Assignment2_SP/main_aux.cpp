@@ -69,9 +69,11 @@ int compareHits (const void * a, const void * b)
 {
 	const double *a_ = *(const double **)a;
 	const double *b_ = *(const double **)b;
-	if (a_[1] - b_[1] == 0)
-		return -( a_[0] - b_[0] );
-	return -( b_[1] - a_[1] );
+	double dif = ( b_[1] - a_[1] );
+	if (dif > 0)
+		return -1;
+	else
+		return 1;
 }
 
 

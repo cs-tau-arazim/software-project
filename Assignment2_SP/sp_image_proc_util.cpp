@@ -159,9 +159,9 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 double spL2SquaredDistance(double* featureA, double* featureB)
 {
 	double dis = 0;
-	for (int j = 0 ; j < sizeof(featureA) ; j++)
+	for (int j = 0 ; j < 128 ; j++)
 		{
-			dis += (featureA[j] - featureB[j])*(featureA[j] - featureB[j]);
+			dis += (double)(featureA[j] - featureB[j])*(double)(featureA[j] - featureB[j]);
 		}
 	return dis;
 }

@@ -108,12 +108,12 @@ int main()
 		strcat(currentDir, suffix);
 		printf(currentDir);
 		printf("\n");
-		rgb[i] = spGetRGBHist(currentDir, nBins);
-		printf("success with RGBHIst\n");
+		//rgb[i] = spGetRGBHist(currentDir, nBins);
+		//printf("success with RGBHIst\n");
 
-		//sift[i] = spGetSiftDescriptors(currentDir,  maxNFeatures, &(nFeaturesPerImage[i]));
+		sift[i] = spGetSiftDescriptors(currentDir,  maxNFeatures, &(nFeaturesPerImage[i]));
 		//printf("nFeatures: %d\n", nFeaturesPerImage[i]);
-		//printf("success with SiftDescriptors\n");
+		printf("success with SiftDescriptors\n");
 
 	}
 
@@ -156,10 +156,9 @@ int main()
 
 		printf("Nearest images using global descriptors:\n");
 
-		for (int i=0; i<n; i++)
+		for (int i=0; i<5; i++)
 		{
 			printf("%d, " , (int)RGBCompare[i][0]);
-
 		}
 		printf("\n");
 
