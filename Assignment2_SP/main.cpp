@@ -136,9 +136,8 @@ int main()
 		}
 
 		//10
-		int nFeaturesQuery[LINE];
+
 		int** queryRGB = spGetRGBHist(query, nBins);
-		double** querySift = spGetSiftDescriptors(query,  maxNFeatures, nFeaturesQuery);
 
 		// Search using Global Features:
 
@@ -170,22 +169,49 @@ int main()
 		free_2d_int(queryRGB, 3);
 		printf("freed rgb\n");
 
-		free(RGBDistList);
-		printf("freed rgb\n");
+		int nFeaturesQuery;
+		double** querySift = spGetSiftDescriptors(query,  maxNFeatures, &nFeaturesQuery);
 
 		// Search using Local Features:
 		int** featuresCompare;
 		printf("featuresCompare malloc begins\n");
-		featuresCompare = (int**)malloc(n* sizeof(int*));
+		featuresCompare = (int**)malloc(nFeaturesQuery* sizeof(int*));
 
 		printf("featuresCompare malloc success\n");
 
-		for (int i = 0 ; i < *nFeaturesQuery ; i++)
+		for (int i = 0 ; i < nFeaturesQuery ; i++)
 		{
 			featuresCompare[i] = spBestSIFTL2SquaredDistance(5, querySift[i], sift, n, nFeaturesPerImage);
+			//printf("%d\n", featuresCompare[i][0]);
 		}
 		printf("featuresCompare computed\n");
 
+		TupleDI* SIFTDistList = (TupleDI*)malloc(n * sizeof(TupleDI*));
+		for (int i=0; i<n; i++)
+		{
+			SIFTDistList[i].a = 0;
+			SIFTDistList[i].b = i;
+		}
+		for (int i = 0; i < nFeaturesQuery; i++) {
+			for (int j = 0 ; j < 5 ; j++)
+			{
+				int imageIndex = featuresCompare[i][j];
+				SIFTDistList[imageIndex].a += 1;
+				//printf("(%f, %d), ", RGBDistList[i].a, RGBDistList[i].b);
+			}
+		}
+		printf("\n");
+
+		for (int i = 0; i < n; i++) {
+
+			printf("%d, %f\n",i, SIFTDistList[i].a);
+			//printf("(%f, %d), ", RGBDistList[i].a, RGBDistList[i].b);
+
+		}
+
+		qsort(SIFTDistList, n, sizeof(TupleDI), cmpTupleDI);
+
+		/*
 		int** hitsPerImage;
 		hitsPerImage = (int **)malloc(n* sizeof(*hitsPerImage));
 		for (int i = 0; i < n; i++) {
@@ -204,7 +230,7 @@ int main()
 		{
 			for (int j = 0 ; j < 5 ; j++)
 			{
-				printf("%d\n" , featuresCompare[i][j]);
+				//printf("%d\n" , featuresCompare[i][j]);
 				int imageIndex = featuresCompare[i][j];
 				hitsPerImage[imageIndex][1] += 1;
 			}
@@ -213,12 +239,12 @@ int main()
 
 		qsort(hitsPerImage, n, sizeof(int*), compareHits); // TODO check order
 		printf("hitsPerImage sorted\n");
-
+		*/
 		printf("Nearest images using local descriptors:\n");
 
-		for (int i=0; i<5; i++)
+		for (int i=0; i<n; i++)
 		{
-			printf("%d, " , hitsPerImage[i][0]);
+			printf("%d, " , SIFTDistList[i].b);
 		}
 		printf("/n");
 

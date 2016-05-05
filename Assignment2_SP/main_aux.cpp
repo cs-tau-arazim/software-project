@@ -34,6 +34,9 @@ int cmpTupleDI (const void * tupA, const void * tupB)
   if (( iTupB->a - iTupA->a ) < 0) {
 		  return 1;
   }
+  else if (( iTupB->a - iTupA->a ) == 0) {
+	  return iTupA->b - iTupB->b;
+  }
   else {
 	  return -1;
   }
@@ -46,7 +49,7 @@ void free_2d_int(int **data, size_t xlen)
 		for (size_t i = 0; i < xlen; ++i)
 		{
 			int* currentIntPtr = data[i];
-			printf("%d\n", i);
+			//printf("%d\n", i);
 			free(currentIntPtr);
 		}
 		free(data);

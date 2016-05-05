@@ -148,7 +148,9 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 	detect->detect(src, kp1, cv::Mat());
 	detect->compute(src, kp1, ds1);
 
-	int resultSize = min(ds1.rows, maxNFeatures);
+	//int resultSize = min(ds1.rows, maxNFeatures);
+	int resultSize = ds1.rows;
+	printf("rows: %d, cols: %d\n", ds1.rows, ds1.cols);
 
 	*nFeatures = resultSize;
 	printf("nFeatures = dsl.rows\n");
@@ -161,7 +163,7 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 	}
 	printf("descriptors malloc sucsses\n");
 	for (int i = 0; i < resultSize; i++) {
-		descriptors[i]  = (double*)malloc(128 * sizeof(*(descriptors[i])));
+		descriptors[i]  = (double*)malloc(128 * sizeof(double));
 		if (descriptors[i] == NULL) {
 			return NULL;
 		}
@@ -181,7 +183,10 @@ double spL2SquaredDistance(double* featureA, double* featureB)
 	double dis = 0;
 	for (int j = 0 ; j < 128 ; j++)
 		{
-			dis += (double)(featureA[j] - featureB[j])*(double)(featureA[j] - featureB[j]);
+			double change = (double)(featureA[j] - featureB[j])*(double)(featureA[j] - featureB[j]);
+			dis += change;
+			if(dis < 0 || change < 0)
+				printf("problem");
 		}
 	return dis;
 }
@@ -247,8 +252,8 @@ int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 
 		// calculate all the distances of specific photo from featureA
 		for (int j = 0; j < nFeaturesPerImage[i]; j++) {
-			featureList[index].a = i;
-			featureList[index].b = spL2SquaredDistance(featureA, databaseFeatures[i][j]);
+			featureList[index].b = i;
+			featureList[index].a = spL2SquaredDistance(featureA, databaseFeatures[i][j]);
 			index++;
 		}
 
@@ -259,8 +264,9 @@ int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 	int * results = (int*)malloc(bestNFeatures*sizeof(int));
 	for (int i = 0; i < bestNFeatures; i++) {
 		results[i] = featureList[i].b;
-		printf("%d\n" , results[i]);
+		printf("%d, ", results[i]);
 	}
+	printf("\n");
 
 	free(featureList);
 	return results;
