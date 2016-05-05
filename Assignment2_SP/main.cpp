@@ -111,9 +111,9 @@ int main()
 		rgb[i] = spGetRGBHist(currentDir, nBins);
 		printf("success with RGBHIst\n");
 
-		//sift[i] = spGetSiftDescriptors(currentDir,  maxNFeatures, &(nFeaturesPerImage[i]));
+		sift[i] = spGetSiftDescriptors(currentDir,  maxNFeatures, &(nFeaturesPerImage[i]));
 		//printf("nFeatures: %d\n", nFeaturesPerImage[i]);
-		//printf("success with SiftDescriptors\n");
+		printf("success with SiftDescriptors\n");
 
 	}
 
