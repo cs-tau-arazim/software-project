@@ -79,11 +79,13 @@ int main()
 	nFeaturesPerImage = (int*)malloc(n*sizeof(int));
 
 	int*** rgb;
-	rgb = (int***)alloc_3d_int(n, 3, nBins);
+	rgb = (int***)malloc(n*sizeof(int**));
+			//(int***)alloc_3d_int(n, 3, nBins);
 
 
 	double*** sift;
-	sift = (double***)malloc(n*sizeof(int));
+	sift = (double***)malloc(n*sizeof(double**));
+			//(double***)alloc_3d_double(n, maxNFeatures, 128);
 
 	printf("malloc success 1\n");
 
@@ -108,8 +110,8 @@ int main()
 		strcat(currentDir, suffix);
 		printf("%s", currentDir);
 		printf("\n");
-		//rgb[i] = spGetRGBHist(currentDir, nBins);
-		//printf("success with RGBHIst\n");
+		rgb[i] = spGetRGBHist(currentDir, nBins);
+		printf("success with RGBHIst\n");
 
 		sift[i] = spGetSiftDescriptors(currentDir,  maxNFeatures, &(nFeaturesPerImage[i]));
 		//printf("nFeatures: %d\n", nFeaturesPerImage[i]);
@@ -134,9 +136,9 @@ int main()
 		}
 
 		//10
-		//int nFeaturesQuery[LINE];
+		int nFeaturesQuery[LINE];
 		int** queryRGB = spGetRGBHist(query, nBins);
-		//double** querySift = spGetSiftDescriptors(query,  maxNFeatures, nFeaturesQuery);
+		double** querySift = spGetSiftDescriptors(query,  maxNFeatures, nFeaturesQuery);
 
 		// Search using Global Features:
 
@@ -151,30 +153,30 @@ int main()
 		for (int i = 0; i < n; i++) {
 			RGBDistList[i].a = spRGBHistL2Distance(queryRGB, rgb[i], nBins);
 			RGBDistList[i].b = i;
-			printf("(%f, %d), ", RGBDistList[i].a, RGBDistList[i].b);
+			//printf("(%f, %d), ", RGBDistList[i].a, RGBDistList[i].b);
 		}
 		printf("\n");
 
 		qsort(RGBDistList, n, sizeof(TupleDI), cmpTupleDI);
 		for (int i = 0; i < n; i++) {
-			printf("(%f, %d), ", RGBDistList[i].a, RGBDistList[i].b);
+			//printf("(%f, %d), ", RGBDistList[i].a, RGBDistList[i].b);
 		}
 		printf("TUPLE Nearest images using global descriptors:\n");
 
-		for (int i=0; i<5; i++)
+		for (int i=0; i < 5; i++)
 		{
 
-			printf("%d, " , (int)RGBDistList[i].b);
+			printf("%d, \0" , (int)RGBDistList[i].b);
 		}
 		printf("\n");
 
-		/*
+
+
 		// Search using Local Features:
-		int ** featuresCompare;
-		featuresCompare = (int **)malloc(n* sizeof(*featuresCompare));
-		for (int i = 0; i < n; i++) {
-			featuresCompare[i]  = (int*)malloc(5 * sizeof(*(featuresCompare[i])));
-		}
+		int** featuresCompare;
+		printf("featuresCompare malloc\n");
+		featuresCompare = (int**)malloc(n* sizeof(int*));
+
 		printf("featuresCompare malloc success\n");
 
 		for (int i = 0 ; i < *nFeaturesQuery ; i++)
@@ -218,7 +220,7 @@ int main()
 			printf("%d, " , hitsPerImage[i][0]);
 		}
 		printf("/n");
-		*/
+
 
 		// free mem
 		/*
