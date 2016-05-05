@@ -13,8 +13,9 @@
 #include <opencv2/xfeatures2d.hpp>//SiftDescriptorExtractor
 #include <opencv2/features2d.hpp>
 #include <vector>
-#include "main_aux.cpp"
+#include "main_aux.h"
 
+// valgrind --leak-check=full --track-origins=yes Assignment2_SP
 
 using namespace cv;
 
@@ -33,8 +34,8 @@ using namespace cv;
 int** spGetRGBHist(char* str, int nBins)
 {
 	/// Load image
-	Mat src = imread("baboon.png", CV_LOAD_IMAGE_COLOR);
-
+	Mat src = imread(str, CV_LOAD_IMAGE_COLOR); //TODO change
+	printf("read sucsses\n");
 	/// Separate the image in 3 places ( B, G and R )
 	std::vector<Mat> bgr_planes;
 	split(src, bgr_planes);
@@ -56,20 +57,26 @@ int** spGetRGBHist(char* str, int nBins)
 	calcHist(&bgr_planes[1], nImages, 0, Mat(), g_hist, 1, &nBins, &histRange);
 	calcHist(&bgr_planes[2], nImages, 0, Mat(), r_hist, 1, &nBins, &histRange);
 
+
+	printf("calcHist sucsses\n");
 	int **histInt;
-	histInt=(int **) malloc(b_hist.rows * sizeof(*histInt));
+	histInt=(int **) malloc(3 * sizeof(*histInt));
 	for (int i = 0; i < 3; i++)
-	    histInt[i] = (int *) malloc(b_hist.cols * sizeof(int));
+	    histInt[i] = (int *) malloc(b_hist.rows * sizeof(int));
 
+	printf("histInt malloc sucsses\n");
 
+	;
+	//printf("BHIST cols: %d\n", b_hist.cols);
 	for (int i = 0; i <  b_hist.rows; i++) {
-		histInt[i][0] = b_hist.at<int>(i,0);
+		//printf("BHIST: %d\n", cvRound(b_hist.at<float>(i)));
+		histInt[0][i] = cvRound(b_hist.at<float>(i,0));
 	}
 	for (int i = 0; i <  g_hist.rows; i++) {
-		histInt[i][1] = g_hist.at<int>(i,0);
+		histInt[1][i] = cvRound(g_hist.at<float>(i,0));
 	}
 	for (int i = 0; i <  r_hist.rows; i++) {
-		histInt[i][2] = r_hist.at<int>(i,0);
+		histInt[2][i] = cvRound(r_hist.at<float>(i,0));
 	}
 	return histInt;
 }
@@ -77,15 +84,21 @@ int** spGetRGBHist(char* str, int nBins)
 
 double spRGBHistL2Distance(int** histA, int** histB, int nBins)
 {
-	double dis;
+	double dis = 0;
+	//printf("%d, %d\n", histA[0][0], histB[0][0]);
 	for (int i = 0; i < 3 ; i++)
 	{
-		for (int j = 0 ; j < sizeof(histA[0]) ; j++)
+		for (int j = 0 ; j < nBins ; j++)
 		{
-			dis += (histA[i][j] - histB[i][j])*(histA[i][j] - histB[i][j]);
+			double change = (double)(histA[i][j] - histB[i][j])*(double)(histA[i][j] - histB[i][j]);
+			dis = dis + change;
+			//printf("change: %f, dis: %f\n", change, dis);
+			//printf("%d\n", dis);
+
 		}
+
+
 	}
-	dis *= 0.33;
 	return dis;
 
 }
@@ -96,8 +109,8 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 
 	//Loading img - NOTE: Gray scale mode!
 	Mat src;
-	src = imread("baboon.png", CV_LOAD_IMAGE_GRAYSCALE);
-
+	src = imread(str, CV_LOAD_IMAGE_GRAYSCALE);
+	printf("read sucsses\n");
 	//Key points will be stored in kp1;
 	std::vector<KeyPoint> kp1;
 	//Feature values will be stored in ds1;
@@ -108,17 +121,22 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 	//Extracting features
 	//The features will be stored in ds1
 	//The output type of ds1 is CV_32F (float)
+	printf("detect begins\n");
 	detect->detect(src, kp1, cv::Mat());
+	printf("detect sucsses\n");
 	detect->compute(src, kp1, ds1);
+	printf("compute sucsses\n");
 
 	*nFeatures = ds1.rows;
+	printf("nFeatures = dsl.rows\n");
 
 	double ** descriptors;
 	descriptors = (double **)malloc((*nFeatures)* sizeof(*descriptors));
 	if (descriptors == NULL) {
+		printf("descriptors malloc FAILED\n");
 		return NULL;
 	}
-
+	printf("descriptors malloc sucsses\n");
 	for (int i = 0; i < (*nFeatures); i++) {
 		descriptors[i]  = (double*)malloc(128 * sizeof(*(descriptors[i])));
 		if (descriptors[i] == NULL) {
@@ -137,7 +155,7 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 
 double spL2SquaredDistance(double* featureA, double* featureB)
 {
-	double dis;
+	double dis = 0;
 	for (int j = 0 ; j < sizeof(featureA) ; j++)
 		{
 			dis += (featureA[j] - featureB[j])*(featureA[j] - featureB[j]);
@@ -218,6 +236,7 @@ int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 	int * results = (int*)malloc(bestNFeatures*sizeof(int));
 	for (int i = 0; i < bestNFeatures; i++) {
 		results[i] = featureList[i].b;
+		printf("%d\n" , results[i]);
 	}
 
 	free(featureList);
