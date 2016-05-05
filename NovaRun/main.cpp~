@@ -106,10 +106,10 @@ int main()
 		strcat(currentDir, prefix);
 		strcat(currentDir, iStr);
 		strcat(currentDir, suffix);
-		printf("%s", currentDir);
+		printf(currentDir);
 		printf("\n");
-		//rgb[i] = spGetRGBHist(currentDir, nBins);
-		//printf("success with RGBHIst\n");
+		rgb[i] = spGetRGBHist(currentDir, nBins);
+		printf("success with RGBHIst\n");
 
 		sift[i] = spGetSiftDescriptors(currentDir,  maxNFeatures, &(nFeaturesPerImage[i]));
 		//printf("nFeatures: %d\n", nFeaturesPerImage[i]);
@@ -161,10 +161,10 @@ int main()
 		}
 		printf("TUPLE Nearest images using global descriptors:\n");
 
-		for (int i=0; i<5; i++)
+		for (int i=0; i<n; i++)
 		{
-
 			printf("%d, " , (int)RGBDistList[i].b);
+
 		}
 		printf("\n");
 
