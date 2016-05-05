@@ -101,7 +101,6 @@ int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 		double*** databaseFeatures, int numberOfImages,
 		int* nFeaturesPerImage);
 
-int cmpfunc (const void * a, const void * b);
 
 
 #endif /* SP_IMAGE_PROC_UTIL_H_ */
