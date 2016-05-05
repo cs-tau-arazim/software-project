@@ -18,6 +18,9 @@ int cmpfunc (const void * a, const void * b);
 
 int cmpTupleDI (const void * tupA, const void * tupB);
 
+int inverseCmpTupleDI (const void * tupA, const void * tupB);
+
+
 int ***alloc_3d_int(size_t xlen, size_t ylen, size_t zlen);
 
 double ***alloc_3d_double(size_t xlen, size_t ylen, size_t zlen);

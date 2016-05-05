@@ -70,7 +70,7 @@ int** spGetRGBHist(char* str, int nBins)
 	for (int i = 0; i < 3; i++)
 	    histInt[i] = (int *) malloc(b_hist.rows * sizeof(int));
 
-	printf("histInt malloc sucsses\n");
+	//printf("histInt malloc sucsses\n");
 
 	//printf("BHIST cols: %d\n", b_hist.cols);
 	for (int i = 0; i <  b_hist.rows; i++) {
@@ -150,10 +150,10 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 
 	//int resultSize = min(ds1.rows, maxNFeatures);
 	int resultSize = ds1.rows;
-	printf("rows: %d, cols: %d\n", ds1.rows, ds1.cols);
+	//printf("rows: %d, cols: %d\n", ds1.rows, ds1.cols);
 
 	*nFeatures = resultSize;
-	printf("nFeatures = dsl.rows\n");
+	//printf("nFeatures = dsl.rows\n");
 
 	double ** descriptors;
 	descriptors = (double **)malloc(resultSize* sizeof(*descriptors));
@@ -161,7 +161,7 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 		printf("descriptors malloc FAILED\n");
 		return NULL;
 	}
-	printf("descriptors malloc sucsses\n");
+	//printf("descriptors malloc sucsses\n");
 	for (int i = 0; i < resultSize; i++) {
 		descriptors[i]  = (double*)malloc(128 * sizeof(double));
 		if (descriptors[i] == NULL) {
@@ -169,7 +169,7 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 		}
 
 		for (int j = 0; j < 128; j++) {
-			descriptors[i][j] = ds1.at<double>(i,j);
+			descriptors[i][j] = ds1.at<float>(i,j);
 		}
 	}
 
@@ -182,12 +182,12 @@ double spL2SquaredDistance(double* featureA, double* featureB)
 {
 	double dis = 0;
 	for (int j = 0 ; j < 128 ; j++)
-		{
-			double change = (double)(featureA[j] - featureB[j])*(double)(featureA[j] - featureB[j]);
-			dis += change;
-			if(dis < 0 || change < 0)
-				printf("problem");
-		}
+	{
+		double change = (double)(featureA[j] - featureB[j])*(double)(featureA[j] - featureB[j]);
+		dis += change;
+		if(dis < 0 || change < 0)
+			printf("problem");
+	}
 	return dis;
 }
 
@@ -264,9 +264,9 @@ int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 	int * results = (int*)malloc(bestNFeatures*sizeof(int));
 	for (int i = 0; i < bestNFeatures; i++) {
 		results[i] = featureList[i].b;
-		printf("%d, ", results[i]);
+		//printf("(%d,%f) ", featureList[i].b, featureList[i].a);
 	}
-	printf("\n");
+	//printf("\n");
 
 	free(featureList);
 	return results;
