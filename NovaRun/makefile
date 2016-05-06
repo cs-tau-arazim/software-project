@@ -1,6 +1,10 @@
 C++ = g++
 OBJS = main.o main_aux.o sp_image_proc_util.o
+<<<<<<< HEAD
 EXEC = ex3
+=======
+EXEC = AS2
+>>>>>>> afb863ff9dff8e65349d250aa2ae8208e3758e6d
 INCLUDEPATH=/usr/local/lib/opencv-3.1.0/include/
 LIBPATH=/usr/local/lib/opencv-3.1.0/lib/
 LIBS=-lopencv_xfeatures2d -lopencv_features2d \

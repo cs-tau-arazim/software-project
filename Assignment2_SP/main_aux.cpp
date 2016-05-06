@@ -62,13 +62,13 @@ void free_2d_int(int **data, size_t xlen)
 {
 	if (data != NULL) {
 		//printf("not null\n");
-		printf("xlen=%d\n",xlen);
+		//printf("xlen=%d\n",xlen);
 		for (size_t i = 0; i < xlen; ++i)
 		{
 			int* currentIntPtr = data[i];
 			//printf("%d\n", i);
 			free(currentIntPtr);
-			printf("i=%d \n",i);
+			//printf("i=%d \n",i);
 
 		}
 		printf("im NOT free im free\n");
