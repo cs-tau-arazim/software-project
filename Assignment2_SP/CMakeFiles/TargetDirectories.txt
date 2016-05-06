@@ -1,0 +1,3 @@
+/Users/Tom/Documents/university/software-project/Assignment2_SP/CMakeFiles/edit_cache.dir
+/Users/Tom/Documents/university/software-project/Assignment2_SP/CMakeFiles/rebuild_cache.dir
+/Users/Tom/Documents/university/software-project/Assignment2_SP/CMakeFiles/Assignment2_SP.dir

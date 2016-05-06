@@ -144,7 +144,7 @@ int main()
 
 
 		// attempt with tuple
-		TupleDI* RGBDistList = (TupleDI*)malloc(n * sizeof(TupleDI*));
+		TupleDI* RGBDistList = (TupleDI*)malloc(n * sizeof(TupleDI));
 		for (int i = 0; i < n; i++) {
 			RGBDistList[i].a = spRGBHistL2Distance(queryRGB, rgb[i], nBins);
 			RGBDistList[i].b = i;
@@ -188,7 +188,7 @@ int main()
 		printf("freed querySift\n");
 		//printf("featuresCompare computed\n");
 
-		TupleDI* SIFTDistList = (TupleDI*)malloc(n * sizeof(TupleDI*));
+		TupleDI* SIFTDistList = (TupleDI*)malloc(n * sizeof(TupleDI));
 		for (int i=0; i<n; i++)
 		{
 			SIFTDistList[i].a = 0;

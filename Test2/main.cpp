@@ -1,3 +1,4 @@
+
 #include <opencv2/imgproc.hpp>//calcHist
 #include <opencv2/core.hpp>//Mat
 #include <opencv2/highgui.hpp>
@@ -5,58 +6,11 @@
 #include <iostream>
 using namespace cv;
 
-
-int** spGetRGBHist(char* str, int nBins)
-{
-	Mat src = imread(str, IMREAD_COLOR );
-	if (src.empty()) {
-		return NULL;
-	}
-
-	/// Separate the image in 3 places ( B, G and R )
-		//std::vector<Mat> bgr_planes;
-		//split(src, bgr_planes);
-
-
-		/// Set the ranges ( for B,G,R) )
-		float range[] = { 0, 256 };
-		const float* histRange = { range };
-
-		/// Set the other parameters:
-		int nImages = 1;
-
-
-		//Output
-		Mat hist;
-
-		/// Compute the histograms:
-		/// The results will be store in b_hist,g_hist,r_hist.
-		/// The output type of the matrices is CV_32F (float)
-		calcHist(&src, nImages, 0, Mat(), hist, 3, &nBins, &histRange);
-
-		int **histInt;
-		histInt = malloc(hist.rows * sizeof *histInt + (hist.rows * (hist.cols * sizeof **histInt)));
-
-		for (int i = 0 ; i < hist.rows; i++)
-		{
-			for (int j = 0 ; j< hist.cols; j++)
-			{
-				histInt[i][j] = hist.at<cv::Vec3b>(i,j);
-			}
-		}
-
-		return histInt;
-
-}
-
 int main() {
-	spGetRGBHist((char*)("baboon.png"), 256);
-
-	/*
 	Mat src;
 
 	/// Load image
-	src = imread("baboon.png", IMREAD_COLOR );
+	src = imread("baboon.png", CV_LOAD_IMAGE_COLOR);
 
 	if (src.empty()) {
 		return -1;
@@ -87,6 +41,10 @@ int main() {
 	calcHist(&bgr_planes[1], nImages, 0, Mat(), g_hist, 1, &nBins, &histRange);
 	calcHist(&bgr_planes[2], nImages, 0, Mat(), r_hist, 1, &nBins, &histRange);
 
+	for (int i = 0 ; i< b_hist.rows ; i++)
+	{
+		printf("%d\n", cvRound(b_hist.at<float>(i,0)));
+	}
 	//*****************************************************************
 	// This is not relevant for the Assignment - You can read it for fun
 	//*****************************************************************
@@ -128,5 +86,4 @@ int main() {
 	waitKey(0);
 
 	return 0;
-	*/
 }

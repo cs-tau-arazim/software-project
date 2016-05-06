@@ -34,11 +34,61 @@ int cmpTupleDI (const void * tupA, const void * tupB)
   if (( iTupB->a - iTupA->a ) < 0) {
 		  return 1;
   }
+  else if (( iTupB->a - iTupA->a ) == 0) {
+	  return iTupA->b - iTupB->b;
+  }
   else {
 	  return -1;
   }
 }
+int inverseCmpTupleDI (const void * tupA, const void * tupB)
+{
 
+  TupleDI *iTupA = (TupleDI *)tupA;
+  TupleDI *iTupB = (TupleDI *)tupB;
+
+  if (( iTupB->a - iTupA->a ) < 0) {
+		  return -1;
+  }
+  else if (( iTupB->a - iTupA->a ) == 0) {
+	  return iTupA->b - iTupB->b;
+  }
+  else {
+	  return 1;
+  }
+}
+
+void free_2d_int(int **data, size_t xlen)
+{
+	if (data != NULL) {
+		//printf("not null\n");
+		//printf("xlen=%d\n",xlen);
+		for (size_t i = 0; i < xlen; ++i)
+		{
+			int* currentIntPtr = data[i];
+			//printf("%d\n", i);
+			free(currentIntPtr);
+			//printf("i=%d \n",i);
+
+		}
+		printf("im NOT free im free\n");
+
+		//free(data);
+		printf("im free im free");
+	}
+}
+
+void free_2d_double(double **data, size_t xlen)
+{
+	if (data != NULL) {
+		for (size_t i = 0; i < xlen; ++i)
+		{
+			double* currentIntPtr = data[i];
+			free(currentIntPtr);
+		}
+		free(data);
+	}
+}
 
 void free_3d_int(int ***data, size_t xlen, size_t ylen)
 {
