@@ -71,10 +71,10 @@ void free_2d_int(int **data, size_t xlen)
 			//printf("i=%d \n",i);
 
 		}
-		printf("im NOT free im free\n");
+		//printf("im NOT free im free\n");
 
 		//free(data);
-		printf("im free im free");
+		//printf("im free im free");
 	}
 }
 
