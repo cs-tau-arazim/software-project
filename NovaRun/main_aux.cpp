@@ -67,7 +67,7 @@ void free_2d_int(int **data, size_t xlen)
 		{
 			int* currentIntPtr = data[i];
 			//printf("%d\n", i);
-			free(currentIntPtr);
+			//free(currentIntPtr);
 			//printf("i=%d \n",i);
 
 		}
