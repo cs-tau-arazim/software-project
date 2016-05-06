@@ -73,7 +73,7 @@ void free_2d_int(int **data, size_t xlen)
 		}
 		//printf("im NOT free im free\n");
 
-		//free(data);
+		free(data);
 		//printf("im free im free");
 	}
 }
