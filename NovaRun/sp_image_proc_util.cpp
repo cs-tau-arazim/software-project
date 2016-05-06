@@ -14,10 +14,17 @@
 #include <opencv2/features2d.hpp>
 #include <vector>
 #include "main_aux.h"
+#define min(a,b) \
+   ({ __typeof__ (a) _a = (a); \
+       __typeof__ (b) _b = (b); \
+     _a < _b ? _a : _b; })
 
-// For Testing:
-// make
-// valgrind --leak-check=full --track-origins=yes --show-reachable=yes ex2
+
+/* For Testing:
+* source init.sh
+* make
+* valgrind --leak-check=full --track-origins=yes --show-reachable=yes ex2
+*/
 
 using namespace cv;
 
@@ -63,7 +70,7 @@ int** spGetRGBHist(char* str, int nBins)
 	for (int i = 0; i < 3; i++)
 	    histInt[i] = (int *) malloc(b_hist.rows * sizeof(int));
 
-	printf("histInt malloc sucsses\n");
+	//printf("histInt malloc sucsses\n");
 
 	//printf("BHIST cols: %d\n", b_hist.cols);
 	for (int i = 0; i <  b_hist.rows; i++) {
@@ -101,10 +108,30 @@ double spRGBHistL2Distance(int** histA, int** histB, int nBins)
 
 }
 
-
+/**
+ * Extracts AT MOST maxNFeatures SIFT descriptors from the image given by str.
+ * The result will be stored in two dimensional matrix with nFeatures
+ * rows and 128 columns. Each row represents a SIFT feature corresponding
+ * to some keypoint.
+ *
+ * @param str - A string representing the path of the image
+ * @param maxNFeautres - The max number of features features to retain
+ * @param nFeatures - A pointer in which the actual number of features retained
+ * will be stored.
+ * @return NULL in case of:
+ * 		   - str is NULL
+ * 		   - the image given by str didn't open
+ * 		   - nFeatures is NULL
+ * 		   - maxNFeatures <= 0
+ * 		   - Memory allocation failure
+ * 		   otherwise, the total number of features retained will be stored in
+ * 		   nFeatures, and the actual features will be returned.
+ */
 double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 {
-
+	if (str == NULL || nFeatures == NULL || maxNFeatures <= 0) {
+		return NULL;
+	}
 	//Loading img - NOTE: Gray scale mode!
 	Mat src;
 	src = imread(str, CV_LOAD_IMAGE_GRAYSCALE);
@@ -121,24 +148,28 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 	detect->detect(src, kp1, cv::Mat());
 	detect->compute(src, kp1, ds1);
 
-	*nFeatures = ds1.rows;
-	printf("nFeatures = dsl.rows\n");
+	//int resultSize = min(ds1.rows, maxNFeatures);
+	int resultSize = ds1.rows;
+	//printf("rows: %d, cols: %d\n", ds1.rows, ds1.cols);
+
+	*nFeatures = resultSize;
+	//printf("nFeatures = dsl.rows\n");
 
 	double ** descriptors;
-	descriptors = (double **)malloc((*nFeatures)* sizeof(*descriptors));
+	descriptors = (double **)malloc(resultSize* sizeof(*descriptors));
 	if (descriptors == NULL) {
 		printf("descriptors malloc FAILED\n");
 		return NULL;
 	}
-	printf("descriptors malloc sucsses\n");
-	for (int i = 0; i < (*nFeatures); i++) {
-		descriptors[i]  = (double*)malloc(128 * sizeof(*(descriptors[i])));
+	//printf("descriptors malloc sucsses\n");
+	for (int i = 0; i < resultSize; i++) {
+		descriptors[i]  = (double*)malloc(128 * sizeof(double));
 		if (descriptors[i] == NULL) {
 			return NULL;
 		}
 
 		for (int j = 0; j < 128; j++) {
-			descriptors[i][j] = ds1.at<double>(i,0);
+			descriptors[i][j] = ds1.at<float>(i,j);
 		}
 	}
 
@@ -151,9 +182,12 @@ double spL2SquaredDistance(double* featureA, double* featureB)
 {
 	double dis = 0;
 	for (int j = 0 ; j < 128 ; j++)
-		{
-			dis += (double)(featureA[j] - featureB[j])*(double)(featureA[j] - featureB[j]);
-		}
+	{
+		double change = (double)(featureA[j] - featureB[j])*(double)(featureA[j] - featureB[j]);
+		dis += change;
+		if(dis < 0 || change < 0)
+			printf("problem");
+	}
 	return dis;
 }
 
@@ -218,8 +252,8 @@ int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 
 		// calculate all the distances of specific photo from featureA
 		for (int j = 0; j < nFeaturesPerImage[i]; j++) {
-			featureList[index].a = i;
-			featureList[index].b = spL2SquaredDistance(featureA, databaseFeatures[i][j]);
+			featureList[index].b = i;
+			featureList[index].a = spL2SquaredDistance(featureA, databaseFeatures[i][j]);
 			index++;
 		}
 
@@ -230,8 +264,9 @@ int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 	int * results = (int*)malloc(bestNFeatures*sizeof(int));
 	for (int i = 0; i < bestNFeatures; i++) {
 		results[i] = featureList[i].b;
-		printf("%d\n" , results[i]);
+		//printf("(%d,%f) ", featureList[i].b, featureList[i].a);
 	}
+	//printf("\n");
 
 	free(featureList);
 	return results;
