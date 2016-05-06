@@ -163,7 +163,7 @@ int main()
 
 			printf("%d, " , (int)RGBDistList[i].b);
 		}
-		//printf("\n");
+		printf("\n");
 
 		//free mem
 		free_2d_int(queryRGB, 3);
@@ -177,15 +177,15 @@ int main()
 		//printf("featuresCompare malloc begins\n");
 		featuresCompare = (int**)malloc(nFeaturesQuery* sizeof(int*));
 
-		printf("%d\n", nFeaturesQuery);
+		//printf("%d\n", nFeaturesQuery);
 
 		for (int i = 0 ; i < nFeaturesQuery ; i++)
 		{
 			featuresCompare[i] = spBestSIFTL2SquaredDistance(5, querySift[i], sift, n, nFeaturesPerImage);
-			printf("%d\n", i);
+			//printf("%d\n", i);
 		}
 		free_2d_double(querySift, n);
-		printf("freed querySift\n");
+		//printf("freed querySift\n");
 		//printf("featuresCompare computed\n");
 
 		TupleDI* SIFTDistList = (TupleDI*)malloc(n * sizeof(TupleDI));
@@ -206,13 +206,13 @@ int main()
 
 		free_2d_int(featuresCompare, nFeaturesQuery);
 		//free(featuresCompare);
-		printf("freed featuresCompare\n");
+		//printf("freed featuresCompare\n");
 
 		//printf("\n");
 
 		for (int i = 0; i < n; i++) {
 
-			printf("%d, %f\n",i, SIFTDistList[i].a);
+			//printf("%d, %f\n",i, SIFTDistList[i].a);
 			//printf("(%f, %d), ", RGBDistList[i].a, RGBDistList[i].b);
 
 		}
