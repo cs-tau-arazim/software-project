@@ -4,15 +4,10 @@
 #include <cstdio>
 #include <opencv2/imgproc.hpp>//calcHist
 #include <opencv2/core.hpp>//Mat
-#include <opencv2/highgui.hpp>
 #include <vector>
 #include <iostream>
-#include <opencv2/highgui.hpp> //imshow, drawKeypoints, waitKey
-#include <opencv2/imgproc.hpp>
-#include <opencv2/core.hpp>//Mat
 #include <opencv2/xfeatures2d.hpp>//SiftDescriptorExtractor
 #include <opencv2/features2d.hpp>
-#include <vector>
 #include "main_aux.h"
 #define min(a,b) \
    ({ __typeof__ (a) _a = (a); \
@@ -70,11 +65,8 @@ int** spGetRGBHist(char* str, int nBins)
 	for (int i = 0; i < 3; i++)
 	    histInt[i] = (int *) malloc(b_hist.rows * sizeof(int));
 
-	//printf("histInt malloc sucsses\n");
 
-	//printf("BHIST cols: %d\n", b_hist.cols);
 	for (int i = 0; i <  b_hist.rows; i++) {
-		//printf("BHIST: %d\n", cvRound(b_hist.at<float>(i)));
 		histInt[0][i] = cvRound(b_hist.at<float>(i,0));
 	}
 	for (int i = 0; i <  g_hist.rows; i++) {
@@ -90,19 +82,13 @@ int** spGetRGBHist(char* str, int nBins)
 double spRGBHistL2Distance(int** histA, int** histB, int nBins)
 {
 	double dis = 0;
-	//printf("%d, %d\n", histA[0][0], histB[0][0]);
 	for (int i = 0; i < 3 ; i++)
 	{
 		for (int j = 0 ; j < nBins ; j++)
 		{
 			double change = (double)(histA[i][j] - histB[i][j])*(double)(histA[i][j] - histB[i][j]);
 			dis = dis + change;
-			//printf("change: %f, dis: %f\n", change, dis);
-			//printf("%d\n", dis);
-
 		}
-
-
 	}
 	return dis;
 
@@ -148,12 +134,9 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 	detect->detect(src, kp1, cv::Mat());
 	detect->compute(src, kp1, ds1);
 
-	//int resultSize = min(ds1.rows, maxNFeatures);
 	int resultSize = ds1.rows;
-	//printf("rows: %d, cols: %d\n", ds1.rows, ds1.cols);
 
 	*nFeatures = resultSize;
-	//printf("nFeatures = dsl.rows\n");
 
 	double ** descriptors;
 	descriptors = (double **)malloc(resultSize* sizeof(*descriptors));
@@ -161,7 +144,6 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 		printf("descriptors malloc FAILED\n");
 		return NULL;
 	}
-	//printf("descriptors malloc sucsses\n");
 	for (int i = 0; i < resultSize; i++) {
 		descriptors[i]  = (double*)malloc(128 * sizeof(double));
 		if (descriptors[i] == NULL) {
@@ -173,7 +155,6 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 		}
 	}
 
-	// TODO confirm nFeatures pointer value
 	return descriptors;
 }
 
@@ -264,9 +245,7 @@ int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 	int * results = (int*)malloc(bestNFeatures*sizeof(int));
 	for (int i = 0; i < bestNFeatures; i++) {
 		results[i] = featureList[i].b;
-		//printf("(%d,%f) ", featureList[i].b, featureList[i].a);
 	}
-	//printf("\n");
 
 	free(featureList);
 	return results;
