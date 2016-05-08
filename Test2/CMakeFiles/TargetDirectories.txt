@@ -1,3 +1,0 @@
-/Users/Tom/Documents/university/software-project/Test2/CMakeFiles/edit_cache.dir
-/Users/Tom/Documents/university/software-project/Test2/CMakeFiles/rebuild_cache.dir
-/Users/Tom/Documents/university/software-project/Test2/CMakeFiles/Test2.dir

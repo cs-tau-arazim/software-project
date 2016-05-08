@@ -1,276 +1,230 @@
-#include <opencv2/core.hpp>// Mat
-#include <opencv2/highgui.hpp>  //imshow
-#include <opencv2/imgcodecs.hpp>//imread
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include <cstdio>
-#include <opencv2/imgproc.hpp>//calcHist
-#include <opencv2/core.hpp>//Mat
-#include <opencv2/highgui.hpp>
-#include <vector>
-#include <iostream>
-#include <opencv2/highgui.hpp> //imshow, drawKeypoints, waitKey
-#include <opencv2/imgproc.hpp>
-#include <opencv2/core.hpp>//Mat
-#include <opencv2/xfeatures2d.hpp>//SiftDescriptorExtractor
-#include <opencv2/features2d.hpp>
-#include <vector>
 #include "sp_image_proc_util.h"
 #include "main_aux.h"
 
 #define LINE 1024
+#define PRINT_LENGTH 5
+
+// Useful macros
 #define fgets_fixed(str) { \
 	fgets (str, sizeof(str), stdin);\
 	if (str == NULL) {\
+		printf("String Input error");\
 		exit(10);}\
 	strtok(str, "\n");}
 
+#define check_malloc(pointer) { \
+	if (pointer == NULL) { \
+		printf("An error occurred - allocation failure\n");\
+		exit(1);}}
+
+#define check_if_null(pointer) { \
+	if (pointer == NULL) { \
+		printf("An error occurred - now exiting");\
+		exit(1);}}
+
 int main()
 {
+	// For Eclipse to behave better with I/O
 	setvbuf(stdout, NULL, _IONBF, 0);
+
+	// Initial input variables, all static
 	char strToInt[LINE];
-	printf("Enter images directory path:\n");
 	char dir[LINE];
-	//fgets (dir, sizeof(dir), stdin);
+	char prefix[LINE];
+	int nImages;
+	char suffix[LINE];
+	int nBins;
+	int maxNFeatures;
+	char currentDir[LINE];
+	char iStr[LINE*4];
+
+	// Pointers to all database arrays
+	int *nFeaturesPerImage;
+	int*** RGBDatabase;
+	double*** SIFTDatabase;
+
+	// Main loop variables
+	char query[LINE];
+	int** queryRGB; // Global Features
+	TupleDI* RGBDistList;
+	int nFeaturesQuery; // Local Features
+	double** querySift;
+	int** featuresCompare;
+	TupleDI* SIFTDistList;
+
+
+	// Asking the user for input
+	printf("Enter images directory path:\n");
 	fgets_fixed(dir);
 
 	printf("Enter images prefix:\n");
-	char prefix[LINE];
-	//fgets (prefix, sizeof(prefix), stdin);
 	fgets_fixed(prefix);
 
 	printf("Enter number of images:\n");
-	int n; // TODO change!
 	fgets_fixed (strToInt);
-	n = atoi(strToInt);
-	if (n < 1)
+	nImages = atoi(strToInt);
+	if (nImages < 1)
 	{
 		printf("An error occurred - invalid number of images\n");
+		exit(1);
 	}
 
 	printf("Enter images suffix:\n");
-	char suffix[LINE];
 	fgets_fixed(suffix);
 
-
 	printf("Enter number of bins:\n");
-	int nBins;
 	fgets_fixed(strToInt);
 	nBins = atoi(strToInt);
-	if (n < 1)
+	if (nImages < 1)
 	{
 		printf("An error occurred - invalid number of bins\n");
+		exit(1);
 	}
-
 
 	printf("Enter number of features:\n");
-
-	int maxNFeatures;
 	fgets_fixed(strToInt);
 	maxNFeatures = atoi(strToInt);
-	if (n < 1)
+
+	if (nImages < 1)
 	{
 		printf("An error occurred - invalid number of features\n");
+		exit(1);
 	}
 
-	//TODO remove
-	//printf("%s%s%d%s, %d, %d\n",dir,prefix,n,suffix,nBins,maxNFeatures);
-	//printf("all's good so far\n");
-	//7
-	int *nFeaturesPerImage;
-	nFeaturesPerImage = (int*)malloc(n*sizeof(int));
+	// Allocating the arrays for the database
+	nFeaturesPerImage = (int*)malloc(nImages*sizeof(int));
+	check_malloc(nFeaturesPerImage);
 
-	int*** rgb;
-	rgb = (int***)malloc(n*sizeof(int**));
-			//(int***)alloc_3d_int(n, 3, nBins);
+	RGBDatabase = (int***)malloc(nImages*sizeof(int**));
+	check_malloc(RGBDatabase);
 
+	SIFTDatabase = (double***)malloc(nImages*sizeof(double**));
+	check_malloc(SIFTDatabase);
 
-	double*** sift;
-	sift = (double***)malloc(n*sizeof(double**));
-			//(double***)alloc_3d_double(n, maxNFeatures, 128);
-
-	//printf("malloc success 1\n");
-
-
-
-	char currentDir[LINE];
-
-	for (int i = 0 ; i < n ; i++)
+	// Building the database
+	for (int i = 0 ; i < nImages ; i++)
 	{
-		//printf("%d\n", &(nFeaturesPerImage[i]));
-	}
-	for (int i = 0 ; i < n ; i++)
-	{
-		//printf("\n");
-		char iStr[LINE*4];
+		// Reset string
+		memset(iStr, 0, sizeof iStr);
+
 		sprintf(iStr, "%d", i);
-
+		// Create directory string as: dir+prefix+i+suffix
 		strcpy(currentDir,dir);
-		 //+prefix+i+suffix
 		strcat(currentDir, prefix);
 		strcat(currentDir, iStr);
 		strcat(currentDir, suffix);
-		//printf("%s", currentDir);
-		//printf("\n");
-		rgb[i] = spGetRGBHist(currentDir, nBins);
-		//printf("success with RGBHIst\n");
 
-		sift[i] = spGetSiftDescriptors(currentDir,  maxNFeatures, &(nFeaturesPerImage[i]));
-		//printf("nFeatures: %d\n", nFeaturesPerImage[i]);
-		//printf("success with SiftDescriptors\n");
+		RGBDatabase[i] = spGetRGBHist(currentDir, nBins);
+		check_if_null(RGBDatabase[i]);
 
+		SIFTDatabase[i] = spGetSiftDescriptors(currentDir,  maxNFeatures, &(nFeaturesPerImage[i]));
+		check_if_null(SIFTDatabase[i]);
 	}
 
+	// Enter the main loop
 	while(true)
 	{
-		//8
+		memset(query, 0, sizeof query);
 		printf("Enter a query image or # to terminate:\n");
-		char query[LINE];
 		fgets_fixed(query);
 
-		//9
+		// Check if user requested to terminate the program
 		if(strcmp("#",query) == 0)
 		{
 			printf("Exiting...\n");
-			free_3d_int(rgb,n,3);
-			free_3d_double(sift,n, maxNFeatures);
+			free_3d_int(RGBDatabase,nImages,3);
+			free_3d_double(SIFTDatabase,nImages, maxNFeatures);
 			return 0;
 		}
 
-		//10
+		//// Search using Global Features:
 
-		int** queryRGB = spGetRGBHist(query, nBins);
+		// Load RGBHist for query
+		queryRGB = spGetRGBHist(query, nBins);
+		check_if_null(queryRGB);
 
-		// Search using Global Features:
+		// Calculate distances
+		RGBDistList = (TupleDI*)malloc(nImages * sizeof(TupleDI));
+		check_malloc(RGBDistList);
 
-
-
-		// attempt with tuple
-		TupleDI* RGBDistList = (TupleDI*)malloc(n * sizeof(TupleDI));
-		for (int i = 0; i < n; i++) {
-			RGBDistList[i].a = spRGBHistL2Distance(queryRGB, rgb[i], nBins);
+		for (int i = 0; i < nImages; i++) {
+			RGBDistList[i].a = spRGBHistL2Distance(queryRGB, RGBDatabase[i], nBins);
 			RGBDistList[i].b = i;
-			//printf("(%f, %d), ", RGBDistList[i].a, RGBDistList[i].b);
+			if (RGBDistList[i].a == -1) {
+				printf("An error occured. Program will now exit");
+				exit(1);
+			}
 		}
-		//printf("\n");
 
-		qsort(RGBDistList, n, sizeof(TupleDI), cmpTupleDI);
-		for (int i = 0; i < n; i++) {
-			//printf("(%f, %d), ", RGBDistList[i].a, RGBDistList[i].b);
-		}
-		printf("TUPLE Nearest images using global descriptors:\n");
+		// Sort using TupleDI
+		qsort(RGBDistList, nImages, sizeof(TupleDI), cmpTupleDI);
 
-		for (int i=0; i < 5; i++)
+		// Print results
+		printf("Nearest images using global descriptors:\n");
+		for (int i=0; i < 4; i++)
 		{
-
 			printf("%d, " , (int)RGBDistList[i].b);
 		}
-		printf("\n");
+		printf("%d\n", (int)RGBDistList[4].b);
 
-		//free mem
+		// Free query memory
 		free_2d_int(queryRGB, 3);
-		//printf("freed rgb\n");
 
-		int nFeaturesQuery;
-		double** querySift = spGetSiftDescriptors(query,  maxNFeatures, &nFeaturesQuery);
 
-		// Search using Local Features:
-		int** featuresCompare;
-		//printf("featuresCompare malloc begins\n");
+		//// Search using Local Features:
+
+		nFeaturesQuery = 0;
+		// Loading query local features
+		querySift = spGetSiftDescriptors(query,  maxNFeatures, &nFeaturesQuery);
+		check_if_null(querySift);
 		featuresCompare = (int**)malloc(nFeaturesQuery* sizeof(int*));
+		check_malloc(featuresCompare);
 
-		//printf("%d\n", nFeaturesQuery);
-
-		for (int i = 0 ; i < nFeaturesQuery ; i++)
-		{
-			featuresCompare[i] = spBestSIFTL2SquaredDistance(5, querySift[i], sift, n, nFeaturesPerImage);
-			//printf("%d\n", i);
+		for (int i = 0 ; i < nFeaturesQuery ; i++) {
+			featuresCompare[i] = spBestSIFTL2SquaredDistance(PRINT_LENGTH, querySift[i], SIFTDatabase, nImages, nFeaturesPerImage);
+			check_if_null(featuresCompare[i]);
 		}
-		free_2d_double(querySift, n);
-		//printf("freed querySift\n");
-		//printf("featuresCompare computed\n");
 
-		TupleDI* SIFTDistList = (TupleDI*)malloc(n * sizeof(TupleDI));
-		for (int i=0; i<n; i++)
+		free_2d_double(querySift, nImages); // free array
+
+		// Sorting using TupleDI
+		SIFTDistList = (TupleDI*)malloc(nImages * sizeof(TupleDI));
+		check_malloc(SIFTDistList);
+
+		for (int i=0; i<nImages; i++)
 		{
 			SIFTDistList[i].a = 0;
 			SIFTDistList[i].b = i;
 		}
+
+		// Calculating score for each photo
 		for (int i = 0; i < nFeaturesQuery; i++) {
-			for (int j = 0 ; j < 5 ; j++)
+			for (int j = 0 ; j < PRINT_LENGTH ; j++)
 			{
 				int imageIndex = featuresCompare[i][j];
 				SIFTDistList[imageIndex].a += 1;
-				//printf("(%f, %d), ", RGBDistList[i].a, RGBDistList[i].b);
 			}
 		}
 
+		free_2d_int(featuresCompare, nFeaturesQuery); // free array
 
-		free_2d_int(featuresCompare, nFeaturesQuery);
-		//free(featuresCompare);
-		//printf("freed featuresCompare\n");
+		// Sort through tuples
+		qsort(SIFTDistList, nImages, sizeof(TupleDI), inverseCmpTupleDI);
 
-		//printf("\n");
-
-		for (int i = 0; i < n; i++) {
-
-			//printf("%d, %f\n",i, SIFTDistList[i].a);
-			//printf("(%f, %d), ", RGBDistList[i].a, RGBDistList[i].b);
-
-		}
-
-		qsort(SIFTDistList, n, sizeof(TupleDI), inverseCmpTupleDI);
-
-		/*
-		int** hitsPerImage;
-		hitsPerImage = (int **)malloc(n* sizeof(*hitsPerImage));
-		for (int i = 0; i < n; i++) {
-			hitsPerImage[i]  = (int*)malloc(2 * sizeof(*(hitsPerImage[i])));
-		}
-		printf("hitsPerImage malloc success\n");
-
-		for (int i=0; i<n; i++)
-		{
-			hitsPerImage[i][0] = i;
-			hitsPerImage[i][1] = 0;
-		}
-		printf("hitsPerImage init\n");
-
-		for (int i = 0 ; i < *nFeaturesQuery ; i++)
-		{
-			for (int j = 0 ; j < 5 ; j++)
-			{
-				//printf("%d\n" , featuresCompare[i][j]);
-				int imageIndex = featuresCompare[i][j];
-				hitsPerImage[imageIndex][1] += 1;
-			}
-		}
-		printf("hitsPerImage computed\n");
-
-		qsort(hitsPerImage, n, sizeof(int*), compareHits); // TODO check order
-		printf("hitsPerImage sorted\n");
-		*/
+		// Print results
 		printf("Nearest images using local descriptors:\n");
-
-		for (int i=0; i<5; i++)
+		for (int i=0; i<4; i++)
 		{
 			printf("%d, " , SIFTDistList[i].b);
 		}
-		printf("\n");
-		//printf("%d\n", sizeof(double));
+		printf("%d\n", SIFTDistList[4].b);
 
-		// free mem
-
-
-
-
-
-
-
-		// end of free mem
-
-
-
+		free(SIFTDistList); // free array
 	}
-
 }
 
 
