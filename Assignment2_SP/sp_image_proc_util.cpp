@@ -65,11 +65,8 @@ int** spGetRGBHist(char* str, int nBins)
 	for (int i = 0; i < 3; i++)
 	    histInt[i] = (int *) malloc(b_hist.rows * sizeof(int));
 
-	//printf("histInt malloc sucsses\n");
 
-	//printf("BHIST cols: %d\n", b_hist.cols);
 	for (int i = 0; i <  b_hist.rows; i++) {
-		//printf("BHIST: %d\n", cvRound(b_hist.at<float>(i)));
 		histInt[0][i] = cvRound(b_hist.at<float>(i,0));
 	}
 	for (int i = 0; i <  g_hist.rows; i++) {
@@ -147,7 +144,6 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 		printf("descriptors malloc FAILED\n");
 		return NULL;
 	}
-	//printf("descriptors malloc sucsses\n");
 	for (int i = 0; i < resultSize; i++) {
 		descriptors[i]  = (double*)malloc(128 * sizeof(double));
 		if (descriptors[i] == NULL) {
@@ -159,7 +155,6 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 		}
 	}
 
-	// TODO confirm nFeatures pointer value
 	return descriptors;
 }
 
@@ -250,9 +245,7 @@ int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 	int * results = (int*)malloc(bestNFeatures*sizeof(int));
 	for (int i = 0; i < bestNFeatures; i++) {
 		results[i] = featureList[i].b;
-		//printf("(%d,%f) ", featureList[i].b, featureList[i].a);
 	}
-	//printf("\n");
 
 	free(featureList);
 	return results;
