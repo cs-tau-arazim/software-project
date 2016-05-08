@@ -12,6 +12,7 @@
 		exit(10);}\
 	strtok(str, "\n");}
 
+
 int main()
 {
 	setvbuf(stdout, NULL, _IONBF, 0);

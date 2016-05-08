@@ -3,7 +3,6 @@
 #include <opencv2/imgcodecs.hpp>//imread
 #include <cstdio>
 #include <opencv2/imgproc.hpp>//calcHist
-#include <opencv2/core.hpp>//Mat
 #include <vector>
 #include <iostream>
 #include <opencv2/xfeatures2d.hpp>//SiftDescriptorExtractor
