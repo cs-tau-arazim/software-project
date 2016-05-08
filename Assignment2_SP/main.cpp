@@ -254,7 +254,7 @@ int main()
 		{
 			printf("%d, " , SIFTDistList[i].b);
 		}
-		printf("/n");
+		printf("\n");
 		//printf("%d\n", sizeof(double));
 
 		// free mem
