@@ -6,7 +6,10 @@
 #include <string.h>
 
 
-
+/*
+ *  Compare two TupleDI structs by double value a.
+* Tie breaker - index integer value b.
+*/
 int cmpTupleDI (const void * tupA, const void * tupB)
 {
 
@@ -25,6 +28,10 @@ int cmpTupleDI (const void * tupA, const void * tupB)
 }
 
 
+/*
+ *  Compare two TupleDI structs by double value a, in reverse order.
+* Tie breaker - index integer value b.
+*/
 int inverseCmpTupleDI (const void * tupA, const void * tupB)
 {
 

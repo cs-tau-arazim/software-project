@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item value="opencv_imgcodecs" key="org.eclipse.cdt.utils.ui.controls.FileListControl"/>
-	<item value="Default C source template" key="LastUsedSourceTemplate"/>
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration">
 	</section>
 	<section name="RenameInformationPopup">
 	</section>
+<<<<<<< HEAD
+=======
+	<section name="CRenameRefactoringInputPage">
+	</section>
+>>>>>>> 9e0cb2988b67ad2a36619f783991826e120fc09e
 	<section name="completion_proposal_size">
 	</section>
 </section>

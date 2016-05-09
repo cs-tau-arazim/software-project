@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc ../../lib/libopencv_highgui.a  CMakeFiles/opencv_highgui.dir/src/window.cpp.o CMakeFiles/opencv_highgui.dir/src/window_cocoa.mm.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib ../../lib/libopencv_highgui.a
