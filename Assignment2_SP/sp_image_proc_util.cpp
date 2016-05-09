@@ -75,7 +75,7 @@ int** spGetRGBHist(char* str, int nBins)
 
 	// Load matrix values
 	for (int i = 0; i < 3; i++) {
-	    histInt[i] = (int *) malloc(b_hist.rows * sizeof(int));
+		histInt[i] = (int *) malloc(b_hist.rows * sizeof(int));
 		check_malloc_null(histInt[i]);
 	}
 	for (int i = 0; i <  b_hist.rows; i++) {
