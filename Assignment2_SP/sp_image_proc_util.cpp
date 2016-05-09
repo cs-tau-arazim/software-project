@@ -4,14 +4,19 @@
 #include <cstdio>
 #include <opencv2/imgproc.hpp>//calcHist
 #include <vector>
+#include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
 #include <opencv2/xfeatures2d.hpp>//SiftDescriptorExtractor
 #include <opencv2/features2d.hpp>
 #include "main_aux.h"
-#define min(a,b) \
-   ({ __typeof__ (a) _a = (a); \
-       __typeof__ (b) _b = (b); \
-     _a < _b ? _a : _b; })
+
+#define ALLOCATION_FAILTURE "An error occurred - allocation failure\n"
+
+#define check_malloc_null(pointer) { \
+	if (pointer == NULL) { \
+		printf(ALLOCATION_FAILTURE);\
+		return NULL;}}
 
 
 /* For Testing:
@@ -21,6 +26,7 @@
 */
 
 using namespace cv;
+
 
 /*
  * Calculates the RGB channels histogram. The histogram will be stored in a
@@ -36,9 +42,15 @@ using namespace cv;
 
 int** spGetRGBHist(char* str, int nBins)
 {
+	if(str == NULL || nBins <= 0) {
+		return NULL;
+	}
+	// Variables
+	int **histInt;
+
 	/// Load image
-	Mat src = imread(str, CV_LOAD_IMAGE_COLOR); //TODO change
-	/// Separate the image in 3 places ( B, G and R )
+	Mat src = imread(str, CV_LOAD_IMAGE_COLOR);
+	/// Separate the image
 	std::vector<Mat> bgr_planes;
 	split(src, bgr_planes);
 
@@ -59,12 +71,14 @@ int** spGetRGBHist(char* str, int nBins)
 	calcHist(&bgr_planes[1], nImages, 0, Mat(), g_hist, 1, &nBins, &histRange);
 	calcHist(&bgr_planes[2], nImages, 0, Mat(), r_hist, 1, &nBins, &histRange);
 
-	int **histInt;
 	histInt=(int **) malloc(3 * sizeof(*histInt));
-	for (int i = 0; i < 3; i++)
-	    histInt[i] = (int *) malloc(b_hist.rows * sizeof(int));
+	check_malloc_null(histInt);
 
-
+	// Load matrix values
+	for (int i = 0; i < 3; i++) {
+		histInt[i] = (int *) malloc(b_hist.rows * sizeof(int));
+		check_malloc_null(histInt[i]);
+	}
 	for (int i = 0; i <  b_hist.rows; i++) {
 		histInt[0][i] = cvRound(b_hist.at<float>(i,0));
 	}
@@ -74,13 +88,27 @@ int** spGetRGBHist(char* str, int nBins)
 	for (int i = 0; i <  r_hist.rows; i++) {
 		histInt[2][i] = cvRound(r_hist.at<float>(i,0));
 	}
+
 	return histInt;
 }
 
 
+/**
+ * Returns the average L2-squared distance between histA and histB. The
+ * histA and histB are histograms of the RGB channels. Both histograms
+ * must be in the same dimension (3 X nBins).
+ * @param histA - RGB histogram of image A
+ * @param histB - RGB histogram of image B
+ * @return -1 if nBins <= 0 or histA/histB is null, otherwise the average L@-squared distance.
+ */
 double spRGBHistL2Distance(int** histA, int** histB, int nBins)
 {
+	if (nBins <= 0 || histA == NULL || histB == NULL) {
+		return -1;
+	}
+
 	double dis = 0;
+	// Loop and calculate
 	for (int i = 0; i < 3 ; i++)
 	{
 		for (int j = 0 ; j < nBins ; j++)
@@ -90,7 +118,6 @@ double spRGBHistL2Distance(int** histA, int** histB, int nBins)
 		}
 	}
 	return dis;
-
 }
 
 /**
@@ -117,9 +144,15 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 	if (str == NULL || nFeatures == NULL || maxNFeatures <= 0) {
 		return NULL;
 	}
-	//Loading img - NOTE: Gray scale mode!
+
+	// Variables
+	int resultSize;
+	double ** descriptors;
+
+	//Loading image
 	Mat src;
 	src = imread(str, CV_LOAD_IMAGE_GRAYSCALE);
+
 	//Key points will be stored in kp1;
 	std::vector<KeyPoint> kp1;
 	//Feature values will be stored in ds1;
@@ -133,22 +166,16 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 	detect->detect(src, kp1, cv::Mat());
 	detect->compute(src, kp1, ds1);
 
-	int resultSize = ds1.rows;
-
+	resultSize = ds1.rows;
 	*nFeatures = resultSize;
 
-	double ** descriptors;
 	descriptors = (double **)malloc(resultSize* sizeof(*descriptors));
-	if (descriptors == NULL) {
-		printf("descriptors malloc FAILED\n");
-		return NULL;
-	}
+	check_malloc_null(descriptors);
+
 	for (int i = 0; i < resultSize; i++) {
 		descriptors[i]  = (double*)malloc(128 * sizeof(double));
-		if (descriptors[i] == NULL) {
-			return NULL;
-		}
-
+		check_malloc_null(descriptors[i]);
+		// Set matrix values
 		for (int j = 0; j < 128; j++) {
 			descriptors[i][j] = ds1.at<float>(i,j);
 		}
@@ -158,15 +185,25 @@ double** spGetSiftDescriptors(char* str, int maxNFeatures, int *nFeatures)
 }
 
 
+/**
+ * Calculates the L2-Square distance of the two features: featureA & featureB
+ *
+ * @param featureA - The first SIFT feature
+ * @param featureB - The second SIFT feature
+ * @return -1 in case featureA or featureB is NULL, otherwise the L2-Squared distance
+ * as given in the assignment instructions
+ */
 double spL2SquaredDistance(double* featureA, double* featureB)
 {
+	if (featureA == NULL || featureB == NULL) {
+		return -1;
+	}
+	// Calculate distance
 	double dis = 0;
 	for (int j = 0 ; j < 128 ; j++)
 	{
 		double change = (double)(featureA[j] - featureB[j])*(double)(featureA[j] - featureB[j]);
 		dis += change;
-		if(dis < 0 || change < 0)
-			printf("problem");
 	}
 	return dis;
 }
@@ -218,15 +255,24 @@ int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 		double*** databaseFeatures, int numberOfImages,
 		int* nFeaturesPerImage)
 {
+	if (featureA == NULL || databaseFeatures == NULL || numberOfImages <= 1) {
+		return NULL;
+	}
 
+	// Variables
 	int totalNumFeatures = 0;
+	int index = 0;
+	int * results;
+
+	// Calculate total number of features for later sorting
 	for(int i = 0; i < numberOfImages; i++) {
 		totalNumFeatures += nFeaturesPerImage[i];
 	}
 
-	// create a big list of pairs- distance and image index
+	// create a large list of pairs- distance and image index
 	TupleDI * featureList = (TupleDI*)malloc(totalNumFeatures*sizeof(TupleDI));
-	int index = 0;
+	check_malloc_null(featureList);
+
 	// for each image
 	for(int i = 0; i < numberOfImages; i++) {
 
@@ -236,12 +282,14 @@ int* spBestSIFTL2SquaredDistance(int bestNFeatures, double* featureA,
 			featureList[index].a = spL2SquaredDistance(featureA, databaseFeatures[i][j]);
 			index++;
 		}
-
 	}
 
+	// Sort array
 	qsort(featureList, totalNumFeatures, sizeof(TupleDI), cmpTupleDI);
 
-	int * results = (int*)malloc(bestNFeatures*sizeof(int));
+	results = (int*)malloc(bestNFeatures*sizeof(int));
+	check_malloc_null(results);
+
 	for (int i = 0; i < bestNFeatures; i++) {
 		results[i] = featureList[i].b;
 	}
