@@ -99,7 +99,7 @@ int main()
 	printf(ENTER_NUMBER_OF_BINS);
 	fgets_fixed(strToInt);
 	nBins = atoi(strToInt);
-	if (nImages < 1)
+	if (nBins < 1)
 	{
 		printf(INVALID_NUMBER_OF_BINS);
 		exit(1);
@@ -109,7 +109,7 @@ int main()
 	fgets_fixed(strToInt);
 	maxNFeatures = atoi(strToInt);
 
-	if (nImages < 1)
+	if (maxNFeatures < 1)
 	{
 		printf(INVALID_NUMBER_OF_FEATURES);
 		exit(1);
@@ -175,8 +175,7 @@ int main()
 			RGBDistList[i].a = spRGBHistL2Distance(queryRGB, RGBDatabase[i], nBins);
 			RGBDistList[i].b = i;
 			if (RGBDistList[i].a == -1) {
-				//TODO check if replace
-				printf("An error occured. Program will now exit");
+				printf(ERROR_EXITING);
 				exit(1);
 			}
 		}
