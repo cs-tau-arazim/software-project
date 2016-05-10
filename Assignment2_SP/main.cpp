@@ -157,7 +157,7 @@ int main()
 		{
 			printf(EXITING);
 			free_3d_int(RGBDatabase,nImages,3);
-			free_3d_double(SIFTDatabase,nImages, maxNFeatures);
+			free_3d_sift(SIFTDatabase,nImages, nFeaturesPerImage);
 			free(nFeaturesPerImage);
 			return 0;
 		}
