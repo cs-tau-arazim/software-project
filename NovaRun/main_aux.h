@@ -21,12 +21,12 @@ void free_2d_int(int **data, size_t xlen);
 
 
 /*
- * void free_3d_double(double **data, size_t xlen, size_t ylen):
+ * void free_3d_sift(double **data, size_t xlen, size_t ylen):
  *
- * receives pointer to a 3d array of doubles and the rows size, columns size,
+ * receives pointer to a 3d array of doubles and the rows size, array of columns sizes,
  * and frees the array.
  */
-void free_3d_double(double ***data, size_t xlen, size_t ylen);
+void free_3d_sift(double ***data, int xlen, int* ylens);
 
 
 /*

@@ -26,7 +26,7 @@ void free_2d_int(int **data, size_t xlen);
  * receives pointer to a 3d array of doubles and the rows size, array of columns sizes,
  * and frees the array.
  */
-void free_3d_sift(double ***data, size_t xlen, int* ylens);
+void free_3d_sift(double ***data, int xlen, int* ylens);
 
 
 /*

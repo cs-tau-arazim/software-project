@@ -157,7 +157,8 @@ int main()
 		{
 			printf(EXITING);
 			free_3d_int(RGBDatabase,nImages,3);
-			free_3d_double(SIFTDatabase,nImages, maxNFeatures);
+			free_3d_sift(SIFTDatabase,nImages, nFeaturesPerImage);
+			free(nFeaturesPerImage);
 			return 0;
 		}
 
@@ -209,7 +210,7 @@ int main()
 			check_if_null(featuresCompare[i]);
 		}
 
-		free_2d_double(querySift, nImages); // free array
+		free_2d_double(querySift, nFeaturesQuery); // free array
 
 		// Sorting using TupleDI
 		SIFTDistList = (TupleDI*)malloc(nImages * sizeof(TupleDI));

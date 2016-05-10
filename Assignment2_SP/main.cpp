@@ -210,7 +210,7 @@ int main()
 			check_if_null(featuresCompare[i]);
 		}
 
-		free_2d_double(querySift, nImages); // free array
+		free_2d_double(querySift, nFeaturesQuery); // free querySift array
 
 		// Sorting using TupleDI
 		SIFTDistList = (TupleDI*)malloc(nImages * sizeof(TupleDI));
@@ -231,7 +231,7 @@ int main()
 			}
 		}
 
-		free_2d_int(featuresCompare, nFeaturesQuery); // free array
+		free_2d_int(featuresCompare, nFeaturesQuery); // free featuresCompare array
 
 		// Sort through tuples
 		qsort(SIFTDistList, nImages, sizeof(TupleDI), inverseCmpTupleDI);
@@ -244,7 +244,7 @@ int main()
 		}
 		printf("%d\n", SIFTDistList[4].b);
 
-		free(SIFTDistList); // free array
+		free(SIFTDistList); // Free SIFTDist array
 	}
 }
 

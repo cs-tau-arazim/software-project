@@ -115,9 +115,9 @@ void free_3d_int(int ***data, size_t xlen, size_t ylen)
  * receives pointer to a 3d array of doubles and the rows size, array of columns sizes,
  * and frees the array.
  */
-void free_3d_sift(double ***data, size_t xlen, int* ylens)
+void free_3d_sift(double ***data, int xlen, int* ylens)
 {
-    size_t i, j;
+    int i, j;
 
     for (i=0; i < xlen; ++i) {
         if (data[i] != NULL) {
