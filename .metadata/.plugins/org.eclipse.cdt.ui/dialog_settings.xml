@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+	<item value="opencv_imgcodecs" key="org.eclipse.cdt.utils.ui.controls.FileListControl"/>
+	<item value="Default C source template" key="LastUsedSourceTemplate"/>
+=======
+	<item value="/usr/local/Cellar/opencv3/3.1.0_3/lib/libopencv_features2d.3.1.0.dylib" key="org.eclipse.cdt.utils.ui.controls.FileListControl"/>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration">
 	</section>
 	<section name="RenameInformationPopup">
