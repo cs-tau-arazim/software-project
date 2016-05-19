@@ -55,11 +55,13 @@ SPPoint spPointCreate(double* data, int dim, int index)
 	{
 		newData[i] = data[i];
 	}
-	struct sp_point_t point;
-	point.data = newData;
-	point.dim = dim;
-	point.index = index;
-	SPPoint p = &point;
+	SPPoint p = (SPPoint)malloc(sizeof(*p));
+
+
+	p->data = newData;
+	p->dim = dim;
+	p->index = index;
+
 	return p;
 }
 
@@ -80,6 +82,7 @@ SPPoint spPointCreate(double* data, int dim, int index)
  */
 SPPoint spPointCopy(SPPoint source)
 {
+	/*
 	assert(source != NULL);
 
 	double* newData = (double*)malloc(dim*sizeof(double));
@@ -97,6 +100,7 @@ SPPoint spPointCopy(SPPoint source)
 	point.index = index;
 	SPPoint p = &point;
 	return p;
+	*/
 }
 
 /**
@@ -105,6 +109,8 @@ SPPoint spPointCopy(SPPoint source)
  */
 void spPointDestroy(SPPoint point)
 {
+	if (point == NULL)
+		return;
 
 }
 
