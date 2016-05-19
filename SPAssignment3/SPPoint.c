@@ -1,5 +1,6 @@
 #include "SPPoint.h"
 #include <stdlib.h>
+#include <assert.h>
 
 /**
  * SPPoint Summary
@@ -54,7 +55,12 @@ SPPoint spPointCreate(double* data, int dim, int index)
 	{
 		newData[i] = data[i];
 	}
-	SPPoint p = {newData, dim, index};
+	struct sp_point_t point;
+	point.data = newData;
+	point.dim = dim;
+	point.index = index;
+	SPPoint p = &point;
+	return p;
 }
 
 /**
@@ -74,7 +80,23 @@ SPPoint spPointCreate(double* data, int dim, int index)
  */
 SPPoint spPointCopy(SPPoint source)
 {
+	assert(source != NULL);
 
+	double* newData = (double*)malloc(dim*sizeof(double));
+	if (newData == NULL)
+		return NULL;
+
+
+	for (int i = 0 ; i < dim ; i++)
+	{
+		newData[i] = data[i];
+	}
+	struct sp_point_t point;
+	point.data = newData;
+	point.dim = dim;
+	point.index = index;
+	SPPoint p = &point;
+	return p;
 }
 
 /**
