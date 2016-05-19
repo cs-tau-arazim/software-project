@@ -1,4 +1,5 @@
 #include "SPPoint.h"
+#include <stdlib.h>
 
 /**
  * SPPoint Summary
@@ -20,8 +21,10 @@
 
 /** Type for defining the point **/
 struct sp_point_t{
-
-}
+	double* data;
+	int dim;
+	int index;
+};
 
 /**
  * Allocates a new point in the memory.
@@ -39,7 +42,19 @@ struct sp_point_t{
  */
 SPPoint spPointCreate(double* data, int dim, int index)
 {
+	if (dim <= 0 || index <= 0 || data == NULL)
+		return NULL;
 
+	double* newData = (double*)malloc(dim*sizeof(double));
+	if (newData == NULL)
+		return NULL;
+
+
+	for (int i = 0 ; i < dim ; i++)
+	{
+		newData[i] = data[i];
+	}
+	SPPoint p = {newData, dim, index};
 }
 
 /**
