@@ -55,6 +55,9 @@ SPPoint spPointCreate(double* data, int dim, int index)
 		newData[i] = data[i];
 	}
 	SPPoint p = (SPPoint)malloc(sizeof(*p));
+	if (p == NULL)
+		return NULL;
+
 
 	p->data = newData;
 	p->dim = dim;
@@ -80,6 +83,7 @@ SPPoint spPointCreate(double* data, int dim, int index)
  */
 SPPoint spPointCopy(SPPoint source)
 {
+<<<<<<< HEAD
 	assert(source != NULL);
 
 	SPPoint p = (SPPoint) malloc(sizeof(*p));
@@ -99,6 +103,9 @@ SPPoint spPointCopy(SPPoint source)
 	}
 
 	return p;
+=======
+
+>>>>>>> origin/master
 }
 
 /**
@@ -109,7 +116,8 @@ void spPointDestroy(SPPoint point)
 {
 	if (point == NULL)
 		return;
-
+	free(point->data);
+	free(point);
 }
 
 /**
@@ -122,7 +130,8 @@ void spPointDestroy(SPPoint point)
  */
 int spPointGetDimension(SPPoint point)
 {
-
+	assert(point != NULL);
+	return point->dim;
 }
 
 /**
@@ -135,7 +144,8 @@ int spPointGetDimension(SPPoint point)
  */
 int spPointGetIndex(SPPoint point)
 {
-
+	assert(point != NULL);
+	return point->index;
 }
 
 /**
@@ -150,7 +160,8 @@ int spPointGetIndex(SPPoint point)
  */
 double spPointGetAxisCoor(SPPoint point, int axis)
 {
-
+	assert(point!=NULL && axis < point->dim);
+	return point->data[axis];
 }
 
 /**
