@@ -178,6 +178,11 @@ double spPointGetAxisCoor(SPPoint point, int axis)
 double spPointL2SquaredDistance(SPPoint p, SPPoint q)
 {
 	assert(p != NULL && q != NULL && p->dim == q->dim);
+	double sum = 0;
+	for(int i = 0; i < p->dim; i++) {
+		sum += (p->data[i] - q->data[i]) * (p->data[i] - q->data[i]);
+	}
+	return sum;
 }
 
 
