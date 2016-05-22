@@ -83,7 +83,7 @@ SPPoint spPointCreate(double* data, int dim, int index)
  */
 SPPoint spPointCopy(SPPoint source)
 {
-<<<<<<< HEAD
+
 	assert(source != NULL);
 
 	SPPoint p = (SPPoint) malloc(sizeof(*p));
@@ -103,9 +103,7 @@ SPPoint spPointCopy(SPPoint source)
 	}
 
 	return p;
-=======
 
->>>>>>> origin/master
 }
 
 /**
