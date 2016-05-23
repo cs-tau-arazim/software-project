@@ -4,18 +4,21 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../SPBPriorityQueue.c \
 ../SPList.c \
 ../SPListElement.c \
 ../SPLogger.c \
 ../SPPoint.c 
 
 OBJS += \
+./SPBPriorityQueue.o \
 ./SPList.o \
 ./SPListElement.o \
 ./SPLogger.o \
 ./SPPoint.o 
 
 C_DEPS += \
+./SPBPriorityQueue.d \
 ./SPList.d \
 ./SPListElement.d \
 ./SPLogger.d \
