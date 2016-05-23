@@ -34,12 +34,22 @@ typedef enum sp_bp_queue_msg_t {
 SPBPQueue spBPQueueCreate(int maxSize);
 
 /**
- * TODO Complete documentation
+ * Creates a copy of target BPQueue.
+ *
+ * The new copy will contain all the elements from the source BPQueue. maxSize will be the same.
+ *
+ * @param source The target BPQueue to copy
+ * @return
+ * NULL if a NULL was sent or a memory allocation failed.
+ * A BPQueue containing the same elements as source otherwise.
  */
 SPBPQueue spBPQueueCopy(SPBPQueue source);
 
 /**
- * TODO Complete documentation
+ * spBPQueueDestroy: Deallocates an existing BPQueue.
+ *
+ * @param source Target BPQueue to be deallocated. If source is NULL nothing will be
+ * done
  */
 void spBPQueueDestroy(SPBPQueue source);
 
@@ -49,12 +59,22 @@ void spBPQueueDestroy(SPBPQueue source);
 void spBPQueueClear(SPBPQueue source);
 
 /**
- * TODO Complete documentation
+ * Returns the number of elements in a BPQueue.
+ *
+ * @param source The target BPQueue which size is requested.
+ * @return
+ * -1 if a NULL pointer was sent.
+ * Otherwise the number of elements in the BPQueue.
  */
 int spBPQueueSize(SPBPQueue source);
 
 /**
- * TODO Complete documentation
+ * Returns the max size of a BPQueue.
+ *
+ * @param source The target BPQueue which max size is requested.
+ * @return
+ * -1 if a NULL pointer was sent.
+ * Otherwise the nax size of source.
  */
 int spBPQueueGetMaxSize(SPBPQueue source);
 
@@ -69,22 +89,42 @@ SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue source, SPListElement element);
 SP_BPQUEUE_MSG spBPQueueDequeue(SPBPQueue source);
 
 /**
- * TODO Complete documentation
+ * returns a NEW COPY of the element with the lowest value
+ *
+ * @param source The BPQueue for which to return the lowest value element.
+ * @return
+ * NULL if a NULL pointer was sent or the BPQueue is empty.
+ * The lowest value element of the BPQueue otherwise
  */
 SPListElement spBPQueuePeek(SPBPQueue source);
 
 /**
- * TODO Complete documentation
+ * returns a NEW COPY of the element with the highest value
+ *
+ * @param source The BPQueue for which to return the highest value element.
+ * @return
+ * NULL if a NULL pointer was sent or the BPQueue is empty.
+ * The highest value element of the BPQueue otherwise
  */
 SPListElement spBPQueuePeekLast(SPBPQueue source);
 
 /**
- * TODO Complete documentation
+ * returns the value of the element with the lowest value
+ *
+ * @param source The BPQueue for which to return the lowest value.
+ * @return
+ * -1 if a NULL pointer was sent or the BPQueue is empty.
+ * The lowest value of the BPQueue otherwise
  */
 double spBPQueueMinValue(SPBPQueue source);
 
 /**
- * TODO Complete documentation
+ * returns the value of the element with the highest value
+ *
+ * @param source The BPQueue for which to return the highest value.
+ * @return
+ * -1 if a NULL pointer was sent or the BPQueue is empty.
+ * The highest value of the BPQueue otherwise
  */
 double spBPQueueMaxValue(SPBPQueue source);
 
