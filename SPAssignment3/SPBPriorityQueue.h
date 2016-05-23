@@ -22,7 +22,14 @@ typedef enum sp_bp_queue_msg_t {
 } SP_BPQUEUE_MSG;
 
 /**
- * TODO Complete documentation
+ * Allocates a new BPQueue.
+ *
+ * This function creates a new empty BPQueue.
+ * @param the maxSize bound for the BPQueue.
+ * @return
+ * 	NULL - If allocations failed.
+ * 	TODO also require maxSize > 0
+ * 	A new BPQueue in case of success.
  */
 SPBPQueue spBPQueueCreate(int maxSize);
 
