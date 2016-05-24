@@ -167,4 +167,11 @@ SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue source, SPListElement element) {
 	}
 }
 
+SP_BPQUEUE_MSG spBPQueueDequeue(SPBPQueue source)
+{
+	spListGetFirst(source->list);
+	spListRemoveCurrent(source->list);
+	return SP_BPQUEUE_SUCCESS;
+}
+
 
