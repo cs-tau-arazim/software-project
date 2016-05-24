@@ -4,7 +4,7 @@
 #include "unit_test_util.h" //SUPPORTING MACROS ASSERT_TRUE/ASSERT_FALSE etc..
 #include "../SPLogger.h"
 
-// The following macro receives a function and checks it returns "SP_LOGGER_INVAlID_ARGUMENT"
+// The following macro receives a printing function and checks that it returns "SP_LOGGER_INVAlID_ARGUMENT"
 // whenever it should according to the documentation-
 // "If any of msg or file or function are null or line is negative".
 #define checkArguments(func) { \
