@@ -7,7 +7,30 @@
 /**
  * SP Bounded Priority Queue summary
  *
- * TODO Complete documentation
+ * Implements a Bounded Priority Queue type.
+ * The elements of the queue are of type SPListElement, please refer
+ * to SPListElement.h for usage.
+ *
+ * The elements are sorted from lowest value to highest.
+ * If the queue is at full capacity then adding an element will result
+ * in removing the highest value element from the queue.
+ *
+ * The following functions are available:
+ *
+ * spBPQueueCreate			- creates an empty queue with a given maximum capacity
+ * spBPQueueCopy			- creates a copy of a given queue
+ * spBPQueueDestroy			- frees all memory allocation associated with the queue
+ * spBPQueueClear			- removes all the elements in the queue
+ * spBPQueueSize			- returns the number of elements in the queue
+ * spBPQueueGetMaxSize		- returns the maximum capacity of the queue
+ * spBPQueueEnqueue			- Inserts a NEW COPY element to the queue
+ * spBPQueueDequeue			- removes the element with the lowest value
+ * spBPQueuePeek			- returns a NEW COPY of the element with the lowest value
+ * spBPQueuePeekLast		– returns a NEW COPY of the element with the highest value
+ * spBPQueueMinValue		- returns the minimum value in the queue
+ * spBPQueueMaxValue		- returns the maximum value in the queue
+ * spBPQueueIsEmpty 		– returns true if the queue is empty
+ * spBPQueueIsFull			- returns true if the queue is full
  */
 
 
@@ -93,12 +116,12 @@ int spBPQueueGetMaxSize(SPBPQueue source);
  * @param element The element to insert. A copy of the element will be
  * inserted.
  * @return
- * SP_BPQUEUE_FULL if SPQueue is full and we had to push something out TODO maybe chage to only edge case
+ * SP_BPQUEUE_FULL if SPQueue is full and we had to push something out
  * SP_BPQUEUE_INVALID_ARGUMENT if a NULL was sent as queue or element
  * SP_BPQUEUE_OUT_OF_MEMORY if an allocation failed
  * SP_BPQUEUE_SUCCESS the element has been inserted successfully
  */
-SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue source, SPListElement element); // TODO test
+SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue source, SPListElement element);
 
 /**
  * Removes the lowest value element from the BPQueue.
@@ -108,7 +131,7 @@ SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue source, SPListElement element); // TOD
  * SP_BPQUEUE_INVALID_ARGUMENT if a NULL was sent as queue or the queue is empty
  * SP_BPQUEUE_SUCCESS the element has been removed successfully
  */
-SP_BPQUEUE_MSG spBPQueueDequeue(SPBPQueue source); // TODO test
+SP_BPQUEUE_MSG spBPQueueDequeue(SPBPQueue source);
 
 /**
  * returns a NEW COPY of the element with the lowest value
@@ -151,12 +174,22 @@ double spBPQueueMinValue(SPBPQueue source);
 double spBPQueueMaxValue(SPBPQueue source);
 
 /**
- * TODO Complete documentation
+ * returns true if the BPQueue is empty
+ *
+ * @param source The BPQueue for which to check if empty.
+ * @return
+ * true if a NULL pointer was sent or the BPQueue is empty.
+ * false otherwise.
  */
 bool spBPQueueIsEmpty(SPBPQueue source);
 
 /**
- * TODO Complete documentation
+ * returns true if the BPQueue is full
+ *
+ * @param source The BPQueue for which to check if full.
+ * @return
+ * true if source != NULL and the BPQueue is full.
+ * false otherwise.
  */
 bool spBPQueueIsFull(SPBPQueue source);
 
