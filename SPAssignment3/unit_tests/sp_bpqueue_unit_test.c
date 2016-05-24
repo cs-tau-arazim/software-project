@@ -9,8 +9,8 @@
 #include <stdarg.h>
 #include <assert.h>
 
-//static SPBPQueue quickQ(int size, ...);
-static int maxSize = 20;
+
+static int maxSize = 100;
 
 static SPBPQueue quickQ(int size, ...) {
 	va_list items;
@@ -31,15 +31,9 @@ static bool testQCreate() {
 }
 
 static bool testQCopy() {
-	//spLoggerCreate(NULL,SP_LOGGER_DEBUG_INFO_WARNING_ERROR_LEVEL);
-
 	ASSERT_TRUE(spBPQueueCopy(NULL) == NULL);
-	//spLoggerPrintDebug("null check","spb_priority_queue_test.c",__func__,__LINE__);
 	SPBPQueue source = spBPQueueCreate(10);
 	SPBPQueue copy = spBPQueueCopy(source);
-
-
-
 	ASSERT_TRUE(copy != NULL);
 	ASSERT_TRUE(0 == spBPQueueSize(copy));
 	SPListElement e1 = spListElementCreate(1, 1.0);
@@ -341,7 +335,7 @@ static bool testQDestroy() {
 
 
 int main() {
-	spLoggerCreate(NULL,SP_LOGGER_DEBUG_INFO_WARNING_ERROR_LEVEL);
+
 	RUN_TEST(testQCreate);
 	RUN_TEST(testQCopy);
 
