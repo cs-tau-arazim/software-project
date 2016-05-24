@@ -98,12 +98,17 @@ int spBPQueueGetMaxSize(SPBPQueue source);
  * SP_BPQUEUE_OUT_OF_MEMORY if an allocation failed
  * SP_BPQUEUE_SUCCESS the element has been inserted successfully
  */
-SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue source, SPListElement element);
+SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue source, SPListElement element); // TODO test
 
 /**
- * TODO Complete documentation
+ * Removes the lowest value element from the BPQueue.
+ *
+ * @param source The BPQueue for which to remove the lowest value element.
+ * @return
+ * SP_BPQUEUE_INVALID_ARGUMENT if a NULL was sent as queue or the queue is empty
+ * SP_BPQUEUE_SUCCESS the element has been removed successfully
  */
-SP_BPQUEUE_MSG spBPQueueDequeue(SPBPQueue source);
+SP_BPQUEUE_MSG spBPQueueDequeue(SPBPQueue source); // TODO test
 
 /**
  * returns a NEW COPY of the element with the lowest value

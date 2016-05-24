@@ -26,6 +26,9 @@ SPBPQueue spBPQueueCreate(int maxSize) {
 
 
 SPBPQueue spBPQueueCopy(SPBPQueue source) {
+	if (source == NULL)
+		return NULL;
+
 	SPBPQueue newQueue = (SPBPQueue) malloc(sizeof(*newQueue));
 	if (newQueue == NULL)
 		return NULL;
@@ -169,6 +172,8 @@ SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue source, SPListElement element) {
 
 SP_BPQUEUE_MSG spBPQueueDequeue(SPBPQueue source)
 {
+	if (source == NULL || spListGetSize(source->list) == 0 || source->list == NULL)
+		return SP_BPQUEUE_INVALID_ARGUMENT;
 	spListGetFirst(source->list);
 	spListRemoveCurrent(source->list);
 	return SP_BPQUEUE_SUCCESS;
