@@ -343,7 +343,6 @@ static bool testListDestroy() {
 	return true;
 }
 
-/*
 int main() {
 	RUN_TEST(testElementCreate);
 	RUN_TEST(testElementCopy);
@@ -365,4 +364,3 @@ int main() {
 	RUN_TEST(testListDestroy);
 	return 0;
 }
-*/
