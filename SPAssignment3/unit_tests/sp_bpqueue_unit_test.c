@@ -9,8 +9,8 @@
 #include <stdarg.h>
 #include <assert.h>
 
-
-static int maxSize = 100;
+//static SPBPQueue quickQ(int size, ...);
+static int maxSize = 20;
 
 static SPBPQueue quickQ(int size, ...) {
 	va_list items;
@@ -31,9 +31,15 @@ static bool testQCreate() {
 }
 
 static bool testQCopy() {
+	//spLoggerCreate(NULL,SP_LOGGER_DEBUG_INFO_WARNING_ERROR_LEVEL);
+
 	ASSERT_TRUE(spBPQueueCopy(NULL) == NULL);
+	//spLoggerPrintDebug("null check","spb_priority_queue_test.c",__func__,__LINE__);
 	SPBPQueue source = spBPQueueCreate(10);
 	SPBPQueue copy = spBPQueueCopy(source);
+
+
+
 	ASSERT_TRUE(copy != NULL);
 	ASSERT_TRUE(0 == spBPQueueSize(copy));
 	SPListElement e1 = spListElementCreate(1, 1.0);
@@ -45,15 +51,31 @@ static bool testQCopy() {
 	SPBPQueue source2 = quickQ(4, e1, e2, e3, e4);
 	SPBPQueue copy2 = spBPQueueCopy(source2);
 	ASSERT_TRUE(4 == spBPQueueSize(copy2));
-	ASSERT_TRUE(spListElementCompare(e1, spBPQueuePeek(copy2)) == 0);
+
+	SPListElement epeek = spBPQueuePeek(copy2);
+	ASSERT_TRUE(spListElementCompare(e1, epeek) == 0);
 	spBPQueueDequeue(copy2);
-	ASSERT_TRUE(spListElementCompare(e2, spBPQueuePeek(copy2)) == 0);
+	spListElementDestroy(epeek);	
+
+	epeek = spBPQueuePeek(copy2);
+	ASSERT_TRUE(spListElementCompare(e2, epeek) == 0);
 	spBPQueueDequeue(copy2);
-	ASSERT_TRUE(spListElementCompare(e3, spBPQueuePeek(copy2)) == 0);
+	spListElementDestroy(epeek);	
+
+	epeek = spBPQueuePeek(copy2);
+	ASSERT_TRUE(spListElementCompare(e3, epeek) == 0);
 	spBPQueueDequeue(copy2);
-	ASSERT_TRUE(spListElementCompare(e4, spBPQueuePeek(copy2)) == 0);
+	spListElementDestroy(epeek);	
+
+	epeek = spBPQueuePeek(copy2);
+	ASSERT_TRUE(spListElementCompare(e4, epeek) == 0);
 	spBPQueueDequeue(copy2);
-	ASSERT_TRUE(spBPQueuePeek(copy2) == NULL);
+	spListElementDestroy(epeek);	
+
+	epeek = spBPQueuePeek(copy2);
+	ASSERT_TRUE(epeek == NULL);
+
+	spListElementDestroy(epeek);	
 	spBPQueueDestroy(source);
 	spBPQueueDestroy(source2);
 	spBPQueueDestroy(copy);
@@ -123,12 +145,15 @@ static bool testQPeek() {
 	SPListElement e4 = spListElementCreate(4, 4.0);
 	SPBPQueue source2 = quickQ(4, e1, e2, e3, e4);
 	SPListElement first = spBPQueuePeek(source2);
+	SPListElement first2 = spBPQueuePeek(source2);
 	ASSERT_TRUE(spListElementCompare(e1, first) == 0);
 	ASSERT_TRUE(
-			spListElementCompare(first, spBPQueuePeek(source2)) == 0
-					&& spBPQueuePeek(source2) != first); // new copy so not ==
+			spListElementCompare(first, first2) == 0
+					&& first2 != first); // new copy so not ==
 	spBPQueueDestroy(source);
 	spBPQueueDestroy(source2);
+	spListElementDestroy(first);
+	spListElementDestroy(first2);
 	spListElementDestroy(e1);
 	spListElementDestroy(e2);
 	spListElementDestroy(e3);
@@ -145,12 +170,15 @@ static bool testQPeekLast() {
 	SPListElement e4 = spListElementCreate(4, 4.0);
 	SPBPQueue source2 = quickQ(4, e1, e2, e3, e4);
 	SPListElement last = spBPQueuePeekLast(source2);
+	SPListElement last2 = spBPQueuePeekLast(source2);
 	ASSERT_TRUE(spListElementCompare(e4, last) == 0);
 	ASSERT_TRUE(
-			spListElementCompare(last, spBPQueuePeekLast(source2)) == 0
-					&& spBPQueuePeekLast(source2) != last); // new copy so not ==
+			spListElementCompare(last, last2) == 0
+					&& last2 != last); // new copy so not ==
 	spBPQueueDestroy(source);
 	spBPQueueDestroy(source2);
+	spListElementDestroy(last);
+	spListElementDestroy(last2);
 	spListElementDestroy(e1);
 	spListElementDestroy(e2);
 	spListElementDestroy(e3);
@@ -246,8 +274,10 @@ static bool testQEnqueue() {
 	SPBPQueue source = quickQ(3, e2, e1, e4);
 	ASSERT_TRUE(SP_BPQUEUE_SUCCESS == spBPQueueEnqueue(source, e3));
 	ASSERT_TRUE(4 == spBPQueueSize(source));
-	ASSERT_TRUE(spListElementCompare(e1, spBPQueuePeek(source))==0);
-	ASSERT_TRUE(spListElementCompare(e4, spBPQueuePeekLast(source))==0);
+	SPListElement peek = spBPQueuePeek(source);
+	SPListElement peekLast = spBPQueuePeekLast(source);
+	ASSERT_TRUE(spListElementCompare(e1, peek)==0);
+	ASSERT_TRUE(spListElementCompare(e4, peekLast)==0);
 
 	SPBPQueue source2 = spBPQueueCreate(maxSize);
 	for (int i = 0 ; i < maxSize ; i++)
@@ -276,6 +306,8 @@ static bool testQEnqueue() {
 	ASSERT_TRUE((int)spBPQueueMaxValue(source2) == maxSize-1);
 	spBPQueueDestroy(source);
 	spBPQueueDestroy(source2);
+	spListElementDestroy(peek);
+	spListElementDestroy(peekLast);
 	spListElementDestroy(e1);
 	spListElementDestroy(e2);
 	spListElementDestroy(e3);
@@ -335,7 +367,6 @@ static bool testQDestroy() {
 
 
 int main() {
-
 	RUN_TEST(testQCreate);
 	RUN_TEST(testQCopy);
 
@@ -356,4 +387,3 @@ int main() {
 
 	return 0;
 }
-
