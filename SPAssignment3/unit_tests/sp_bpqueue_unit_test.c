@@ -23,14 +23,14 @@ static SPBPQueue quickQ(int size, ...) {
 	return source;
 }
 
-static bool testQCreate() {
+static bool bpqCreateTest() {
 	SPBPQueue source = spBPQueueCreate(maxSize);
 	ASSERT_TRUE(source != NULL);
 	spBPQueueDestroy(source);
 	return true;
 }
 
-static bool testQCopy() {
+static bool bpqCopyTest() {
 	//spLoggerCreate(NULL,SP_LOGGER_DEBUG_INFO_WARNING_ERROR_LEVEL);
 
 	ASSERT_TRUE(spBPQueueCopy(NULL) == NULL);
@@ -88,7 +88,7 @@ static bool testQCopy() {
 }
 
 
-static bool testQGetSize() {
+static bool bpqGetSizeTest() {
 	SPBPQueue source = NULL;
 	ASSERT_TRUE(-1 == spBPQueueSize(source));
 	source = quickQ(0);
@@ -116,7 +116,7 @@ static bool testQGetSize() {
 	return true;
 }
 
-static bool testQGetMaxSize() {
+static bool bpqGetMaxSizeTest() {
 	SPBPQueue source = NULL;
 	ASSERT_TRUE(-1 == spBPQueueGetMaxSize(source));
 	source = quickQ(0);
@@ -136,7 +136,7 @@ static bool testQGetMaxSize() {
 }
 
 
-static bool testQPeek() {
+static bool bpqPeekTest() {
 	SPBPQueue source = spBPQueueCreate(maxSize);
 	ASSERT_TRUE(spBPQueuePeek(source) == NULL);
 	SPListElement e1 = spListElementCreate(1, 1.0);
@@ -161,7 +161,7 @@ static bool testQPeek() {
 	return true;
 }
 
-static bool testQPeekLast() {
+static bool bpqPeekLastTest() {
 	SPBPQueue source = spBPQueueCreate(maxSize);
 	ASSERT_TRUE(spBPQueuePeekLast(source) == NULL);
 	SPListElement e1 = spListElementCreate(1, 1.0);
@@ -186,7 +186,7 @@ static bool testQPeekLast() {
 	return true;
 }
 
-static bool testQMinValue() {
+static bool bpqMinValueTest() {
 	SPBPQueue source = spBPQueueCreate(maxSize);
 	ASSERT_TRUE(spBPQueueMinValue(source) == -1);
 	SPListElement e1 = spListElementCreate(1, 1.0);
@@ -209,7 +209,7 @@ static bool testQMinValue() {
 	return true;
 }
 
-static bool testQMaxValue() {
+static bool bpqMaxValueTest() {
 	SPBPQueue source = spBPQueueCreate(maxSize);
 	ASSERT_TRUE(spBPQueueMinValue(source) == -1);
 	SPListElement e1 = spListElementCreate(1, 1.0);
@@ -232,7 +232,7 @@ static bool testQMaxValue() {
 	return true;
 }
 
-static bool testQEmpty() {
+static bool bpqEmptyTest() {
 	SPBPQueue source = NULL;
 	ASSERT_TRUE(spBPQueueIsEmpty(source) == true);
 	source = spBPQueueCreate(maxSize);
@@ -248,7 +248,7 @@ static bool testQEmpty() {
 	return true;
 }
 
-static bool testQFull() {
+static bool bpqFullTest() {
 	SPBPQueue source = NULL;
 	ASSERT_TRUE(spBPQueueIsFull(source) == false);
 	source = spBPQueueCreate(maxSize);
@@ -265,7 +265,7 @@ static bool testQFull() {
 }
 
 
-static bool testQEnqueue() {
+static bool bpqEnqueueTest() {
 	ASSERT_TRUE(SP_BPQUEUE_INVALID_ARGUMENT == spBPQueueEnqueue(NULL, NULL));
 	SPListElement e1 = spListElementCreate(1, 1.0);
 	SPListElement e2 = spListElementCreate(2, 2.0);
@@ -315,7 +315,7 @@ static bool testQEnqueue() {
 	return true;
 }
 
-static bool testQDequeue() {
+static bool bpqDequeueTest() {
 	ASSERT_TRUE(SP_BPQUEUE_INVALID_ARGUMENT == spBPQueueDequeue(NULL));
 
 	SPBPQueue source = spBPQueueCreate(maxSize);
@@ -336,7 +336,7 @@ static bool testQDequeue() {
 }
 
 
-static bool testQClear() {
+static bool bpqClearTest() {
 	SPListElement e1 = spListElementCreate(1, 1.0);
 	SPListElement e2 = spListElementCreate(2, 2.0);
 	SPListElement e3 = spListElementCreate(3, 3.0);
@@ -359,7 +359,7 @@ static bool testQClear() {
 	return true;
 }
 
-static bool testQDestroy() {
+static bool bpqDestroyTest() {
 	spBPQueueDestroy(NULL);
 	return true;
 }
@@ -367,23 +367,23 @@ static bool testQDestroy() {
 
 
 int main() {
-	RUN_TEST(testQCreate);
-	RUN_TEST(testQCopy);
+	RUN_TEST(bpqCreateTest);
+	RUN_TEST(bpqCopyTest);
 
-	RUN_TEST(testQEnqueue);
-	RUN_TEST(testQDequeue);
+	RUN_TEST(bpqEnqueueTest);
+	RUN_TEST(bpqDequeueTest);
 
-	RUN_TEST(testQGetSize);
-	RUN_TEST(testQGetMaxSize);
-	RUN_TEST(testQPeek);
-	RUN_TEST(testQPeekLast);
-	RUN_TEST(testQMinValue);
-	RUN_TEST(testQMaxValue);
-	RUN_TEST(testQEmpty);
-	RUN_TEST(testQFull);
+	RUN_TEST(bpqGetSizeTest);
+	RUN_TEST(bpqGetMaxSizeTest);
+	RUN_TEST(bpqPeekTest);
+	RUN_TEST(bpqPeekLastTest);
+	RUN_TEST(bpqMinValueTest);
+	RUN_TEST(bpqMaxValueTest);
+	RUN_TEST(bpqEmptyTest);
+	RUN_TEST(bpqFullTest);
 
-	RUN_TEST(testQClear);
-	RUN_TEST(testQDestroy);
+	RUN_TEST(bpqClearTest);
+	RUN_TEST(bpqDestroyTest);
 
 	return 0;
 }

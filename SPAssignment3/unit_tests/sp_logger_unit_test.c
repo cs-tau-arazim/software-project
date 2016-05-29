@@ -47,12 +47,6 @@ static bool identicalFiles(const char* fname1, const char* fname2) {
 	}
 }
 
-// Check edge cases for creating logger
-/*static bool loggerCreateTest() {
- // TODO what should go here?
- spLoggerDestroy();
- return true;
- }*/
 
 // Check if all functions behave correctly when Logger is not defined
 static bool loggerDefinedTest() {
@@ -174,7 +168,7 @@ static bool loggerDebugTest() {
 
 /*
 int main() {
-//RUN_TEST(loggerCreateTest);
+  //RUN_TEST(loggerCreateTest);
 	RUN_TEST(loggerDefinedTest);
 	RUN_TEST(loggerInvalidArgumentTest);
 	RUN_TEST(loggerErrorTest);

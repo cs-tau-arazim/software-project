@@ -1,31 +1,11 @@
-<<<<<<< Updated upstream
-PROBLEMS_FILTERS_MIGRATE=true
-eclipse.preferences.version=1
-platformState=1462091413938
-=======
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
->>>>>>>=6f001242be8c8857cb027ea86b30596175ef8e1b
+>>>>>>>=Stashed changes
 IMPORT_FILES_AND_FOLDERS_RELATIVE=true
-<<<<<<< Updated upstream
-IMPORT_FILES_AND_FOLDERS_TYPE=23,1
+IMPORT_FILES_AND_FOLDERS_TYPE=7,1\:23,1
 PROBLEMS_FILTERS_MIGRATE=true
-eclipse.preferences.version=1
-<<<<<<< Updated upstream
-platformState=1462367903849
-=======
-<<<<<<< HEAD
-platformState=1462091413938
-=======
-platformState=1457011907368
->>>>>>> 6f001242be8c8857cb027ea86b30596175ef8e1b
-=======
-IMPORT_FILES_AND_FOLDERS_TYPE=7,1
-PROBLEMS_FILTERS_MIGRATE=true
+TASKS_FILTERS_MIGRATE=true
 eclipse.preferences.version=1
 platformState=1456505413545
->>>>>>> Stashed changes
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 quickStart=false
 tipsAndTricks=true
