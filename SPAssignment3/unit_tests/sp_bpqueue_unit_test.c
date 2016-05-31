@@ -9,6 +9,22 @@
 #include <stdarg.h>
 #include <assert.h>
 
+
+// macros often used in the code:
+
+#define CREATE_4_ELEMENTS() \
+	SPListElement e1 = spListElementCreate(1, 1.0);\
+	SPListElement e2 = spListElementCreate(2, 2.0);\
+	SPListElement e3 = spListElementCreate(3, 3.0);\
+	SPListElement e4 = spListElementCreate(4, 4.0);\
+
+#define DESTROY_4_ELEMENTS() \
+	spListElementDestroy(e1);\
+	spListElementDestroy(e2);\
+	spListElementDestroy(e3);\
+	spListElementDestroy(e4);\
+
+
 //static SPBPQueue quickQ(int size, ...);
 static int maxSize = 20;
 
@@ -39,10 +55,8 @@ static bool bpqCopyTest() {
 	ASSERT_TRUE(copy != NULL);
 	ASSERT_TRUE(0 == spBPQueueSize(copy));
 
-	SPListElement e1 = spListElementCreate(1, 1.0);
-	SPListElement e2 = spListElementCreate(2, 2.0);
-	SPListElement e3 = spListElementCreate(3, 3.0);
-	SPListElement e4 = spListElementCreate(4, 4.0);
+	CREATE_4_ELEMENTS(); // e1, e2, e3, e4
+
 	spBPQueueEnqueue(source, e1);
 	ASSERT_TRUE(0 == spBPQueueSize(copy)); // ensure the copy is a NEW COPY
 
@@ -81,10 +95,7 @@ static bool bpqCopyTest() {
 	spBPQueueDestroy(source2);
 	spBPQueueDestroy(copy);
 	spBPQueueDestroy(copy2);
-	spListElementDestroy(e1);
-	spListElementDestroy(e2);
-	spListElementDestroy(e3);
-	spListElementDestroy(e4);
+	DESTROY_4_ELEMENTS(); // e1, e2, e3, e4
 	return true;
 }
 
@@ -161,11 +172,7 @@ static bool bpqPeekTest() {
 	SPBPQueue source = spBPQueueCreate(maxSize);
 	ASSERT_TRUE(spBPQueuePeek(source) == NULL); // check edge case
 
-
-	SPListElement e1 = spListElementCreate(1, 1.0);
-	SPListElement e2 = spListElementCreate(2, 2.0);
-	SPListElement e3 = spListElementCreate(3, 3.0);
-	SPListElement e4 = spListElementCreate(4, 4.0);
+	CREATE_4_ELEMENTS(); // e1, e2, e3, e4
 
 	// insert element in unsorted order
 	SPBPQueue source2 = quickQ(4, e4, e2, e1, e3);
@@ -183,10 +190,7 @@ static bool bpqPeekTest() {
 	spBPQueueDestroy(source2);
 	spListElementDestroy(first);
 	spListElementDestroy(first2);
-	spListElementDestroy(e1);
-	spListElementDestroy(e2);
-	spListElementDestroy(e3);
-	spListElementDestroy(e4);
+	DESTROY_4_ELEMENTS(); // e1, e2, e3, e4
 	return true;
 }
 
@@ -194,10 +198,7 @@ static bool bpqPeekLastTest() {
 	SPBPQueue source = spBPQueueCreate(maxSize);
 	ASSERT_TRUE(spBPQueuePeekLast(source) == NULL); // check edge case
 
-	SPListElement e1 = spListElementCreate(1, 1.0);
-	SPListElement e2 = spListElementCreate(2, 2.0);
-	SPListElement e3 = spListElementCreate(3, 3.0);
-	SPListElement e4 = spListElementCreate(4, 4.0);
+	CREATE_4_ELEMENTS(); // e1, e2, e3, e4
 
 	// insert element in unsorted order
 	SPBPQueue source2 = quickQ(4, e3, e1, e4, e2);
@@ -215,10 +216,7 @@ static bool bpqPeekLastTest() {
 	spBPQueueDestroy(source2);
 	spListElementDestroy(last);
 	spListElementDestroy(last2);
-	spListElementDestroy(e1);
-	spListElementDestroy(e2);
-	spListElementDestroy(e3);
-	spListElementDestroy(e4);
+	DESTROY_4_ELEMENTS(); // e1, e2, e3, e4
 	return true;
 }
 
@@ -226,10 +224,7 @@ static bool bpqMinValueTest() {
 	SPBPQueue source = spBPQueueCreate(maxSize);
 	ASSERT_TRUE(spBPQueueMinValue(source) == -1); // check edge case
 
-	SPListElement e1 = spListElementCreate(1, 1.0);
-	SPListElement e2 = spListElementCreate(2, 2.0);
-	SPListElement e3 = spListElementCreate(3, 3.0);
-	SPListElement e4 = spListElementCreate(4, 4.0);
+	CREATE_4_ELEMENTS(); // e1, e2, e3, e4
 
 	SPBPQueue source2 = quickQ(4, e1, e2, e3, e4);
 	SPBPQueue source3 = quickQ(4, e4, e3, e1, e2);
@@ -244,10 +239,7 @@ static bool bpqMinValueTest() {
 	spBPQueueDestroy(source);
 	spBPQueueDestroy(source2);
 	spBPQueueDestroy(source3);
-	spListElementDestroy(e1);
-	spListElementDestroy(e2);
-	spListElementDestroy(e3);
-	spListElementDestroy(e4);
+	DESTROY_4_ELEMENTS(); // e1, e2, e3, e4
 	return true;
 }
 
@@ -255,10 +247,7 @@ static bool bpqMaxValueTest() {
 	SPBPQueue source = spBPQueueCreate(maxSize);
 	ASSERT_TRUE(spBPQueueMinValue(source) == -1); // check edge case
 
-	SPListElement e1 = spListElementCreate(1, 1.0);
-	SPListElement e2 = spListElementCreate(2, 2.0);
-	SPListElement e3 = spListElementCreate(3, 3.0);
-	SPListElement e4 = spListElementCreate(4, 4.0);
+	CREATE_4_ELEMENTS(); // e1, e2, e3, e4
 
 	SPBPQueue source2 = quickQ(4, e1, e2, e3, e4);
 	SPBPQueue source3 = quickQ(4, e4, e3, e1, e2);
@@ -273,10 +262,7 @@ static bool bpqMaxValueTest() {
 	spBPQueueDestroy(source);
 	spBPQueueDestroy(source2);
 	spBPQueueDestroy(source3);
-	spListElementDestroy(e1);
-	spListElementDestroy(e2);
-	spListElementDestroy(e3);
-	spListElementDestroy(e4);
+	DESTROY_4_ELEMENTS(); // e1, e2, e3, e4
 	return true;
 }
 
@@ -328,10 +314,7 @@ static bool bpqFullTest() {
 static bool bpqEnqueueTest() {
 	ASSERT_TRUE(SP_BPQUEUE_INVALID_ARGUMENT == spBPQueueEnqueue(NULL, NULL)); // check edge case
 
-	SPListElement e1 = spListElementCreate(1, 1.0);
-	SPListElement e2 = spListElementCreate(2, 2.0);
-	SPListElement e3 = spListElementCreate(3, 3.0);
-	SPListElement e4 = spListElementCreate(4, 4.0);
+	CREATE_4_ELEMENTS(); // e1, e2, e3, e4
 
 	SPBPQueue source = quickQ(3, e2, e1, e4);
 	ASSERT_TRUE(SP_BPQUEUE_SUCCESS == spBPQueueEnqueue(source, e3)); // check that enqueue succeeded
@@ -380,10 +363,7 @@ static bool bpqEnqueueTest() {
 	spBPQueueDestroy(source2);
 	spListElementDestroy(peek);
 	spListElementDestroy(peekLast);
-	spListElementDestroy(e1);
-	spListElementDestroy(e2);
-	spListElementDestroy(e3);
-	spListElementDestroy(e4);
+	DESTROY_4_ELEMENTS(); // e1, e2, e3, e4
 	return true;
 }
 
@@ -413,10 +393,8 @@ static bool bpqDequeueTest() {
 
 
 static bool bpqClearTest() {
-	SPListElement e1 = spListElementCreate(1, 1.0);
-	SPListElement e2 = spListElementCreate(2, 2.0);
-	SPListElement e3 = spListElementCreate(3, 3.0);
-	SPListElement e4 = spListElementCreate(4, 4.0);
+	CREATE_4_ELEMENTS(); // e1, e2, e3, e4
+
 	SPBPQueue source = quickQ(4, e1, e2, e3, e4);
 	spBPQueueClear(source);
 	ASSERT_TRUE(0 == spBPQueueSize(source)); // check that size is 0 after clearing
@@ -429,10 +407,7 @@ static bool bpqClearTest() {
 	// free memory
 	spBPQueueDestroy(source);
 	spBPQueueDestroy(source2);
-	spListElementDestroy(e1);
-	spListElementDestroy(e2);
-	spListElementDestroy(e3);
-	spListElementDestroy(e4);
+	DESTROY_4_ELEMENTS(); // e1, e2, e3, e4
 	return true;
 }
 
