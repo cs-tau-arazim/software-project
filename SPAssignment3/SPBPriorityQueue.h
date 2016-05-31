@@ -138,7 +138,7 @@ SP_BPQUEUE_MSG spBPQueueDequeue(SPBPQueue source);
  *
  * @param source The BPQueue for which to return the lowest value element.
  * @return
- * NULL if a NULL pointer was sent or the BPQueue is empty.
+ * NULL if a NULL pointer was sent or memory allocation failed or the BPQueue is empty.
  * The lowest value element of the BPQueue otherwise
  */
 SPListElement spBPQueuePeek(SPBPQueue source);
@@ -148,7 +148,7 @@ SPListElement spBPQueuePeek(SPBPQueue source);
  *
  * @param source The BPQueue for which to return the highest value element.
  * @return
- * NULL if a NULL pointer was sent or the BPQueue is empty.
+ * NULL if a NULL pointer was sent or memory allocation failed or the BPQueue is empty.
  * The highest value element of the BPQueue otherwise
  */
 SPListElement spBPQueuePeekLast(SPBPQueue source);
