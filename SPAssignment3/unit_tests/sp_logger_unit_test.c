@@ -171,7 +171,7 @@ static bool loggerDebugTest() {
 	return true;
 }
 
-loggerDestroyedTest() {
+static bool loggerDestroyedTest() {
 	// set logger
 	ASSERT_TRUE(
 			spLoggerCreate(NULL, SP_LOGGER_ERROR_LEVEL) == SP_LOGGER_SUCCESS);
