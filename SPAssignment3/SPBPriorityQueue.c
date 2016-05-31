@@ -1,21 +1,27 @@
 #include "SPBPriorityQueue.h"
 #include "SPListElement.h"
 #include <stdlib.h>
-#include <assert.h>
 
 /*
  * SPBPriorityQueue.c
  */
 
+
+/**
+ * the internal struct sp_bp_queue_t- we will implement the BPQueue using the already
+ * implemented list, and a maxSize field.
+ */
 struct sp_bp_queue_t {
 	SPList list;
 	int maxSize;
 };
 
 SPBPQueue spBPQueueCreate(int maxSize) {
-	assert(maxSize > 0);
+	SPBPQueue bpQueue;
+	if (maxSize <= 0) // check edge case
+		return NULL;
 
-	SPBPQueue bpQueue = (SPBPQueue) malloc(sizeof(*bpQueue));
+	bpQueue = (SPBPQueue) malloc(sizeof(*bpQueue));
 	if (bpQueue == NULL)
 		return NULL;
 
@@ -29,10 +35,11 @@ SPBPQueue spBPQueueCreate(int maxSize) {
 
 
 SPBPQueue spBPQueueCopy(SPBPQueue source) {
-	if (source == NULL)
+	SPBPQueue newQueue;
+	if (source == NULL) // check edge case
 		return NULL;
 
-	SPBPQueue newQueue = (SPBPQueue) malloc(sizeof(*newQueue));
+	newQueue = (SPBPQueue) malloc(sizeof(*newQueue));
 	if (newQueue == NULL)
 		return NULL;
 
@@ -70,20 +77,23 @@ int spBPQueueGetMaxSize(SPBPQueue source)
 
 SPListElement spBPQueuePeek(SPBPQueue source)
 {
+	SPListElement elem;
 	if (spBPQueueIsEmpty(source))
 		return NULL;
 
-	SPListElement elem = spListGetFirst(source->list);
+	elem = spListGetFirst(source->list);
 	return spListElementCopy(elem); // NEW COPY
 }
 
 SPListElement spBPQueuePeekLast(SPBPQueue source)
 {
+	SPListElement elem, nextElem;
 	if (spBPQueueIsEmpty(source))
 		return NULL;
 
-	SPListElement elem = spListGetFirst(source->list);
-	SPListElement nextElem = spListGetNext(source->list);
+	elem = spListGetFirst(source->list);
+	nextElem = spListGetNext(source->list);
+
 	// get next until the last element
 	while (nextElem != NULL)
 	{
@@ -102,11 +112,13 @@ double spBPQueueMinValue(SPBPQueue source)
 
 double spBPQueueMaxValue(SPBPQueue source)
 {
+	SPListElement elem, nextElem;
 	if (spBPQueueIsEmpty(source))
 		return -1;
 
-	SPListElement elem = spListGetFirst(source->list);
-	SPListElement nextElem = spListGetNext(source->list);
+	elem = spListGetFirst(source->list);
+	nextElem = spListGetNext(source->list);
+
 	// get next until the last element
 	while (nextElem != NULL)
 	{
@@ -141,6 +153,7 @@ void spBPQueueClear(SPBPQueue source) {
 }
 
 SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue source, SPListElement element) {
+	SPListElement nextIter, iter;
 	if (source == NULL || element == NULL)
 		return SP_BPQUEUE_INVALID_ARGUMENT;
 
@@ -149,7 +162,7 @@ SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue source, SPListElement element) {
 		return SP_BPQUEUE_SUCCESS;
 	}
 
-	SPListElement nextIter = spListGetFirst(source->list); // points to the next element on the list
+	nextIter = spListGetFirst(source->list); // points to the next element on the list
 
 	// search where to insert the element
 	while (nextIter != NULL && spListElementGetValue(nextIter) < spListElementGetValue(element)) {
@@ -163,7 +176,7 @@ SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue source, SPListElement element) {
 	}
 
 	if (spListGetSize(source->list) == (source->maxSize + 1)) { // passed the max size
-		SPListElement iter = spListGetFirst(source->list);
+		iter = spListGetFirst(source->list);
 		nextIter = iter;
 
 		// search the end of the list

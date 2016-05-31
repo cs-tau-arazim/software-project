@@ -50,10 +50,10 @@ typedef enum sp_bp_queue_msg_t {
  * Allocates a new BPQueue.
  *
  * This function creates a new empty BPQueue.
- * @assert maxSize > 0
+
  * @param the maxSize bound for the BPQueue.
  * @return
- * 	NULL - If allocations failed.
+ * 	NULL - If allocations failed or if maxSize <= 0
  * 	A new BPQueue in case of success.
  */
 SPBPQueue spBPQueueCreate(int maxSize);
