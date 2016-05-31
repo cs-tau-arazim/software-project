@@ -47,7 +47,6 @@ static bool identicalFiles(const char* fname1, const char* fname2) {
 	}
 }
 
-
 // Check if all functions behave correctly when Logger is not defined
 static bool loggerDefinedTest() {
 	ASSERT_TRUE(
@@ -85,7 +84,10 @@ static bool loggerInvalidArgumentTest() {
 static bool loggerErrorTest() {
 	const char* expectedFile = "loggerErrorTestExp.log";
 	const char* testFile = "loggerErrorTest.log";
-	ASSERT_TRUE(spLoggerCreate(testFile, SP_LOGGER_ERROR_LEVEL) == SP_LOGGER_SUCCESS);
+
+	ASSERT_TRUE(
+			spLoggerCreate(testFile, SP_LOGGER_ERROR_LEVEL)
+					== SP_LOGGER_SUCCESS);
 	ASSERT_TRUE(
 			spLoggerPrintError("MSGA","sp_logger_unit_test.c",__func__,__LINE__) == SP_LOGGER_SUCCESS);
 	ASSERT_TRUE(
@@ -102,6 +104,7 @@ static bool loggerErrorTest() {
 static bool loggerWarningTest() {
 	const char* expectedFile = "loggerWarningTestExp.log";
 	const char* testFile = "loggerWarningTest.log";
+
 	ASSERT_TRUE(
 			spLoggerCreate(testFile, SP_LOGGER_WARNING_ERROR_LEVEL)
 					== SP_LOGGER_SUCCESS); // set logger
@@ -130,6 +133,7 @@ static bool loggerWarningTest() {
 static bool loggerInfoTest() {
 	const char* expectedFile = "loggerInfoTestExp.log";
 	const char* testFile = "loggerInfoTest.log";
+
 	ASSERT_TRUE(
 			spLoggerCreate(testFile, SP_LOGGER_INFO_WARNING_ERROR_LEVEL)
 					== SP_LOGGER_SUCCESS);
@@ -151,6 +155,7 @@ static bool loggerInfoTest() {
 static bool loggerDebugTest() {
 	const char* expectedFile = "loggerDebugTestExp.log";
 	const char* testFile = "loggerDebugTest.log";
+
 	ASSERT_TRUE(
 			spLoggerCreate(testFile, SP_LOGGER_DEBUG_INFO_WARNING_ERROR_LEVEL)
 					== SP_LOGGER_SUCCESS);
@@ -166,16 +171,28 @@ static bool loggerDebugTest() {
 	return true;
 }
 
+static bool loggerDestroyedTest() {
+	// set logger
+	ASSERT_TRUE(
+			spLoggerCreate(NULL, SP_LOGGER_ERROR_LEVEL) == SP_LOGGER_SUCCESS);
+
+	// delete the logger
+	spLoggerDestroy();
+	// make sure logger isn't defined
+	ASSERT_TRUE(
+			spLoggerPrintError("A","sp_logger_unit_test.c",__func__,__LINE__) == SP_LOGGER_UNDIFINED);
+	return true;
+}
+
 /*
 int main() {
-  //RUN_TEST(loggerCreateTest);
 	RUN_TEST(loggerDefinedTest);
 	RUN_TEST(loggerInvalidArgumentTest);
 	RUN_TEST(loggerErrorTest);
 	RUN_TEST(loggerWarningTest);
 	RUN_TEST(loggerInfoTest);
 	RUN_TEST(loggerDebugTest);
-
+	RUN_TEST(loggerDestroyedTest);
 	return 0;
 }
 */

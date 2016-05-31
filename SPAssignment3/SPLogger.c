@@ -61,32 +61,32 @@ void spLoggerDestroy() {
 
 SP_LOGGER_MSG spLoggerPrintError(const char* msg, const char* file,
 		const char* function, const int line) {
-	if (logger == NULL)
+	int k,j;
+
+	if (logger == NULL) // checking edge cases
 		return SP_LOGGER_UNDIFINED;
 	if (msg == NULL || file == NULL || function == NULL || line < 0)
 		return SP_LOGGER_INVAlID_ARGUMENT;
-
-	int k = fprintf(logger->outputChannel, ERROR_LINE);
-	int j = printMsg(msg, file, function, line);
+	k = fprintf(logger->outputChannel, ERROR_LINE);
+	j = printMsg(msg, file, function, line);
 	if (k < 0 || j < 0)
 		return SP_LOGGER_WRITE_FAIL;
-	// TODO what is write failure?? I think this is it:
-	// "If successful, the total number of characters written is returned
-	// otherwise, a negative number is returned."
+
 	return SP_LOGGER_SUCCESS;
 }
 
 SP_LOGGER_MSG spLoggerPrintWarning(const char* msg, const char* file,
 		const char* function, const int line) {
+	int k,j;
+
 	if (logger == NULL)
 		return SP_LOGGER_UNDIFINED;
 	if (msg == NULL || file == NULL || function == NULL || line < 0)
 		return SP_LOGGER_INVAlID_ARGUMENT;
 
-	// TODO what is write failure??
 	if (logger->level != SP_LOGGER_ERROR_LEVEL) {
-		int k = fprintf(logger->outputChannel, WARNING_LINE);
-		int j = printMsg(msg, file, function, line);
+		k = fprintf(logger->outputChannel, WARNING_LINE);
+		j = printMsg(msg, file, function, line);
 		if (k < 0 || j < 0)
 			return SP_LOGGER_WRITE_FAIL;
 
@@ -95,15 +95,17 @@ SP_LOGGER_MSG spLoggerPrintWarning(const char* msg, const char* file,
 }
 
 SP_LOGGER_MSG spLoggerPrintInfo(const char* msg) {
+	int k,j;
+
 	if (logger == NULL)
 		return SP_LOGGER_UNDIFINED;
 	if (msg == NULL)
 		return SP_LOGGER_INVAlID_ARGUMENT;
-	// TODO what is write failure??
+
 	if (logger->level == SP_LOGGER_INFO_WARNING_ERROR_LEVEL
 			|| logger->level == SP_LOGGER_DEBUG_INFO_WARNING_ERROR_LEVEL) {
-		int k = fprintf(logger->outputChannel, INFO_LINE);
-		int j = fprintf(logger->outputChannel, MESSAGE_START_LINE, msg);
+		k = fprintf(logger->outputChannel, INFO_LINE);
+		j = fprintf(logger->outputChannel, MESSAGE_START_LINE, msg);
 		if (k < 0 || j < 0)
 			return SP_LOGGER_WRITE_FAIL;
 	}
@@ -112,14 +114,16 @@ SP_LOGGER_MSG spLoggerPrintInfo(const char* msg) {
 
 SP_LOGGER_MSG spLoggerPrintDebug(const char* msg, const char* file,
 		const char* function, const int line) {
+	int k,j;
+
 	if (logger == NULL)
 		return SP_LOGGER_UNDIFINED;
 	if (msg == NULL)
 		return SP_LOGGER_INVAlID_ARGUMENT;
 
 	if (logger->level == SP_LOGGER_DEBUG_INFO_WARNING_ERROR_LEVEL) {
-		int k = fprintf(logger->outputChannel, DEBUG_LINE);
-		int j = printMsg(msg, file, function, line);
+		k = fprintf(logger->outputChannel, DEBUG_LINE);
+		j = printMsg(msg, file, function, line);
 
 		// check for write failure
 		if (k < 0 || j < 0)
@@ -129,12 +133,13 @@ SP_LOGGER_MSG spLoggerPrintDebug(const char* msg, const char* file,
 }
 
 SP_LOGGER_MSG spLoggerPrintMsg(const char* msg) {
+	int k;
 	if (logger == NULL)
 		return SP_LOGGER_UNDIFINED;
 	if (msg == NULL)
 		return SP_LOGGER_INVAlID_ARGUMENT;
 
-	int k = fprintf(logger->outputChannel, "- message: %s\n", msg);
+	k = fprintf(logger->outputChannel, "- message: %s\n", msg);
 
 	// check for write failure
 	if (k < 0)
@@ -144,8 +149,11 @@ SP_LOGGER_MSG spLoggerPrintMsg(const char* msg) {
 
 int printMsg(const char* msg, const char* file, const char* function,
 		const int line) {
-	FILE* f = logger->outputChannel;
-	int k = fprintf(f,
+	int k;
+	FILE* f;
+
+	f= logger->outputChannel;
+	k = fprintf(f,
 			"- file: %s\n- function: %s\n- line: %d\n- message: %s\n", file,
 			function, line, msg);
 
