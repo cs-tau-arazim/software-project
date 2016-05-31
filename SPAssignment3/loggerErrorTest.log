@@ -1,5 +1,5 @@
 ---ERROR---
 - file: sp_logger_unit_test.c
 - function: loggerErrorTest
-- line: 91
+- line: 92
 - message: MSGA
