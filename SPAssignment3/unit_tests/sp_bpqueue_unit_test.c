@@ -13,10 +13,10 @@
 // macros often used in the code:
 
 #define CREATE_4_ELEMENTS() \
-	SPListElement e1 = spListElementCreate(1, 1.0);\
-	SPListElement e2 = spListElementCreate(2, 2.0);\
-	SPListElement e3 = spListElementCreate(3, 3.0);\
-	SPListElement e4 = spListElementCreate(4, 4.0);\
+	e1 = spListElementCreate(1, 1.0);\
+	e2 = spListElementCreate(2, 2.0);\
+	e3 = spListElementCreate(3, 3.0);\
+	e4 = spListElementCreate(4, 4.0);\
 
 #define DESTROY_4_ELEMENTS() \
 	spListElementDestroy(e1);\
@@ -25,12 +25,13 @@
 	spListElementDestroy(e4);\
 
 
-//static SPBPQueue quickQ(int size, ...);
-static int maxSize = 20;
+static int maxSize = 100;
 
 static SPBPQueue quickQ(int size, ...) {
+	SPBPQueue source;
+
 	va_list items;
-	SPBPQueue source = spBPQueueCreate(maxSize);
+	source = spBPQueueCreate(maxSize);
 	va_start(items, size);
 	for (int i = 0; i < size; i++) {
 		spBPQueueEnqueue(source, va_arg(items, SPListElement));
@@ -40,18 +41,22 @@ static SPBPQueue quickQ(int size, ...) {
 }
 
 static bool bpqCreateTest() {
-	SPBPQueue source = spBPQueueCreate(maxSize);
+	SPBPQueue source;
+
+	source = spBPQueueCreate(maxSize);
 	ASSERT_TRUE(source != NULL);
 	spBPQueueDestroy(source);
 	return true;
 }
 
 static bool bpqCopyTest() {
+	SPBPQueue source, source2, copy, copy2;
+	SPListElement e1, e2, e3, e4, epeek;
 
 	ASSERT_TRUE(spBPQueueCopy(NULL) == NULL); // check edge case
 
-	SPBPQueue source = spBPQueueCreate(10);
-	SPBPQueue copy = spBPQueueCopy(source);
+	source = spBPQueueCreate(10);
+	copy = spBPQueueCopy(source);
 	ASSERT_TRUE(copy != NULL);
 	ASSERT_TRUE(0 == spBPQueueSize(copy));
 
@@ -60,13 +65,13 @@ static bool bpqCopyTest() {
 	spBPQueueEnqueue(source, e1);
 	ASSERT_TRUE(0 == spBPQueueSize(copy)); // ensure the copy is a NEW COPY
 
-	SPBPQueue source2 = quickQ(4, e1, e2, e3, e4);
-	SPBPQueue copy2 = spBPQueueCopy(source2);
+	source2 = quickQ(4, e1, e2, e3, e4);
+	copy2 = spBPQueueCopy(source2);
 	ASSERT_TRUE(4 == spBPQueueSize(copy2)); // check that size of copy is correct
 
 
 	// check that all elements copied correctly
-	SPListElement epeek = spBPQueuePeek(copy2);
+	epeek = spBPQueuePeek(copy2);
 	ASSERT_TRUE(spListElementCompare(e1, epeek) == 0);
 	spBPQueueDequeue(copy2);
 	spListElementDestroy(epeek);	
@@ -102,13 +107,15 @@ static bool bpqCopyTest() {
 
 static bool bpqGetSizeTest() {
 	SPBPQueue source = NULL;
+	SPListElement e1;
+
 	ASSERT_TRUE(-1 == spBPQueueSize(source)); //check edge case
 
 	source = quickQ(0);
 	ASSERT_TRUE(0 == spBPQueueSize(source));
 
 	// insert a new element and check size
-	SPListElement e1 = spListElementCreate(1, 1.0);
+	e1 = spListElementCreate(1, 1.0);
 	spBPQueueEnqueue(source, e1);
 	ASSERT_TRUE(1 == spBPQueueSize(source));
 
@@ -125,8 +132,9 @@ static bool bpqGetSizeTest() {
 	// insert more then maxSize elements and check that size is always less then maxSize
 	for (int i = 0 ; i < 2*maxSize ; i++)
 	{
+		SPListElement e;
 		ASSERT_TRUE(spBPQueueSize(source) <= maxSize);
-		SPListElement e = spListElementCreate(i, 1.0);
+		e = spListElementCreate(i, 1.0);
 		spBPQueueEnqueue(source, e);
 		spListElementDestroy(e);
 	}
@@ -140,6 +148,8 @@ static bool bpqGetSizeTest() {
 
 static bool bpqGetMaxSizeTest() {
 	SPBPQueue source = NULL;
+	SPListElement e1;
+
 	ASSERT_TRUE(-1 == spBPQueueGetMaxSize(source)); //check edge case
 
 	// check that max size is always maxSize
@@ -147,7 +157,7 @@ static bool bpqGetMaxSizeTest() {
 	ASSERT_TRUE(maxSize == spBPQueueGetMaxSize(source));
 
 	// insert a new element and check max size
-	SPListElement e1 = spListElementCreate(1, 1.0);
+	e1 = spListElementCreate(1, 1.0);
 	spBPQueueEnqueue(source, e1);
 	ASSERT_TRUE(maxSize == spBPQueueGetMaxSize(source));
 
@@ -169,16 +179,19 @@ static bool bpqGetMaxSizeTest() {
 
 
 static bool bpqPeekTest() {
-	SPBPQueue source = spBPQueueCreate(maxSize);
+	SPBPQueue source, source2;
+	SPListElement  e1, e2, e3, e4, first, first2;
+
+	source = spBPQueueCreate(maxSize);
 	ASSERT_TRUE(spBPQueuePeek(source) == NULL); // check edge case
 
 	CREATE_4_ELEMENTS(); // e1, e2, e3, e4
 
 	// insert element in unsorted order
-	SPBPQueue source2 = quickQ(4, e4, e2, e1, e3);
+	source2 = quickQ(4, e4, e2, e1, e3);
 
-	SPListElement first = spBPQueuePeek(source2);
-	SPListElement first2 = spBPQueuePeek(source2);
+	first = spBPQueuePeek(source2);
+	first2 = spBPQueuePeek(source2);
 
 	ASSERT_TRUE(spListElementCompare(e1, first) == 0); // check that peek is the minimum
 	ASSERT_TRUE(
@@ -195,16 +208,19 @@ static bool bpqPeekTest() {
 }
 
 static bool bpqPeekLastTest() {
-	SPBPQueue source = spBPQueueCreate(maxSize);
+	SPBPQueue source, source2;
+	SPListElement e1, e2, e3, e4, last, last2;
+
+	source = spBPQueueCreate(maxSize);
 	ASSERT_TRUE(spBPQueuePeekLast(source) == NULL); // check edge case
 
 	CREATE_4_ELEMENTS(); // e1, e2, e3, e4
 
 	// insert element in unsorted order
-	SPBPQueue source2 = quickQ(4, e3, e1, e4, e2);
+	source2 = quickQ(4, e3, e1, e4, e2);
 
-	SPListElement last = spBPQueuePeekLast(source2);
-	SPListElement last2 = spBPQueuePeekLast(source2);
+	last = spBPQueuePeekLast(source2);
+	last2 = spBPQueuePeekLast(source2);
 
 	ASSERT_TRUE(spListElementCompare(e4, last) == 0); // check that peekLast is the maximum
 	ASSERT_TRUE(
@@ -221,13 +237,16 @@ static bool bpqPeekLastTest() {
 }
 
 static bool bpqMinValueTest() {
-	SPBPQueue source = spBPQueueCreate(maxSize);
+	SPBPQueue source, source2, source3;
+	SPListElement e1, e2, e3, e4;
+
+	source = spBPQueueCreate(maxSize);
 	ASSERT_TRUE(spBPQueueMinValue(source) == -1); // check edge case
 
 	CREATE_4_ELEMENTS(); // e1, e2, e3, e4
 
-	SPBPQueue source2 = quickQ(4, e1, e2, e3, e4);
-	SPBPQueue source3 = quickQ(4, e4, e3, e1, e2);
+	source2 = quickQ(4, e1, e2, e3, e4);
+	source3 = quickQ(4, e4, e3, e1, e2);
 	double min2  = spBPQueueMinValue(source2);
 	double min3  = spBPQueueMinValue(source3);
 
@@ -244,13 +263,16 @@ static bool bpqMinValueTest() {
 }
 
 static bool bpqMaxValueTest() {
-	SPBPQueue source = spBPQueueCreate(maxSize);
+	SPBPQueue source, source2, source3;
+	SPListElement e1, e2, e3, e4;
+
+	source = spBPQueueCreate(maxSize);
 	ASSERT_TRUE(spBPQueueMinValue(source) == -1); // check edge case
 
 	CREATE_4_ELEMENTS(); // e1, e2, e3, e4
 
-	SPBPQueue source2 = quickQ(4, e1, e2, e3, e4);
-	SPBPQueue source3 = quickQ(4, e4, e3, e1, e2);
+	source2 = quickQ(4, e1, e2, e3, e4);
+	source3 = quickQ(4, e4, e3, e1, e2);
 	double max2  = spBPQueueMaxValue(source2);
 	double max3  = spBPQueueMaxValue(source3);
 
@@ -267,15 +289,18 @@ static bool bpqMaxValueTest() {
 }
 
 static bool bpqEmptyTest() {
-	SPBPQueue source = NULL;
+	SPBPQueue source, source2;
+	SPListElement e1;
+
+	source = NULL;
 	ASSERT_TRUE(spBPQueueIsEmpty(source) == true); // check edge case
 
 	source = spBPQueueCreate(maxSize);
 	ASSERT_TRUE(spBPQueueIsEmpty(source) == true); // check that new queue is empty
 
 	// insert a new element and check that not empty
-	SPListElement e1 = spListElementCreate(1, 1.0);
-	SPBPQueue source2 = quickQ(1, e1);
+	e1 = spListElementCreate(1, 1.0);
+	source2 = quickQ(1, e1);
 	ASSERT_TRUE(spBPQueueIsEmpty(source2) == false);
 
 	// remove the element and check that empty
@@ -290,7 +315,9 @@ static bool bpqEmptyTest() {
 }
 
 static bool bpqFullTest() {
-	SPBPQueue source = NULL;
+	SPBPQueue source;
+
+	source = NULL;
 	ASSERT_TRUE(spBPQueueIsFull(source) == false); // check edge case
 
 	source = spBPQueueCreate(maxSize);
@@ -298,8 +325,9 @@ static bool bpqFullTest() {
 	// insert maxSize element and check that full at the end
 	while(spBPQueueSize(source) < maxSize)
 	{
+		SPListElement e1;
 		ASSERT_TRUE(spBPQueueIsFull(source) == false); // check that not full in the process
-		SPListElement e1 = spListElementCreate(1, 1.0);
+		e1 = spListElementCreate(1, 1.0);
 		spBPQueueEnqueue(source, e1);
 		spListElementDestroy(e1);
 	}
@@ -312,32 +340,37 @@ static bool bpqFullTest() {
 
 
 static bool bpqEnqueueTest() {
+	SPBPQueue source, source2;
+	SPListElement e1, e2, e3, e4, peek, peekLast;
+
 	ASSERT_TRUE(SP_BPQUEUE_INVALID_ARGUMENT == spBPQueueEnqueue(NULL, NULL)); // check edge case
 
 	CREATE_4_ELEMENTS(); // e1, e2, e3, e4
 
-	SPBPQueue source = quickQ(3, e2, e1, e4);
+	source = quickQ(3, e2, e1, e4);
 	ASSERT_TRUE(SP_BPQUEUE_SUCCESS == spBPQueueEnqueue(source, e3)); // check that enqueue succeeded
 	ASSERT_TRUE(4 == spBPQueueSize(source));
 
 	// check that enqueue inserts in order
-	SPListElement peek = spBPQueuePeek(source);
-	SPListElement peekLast = spBPQueuePeekLast(source);
+	peek = spBPQueuePeek(source);
+	peekLast = spBPQueuePeekLast(source);
 	ASSERT_TRUE(spListElementCompare(e1, peek)==0);
 	ASSERT_TRUE(spListElementCompare(e4, peekLast)==0);
 
-	SPBPQueue source2 = spBPQueueCreate(maxSize);
+	source2 = spBPQueueCreate(maxSize);
 
 	// insert 2*maxSize elements from lowest to highest value and check that min and max are correct
 	for (int i = 0 ; i < maxSize ; i++)
 	{
-		SPListElement e = spListElementCreate(i, (double)i);
+		SPListElement e;
+		e = spListElementCreate(i, (double)i);
 		ASSERT_TRUE(SP_BPQUEUE_SUCCESS == spBPQueueEnqueue(source2, e));
 		spListElementDestroy(e);
 	}
 	for (int i = maxSize ; i < 2*maxSize ; i++)
 	{
-		SPListElement e = spListElementCreate(i, (double)i);
+		SPListElement e;
+		e = spListElementCreate(i, (double)i);
 		ASSERT_TRUE(SP_BPQUEUE_FULL == spBPQueueEnqueue(source2, e)); // check full when inserting more then maxSize elements
 		spListElementDestroy(e);
 	}
@@ -350,7 +383,8 @@ static bool bpqEnqueueTest() {
 	// insert 2*maxSize elements from highest to lowest value and check that min and max are correct and same as before
 	for (int i = 2*maxSize-1 ; i >=0 ; i--)
 	{
-		SPListElement e = spListElementCreate(i, (double)i);
+		SPListElement e;
+		e = spListElementCreate(i, (double)i);
 		spBPQueueEnqueue(source2, e);
 		spListElementDestroy(e);
 	}
@@ -368,15 +402,18 @@ static bool bpqEnqueueTest() {
 }
 
 static bool bpqDequeueTest() {
+	SPBPQueue source;
+
 	ASSERT_TRUE(SP_BPQUEUE_INVALID_ARGUMENT == spBPQueueDequeue(NULL)); // check edge case
 
-	SPBPQueue source = spBPQueueCreate(maxSize);
+	source = spBPQueueCreate(maxSize);
 	ASSERT_TRUE(SP_BPQUEUE_INVALID_ARGUMENT == spBPQueueDequeue(source)); // check edge case
 
 	// insert maxSize elements, then remove them
 	for (int i = 0 ; i < maxSize ; i++)
 	{
-		SPListElement e = spListElementCreate(i, (double)i);
+		SPListElement e;
+		e = spListElementCreate(i, (double)i);
 		spBPQueueEnqueue(source, e);
 		spListElementDestroy(e);
 	}
@@ -393,14 +430,17 @@ static bool bpqDequeueTest() {
 
 
 static bool bpqClearTest() {
+	SPBPQueue source, source2;
+	SPListElement e1, e2, e3, e4;
+
 	CREATE_4_ELEMENTS(); // e1, e2, e3, e4
 
-	SPBPQueue source = quickQ(4, e1, e2, e3, e4);
+	source = quickQ(4, e1, e2, e3, e4);
 	spBPQueueClear(source);
 	ASSERT_TRUE(0 == spBPQueueSize(source)); // check that size is 0 after clearing
 
 
-	SPBPQueue source2 = spBPQueueCreate(maxSize);
+	source2 = spBPQueueCreate(maxSize);
 	spBPQueueClear(source2);
 	ASSERT_TRUE(0 == spBPQueueSize(source)); // check that size is 0 after clearing
 
