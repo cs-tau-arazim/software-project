@@ -21,7 +21,7 @@ SPBPQueue spBPQueueCreate(int maxSize) {
 
 	bpQueue->list = spListCreate();
 	bpQueue->maxSize = maxSize;
-	if (bpQueue->list == NULL) // check if list crate failed
+	if (bpQueue->list == NULL) // check if list create failed
 		return NULL;
 
 	return bpQueue;

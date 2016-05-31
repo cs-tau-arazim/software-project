@@ -1,12 +1,12 @@
 ---ERROR---
 - file: sp_logger_unit_test.c
 - function: loggerInfoTest
-- line: 143
+- line: 138
 - message: MSGA
 ---WARNING---
 - file: sp_logger_unit_test.c
 - function: loggerInfoTest
-- line: 145
+- line: 140
 - message: MSGB
 ---INFO---
 - message: MSGC
