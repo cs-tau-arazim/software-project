@@ -170,9 +170,16 @@ SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue source, SPListElement element) {
 	}
 
 	if (nextIter == NULL) { // reached the end of the list
-		spListInsertLast(source->list, element);
+		// check if malloc failed
+		if (spListInsertLast(source->list, element) == SP_LIST_OUT_OF_MEMORY) {
+			return SP_BPQUEUE_OUT_OF_MEMORY;
+		}
+
 	} else {
-		spListInsertBeforeCurrent(source->list, element); // inserts the element before nextIter
+		// check if malloc failed
+		if(spListInsertBeforeCurrent(source->list, element) == SP_LIST_OUT_OF_MEMORY){ // inserts the element before nextIter
+			return SP_BPQUEUE_OUT_OF_MEMORY;
+		}
 	}
 
 	if (spListGetSize(source->list) == (source->maxSize + 1)) { // passed the max size
