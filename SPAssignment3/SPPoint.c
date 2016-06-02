@@ -34,11 +34,11 @@ struct sp_point_t{
  */
 SPPoint spPointCreate(double* data, int dim, int index)
 {
+	double* newData;
+	SPPoint p;
 	if (dim <= 0 || index <= 0 || data == NULL) // check edge cases
 		return NULL;
 
-	double* newData;
-	SPPoint p;
 	newData = (double*)malloc(dim*sizeof(double)); // allocate data
 
 	if (newData == NULL)
@@ -49,9 +49,10 @@ SPPoint spPointCreate(double* data, int dim, int index)
 		newData[i] = data[i]; // set all array values
 	}
 	p = (SPPoint)malloc(sizeof(*p)); // allocate point
-	if (p == NULL)
+	if (p == NULL) {
+		free(newData);	
 		return NULL;
-
+	}
 	p->data = newData; // set values
 	p->dim = dim;
 	p->index = index;
@@ -66,10 +67,11 @@ SPPoint spPointCreate(double* data, int dim, int index)
  */
 SPPoint spPointCopy(SPPoint source)
 {
+	SPPoint p;
 	assert(source != NULL); // check edge case
 
-	SPPoint p;
 	p = (SPPoint) malloc(sizeof(*p));
+	// check for malloc failure
 	if (p == NULL)
 		return NULL;
 
@@ -77,9 +79,11 @@ SPPoint spPointCopy(SPPoint source)
 	p->dim = source->dim;
 	p->index = source->index;
 
-	if (p->data == NULL)
+	// check for malloc failure
+	if (p->data == NULL) {
+		free(p);	
 		return NULL;
-
+	}
 	for (int i = 0 ; i < source->dim ; i++)
 	{
 		p->data[i] = source->data[i]; // copy array values
@@ -141,8 +145,10 @@ double spPointGetAxisCoor(SPPoint point, int axis)
  */
 double spPointL2SquaredDistance(SPPoint p, SPPoint q)
 {
+	double sum;
 	assert(p != NULL && q != NULL && p->dim == q->dim);
-	double sum = 0;
+
+	sum = 0;
 	// calculate sum of squares.
 	for(int i = 0; i < p->dim; i++) {
 		sum += (p->data[i] - q->data[i]) * (p->data[i] - q->data[i]);
