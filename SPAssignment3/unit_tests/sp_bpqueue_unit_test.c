@@ -354,22 +354,27 @@ static bool bpqFullTest() {
 
 static bool bpqEnqueueTest() {
 	SPBPQueue source, source2;
-	SPListElement e, e1, e2, e3, e4, peek, peekLast;
+	SPListElement e, e1, e2, e3, e4, e5, peek, peekLast;
 
 	ASSERT_TRUE(SP_BPQUEUE_INVALID_ARGUMENT == spBPQueueEnqueue(NULL, NULL)); // check edge case
 
-	CREATE_4_ELEMENTS()
-	; // e1, e2, e3, e4
-
+	CREATE_4_ELEMENTS() // e1, e2, e3, e4
+	e5 = spListElementCreate(5, 4.0);
 	source = quickQ(3, e2, e1, e4);
 	ASSERT_TRUE(SP_BPQUEUE_SUCCESS == spBPQueueEnqueue(source, e3)); // check that enqueue succeeded
-	ASSERT_TRUE(4 == spBPQueueSize(source));
+	ASSERT_TRUE(SP_BPQUEUE_SUCCESS == spBPQueueEnqueue(source, e5));
+	ASSERT_TRUE(5 == spBPQueueSize(source));
 
 	// check that enqueue inserts in order
 	peek = spBPQueuePeek(source);
 	peekLast = spBPQueuePeekLast(source);
 	ASSERT_TRUE(spListElementCompare(e1, peek) == 0);
-	ASSERT_TRUE(spListElementCompare(e4, peekLast) == 0);
+	// make sure queue sorts by value and then by index
+	ASSERT_TRUE(spListElementCompare(e5, peekLast) == 0);
+
+	// e1, e2, e3, e4
+	DESTROY_4_ELEMENTS()
+	spListElementDestroy(e5);
 
 	// create new queue with maxSize
 	source2 = spBPQueueCreate(maxSize);
@@ -408,8 +413,6 @@ static bool bpqEnqueueTest() {
 	spListElementDestroy(peek);
 	spListElementDestroy(peekLast);
 
-	// e1, e2, e3, e4
-	DESTROY_4_ELEMENTS()
 
 	return true;
 }
