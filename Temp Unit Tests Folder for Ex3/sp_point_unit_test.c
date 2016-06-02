@@ -9,12 +9,13 @@ bool pointCreateTest() {
 	double data[2] = { 1.0, 1.0 };
 	int dim = 0; // should error
 	int index = 1;
-	SPPoint p = spPointCreate(data, dim, index);
+	SPPoint p,q; 
+	p = spPointCreate(data, dim, index);
 	ASSERT_TRUE(p == NULL);
 
 	dim = 5;
-	index = -1;
-	SPPoint q = spPointCreate(data, dim, index);
+	index = -1; // should error too;
+	q = spPointCreate(data, dim, index);
 	ASSERT_TRUE(q == NULL);
 
 	// also nothing to free because everything is null.
@@ -26,9 +27,10 @@ bool pointCopyTest() {
 	double data[2] = { 1.0, 1.0 };
 	int dim = 2;
 	int index = 1;
-	SPPoint p = spPointCreate(data, dim, index);
-	SPPoint q = spPointCopy(p);
-	SPPoint s = spPointCopy(q);
+	SPPoint p,q,s;
+	p = spPointCreate(data, dim, index);
+	q = spPointCopy(p);
+	s = spPointCopy(q);
 
 	ASSERT_TRUE(
 			spPointGetIndex(p) == spPointGetIndex(q)
@@ -55,8 +57,9 @@ bool pointGetDimensionTest() {
 	int dim2 = 3;
 	int index1 = 1;
 	int index2 = 1;
-	SPPoint p = spPointCreate((double *) data1, dim1, index1);
-	SPPoint q = spPointCreate((double *) data2, dim2, index2);
+	SPPoint p,q;
+	p = spPointCreate((double *) data1, dim1, index1);
+	q = spPointCreate((double *) data2, dim2, index2);
 
 	ASSERT_TRUE(spPointGetDimension(p) == 2);
 	ASSERT_TRUE(spPointGetDimension(q) == 3);

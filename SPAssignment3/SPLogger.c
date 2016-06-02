@@ -55,7 +55,7 @@ void spLoggerDestroy() {
 	if (!logger->isStdOut) { //Close file only if not stdout
 		fclose(logger->outputChannel);
 	}
-	free(logger); //free allocation
+	free(logger); // free memory
 	logger = NULL;
 }
 

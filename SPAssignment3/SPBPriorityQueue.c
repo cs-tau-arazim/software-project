@@ -16,12 +16,16 @@ struct sp_bp_queue_t {
 	int maxSize;
 };
 
+
+/**
+ * Create a new queue
+ */
 SPBPQueue spBPQueueCreate(int maxSize) {
 	SPBPQueue bpQueue;
 	if (maxSize <= 0) // check edge case
 		return NULL;
 
-	bpQueue = (SPBPQueue) malloc(sizeof(*bpQueue));
+	bpQueue = (SPBPQueue) malloc(sizeof(*bpQueue)); // allocate queue
 	if (bpQueue == NULL)
 		return NULL;
 
@@ -45,9 +49,10 @@ SPBPQueue spBPQueueCopy(SPBPQueue source) {
 
 	newQueue->list = spListCopy(source->list);
 	newQueue->maxSize = source->maxSize;
-	if (newQueue->list == NULL) // check if list copy failed
-		return NULL;
-
+	if (newQueue->list == NULL) {// check if list copy failed
+		spBPQueueDestroy(newQueue);	
+		return NULL;	
+	}
 	return newQueue;
 }
 
@@ -171,7 +176,7 @@ SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue source, SPListElement element) {
 
 	if (nextIter == NULL) { // reached the end of the list
 		// check if malloc failed
-		if (spListInsertLast(source->list, element) == SP_LIST_OUT_OF_MEMORY) {
+		if (spListInsertLast(source->list, element) == SP_LIST_OUT_OF_MEMORY) {	
 			return SP_BPQUEUE_OUT_OF_MEMORY;
 		}
 
@@ -208,6 +213,7 @@ SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue source, SPListElement element) {
 
 SP_BPQUEUE_MSG spBPQueueDequeue(SPBPQueue source)
 {
+	// check if source queue is invalid
 	if (spBPQueueIsEmpty(source))
 		return SP_BPQUEUE_INVALID_ARGUMENT;
 
