@@ -116,7 +116,7 @@ int spBPQueueGetMaxSize(SPBPQueue source);
  * @param element The element to insert. A copy of the element will be
  * inserted.
  * @return
- * SP_BPQUEUE_FULL if SPQueue is full and we had to push something out
+ * SP_BPQUEUE_FULL if SPQueue is full and the element was not inserted
  * SP_BPQUEUE_INVALID_ARGUMENT if a NULL was sent as queue or element
  * SP_BPQUEUE_OUT_OF_MEMORY if memory allocation failed
  * SP_BPQUEUE_SUCCESS the element has been inserted successfully
