@@ -144,7 +144,7 @@ bool pointL2DistanceTest() {
 	spPointDestroy(q);
 	return true;
 }
-/**
+
 int main() {
 	RUN_TEST(pointCreateTest);
 	RUN_TEST(pointCopyTest);
@@ -153,4 +153,4 @@ int main() {
 	RUN_TEST(pointGetAxisCoorTest);
 	RUN_TEST(pointL2DistanceTest);
 	return 0;
-}*/
+}

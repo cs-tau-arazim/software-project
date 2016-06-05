@@ -184,7 +184,7 @@ static bool loggerDestroyedTest() {
 	return true;
 }
 
-/*
+
 int main() {
 	RUN_TEST(loggerDefinedTest);
 	RUN_TEST(loggerInvalidArgumentTest);
@@ -194,6 +194,6 @@ int main() {
 	RUN_TEST(loggerDebugTest);
 	RUN_TEST(loggerDestroyedTest);
 	return 0;
-}*/
+}
 
 
