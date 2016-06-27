@@ -1,5 +1,7 @@
 #include "SPConfig.h"
 
+#define LINE_LENGTH 1024
+
 /*
  * SPConfig.c
  *
@@ -35,7 +37,7 @@
 SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 	// define variables
 	FILE * configFilePtr;
-
+	char * lineStr;
 	assert(msg != NULL); // assertion
 
 	configFilePtr = fopen(filename, "r");
@@ -43,7 +45,9 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 		(*msg) = SP_CONFIG_CANNOT_OPEN_FILE;
 		return NULL;
 	}
+
+	fgets(lineStr, LINE_LENGTH, configFilePtr);
 	//fscanf(configFilePtr,//somthing )
 	// now we need to read from the file
-
+	fclose(configFilePtr);
 }
