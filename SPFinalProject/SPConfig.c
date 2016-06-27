@@ -34,16 +34,16 @@
  */
 SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 	// define variables
-	FILE *configFile;
+	FILE * configFilePtr;
 
 	assert(msg != NULL); // assertion
 
-	configFile = fopen(filename, "r");
-	if ( configFile == NULL) { // edge case
+	configFilePtr = fopen(filename, "r");
+	if ( configFilePtr == NULL) { // edge case
 		(*msg) = SP_CONFIG_CANNOT_OPEN_FILE;
 		return NULL;
 	}
-
+	//fscanf(configFilePtr,//somthing )
 	// now we need to read from the file
 
 }
