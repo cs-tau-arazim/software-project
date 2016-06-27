@@ -473,6 +473,7 @@ static bool bpqDestroyTest() {
 	return true;
 }
 
+
 int main() {
 	// basic tests
 	RUN_TEST(bpqCreateTest);
@@ -498,4 +499,5 @@ int main() {
 
 	return 0;
 }
+
 

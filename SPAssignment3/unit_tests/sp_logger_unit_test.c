@@ -195,5 +195,9 @@ int main() {
 	RUN_TEST(loggerDestroyedTest);
 	return 0;
 }
+<<<<<<< Updated upstream
 
+=======
+*/
+>>>>>>> Stashed changes
 
