@@ -144,7 +144,11 @@ bool pointL2DistanceTest() {
 	spPointDestroy(q);
 	return true;
 }
-/**
+<<<<<<< Updated upstream
+
+=======
+/*
+>>>>>>> Stashed changes
 int main() {
 	RUN_TEST(pointCreateTest);
 	RUN_TEST(pointCopyTest);
@@ -153,4 +157,8 @@ int main() {
 	RUN_TEST(pointGetAxisCoorTest);
 	RUN_TEST(pointL2DistanceTest);
 	return 0;
-}*/
+}
+<<<<<<< Updated upstream
+=======
+*/
+>>>>>>> Stashed changes
