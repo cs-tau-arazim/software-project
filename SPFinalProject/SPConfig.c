@@ -9,7 +9,6 @@
  *      Author: Gal
  */
 
-
 /**
  * Creates a new system configuration struct. The configuration struct
  * is initialized based on the configuration file given by 'filename'.
@@ -38,13 +37,23 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 	// define variables
 	FILE * configFilePtr;
 	char * lineStr;
+	int read;
 	assert(msg != NULL); // assertion
 
 	configFilePtr = fopen(filename, "r");
-	if ( configFilePtr == NULL) { // edge case
+	if (configFilePtr == NULL) { // edge case
 		(*msg) = SP_CONFIG_CANNOT_OPEN_FILE;
 		return NULL;
 	}
+
+	/*while ((read = getline(&lineStr, &len, fp)) != -1) {
+		printf("Retrieved line of length %zu :\n", read);
+		printf("%s", line);
+	}
+
+	fclose(fp);
+	if (lineStr)
+		free(lineStr);*/
 
 	fgets(lineStr, LINE_LENGTH, configFilePtr);
 	//fscanf(configFilePtr,//somthing )
