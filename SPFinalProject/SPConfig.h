@@ -51,6 +51,17 @@ typedef struct sp_config_t* SPConfig;
  */
 SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg);
 
+
+/*
+ * checks bufferLine is in correct format.
+ * If comment or empty- returns 1, leaves var and param untouched.
+ * If invalid- returns 2, leaves var and param untouched.
+ * If bufferLine is NULL, also returns 2.
+ * If valid- returns 0, puts in var the variable and puts the parameter in param.
+ */
+int checkValid(char * bufferLine, char * var, char * param);
+
+
 /*
  * Returns true if spExtractionMode = true, false otherwise.
  *

@@ -56,11 +56,28 @@ struct sp_config_t{
  *
  */
 SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
-	// define variables
+	// Define variables
+	int res = 0;
+	int i;
+	int cmpRes;
+	bool flag = false;
 	FILE * configFilePtr;
-	//char * lineStr;
-	//int read;
+	char * bufferVar = NULL;
+	char * bufferParam = NULL;
+	char bufferLine[LINE_LENGTH];
+	const char * const varArray[] = {"spImagesDirectory", "spImagesPrefix",
+			"spImagesSuffix", "spNumOfImages", "spPCADimension", "spPCAFilename",
+			"spNumOfFeatures", "spExtractionMode", "spNumOfSimilarImages",
+			"spKDTreeSplitMethod", "spKNN", "spMinimalGUI", "spLoggerLevel",
+			"spLoggerFilename"
+	};
+	const int varArraySize = 14;
 	assert(msg != NULL); // assertion
+
+	if (filename == NULL) {
+		(*msg) = SP_CONFIG_INVALID_ARGUMENT;
+		return NULL;
+	}
 
 	configFilePtr = fopen(filename, "r");
 	if (configFilePtr == NULL) { // edge case
@@ -68,20 +85,111 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 		return NULL;
 	}
 
-	/*while ((read = getline(&lineStr, &len, fp)) != -1) {
-		printf("Retrieved line of length %zu :\n", read);
-		printf("%s", line);
+	SPConfig config = (SPConfig) malloc(sizeof(*config));
+	if (config == NULL) { // Allocation failure
+		(*msg) = SP_CONFIG_ALLOC_FAIL;
+		return NULL;
 	}
 
-	fclose(fp);
-	if (lineStr)
-		free(lineStr);*/
+	// Iterate the file's lines
+	while (fgets(bufferLine, LINE_LENGTH, configFilePtr) != NULL) {
+		res = checkValid(bufferLine, bufferVar, bufferParam);
+		if (res == 2) {
+			(*msg) = SP_CONFIG_INVALID_STRING;
+			return NULL;
+		}
+		// if (res == 1) , ignore comment and move on
+		if (res == 0) {
 
-	//fgets(lineStr, LINE_LENGTH, configFilePtr);
-	//fscanf(configFilePtr,//somthing )
-	// now we need to read from the file
+			// compare with all variables
+			for(i = 0; i < varArraySize; i++) {
+				cmpRes = strcmp(bufferVar, varArray[i]);
+				// find match
+				if (cmpRes == 0) {
+					flag = true;
+					if (i == 0)
+						setSpImagesDirectory(config, bufferParam);
+					if (i == 1)
+						setSpImagesPrefix(config, bufferParam);
+					if (i == 0)
+						setSpImagesDirectory(config, bufferParam); // TODO change all from here
+					if (i == 0)
+						setSpImagesDirectory(config, bufferParam);
+					if (i == 0)
+						setSpImagesDirectory(config, bufferParam);
+					if (i == 0)
+						setSpImagesDirectory(config, bufferParam);
+					if (i == 0)
+						setSpImagesDirectory(config, bufferParam);
+					if (i == 0)
+						setSpImagesDirectory(config, bufferParam);
+					if (i == 0)
+						setSpImagesDirectory(config, bufferParam);
+					if (i == 0)
+						setSpImagesDirectory(config, bufferParam);
+					if (i == 0)
+						setSpImagesDirectory(config, bufferParam);
+
+				}
+			}
+		}
+	}
+
 	fclose(configFilePtr);
 	return NULL;
+}
+
+/*
+ * checks bufferLine is in correct format.
+ * If comment or empty- returns 1, leaves var and param untouched.
+ * If invalid- returns 2, leaves var and param untouched.
+ * If bufferLine is NULL, also returns 2.
+ * If valid- returns 0, puts in var the variable and puts the parameter in param.
+ */
+int checkValid(char * bufferLine, char * var, char * param) {
+	char * varIn;
+	char * paramIn;
+	char * endCheck;
+	const char split[3] = " =\t";
+
+	if (bufferLine == NULL)
+		return 2;
+	Directory
+	// Get strings
+	varIn = strtok(bufferLine, split);
+	paramIn = (char*) strtok(NULL, split);
+	endCheck = (char*) strtok(NULL, split);
+
+	// Check if empty
+	if (varIn == NULL)
+		return 1;
+
+	// Check if comment
+	if (varIn[0] == '#')
+		return 1;
+
+	// If there are more strings, should error
+	if (endCheck != NULL)
+		return 2;
+
+	// If not enough strings, should error
+	if (paramIn == NULL)
+		return 2;
+
+	// Else, set pointers var and param and then return success
+	*var = *varIn;
+	*param = *paramIn;
+	return 0;
+}
+
+int setSpImagesDirectory(SPConfig config, char * bufferParam) {
+	   strcpy(config->spImagesDirectory, bufferParam);
+	   return 0;
+}
+
+int setSpImagesPrefix(SPConfig config, char * bufferParam) {
+	   strcpy(config->spImagesPrefix, bufferParam);
+	   return 0;
 }
 
 /*
@@ -239,7 +347,7 @@ SP_CONFIG_MSG spConfigGetImagePath(char* imagePath, const SPConfig config,
 	if (index >= config->spNumOfImages)
 		return SP_CONFIG_INDEX_OUT_OF_RANGE;
 
-	char iStr[LINE_LENGTH*4];
+	char iStr[LINE_LENGTH];
 	memset(iStr, 0, sizeof iStr);
 
 	sprintf(iStr, "%d", index);
