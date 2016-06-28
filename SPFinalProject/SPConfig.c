@@ -154,7 +154,6 @@ int checkValid(char * bufferLine, char * var, char * param) {
 
 	if (bufferLine == NULL)
 		return 2;
-	Directory
 	// Get strings
 	varIn = strtok(bufferLine, split);
 	paramIn = (char*) strtok(NULL, split);
