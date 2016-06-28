@@ -163,8 +163,7 @@ sp::ImageProc::ImageProc(const SPConfig config) {
 	}
 }
 
-SPPoint* sp::ImageProc::getImageFeatures(const char* imagePath, int index,
-		int* numOfFeats) {
+SPPoint* sp::ImageProc::getImageFeatures(const char* imagePath,int index,int* numOfFeats) {
 	vector<KeyPoint> keypoints;
 	Mat descriptor, img, points;
 	double* pcaSift = NULL;
