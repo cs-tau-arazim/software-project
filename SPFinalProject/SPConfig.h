@@ -52,6 +52,13 @@ typedef struct sp_config_t* SPConfig;
 SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg);
 
 
+/**
+ * receives an SPConfig type,
+ * and sets all of its default values as stated in the project documentation.
+ */
+void setDefaultValues(SPConfig config);
+
+
 /*
  * checks bufferLine is in correct format.
  * If comment or empty- returns 1, leaves var and param untouched.
@@ -60,6 +67,41 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg);
  * If valid- returns 0, puts in var the variable and puts the parameter in param.
  */
 int checkValid(char * bufferLine, char * var, char * param);
+
+
+/**
+ * Group of "set" functions for each field.
+ * each has its own edge cases,
+ * and returns 0 on success or 1 on fail.
+ */
+int setSpImagesDirectory(SPConfig config, char * bufferParam);
+
+int setSpImagesPrefix(SPConfig config, char * bufferParam);
+
+int setSpImagesSuffix(SPConfig config, char * bufferParam);
+
+int setSpNumOfImages(SPConfig config, char * bufferParam);
+
+int setSpPCADimension(SPConfig config, char * bufferParam);
+
+int setSpPCAFilename(SPConfig config, char * bufferParam);
+
+int setSpNumOfFeatures(SPConfig config, char * bufferParam);
+
+int setSpExtractionMode(SPConfig config, char * bufferParam);
+
+int setSpNumOfSimilarImages(SPConfig config, char * bufferParam);
+
+int setSpKDTreeSplitMethod(SPConfig config, char * bufferParam);
+
+int setSpKNN(SPConfig config, char * bufferParam);
+
+int setSpMinimalGUI(SPConfig config, char * bufferParam);
+
+int setSpLoggerLevel(SPConfig config, char * bufferParam);
+
+int setSpLoggerFilename(SPConfig config, char * bufferParam);
+
 
 
 /*

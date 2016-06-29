@@ -60,17 +60,23 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 	int res = 0;
 	int i;
 	int cmpRes;
-	bool flag = false;
+	int assignRes = 0;
 	FILE * configFilePtr;
 	char * bufferVar = NULL;
 	char * bufferParam = NULL;
 	char bufferLine[LINE_LENGTH];
+
+	// Array for scanning the input and comparing with possible values
 	const char * const varArray[] = {"spImagesDirectory", "spImagesPrefix",
 			"spImagesSuffix", "spNumOfImages", "spPCADimension", "spPCAFilename",
 			"spNumOfFeatures", "spExtractionMode", "spNumOfSimilarImages",
 			"spKDTreeSplitMethod", "spKNN", "spMinimalGUI", "spLoggerLevel",
 			"spLoggerFilename"
 	};
+
+	// Array for which variables were set
+	bool setArray[] = {false, false, false, false};
+
 	const int varArraySize = 14;
 	assert(msg != NULL); // assertion
 
@@ -91,11 +97,16 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 		return NULL;
 	}
 
+	// Set all default values at the beginning
+	setDefaultValues(config);
+
 	// Iterate the file's lines
 	while (fgets(bufferLine, LINE_LENGTH, configFilePtr) != NULL) {
+		strtok(bufferLine, "\n");
 		res = checkValid(bufferLine, bufferVar, bufferParam);
 		if (res == 2) {
 			(*msg) = SP_CONFIG_INVALID_STRING;
+			free(config);
 			return NULL;
 		}
 		// if (res == 1) , ignore comment and move on
@@ -106,37 +117,104 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 				cmpRes = strcmp(bufferVar, varArray[i]);
 				// find match
 				if (cmpRes == 0) {
-					flag = true;
-					if (i == 0)
-						setSpImagesDirectory(config, bufferParam);
-					if (i == 1)
-						setSpImagesPrefix(config, bufferParam);
-					if (i == 0)
-						setSpImagesDirectory(config, bufferParam); // TODO change all from here
-					if (i == 0)
-						setSpImagesDirectory(config, bufferParam);
-					if (i == 0)
-						setSpImagesDirectory(config, bufferParam);
-					if (i == 0)
-						setSpImagesDirectory(config, bufferParam);
-					if (i == 0)
-						setSpImagesDirectory(config, bufferParam);
-					if (i == 0)
-						setSpImagesDirectory(config, bufferParam);
-					if (i == 0)
-						setSpImagesDirectory(config, bufferParam);
-					if (i == 0)
-						setSpImagesDirectory(config, bufferParam);
-					if (i == 0)
-						setSpImagesDirectory(config, bufferParam);
 
+					// update boolean flag
+					if (i <= 3)
+						setArray[i] = true;
+
+					if (i == 0)
+						assignRes = setSpImagesDirectory(config, bufferParam);
+					else if (i == 1)
+						assignRes = setSpImagesPrefix(config, bufferParam);
+					else if (i == 2)
+						assignRes = setSpImagesSuffix(config, bufferParam);
+					else if (i == 3)
+						assignRes = setSpNumOfImages(config, bufferParam);
+					else if (i == 4)
+						assignRes = setSpPCADimension(config, bufferParam);
+					else if (i == 5)
+						assignRes = setSpPCAFilename(config, bufferParam);
+					else if (i == 6)
+						assignRes = setSpNumOfFeatures(config, bufferParam);
+					else if (i == 7)
+						assignRes = setSpExtractionMode(config, bufferParam);
+					else if (i == 8)
+						assignRes = setSpNumOfSimilarImages(config, bufferParam);
+					else if (i == 9)
+						assignRes = setSpKDTreeSplitMethod(config, bufferParam);
+					else if (i == 10)
+						assignRes = setSpKNN(config, bufferParam);
+					else if (i == 11)
+						assignRes = setSpMinimalGUI(config, bufferParam);
+					else if (i == 12)
+						assignRes = setSpLoggerLevel(config, bufferParam);
+					else if (i == 13)
+						assignRes = setSpLoggerFilename(config, bufferParam);
+
+					// Check if succeeded
+					if (assignRes != 0) {
+						// Integer error
+						if (i == 3 || i == 4 || i == 6 || i == 8 || i == 10 || i == 12 ) {
+							(*msg) = SP_CONFIG_INVALID_INTEGER;
+							free(config);
+							return NULL;
+						}
+						else {
+							(*msg) = SP_CONFIG_INVALID_STRING;
+							free(config);
+							return NULL;
+						}
+					}
 				}
 			}
 		}
 	}
 
+
+
+	// Now we just need to check if any which values were not set yet
+	if (setArray[0] == false) {
+		(*msg) = SP_CONFIG_MISSING_DIR;
+		free(config);
+		return NULL;
+	}
+	if (setArray[1] == false) {
+		(*msg) = SP_CONFIG_MISSING_PREFIX;
+		free(config);
+		return NULL;
+	}
+	if (setArray[2] == false) {
+		(*msg) = SP_CONFIG_MISSING_DIR;
+		free(config);
+		return NULL;
+	}
+	if (setArray[3] == false) {
+		(*msg) = SP_CONFIG_MISSING_NUM_IMAGES;
+		free(config);
+		return NULL;
+	}
+
+	// Success!
 	fclose(configFilePtr);
-	return NULL;
+	return config;
+}
+
+/**
+ * receives an SPConfig type,
+ * and sets all of its default values as stated in the project documentation.
+ */
+void setDefaultValues(SPConfig config) {
+	config->spPCADimension = 20;
+	config->spPCAFilename = "pca.yml";
+	config->spNumOfFeatures = 100;
+	config->spExtractionMode = true;
+	config->spMinimalGUI = false;
+	config->spNumOfSimilarImages = 1;
+	config->spKNN = 1;
+	config->spPCADimension = 20;
+	config->spKDTreeSplitMethod = MAX_SPREAD;
+	config->spLoggerLevel = 3;
+	config->spLoggerFilename = "stdout";
 }
 
 /*
@@ -181,14 +259,147 @@ int checkValid(char * bufferLine, char * var, char * param) {
 	return 0;
 }
 
+/**
+ * Group of "set" functions for each field.
+ * each has its own edge cases,
+ * and returns 0 on success or 1 on fail.
+ */
 int setSpImagesDirectory(SPConfig config, char * bufferParam) {
-	   strcpy(config->spImagesDirectory, bufferParam);
-	   return 0;
+	strcpy(config->spImagesDirectory, bufferParam);
+	return 0;
 }
 
 int setSpImagesPrefix(SPConfig config, char * bufferParam) {
-	   strcpy(config->spImagesPrefix, bufferParam);
-	   return 0;
+	strcpy(config->spImagesPrefix, bufferParam);
+	return 0;
+}
+
+int setSpImagesSuffix(SPConfig config, char * bufferParam) {
+	// Check if correct format
+	if ( !(strcmp(bufferParam, ".jpg") == 0 || strcmp(bufferParam, ".png") == 0 || strcmp(bufferParam, ".bmp") == 0 || strcmp(bufferParam, ".gif") == 0))
+		return 1;
+
+	strcpy(config->spImagesSuffix, bufferParam);
+	return 0;
+}
+
+int setSpNumOfImages(SPConfig config, char * bufferParam) {
+	int num = atoi(bufferParam);
+	if (num <= 0)
+		return 1;
+
+	config->spNumOfImages = num;
+	return 0;
+}
+
+int setSpPCADimension(SPConfig config, char * bufferParam) {
+	int num = atoi(bufferParam);
+	if (num < 10 || num > 28)
+		return 1;
+
+	config->spPCADimension = num;
+	return 0;
+}
+
+int setSpPCAFilename(SPConfig config, char * bufferParam) {
+	strcpy(config->spPCAFilename, bufferParam);
+	return 0;
+}
+
+int setSpNumOfFeatures(SPConfig config, char * bufferParam) {
+	int num = atoi(bufferParam);
+	if (num <= 0)
+		return 1;
+
+	config->spNumOfFeatures = num;
+	return 0;
+}
+
+int setSpExtractionMode(SPConfig config, char * bufferParam) {
+	// Check if is indeed of boolean type
+	if (strcmp(bufferParam, "true") == 0) {
+		config->spExtractionMode = true;
+		return 0;
+	}
+	else if (strcmp(bufferParam, "false") == 0) {
+		config->spExtractionMode = false;
+		return 0;
+	}
+	else {
+		return 1;
+	}
+}
+
+int setSpNumOfSimilarImages(SPConfig config, char * bufferParam) {
+	int num = atoi(bufferParam);
+	if (num <= 0)
+		return 1;
+
+	config->spNumOfSimilarImages = num;
+	return 0;
+}
+
+int setSpKDTreeSplitMethod(SPConfig config, char * bufferParam) {
+	// Check if is indeed of splitMethod enum type type
+	if (strcmp(bufferParam, "RANDOM") == 0) {
+		config->spKDTreeSplitMethod = RANDOM;
+		return 0;
+	}
+	else if (strcmp(bufferParam, "MAX_SPREAD") == 0) {
+		config->spKDTreeSplitMethod = MAX_SPREAD;
+		return 0;
+	}
+	else if (strcmp(bufferParam, "INCREMENTAL") == 0) {
+		config->spKDTreeSplitMethod = INCREMENTAL;
+		return 0;
+	}
+	else {
+		return 1;
+	}
+}
+
+int setSpKNN(SPConfig config, char * bufferParam) {
+	int num = atoi(bufferParam);
+	if (num <= 0)
+		return 1;
+
+	config->spKNN = num;
+	return 0;
+}
+
+int setSpMinimalGUI(SPConfig config, char * bufferParam) {
+	// Check if is indeed of boolean type
+	if (strcmp(bufferParam, "true") == 0) {
+		config->spMinimalGUI = true;
+		return 0;
+	}
+	else if (strcmp(bufferParam, "false") == 0) {
+		config->spMinimalGUI = false;
+		return 0;
+	}
+	else {
+		return 1;
+	}
+}
+
+int setSpLoggerLevel(SPConfig config, char * bufferParam) {
+	int num = atoi(bufferParam);
+	if (num <= 0 || num > 4)
+		return 1;
+
+	// Check if is a correct spLogger level
+	else if (num == 1 || num == 2 || num == 3 || num == 4 ) {
+		config->spLoggerLevel = num;
+		return 0;
+	}
+	else {
+		return 1;
+	}
+}
+
+int setSpLoggerFilename(SPConfig config, char * bufferParam) {
+	strcpy(config->spImagesPrefix, bufferParam);
+	return 0;
 }
 
 /*
