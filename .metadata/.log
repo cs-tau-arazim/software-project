@@ -1,14 +1,21 @@
-!SESSION 2016-06-29 11:03:19.408 -----------------------------------------------
+!SESSION 2016-06-29 10:55:03.113 -----------------------------------------------
 eclipse.buildId=M20120914-1800
 java.version=1.8.0_25
 java.vendor=Oracle Corporation
 BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
 Command-line arguments:  -os linux -ws gtk -arch x86_64
 
+<<<<<<< HEAD
 This is a continuation of log file /specific/a/home/cc/students/cs/galwiernik/software-project/.metadata/.bak_7.log
 Created Time: 2016-06-29 13:24:24.826
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.827
+=======
+This is a continuation of log file /specific/a/home/cc/students/cs/tomsegal/software-project/.metadata/.bak_0.log
+Created Time: 2016-06-29 13:23:47.377
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.378
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -70,12 +77,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.827
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.827
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.828
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.378
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.378
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.379
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -137,12 +153,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.828
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.828
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.829
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.380
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.380
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.380
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -204,12 +229,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.829
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.829
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.830
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.380
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.380
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.381
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -271,12 +305,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.830
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.830
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.831
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.381
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.381
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.382
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -338,12 +381,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.831
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.831
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.832
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.382
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.382
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.383
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -405,12 +457,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.832
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.832
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.833
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.383
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.383
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.384
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -472,12 +533,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.833
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.833
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.834
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.384
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.384
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.385
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -539,12 +609,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.834
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.834
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.835
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.385
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.385
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.386
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -606,12 +685,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.835
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.835
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.836
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.386
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.386
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.387
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -673,12 +761,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.836
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.836
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.837
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.387
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.387
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.388
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -740,12 +837,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.837
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.837
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.838
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.388
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.388
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.389
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -807,12 +913,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.838
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.838
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.848
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.389
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.389
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.396
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -874,12 +989,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.848
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.848
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.849
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.396
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.396
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.397
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -941,12 +1065,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.850
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.850
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.851
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.397
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.397
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.398
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -1008,12 +1141,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.851
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.851
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.852
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.398
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.398
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.399
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -1075,12 +1217,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.852
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.852
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.853
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.399
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.399
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.400
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -1142,12 +1293,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.853
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.853
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.854
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.400
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.400
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.401
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -1209,12 +1369,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.854
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.854
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.855
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.401
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.401
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.402
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -1276,12 +1445,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.855
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.855
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.855
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.402
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.402
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.403
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -1343,12 +1521,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.856
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.856
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.856
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.403
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.403
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.404
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -1410,12 +1597,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.856
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.856
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.857
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.404
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.404
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.405
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -1477,12 +1673,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.857
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.857
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.858
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.405
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.405
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.406
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -1544,12 +1749,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.858
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.858
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.859
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.406
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.406
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.407
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -1611,12 +1825,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.859
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.859
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.860
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.407
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.407
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.408
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -1678,12 +1901,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.860
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.860
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.861
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.408
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.408
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.409
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -1745,12 +1977,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.861
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.861
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.862
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.409
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.409
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.410
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -1812,12 +2053,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.862
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.862
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.889
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.410
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.410
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.411
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -1879,12 +2129,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.889
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.889
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.890
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.411
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.411
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.412
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -1946,12 +2205,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.890
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.890
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.891
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.412
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.412
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.413
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -2013,12 +2281,21 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.891
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.891
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 
 !ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:24:24.892
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.413
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.413
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+
+!ENTRY org.eclipse.ui.navigator 4 2 2016-06-29 13:23:47.414
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.navigator".
 !STACK 1
 org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
@@ -2080,6 +2357,7 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.892
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.892
@@ -2820,4 +3098,9 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.902
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:24:24.902
+=======
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.414
+!MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2016-06-29 13:23:47.414
+>>>>>>> da75906c1c71721a20e830ad193f5a4b27ec3af2
 !MESSAGE No property tester contributes a property org.eclipse.core.resources.name to type class org.eclipse.cdt.internal.core.model.TranslationUnit

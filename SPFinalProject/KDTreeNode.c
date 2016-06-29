@@ -8,6 +8,8 @@
 #include "KDTreeNode.h"
 #include "KDArray.h"
 #include "SPPoint.h"
+#include "SPListElement.h"
+#include "SPBPriorityQueue.h"
 #include <stdlib.h>
 #include <assert.h>
 #include <time.h>
@@ -109,5 +111,65 @@ KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod, int la
 	newNode->data = NULL;
 
 	return newNode;
+}
+
+void kdTreeNodeDestroy (KDTreeNode kdTreeNode)
+{
+	if (kdTreeNode == NULL)
+		return;
+	kdTreeNodeDestroy (kdTreeNode->left);
+	kdTreeNodeDestroy (kdTreeNode->right);
+	free (kdTreeNode);
+		return;
+}
+
+void nearestNeighbors (KDTreeNode curr, SPBPQueue bpq, SPPoint p)
+{
+	SPListElement node;
+	SPPoint q;
+	bool isLeft;
+	double coorDis;
+	if (curr == NULL || bpq == NULL || p == NULL)
+		return;
+
+	q = curr->data;
+
+	/* Add the current point to the BPQ. Note that this is a no-op if the
+	 * point is not as good as the points we've seen so far.*/
+	if(curr->dim == -1)
+	{
+		int index;
+		double dis;
+
+		index = spPointGetIndex(q);
+		dis = spPointL2SquaredDistance(p, curr->data);
+		node = spListElementCreate(index, dis);
+		spBPQueueEnqueue(bpq, node);
+		return;
+	}
+
+	/* Recursively search the half of the tree that contains the test point. */
+	if(spPointGetAxisCoor(p, curr->dim) <= curr->val)
+	{
+		nearestNeighbors(curr->left, bpq, p);
+		isLeft = true;
+	}
+	else
+	{
+		nearestNeighbors(curr->right, bpq, p);
+		isLeft = false;
+	}
+
+	/* If the candidate hypersphere crosses this splitting plane, look on the
+	* other side of the plane by examining the other subtree*/
+	coorDis = abs(spPointGetAxisCoor(p, curr->dim) - curr->val);
+	if (!spBPQueueIsFull(bpq) || coorDis < spBPQueueMaxValue(bpq))
+	{
+		if (isLeft)
+			nearestNeighbors(curr->right, bpq, p);
+		else
+			nearestNeighbors(curr->left, bpq, p);
+	}
+
 }
 
