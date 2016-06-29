@@ -12,7 +12,7 @@ struct kd_array_t{
 };
 
 int get(KDArray kdArr, int i, int j);
-void set(KDArray kdArr, int i, int j, double val);
+void set(KDArray kdArr, int i, int j, int val);
 int cmpCoor (const void * point1, const void * point2);
 
 
@@ -91,11 +91,15 @@ KDArray kdArrayinit (SPPoint* arr, int size, int dim)
 void kdArraysplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //TODO need to free mem when allocation fails?
 {
 	int i, j, k, size, dim, sizeL, sizeR; 
-	int* x, mapL, mapR;
-	SPPoint*  p, pL, pR;
+	int* x;
+	int* mapL;
+	int* mapR;
+	SPPoint*  p;
+	SPPoint* pL;
+	SPPoint* pR;
 
 	assert(kdLeft == NULL && kdRight == NULL);
-	if (kdArr == NULL ||  || coor < 0)
+	if (kdArr == NULL || coor < 0)
 		return;
 	size = kdArr->size; 
 	dim = kdArr->dim; 
@@ -113,10 +117,10 @@ void kdArraysplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 		x[get(kdArr, coor, i)] = 1;
 	}
 
-	pL = (int*)malloc(sizeL*sizeof(int));
+	pL = (SPPoint*)malloc(sizeL*sizeof(SPPoint));
 	if (pL == NULL)
 		return;
-	pR = (int*)malloc(sizeR*sizeof(int));
+	pR = (SPPoint*)malloc(sizeR*sizeof(SPPoint));
 	if (pR == NULL)
 		return;
 	mapL = (int*)malloc(size*sizeof(int));
@@ -157,11 +161,11 @@ void kdArraysplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 
 	kdLeft = (KDArray) malloc (sizeof (*kdLeft));
 	if (kdLeft == NULL)
-		return NULL;
+		return;
 
 	kdRight = (KDArray) malloc (sizeof (*kdRight));
 	if (kdRight == NULL)
-		return NULL;
+		return;
 
 	kdLeft->dim = dim;
 	kdRight->dim = dim;
@@ -182,12 +186,12 @@ void kdArraysplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 		for (i = 0 ; i < sizeL ; i++)
 		{
 			int curr = get(kdArr, k, j);
-			while (mapL(curr) == -1)
+			while (mapL[curr] == -1)
 			{	
 				j++;
 				curr = get(kdArr, k, j);
 			}
-			set(kdLeft, k, i, mapL(curr));
+			set(kdLeft, k, i, mapL[curr]);
 		}
 	}
 	free(mapL);
@@ -199,12 +203,12 @@ void kdArraysplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 		for (i = 0 ; i < sizeR ; i++)
 		{
 			int curr = get(kdArr, k, j);
-			while (mapR(curr) == -1)
+			while (mapR[curr] == -1)
 			{	
 				j++;
 				curr = get(kdArr, k, j);
 			}
-			set(kdRight, k, i, mapR(curr));
+			set(kdRight, k, i, mapR[curr]);
 		}
 	}
 	free(mapR);
