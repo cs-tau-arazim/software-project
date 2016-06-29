@@ -23,7 +23,7 @@ main.d: ../main.cpp ../SPImageProc.h \
  /usr/local/lib/opencv-3.1.0/include/opencv2/core/types_c.h \
  /usr/local/lib/opencv-3.1.0/include/opencv2/core/optim.hpp \
  /usr/local/lib/opencv-3.1.0/include/opencv2/imgcodecs.hpp ../SPConfig.h \
- ../SPLogger.h ../SPPoint.h ../KDArray.h
+ ../SPLogger.h ../SPPoint.h ../main_aux.h ../KDArray.h
 
 ../SPImageProc.h:
 
@@ -80,5 +80,7 @@ main.d: ../main.cpp ../SPImageProc.h \
 ../SPLogger.h:
 
 ../SPPoint.h:
+
+../main_aux.h:
 
 ../KDArray.h:

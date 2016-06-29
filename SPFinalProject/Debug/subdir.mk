@@ -12,7 +12,8 @@ C_SRCS += \
 ../KDTreeNode.c \
 ../SPConfig.c \
 ../SPLogger.c \
-../SPPoint.c 
+../SPPoint.c \
+../main_aux.c 
 
 OBJS += \
 ./KDArray.o \
@@ -21,7 +22,8 @@ OBJS += \
 ./SPImageProc.o \
 ./SPLogger.o \
 ./SPPoint.o \
-./main.o 
+./main.o \
+./main_aux.o 
 
 CPP_DEPS += \
 ./SPImageProc.d \
@@ -32,7 +34,8 @@ C_DEPS += \
 ./KDTreeNode.d \
 ./SPConfig.d \
 ./SPLogger.d \
-./SPPoint.d 
+./SPPoint.d \
+./main_aux.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
