@@ -1,6 +1,7 @@
 #include "KDArray.h"
 #include "SPPoint.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <assert.h>
 
 /** Type for defining the kdArray **/
@@ -14,6 +15,14 @@ struct kd_array_t{
 void set(KDArray kdArr, int i, int j, int val);
 int cmpCoor (const void * point1, const void * point2);
 
+KDArray kdArrayInitEmpty ()
+{
+	KDArray newKDArray;
+	newKDArray = (KDArray) malloc (sizeof (*newKDArray));
+	if (newKDArray == NULL)
+		return NULL;
+	return newKDArray;
+}
 
 
 /**
@@ -91,6 +100,7 @@ KDArray kdArrayInit (SPPoint* arr, int size, int dim)
  */
 void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //TODO need to free mem when allocation fails?
 {
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 	int i, j, k, size, dim, sizeL, sizeR; 
 	int* x;
 	int* mapL;
@@ -99,8 +109,7 @@ void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 	SPPoint* pL;
 	SPPoint* pR;
 
-	assert(kdLeft == NULL && kdRight == NULL);
-	if (kdArr == NULL || coor < 0)
+	if (kdArr == NULL || kdLeft == NULL || kdRight == NULL ||coor < 0)
 		return;
 	size = kdArr->size; 
 	dim = kdArr->dim; 
@@ -160,14 +169,6 @@ void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 	}
 	free(x);
 
-	kdLeft = (KDArray) malloc (sizeof (*kdLeft));
-	if (kdLeft == NULL)
-		return;
-
-	kdRight = (KDArray) malloc (sizeof (*kdRight));
-	if (kdRight == NULL)
-		return;
-
 	kdLeft->dim = dim;
 	kdRight->dim = dim;
 
@@ -187,12 +188,15 @@ void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 		for (i = 0 ; i < sizeL ; i++)
 		{
 			int curr = kdArrayGet(kdArr, k, j);
+			printf("%d,,%d, %d, %d, %s, %d\n",k,i,j,__LINE__, __func__, curr); //TODO remove
 			while (mapL[curr] == -1)
 			{	
 				j++;
 				curr = kdArrayGet(kdArr, k, j);
 			}
 			set(kdLeft, k, i, mapL[curr]);
+			j++;
+			//printf("%d, %s, %d\n",__LINE__, __func__, kdArrayGet(kdLeft, k, i)); //TODO remove
 		}
 	}
 	free(mapL);
@@ -233,6 +237,7 @@ int kdArrayGet(KDArray kdArr, int i, int j)
 {
 	if (kdArr == NULL || i < 0 || j < 0 || i >= kdArr->dim || j >= kdArr->size)
 		return -1;
+	//printf("%d, %s\n",__LINE__, __func__); //TODO remove
 	return kdArr->data[i*kdArr->size + j];
 }
 

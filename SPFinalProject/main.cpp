@@ -13,13 +13,17 @@ extern "C" {
 
 #define LINE_LENGTH 1024
 
+// For Debbuging:
+// 	printf("%d, %s\n",__LINE__, __func__); //TODO remove
+
+
 int main(int argc, char **argv) {
 
 	// Declare all variables
 
 	SP_CONFIG_MSG * configMsg;
-	SPPoint * featureArr;
-	SPPoint * featureImageArr;
+	SPPoint ** featureArr;
+	SPPoint * feature1DimArr;
 	sp::ImageProc *imgProc;
 	KDTreeNode KDTree;
 
@@ -29,7 +33,7 @@ int main(int argc, char **argv) {
 	char imageFeaturePath[LINE_LENGTH];
 	FILE * imageFeatureFile;
 
-	int numOfFeatures;
+	int* numOfFeatures;
 	int featureArrSize = 0;
 
 	printf("Hello World\n");
@@ -37,7 +41,7 @@ int main(int argc, char **argv) {
 	// TODO check if config file received through cmd
 	if (argc != 2) {
 		printf("ERROR");
-		exit(1);
+		return 0;
 	}
 
 	// create SPConfig element
@@ -45,60 +49,97 @@ int main(int argc, char **argv) {
 	SPConfig config = spConfigCreate(argv[1], configMsg);
 
 
+
 	// Check for errors
 	if (config == NULL) {
 		printf("File: %s\n", argv[1]);
 		printErrorType(configMsg);
+		free (configMsg);
+		return 0;
 	}
 
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 	numOfImages = spConfigGetNumOfImages(config, configMsg);
 	PCADim = spConfigGetPCADim(config, configMsg);
 
 	// Check extraction mode
 	if (spConfigIsExtractionMode(config, configMsg) == true) {
-		printf("time to extract! :)");
+		printf("time to extract! :)\n");
+		printConfig(config);
 		imgProc = new sp::ImageProc(config);
+		printf("%d, %s\n",__LINE__, __func__); //TODO remove
+
+		featureArr = (SPPoint**) malloc(sizeof(SPPoint*) * numOfImages);
+		numOfFeatures = (int*) malloc(sizeof(int) * numOfImages);
 
 		// For all images:
-		for (i = 0; i < numOfImages; i++) {
+		for (i = 1; i < numOfImages; i++) {
 
 			// Create image path
 			spConfigGetImagePath(imagePath, config, i);
 			// Get image features
-			featureImageArr = imgProc->getImageFeatures(imagePath, i,
-					&numOfFeatures);
+			featureArr[i] = imgProc->getImageFeatures(imagePath, i, &(numOfFeatures[i]));
 
 			// Increase array size
-			featureArrSize += numOfFeatures;
+			featureArrSize += numOfFeatures[i];
 
 			// add more memory
-			featureArr = (SPPoint*) realloc(featureArr,
-					featureArrSize * sizeof(SPPoint));
+			//featureArr = (SPPoint*) realloc(featureArr,featureArrSize * sizeof(SPPoint));
 			// copy points
-			for (j = 0; j < numOfFeatures; j++) {
-				featureArr[(featureArrSize - numOfFeatures - 1) + i] =
-						featureImageArr[i];
-			}
+			//for (j = 0; j < numOfFeatures; j++) {
+			//	featureArr[(featureArrSize - numOfFeatures - 1) + i] =
+			//			featureImageArr[i];
+			//}
 
 			// Create feature file with data
 			spConfigGetImageFeatPath(imageFeaturePath, config, i);
 			imageFeatureFile = fopen(imageFeaturePath, "w");
 			fprintf(imageFeatureFile, "%d\n", i);
-			fprintf(imageFeatureFile, "%d\n", numOfFeatures);
+			fprintf(imageFeatureFile, "%d\n", numOfFeatures[i]);
 
 			// Print all features to file
-			for (j = 0; j < numOfFeatures; j++) {
+			for (j = 0; j < numOfFeatures[i]; j++) {
 				for (k = 0; k < PCADim; k++) {
-					fprintf(imageFeatureFile, "%d,", numOfFeatures);
+					fprintf(imageFeatureFile, "%lf,", spPointGetAxisCoor(featureArr[i][j],k));
 				}
 				fprintf(imageFeatureFile, "\n,");
 			}
 			fclose(imageFeatureFile);
 		}
 
+		feature1DimArr = (SPPoint*)malloc(featureArrSize*sizeof(SPPoint));
+		k = 0;
+		for (i = 1 ; i < numOfImages ; i++)
+		{
+			for (j = 0 ; j < numOfFeatures[i] ; j++)
+			{
+				feature1DimArr[k] = spPointCopy(featureArr[i][j]);
+				k++;
+			}
+		}
+
+		printf("%d, %s\n",__LINE__, __func__); //TODO remove
+
+
 		// Now we just need to create the KDTree.
-		KDTree = kdTreeInit(featureArr, featureArrSize, PCADim,
+		KDTree = kdTreeInit(feature1DimArr, featureArrSize, PCADim,
 				spConfigGetSplitMethod(config, configMsg));
+		printf("%d, %s\n",__LINE__, __func__); //TODO remove
+
+		for (i = 0 ; i < featureArrSize ; i++)
+		{
+			free(feature1DimArr[i]);
+		}
+		free(feature1DimArr);
+		free(numOfFeatures);
+
+		for (i = 0 ; i < numOfImages ; i++)
+		{
+			free(featureArr[i]);
+		}
+		free(featureArr);
+		printf("%d, %s\n",__LINE__, __func__); //TODO remove
+
 	}
 
 	// Non-Extraction Mode- here we need to create the KD-Tree from the feature files.
@@ -108,7 +149,6 @@ int main(int argc, char **argv) {
 		printf("YAY");
 
 	}
-
 
 	// Enter the main loop
 	while (true) {

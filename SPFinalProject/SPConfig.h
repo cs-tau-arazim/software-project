@@ -300,4 +300,11 @@ SP_CONFIG_MSG spConfigGetPCAPath(char* pcaPath, const SPConfig config);
  */
 void spConfigDestroy(SPConfig config);
 
+
+/**
+ * SPCOnfig printer for debugging.
+ */
+void printConfig(SPConfig config);
+
+
 #endif /* SPCONFIG_H_ */
