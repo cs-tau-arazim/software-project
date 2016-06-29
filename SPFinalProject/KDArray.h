@@ -4,10 +4,12 @@
  *  Created on: Jun 28, 2016
  *      Author: tomsegal
  */
-#include "SPPoint.h"
+
 
 #ifndef KDARRAY_H_
 #define KDARRAY_H_
+
+#include "SPPoint.h"
 
 /** Type for defining the KDArray **/
 typedef struct kd_array_t* KDArray;

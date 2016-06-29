@@ -3,7 +3,7 @@
 
 #include "SPImageProc.h"
 
-extern "C" {
+extern "C"{
 #include "main_aux.h"
 }
 
