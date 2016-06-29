@@ -11,6 +11,7 @@ struct kd_array_t{
 	int dim;
 };
 
+int get(KDArray kdArr, int i, int j);
 void set(KDArray kdArr, int i, int j, double val);
 int cmpCoor (const void * point1, const void * point2);
 
