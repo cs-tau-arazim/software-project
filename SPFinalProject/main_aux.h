@@ -9,6 +9,7 @@
 #ifndef MAIN_AUX_H_
 #define MAIN_AUX_H_
 
+#define LINE_LENGTH 1024
 #include "SPConfig.h"
 #include "KDTreeNode.h"
 /**
