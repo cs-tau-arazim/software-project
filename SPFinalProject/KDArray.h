@@ -19,7 +19,7 @@ typedef struct kd_array_t* KDArray;
  * NULL if memory allocation failed or arr == NULL or size < 1 or dim < 1
  * the new KDArray otherwise
  */
-KDArray kdArrayinit (SPPoint* arr, int size, int dim);
+KDArray kdArrayInit (SPPoint* arr, int size, int dim);
 
 /**
  * Stores two KDArrays in (kdLeft, kdRight) such that the first
@@ -28,12 +28,23 @@ KDArray kdArrayinit (SPPoint* arr, int size, int dim);
  *
  * does nothing if any of the params is NULL or coor < 1
  */
-void kdArraysplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight);
+void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight);
 
 /**
  *  Free all memory allocation associated with kdArr,
  * 	if kdArr is NULL nothing happens.
  */
-void kdArraydestroy (KDArray kdArr);
+void kdArrayDestroy (KDArray kdArr);
+
+// TODO doc
+SPPoint* kdArrayGetPoints (KDArray kdArr);
+
+// TODO doc
+int kdArrayGet(KDArray kdArr, int i, int j);
+
+// TODO doc
+int kdArrayGetSize(KDArray kdArr);
+
+
 
 #endif /* KDARRAY_H_ */

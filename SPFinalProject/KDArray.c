@@ -11,7 +11,6 @@ struct kd_array_t{
 	int dim;
 };
 
-int get(KDArray kdArr, int i, int j);
 void set(KDArray kdArr, int i, int j, int val);
 int cmpCoor (const void * point1, const void * point2);
 
@@ -25,7 +24,7 @@ int cmpCoor (const void * point1, const void * point2);
  * NULL if memory allocation failed or arr == NULL or size < 1 or dim < 1
  * the new KDArray otherwise
  */
-KDArray kdArrayinit (SPPoint* arr, int size, int dim)
+KDArray kdArrayInit (SPPoint* arr, int size, int dim)
 {
 	KDArray newKDArray;
 	int i, j;
@@ -46,7 +45,9 @@ KDArray kdArrayinit (SPPoint* arr, int size, int dim)
 		return NULL;
 	for (i = 0 ; i < size ; i++)
 	{
-		newKDArray->points[i] = arr[i];
+		newKDArray->points[i] = spPointCopy(arr[i]);
+		if (newKDArray->points[i] == NULL)
+			return NULL;
 	}
 
 	for (i = 0 ; i < dim ; i++)
@@ -55,7 +56,7 @@ KDArray kdArrayinit (SPPoint* arr, int size, int dim)
 		if (ithCoor == NULL)
 			return NULL;
 
-		for (j = 0 ; j < size ; j ++)
+		for (j = 0 ; j < size ; j++)
 		{
 			ithCoor[j] = (double*) malloc (2*sizeof (double));
 			if (ithCoor == NULL)
@@ -66,11 +67,11 @@ KDArray kdArrayinit (SPPoint* arr, int size, int dim)
 
 		}
 		qsort(ithCoor, size, sizeof(ithCoor[0]),cmpCoor );
-		for (j = 0 ; j < size ; j ++)
+		for (j = 0 ; j < size ; j++)
 		{
 			set(newKDArray, i, j, (int)ithCoor[j][1]);
 		}
-		for (j = 0 ; j < size ; j ++)
+		for (j = 0 ; j < size ; j++)
 		{
 			free(ithCoor[j]);
 		}
@@ -88,7 +89,7 @@ KDArray kdArrayinit (SPPoint* arr, int size, int dim)
  * @assert kdLeft == NULL && kdRight == NULL
  * does nothing if kdArr is NULL or coor < 0 or allocation failed
  */
-void kdArraysplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //TODO need to free mem when allocation fails?
+void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //TODO need to free mem when allocation fails?
 {
 	int i, j, k, size, dim, sizeL, sizeR; 
 	int* x;
@@ -114,7 +115,7 @@ void kdArraysplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 	// x[i] = 1 iff the ith point is in the right sub tree
 	for (i = sizeL; i < size ; i++)
 	{
-		x[get(kdArr, coor, i)] = 1;
+		x[kdArrayGet(kdArr, coor, i)] = 1;
 	}
 
 	pL = (SPPoint*)malloc(sizeL*sizeof(SPPoint));
@@ -130,7 +131,7 @@ void kdArraysplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 	if (mapR == NULL)
 		return;
 
-	// comute the mapping from point index in kdArr to point index in kdLeft
+	// compute the mapping from point index in kdArr to point index in kdLeft
 	j = 0;
 	for (i = 0 ; i < sizeL ; i++)
 	{
@@ -144,7 +145,7 @@ void kdArraysplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 		j++;
 	}
 
-	// comute the mapping from point index in kdArr to point index in kdRight
+	// compute the mapping from point index in kdArr to point index in kdRight
 	j = 0;
 	for (i = 0 ; i < sizeR ; i++)
 	{
@@ -185,11 +186,11 @@ void kdArraysplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 		j = 0;
 		for (i = 0 ; i < sizeL ; i++)
 		{
-			int curr = get(kdArr, k, j);
+			int curr = kdArrayGet(kdArr, k, j);
 			while (mapL[curr] == -1)
 			{	
 				j++;
-				curr = get(kdArr, k, j);
+				curr = kdArrayGet(kdArr, k, j);
 			}
 			set(kdLeft, k, i, mapL[curr]);
 		}
@@ -202,34 +203,50 @@ void kdArraysplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 		j = 0;
 		for (i = 0 ; i < sizeR ; i++)
 		{
-			int curr = get(kdArr, k, j);
+			int curr = kdArrayGet(kdArr, k, j);
 			while (mapR[curr] == -1)
 			{	
 				j++;
-				curr = get(kdArr, k, j);
+				curr = kdArrayGet(kdArr, k, j);
 			}
 			set(kdRight, k, i, mapR[curr]);
 		}
 	}
 	free(mapR);
 
-	kdArraydestroy(kdArr);
+	kdArrayDestroy(kdArr);
 }
 
-void kdArraydestroy (KDArray kdArr)
+void kdArrayDestroy (KDArray kdArr)
 {
 	free(kdArr->data);
 	free(kdArr->points);
 	free(kdArr);
 }
 
-int get(KDArray kdArr, int i, int j)
+SPPoint* kdArrayGetPoints (KDArray kdArr)
 {
+	return kdArr->points;
+}
+
+int kdArrayGet(KDArray kdArr, int i, int j)
+{
+	if (kdArr == NULL || i < 0 || j < 0 || i >= kdArr->dim || j >= kdArr->size)
+		return -1;
 	return kdArr->data[i*kdArr->size + j];
+}
+
+int kdArrayGetSize(KDArray kdArr)
+{
+	if (kdArr == NULL)
+		return 0;
+	return kdArr->size;
 }
 
 void set(KDArray kdArr, int i, int j, int val)
 {
+	if (kdArr == NULL || i < 0 || j < 0 || i >= kdArr->dim || j >= kdArr->size)
+		return;
 	kdArr->data[i*kdArr->size + j] = val;
 }
 
