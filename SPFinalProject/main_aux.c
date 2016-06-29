@@ -6,7 +6,9 @@
  */
 
 #include "main_aux.h"
+
 #include <stdlib.h>
+
 
 int cmpCounts (const void * point1, const void * point2);
 /**
