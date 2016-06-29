@@ -5,7 +5,7 @@
  *      Author: galwiernik
  */
 
-#include
+#include "main_aux.h"
 
 /**
  * Helper function to print the appropriate message
@@ -47,4 +47,3 @@ void printErrorType(SP_CONFIG_MSG * configMsg) {
 	}
 
 }
-

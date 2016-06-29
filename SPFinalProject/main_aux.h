@@ -8,6 +8,8 @@
 #ifndef MAIN_AUX_H_
 #define MAIN_AUX_H_
 
+#include "SPConfig.h"
+
 /**
  * Helper function to print the appropriate message
  * for each error received by spConfigCreate.
