@@ -10,15 +10,21 @@ CPP_SRCS += \
 C_SRCS += \
 ../KDArray.c \
 ../KDTreeNode.c \
+../SPBPriorityQueue.c \
 ../SPConfig.c \
+../SPList.c \
+../SPListElement.c \
 ../SPLogger.c \
 ../SPPoint.c 
 
 OBJS += \
 ./KDArray.o \
 ./KDTreeNode.o \
+./SPBPriorityQueue.o \
 ./SPConfig.o \
 ./SPImageProc.o \
+./SPList.o \
+./SPListElement.o \
 ./SPLogger.o \
 ./SPPoint.o \
 ./main.o 
@@ -30,7 +36,10 @@ CPP_DEPS += \
 C_DEPS += \
 ./KDArray.d \
 ./KDTreeNode.d \
+./SPBPriorityQueue.d \
 ./SPConfig.d \
+./SPList.d \
+./SPListElement.d \
 ./SPLogger.d \
 ./SPPoint.d 
 

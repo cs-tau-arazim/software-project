@@ -5,6 +5,8 @@
  *      Author: tomsegal
  */
 #include "SPPoint.h"
+#include "SPBPriorityQueue.h"
+
 
 #ifndef KDTREENODE_H_
 #define KDTREENODE_H_
@@ -27,6 +29,11 @@ KDTreeNode kdTreeInit (SPPoint* arr, int size, int dim, int splitMethod );
  * 	if kdTree is NULL nothing happens.
  */
 void kdTreeNodeDestroy (KDTreeNode kdTreeNode);
+
+/**
+ * TODO doc
+ */
+void nearestNeighbors (KDTreeNode curr, SPBPQueue bpq, SPPoint p);
 
 
 #endif /* KDTREENODE_H_ */
