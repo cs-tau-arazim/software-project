@@ -2,11 +2,8 @@
 #include<cstdlib>
 #include "SPImageProc.h"
 
-extern "C" {
+extern "C"{
 #include "main_aux.h"
-#include "SPPoint.h"
-#include "SPConfig.h"
-#include "KDArray.h"
 }
 
 int main(int argc, char **argv) {
