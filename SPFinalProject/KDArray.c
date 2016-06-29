@@ -181,9 +181,11 @@ void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 	printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
 
 	kdLeft->data = (int*)malloc(sizeL*dim*sizeof(int));
+	// TODO check if NULL
 	printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
 
 	kdRight->data = (int*)malloc(sizeR*dim*sizeof(int));
+	// TODO check if NULL
 	printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
 
 
@@ -220,6 +222,7 @@ void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 				curr = kdArrayGet(kdArr, k, j);
 			}
 			set(kdRight, k, i, mapR[curr]);
+			j++;
 		}
 	}
 	printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
