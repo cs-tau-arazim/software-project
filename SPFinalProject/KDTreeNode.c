@@ -11,6 +11,7 @@
 #include "SPListElement.h"
 #include "SPBPriorityQueue.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <assert.h>
 #include <time.h>
 
@@ -38,18 +39,25 @@ KDTreeNode kdTreeInit (SPPoint* arr, int size, int dim, int splitMethod )
 		return NULL;
 	KDArray mat;
 	mat = kdArrayInit(arr, size, dim);
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
+
 	return constructTree(mat, size, dim, splitMethod, dim);
 
 }
 
 KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod, int lastLevelDim)
 {
+
+	printf("%d, %s, %d\n",__LINE__, __func__, size); //TODO remove
+	printf("%d, %s, %d\n",__LINE__, __func__, (size+1)/2); //TODO remove
+
 	KDTreeNode newNode;
 	KDArray left, right;
 	SPPoint* p;
-	int splitDim;
+	int splitDim = -1;
 	double medianVal;
 
+	printf("%d, %s, %d\n",__LINE__, __func__, splitDim); //TODO remove
 	p = kdArrayGetPoints(mat);
 
 	newNode = (KDTreeNode)malloc(sizeof(*newNode));
@@ -85,6 +93,8 @@ KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod, int la
 
 			minIndex = kdArrayGet(mat, i, 0);
 			maxIndex = kdArrayGet(mat, i, size-1);
+			//printf("%d, %s, %d\n",__LINE__, __func__, minIndex); //TODO remove
+			//printf("%d, %s, %d\n",__LINE__, __func__, maxIndex); //TODO remove
 
 			spread = spPointGetAxisCoor(p[maxIndex],i) - spPointGetAxisCoor(p[minIndex],i);
 			if (spread > maxSpread)
@@ -99,16 +109,37 @@ KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod, int la
 		splitDim = (lastLevelDim+1)%dim;
 	}
 
-	left = NULL;
-	right = NULL;
-	medianVal = spPointGetAxisCoor(p[kdArrayGet(mat, splitDim, (size+1)/2)], splitDim);
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
+
+	left = kdArrayInitEmpty();
+	if(left == NULL)
+		return NULL;
+	right = kdArrayInitEmpty();
+	if(right == NULL)
+		return NULL;
+
+	printf("%d, %s, %d\n",__LINE__, __func__, splitDim); //TODO remove
+
+	medianVal = spPointGetAxisCoor(p[kdArrayGet(mat, splitDim, (size-1)/2)], splitDim);
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
+
 	kdArraySplit (mat, splitDim, left, right);
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
+
 
 	newNode->dim = splitDim;
 	newNode->val = medianVal;
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
+
 	newNode->left = constructTree(left, kdArrayGetSize(left), dim, splitMethod, splitDim);
-	newNode->right = constructTree(right, kdArrayGetSize(right), dim, splitMethod, splitDim);;
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
+
+	newNode->right = constructTree(right, kdArrayGetSize(right), dim, splitMethod, splitDim);
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
+
 	newNode->data = NULL;
+
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
 	return newNode;
 }

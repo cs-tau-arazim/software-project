@@ -14,6 +14,9 @@
 /** Type for defining the KDArray **/
 typedef struct kd_array_t* KDArray;
 
+// TODO doc
+KDArray kdArrayInitEmpty ();
+
 /**
  * Initializes the kd-array with the data given by arr
  *

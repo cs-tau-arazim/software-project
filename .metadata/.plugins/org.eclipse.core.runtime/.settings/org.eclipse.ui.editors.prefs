@@ -7,6 +7,7 @@ htmlTagPairOccurrenceIndicationTextStyle=BOX
 indexResultIndication=false
 indexResultIndicationInOverviewRuler=false
 indexResultIndicationInVerticalRuler=false
+lineNumberRuler=true
 org.eclipse.ptp.rdt.ui.hasRun=true
 overviewRuler_migration=migrated_3.1
 pydevOccurrenceHighlighting=false
