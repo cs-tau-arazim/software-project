@@ -1,14 +1,14 @@
-KDTreeNode.d: ../KDTreeNode.c ../KDTreeNode.h ../SPPoint.h \
- ../SPBPriorityQueue.h ../SPListElement.h ../SPList.h ../KDArray.h
+KDTreeNode.d: ../KDTreeNode.c ../KDTreeNode.h ../SPBPriorityQueue.h \
+ ../SPList.h ../SPListElement.h ../KDArray.h ../SPPoint.h
 
 ../KDTreeNode.h:
 
-../SPPoint.h:
-
 ../SPBPriorityQueue.h:
-
-../SPListElement.h:
 
 ../SPList.h:
 
+../SPListElement.h:
+
 ../KDArray.h:
+
+../SPPoint.h:

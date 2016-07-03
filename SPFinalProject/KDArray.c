@@ -1,5 +1,4 @@
 #include "KDArray.h"
-#include "SPPoint.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>

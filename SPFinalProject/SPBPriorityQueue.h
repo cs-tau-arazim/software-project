@@ -1,6 +1,5 @@
 #ifndef SPBPRIORITYQUEUE_H_
 #define SPBPRIORITYQUEUE_H_
-#include "SPListElement.h"
 #include <stdbool.h>
 #include "SPList.h"
 
@@ -26,10 +25,10 @@
  * spBPQueueEnqueue			- Inserts a NEW COPY element to the queue
  * spBPQueueDequeue			- removes the element with the lowest value
  * spBPQueuePeek			- returns a NEW COPY of the element with the lowest value
- * spBPQueuePeekLast		– returns a NEW COPY of the element with the highest value
+ * spBPQueuePeekLast		��� returns a NEW COPY of the element with the highest value
  * spBPQueueMinValue		- returns the minimum value in the queue
  * spBPQueueMaxValue		- returns the maximum value in the queue
- * spBPQueueIsEmpty 		– returns true if the queue is empty
+ * spBPQueueIsEmpty 		��� returns true if the queue is empty
  * spBPQueueIsFull			- returns true if the queue is full
  */
 

@@ -65,8 +65,11 @@ int main(int argc, char **argv) {
 
 	// Check extraction mode
 	if (spConfigIsExtractionMode(config, configMsg) == true) {
+
+		// start
 		printf("time to extract! :)\n");
 		printConfig(config);
+
 		imgProc = new sp::ImageProc(config);
 		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
@@ -84,14 +87,6 @@ int main(int argc, char **argv) {
 
 			// Increase array size
 			featureArrSize += numOfFeatures[i];
-
-			// add more memory
-			//featureArr = (SPPoint*) realloc(featureArr,featureArrSize * sizeof(SPPoint));
-			// copy points
-			//for (j = 0; j < numOfFeatures; j++) {
-			//	featureArr[(featureArrSize - numOfFeatures - 1) + i] =
-			//			featureImageArr[i];
-			//}
 
 			// Create feature file with data
 			spConfigGetImageFeatPath(imageFeaturePath, config, i);
@@ -135,10 +130,14 @@ int main(int argc, char **argv) {
 		}
 		free(feature1DimArr);
 
+<<<<<<< HEAD
+		for (i = 0; i < numOfImages; i++) {
+=======
 		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
 		/*
 		for (i = 1; i < numOfImages; i++) {
+>>>>>>> 135091f7e5eeb762e24e059f31c74faecd96cd2e
 			for (j = 0; j < numOfFeatures[i]; i++)
 				spPointDestroy(featureArr[i][j]);
 		}
@@ -148,7 +147,7 @@ int main(int argc, char **argv) {
 
 		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
-		for (i = 1; i < numOfImages; i++) {
+		for (i = 0; i < numOfImages; i++) {
 			free(featureArr[i]);
 		}
 		free(featureArr);

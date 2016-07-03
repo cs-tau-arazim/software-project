@@ -56,8 +56,11 @@ struct sp_config_t {
  *
  */
 SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
+<<<<<<< HEAD
+=======
 	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
+>>>>>>> 135091f7e5eeb762e24e059f31c74faecd96cd2e
 	// Define variables
 	int res = 0;
 	int i;
@@ -68,8 +71,11 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 	char bufferParam[LINE_LENGTH];
 	char bufferLine[LINE_LENGTH];
 
+<<<<<<< HEAD
+=======
 	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
+>>>>>>> 135091f7e5eeb762e24e059f31c74faecd96cd2e
 	// Array for scanning the input and comparing with possible values
 	const char * const varArray[] = { "spImagesDirectory", "spImagesPrefix",
 			"spImagesSuffix", "spNumOfImages", "spPCADimension",
@@ -135,11 +141,16 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 						assignRes = setSpImagesSuffix(config, bufferParam);
 					else if (i == 3)
 						assignRes = setSpNumOfImages(config, bufferParam);
+<<<<<<< HEAD
+					else if (i == 4)
+						assignRes = setSpPCADimension(config, bufferParam);
+=======
 					else if (i == 4) {
 						printf("%d, %s\n",__LINE__, __func__); //TODO remove
 						assignRes = setSpPCADimension(config, bufferParam);
 						printf("%d, %s\n",__LINE__, __func__); //TODO remove
 					}
+>>>>>>> 135091f7e5eeb762e24e059f31c74faecd96cd2e
 					else if (i == 5)
 						assignRes = setSpPCAFilename(config, bufferParam);
 					else if (i == 6)
