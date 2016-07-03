@@ -107,8 +107,8 @@ int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* featur
 
 int cmpCounts (const void * point1, const void * point2)
 {
-	int *p1 = (int *)point1;
-	int *p2 = (int *)point2;
+	int *p1 = *(int **)point1;
+	int *p2 = *(int **)point2;
 	return (p1[0] - p2[0]); // TODO check if inverse
 }
 
@@ -124,6 +124,9 @@ void arrayTest ()
 	p5 = spPointCreate(arr5, 2, 3);
 	SPPoint pointArr[] ={p1,p2,p3,p4,p5};
 	arr = kdArrayInit(pointArr, 5, 2);
+	if(arr == NULL)
+		printf("%d, %s\n",__LINE__, __func__); //TODO remove
+
 	printf("original:\n");
 	printArray(arr);
 	left = kdArrayInitEmpty();
