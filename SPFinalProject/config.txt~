@@ -3,13 +3,13 @@
 spImagesDirectory         =           ./images/ 
 spImagesPrefix=img 
 spImagesSuffix = .png 
-spNumOfImages =       1 
+spNumOfImages =       17
 
 #the following variables have default values, if not set the default value is choosen 
-# spPCADimension = 20 -> notice the default value is chosen since this is a comment
+spPCADimension = 100
 spPCAFilename = pca.yml 
 spNumOfFeatures = 100 
 spExtractionMode = true 
-	#spMinimalGUI = true -> the default value is chosen since this is a comment
+	spMinimalGUI = false
    spNumOfSimilarImages = 5 
 spLoggerFilename = stdout
