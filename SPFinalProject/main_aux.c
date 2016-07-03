@@ -113,3 +113,24 @@ int cmpCounts (const void * point1, const void * point2)
 	return (p1[0] - p2[0]); // TODO check if inverse
 }
 
+void arrayTest ()
+{
+	SPPoint p1,p2,p3,p4,p5;
+	KDArray arr,left,right;
+	p1 = spPointCreate({1,2}, 2, 1);
+	p2 = spPointCreate({123,70}, 2, 1);
+	p3 = spPointCreate({2,7}, 2, 2);
+	p4 = spPointCreate({9,11}, 2, 2);
+	p5 = spPointCreate({3,4}, 2, 3);
+	arr = kdArrayInit({p1,p2,p3,p4,p5}, 5, 2);
+	printf("original:\n");
+	printArray(arr);
+	left = kdArrayInitEmpty();
+	right = kdArrayInitEmpty();
+	kdArraySplit(arr, 0, left, right);
+	printf("after split:\n");
+	printf("left:\n");
+	printArray(left);
+	printf("right:\n");
+	printArray(right);
+}

@@ -35,5 +35,7 @@ void kdTreeNodeDestroy (KDTreeNode kdTreeNode);
  */
 void nearestNeighbors (KDTreeNode curr, SPBPQueue bpq, SPPoint p);
 
+void printTree (kdTreeNode kdTree);
+
 
 #endif /* KDTREENODE_H_ */

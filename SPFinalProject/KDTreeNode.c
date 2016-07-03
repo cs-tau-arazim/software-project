@@ -47,7 +47,7 @@ KDTreeNode kdTreeInit (SPPoint* arr, int size, int dim, int splitMethod )
 
 KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod, int lastLevelDim)
 {
-
+	
 	//printf("%d, %s, %d\n",__LINE__, __func__, size); //TODO remove
 
 	KDTreeNode newNode;
@@ -56,6 +56,7 @@ KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod, int la
 	int splitDim = -1;
 	double medianVal;
 
+	assert(size > 0);
 	//printf("%d, %s, %d\n",__LINE__, __func__, splitDim); //TODO remove
 	p = kdArrayGetPoints(mat);
 
@@ -204,5 +205,18 @@ void nearestNeighbors (KDTreeNode curr, SPBPQueue bpq, SPPoint p)
 			nearestNeighbors(curr->left, bpq, p);
 	}
 
+}
+
+void printTree (kdTreeNode kdTree)
+{
+	if (kdTree == NULL)
+	{
+		return;
+	}
+	printf(" (");
+	printTree(kdTree->left);
+	printf("dim: %d, val: %f", kdTree->dim, kdTree-> val);
+	printTree(kdTree->right);
+	printf(" )");
 }
 

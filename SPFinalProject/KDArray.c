@@ -109,8 +109,11 @@ void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 	SPPoint* pL;
 	SPPoint* pR;
 
+	assert(kdArr->size > 1);
+
 	if (kdArr == NULL || kdLeft == NULL || kdRight == NULL ||coor < 0)
 		return;
+
 	size = kdArr->size; 
 	dim = kdArr->dim; 
 	sizeL = (size+1)/2;
@@ -277,6 +280,20 @@ int cmpCoor (const void * point1, const void * point2)
 	double *p1 = (double *)point1;
 	double *p2 = (double *)point2;
 	return (int)(p1[0] - p2[0]); // TODO check if inverse
+}
+
+void printArray (KDArray kdArr)
+{
+	int i,j;
+	for (i = 0 ; i < kdArr->size ; i++)
+	{
+		for (j = 0 ; j < kdArr->size ; j++)
+		{
+			printf("%d",kdArrayGet(kdArr, i, j));
+		}
+		printf("\n");
+	}
+	printf("\n");
 }
 
 
