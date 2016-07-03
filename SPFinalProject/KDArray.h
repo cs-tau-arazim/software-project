@@ -50,6 +50,8 @@ int kdArrayGet(KDArray kdArr, int i, int j);
 // TODO doc
 int kdArrayGetSize(KDArray kdArr);
 
+void printArray (KDArray kdArr);
+
 
 
 #endif /* KDARRAY_H_ */

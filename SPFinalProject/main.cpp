@@ -97,6 +97,8 @@ int main(int argc, char **argv) {
 			fprintf(imageFeatureFile, "%d\n", i);
 			fprintf(imageFeatureFile, "%d\n", numOfFeatures[i]);
 
+			printf("%d, %s\n",__LINE__, __func__); //TODO remove
+
 			// Print all features to file
 			for (j = 0; j < numOfFeatures[i]; j++) {
 				for (k = 0; k < PCADim; k++) {
@@ -149,7 +151,7 @@ int main(int argc, char **argv) {
 		printf("YAY");
 
 	}
-
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 	// Enter the main loop
 	while (true) {
 		char query[LINE_LENGTH];

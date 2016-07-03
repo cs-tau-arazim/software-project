@@ -105,12 +105,15 @@ void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 	int* x;
 	int* mapL;
 	int* mapR;
-	SPPoint*  p;
+	SPPoint* p;
 	SPPoint* pL;
 	SPPoint* pR;
 
+	assert(kdArr->size > 1);
+
 	if (kdArr == NULL || kdLeft == NULL || kdRight == NULL ||coor < 0)
 		return;
+
 	size = kdArr->size; 
 	dim = kdArr->dim; 
 	sizeL = (size+1)/2;
@@ -167,7 +170,7 @@ void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 		mapR[j] = i;
 		j++;
 	}
-	free(x);
+
 
 	kdLeft->dim = dim;
 	kdRight->dim = dim;
@@ -178,8 +181,16 @@ void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 	kdLeft->points = pL;
 	kdRight->points = pR;
 
+	printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
+
 	kdLeft->data = (int*)malloc(sizeL*dim*sizeof(int));
+	// TODO check if NULL
+	printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
+
 	kdRight->data = (int*)malloc(sizeR*dim*sizeof(int));
+	// TODO check if NULL
+	printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
+
 
 	// create kdLeft using mapL
 	for (k = 0; k < dim ; ++k)
@@ -188,7 +199,7 @@ void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 		for (i = 0 ; i < sizeL ; i++)
 		{
 			int curr = kdArrayGet(kdArr, k, j);
-			printf("%d,,%d, %d, %d, %s, %d\n",k,i,j,__LINE__, __func__, curr); //TODO remove
+			//printf("%d,,%d, %d, %d, %s, %d\n",k,i,j,__LINE__, __func__, curr); //TODO remove
 			while (mapL[curr] == -1)
 			{	
 				j++;
@@ -199,7 +210,7 @@ void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 			//printf("%d, %s, %d\n",__LINE__, __func__, kdArrayGet(kdLeft, k, i)); //TODO remove
 		}
 	}
-	free(mapL);
+
 
 	// create kdRight using mapR
 	for (k = 0; k <  dim ; ++k)
@@ -214,9 +225,18 @@ void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 				curr = kdArrayGet(kdArr, k, j);
 			}
 			set(kdRight, k, i, mapR[curr]);
+			j++;
 		}
 	}
+	printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
+
+	free(x);
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
+	free(mapL);
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
+
 	free(mapR);
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
 	kdArrayDestroy(kdArr);
 }
@@ -260,6 +280,20 @@ int cmpCoor (const void * point1, const void * point2)
 	double *p1 = (double *)point1;
 	double *p2 = (double *)point2;
 	return (int)(p1[0] - p2[0]); // TODO check if inverse
+}
+
+void printArray (KDArray kdArr)
+{
+	int i,j;
+	for (i = 0 ; i < kdArr->size ; i++)
+	{
+		for (j = 0 ; j < kdArr->size ; j++)
+		{
+			printf("%d",kdArrayGet(kdArr, i, j));
+		}
+		printf("\n");
+	}
+	printf("\n");
 }
 
 
