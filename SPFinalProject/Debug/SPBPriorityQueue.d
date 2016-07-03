@@ -1,8 +1,8 @@
 SPBPriorityQueue.d: ../SPBPriorityQueue.c ../SPBPriorityQueue.h \
- ../SPListElement.h ../SPList.h
+ ../SPList.h ../SPListElement.h
 
 ../SPBPriorityQueue.h:
 
-../SPListElement.h:
-
 ../SPList.h:
+
+../SPListElement.h:

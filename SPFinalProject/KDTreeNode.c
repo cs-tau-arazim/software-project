@@ -66,7 +66,7 @@ KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod, int la
 		newNode->val = -1;
 		newNode->left = NULL;
 		newNode->right = NULL;
-		newNode->data = p[0];
+		newNode->data = spPointCopy(p[0]);
 		kdArrayDestroy(mat);
 		return newNode;
 	}
@@ -105,7 +105,7 @@ KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod, int la
 		splitDim = (lastLevelDim+1)%dim;
 	}
 
-	//printf("%d, %s\n",__LINE__, __func__); //TODO remove
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
 	left = kdArrayInitEmpty();
 	if(left == NULL)
@@ -114,29 +114,29 @@ KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod, int la
 	if(right == NULL)
 		return NULL;
 
-	//printf("%d, %s, %d\n",__LINE__, __func__, splitDim); //TODO remove
+	printf("%d, %s, %d\n",__LINE__, __func__, splitDim); //TODO remove
 
 	medianVal = spPointGetAxisCoor(p[kdArrayGet(mat, splitDim, (size-1)/2)], splitDim);
-	//printf("%d, %s\n",__LINE__, __func__); //TODO remove
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
 	kdArraySplit (mat, splitDim, left, right);
-	//printf("%d, %s\n",__LINE__, __func__); //TODO remove
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
 
 	newNode->dim = splitDim;
 	newNode->val = medianVal;
 
-	//printf("%d, %s left\n",__LINE__, __func__); //TODO remove
+	printf("%d, %s left\n",__LINE__, __func__); //TODO remove
 	newNode->left = constructTree(left, kdArrayGetSize(left), dim, splitMethod, splitDim);
 
-	//printf("%d, %s right\n",__LINE__, __func__); //TODO remove
+	printf("%d, %s right\n",__LINE__, __func__); //TODO remove
 	newNode->right = constructTree(right, kdArrayGetSize(right), dim, splitMethod, splitDim);
 
-	//printf("%d, %s\n",__LINE__, __func__); //TODO remove
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
 	newNode->data = NULL;
 
-	//printf("%d, %s\n",__LINE__, __func__); //TODO remove
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
 	printf("%d, %s, %d\n",__LINE__, __func__, size); //TODO remove
 
@@ -149,6 +149,8 @@ void kdTreeNodeDestroy (KDTreeNode kdTreeNode)
 		return;
 	kdTreeNodeDestroy (kdTreeNode->left);
 	kdTreeNodeDestroy (kdTreeNode->right);
+	if (kdTreeNode->data != NULL)
+		free(kdTreeNode->data);
 	free (kdTreeNode);
 		return;
 }
@@ -205,13 +207,24 @@ void nearestNeighbors (KDTreeNode curr, SPBPQueue bpq, SPPoint p)
 
 void printTree (KDTreeNode kdTree)
 {
+	int i;
 	if (kdTree == NULL)
 	{
 		return;
 	}
 	printf(" (");
 	printTree(kdTree->left);
-	printf("dim: %d, val: %f", kdTree->dim, kdTree-> val);
+	if (kdTree->data == NULL)
+		printf("dim: %d, val: %f", kdTree->dim, kdTree-> val);
+	else
+	{
+		printf("point: ");
+		for (i = 0 ; i < spPointGetDimension(kdTree->data) ; i++)
+		{
+
+			printf("%lf,", spPointGetAxisCoor(kdTree->data, i));
+		}
+	}
 	printTree(kdTree->right);
 	printf(" )");
 }

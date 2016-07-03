@@ -18,12 +18,26 @@ C_COMP_FLAG = -std=c99 -Wall -Wextra \
 
 $(EXEC): $(OBJS)
 	$(C++) $(OBJS) -L$(LIBPATH) $(LIBS) -o $@
-main.o: main.cpp #put dependencies here!
+main.o: main.cpp main_aux.h SPImageProc.h
 	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
-SSPImageProc.o: SPImageProc.cpp SPImageProc.h SPConfig.h SPPoint.h SPLogger.h
+main_aux.o: main_aux.c main_aux.h KDTreeNode.h SPConfig.h
 	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
-#a rule for building a simple c souorce file
-#use gcc -MM SPPoint.c to see the dependencies
+SPImageProc.o: SPImageProc.cpp SPImageProc.h SPConfig.h SPPoint.h SPLogger.h
+	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+SPConfig.o: SPConfig.c SPConfig.h SPLogger.h
+	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+SPLogger.o: SPLogger.c SPLogger.h
+	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+KDTreeNode.o: KDTreeNode.c KDTreeNode.h SPBPriorityQueue.h KDArray.h
+	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+KDArray.o: KDArray.c KDArray.h SPPoint.h
+	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+SPBPriorityQueue.o: SPBPriorityQueue.c SPBPriorityQueue.h SPList.h
+	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+SPList.o: SPList.c SPList.h SPListElement.h
+	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+SPListElement.o: SPListElement.c SPListElement.h
+	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
 SPPoint.o: SPPoint.c SPPoint.h 
 	$(CC) $(CPP_COMP_FLAG) -c $*.c
 clean:

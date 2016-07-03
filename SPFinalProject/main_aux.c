@@ -140,6 +140,7 @@ void arrayTest ()
 }
 
 void treeTest() {
+
 	SPPoint p1,p2,p3,p4,p5;
 	KDArray arr,left,right;
 	double arr1[] = {1,2}, arr2[] = {123,70}, arr3[] = {2,7}, arr4[] = {9,11}, arr5[] = {3,4};
@@ -152,9 +153,9 @@ void treeTest() {
 	arr = kdArrayInit(pointArr, 5, 2);
 
 
+
 	if(arr == NULL)
 		printf("%d, %s\n",__LINE__, __func__); //TODO remove
 	KDTreeNode tree = kdTreeInit(pointArr, 5, 2,1);
-
 	printTree(tree);
 }

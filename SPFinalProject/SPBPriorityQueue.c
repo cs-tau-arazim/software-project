@@ -1,5 +1,4 @@
 #include "SPBPriorityQueue.h"
-#include "SPListElement.h"
 #include <stdlib.h>
 
 /*

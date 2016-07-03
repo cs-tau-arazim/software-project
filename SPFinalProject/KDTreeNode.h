@@ -4,10 +4,8 @@
  *  Created on: Jun 29, 2016
  *      Author: tomsegal
  */
-#include "SPPoint.h"
 #include "SPBPriorityQueue.h"
 #include "KDArray.h"
-#include "SPPoint.h"
 
 
 #ifndef KDTREENODE_H_
