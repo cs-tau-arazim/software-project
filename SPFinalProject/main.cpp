@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
 		numOfFeatures = (int*) malloc(sizeof(int) * numOfImages);
 
 		// For all images:
-		for (i = 0; i < numOfImages; i++) { // TODO change to 0!!!!!!!!!
+		for (i = 1; i < numOfImages; i++) { // TODO change to 0!!!!!!!!!
 
 			// Create image path
 			spConfigGetImagePath(imagePath, config, i);
@@ -209,4 +209,5 @@ int main(int argc, char **argv) {
 		free(closestImages);
 	}
 	return 0;
+
 }

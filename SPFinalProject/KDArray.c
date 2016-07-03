@@ -218,21 +218,24 @@ void kdArraySplit(KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //TO
 			j++;
 		}
 	}
-	//printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
+	printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
 
 	free(x);
-	//printf("%d, %s\n",__LINE__, __func__); //TODO remove
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 	free(mapL);
-	//printf("%d, %s\n",__LINE__, __func__); //TODO remove
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
 	free(mapR);
-	//printf("%d, %s\n",__LINE__, __func__); //TODO remove
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
 	kdArrayDestroy(kdArr);
 }
 
 void kdArrayDestroy(KDArray kdArr) {
+	int i;
 	free(kdArr->data);
+	for (i = 0 ; i < kdArr->size ; i++)
+		spPointDestroy(kdArr->points[i]);
 	free(kdArr->points);
 	free(kdArr);
 }

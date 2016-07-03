@@ -25,4 +25,6 @@ int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* featur
 
 void arrayTest();
 
+void treeTest ();
+
 #endif /* MAIN_AUX_H_ */
