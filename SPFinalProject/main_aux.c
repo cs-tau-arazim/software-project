@@ -172,18 +172,9 @@ void treeTest() {
 	p4 = spPointCreate(arr4, 2, 2);
 	p5 = spPointCreate(arr5, 2, 3);
 	SPPoint pointArr[] ={p1,p2,p3,p4,p5};
-<<<<<<< HEAD
-	arr = kdArrayInit(pointArr, 5, 2);
 
 
-
-	if(arr == NULL)
-		printf("%d, %s\n",__LINE__, __func__); //TODO remove
 	KDTreeNode tree = kdTreeInit(pointArr, 5, 2,1);
 	printTree(tree);
-=======
-	KDTreeNode tree = kdTreeInit(pointArr, 5, 2, 1);
 
-	//printTree(tree);
->>>>>>> 135091f7e5eeb762e24e059f31c74faecd96cd2e
 }

@@ -130,14 +130,9 @@ int main(int argc, char **argv) {
 		}
 		free(feature1DimArr);
 
-<<<<<<< HEAD
-		for (i = 0; i < numOfImages; i++) {
-=======
-		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
-		/*
+		/* TODO free
 		for (i = 1; i < numOfImages; i++) {
->>>>>>> 135091f7e5eeb762e24e059f31c74faecd96cd2e
 			for (j = 0; j < numOfFeatures[i]; i++)
 				spPointDestroy(featureArr[i][j]);
 		}
@@ -147,10 +142,14 @@ int main(int argc, char **argv) {
 
 		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
+		/* TODO free
 		for (i = 0; i < numOfImages; i++) {
 			free(featureArr[i]);
 		}
 		free(featureArr);
+		*/
+		printf("%d, %s\n", __LINE__, __func__); //TODO remove
+
 
 	}
 
