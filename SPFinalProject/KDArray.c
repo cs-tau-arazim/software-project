@@ -140,15 +140,15 @@ void kdArraySplit(KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //TO
 	// compute the mapping from point index in kdArr to point index in kdLeft
 	j = 0;
 	for (i = 0; i < sizeL; i++) {
-		while (x[j] == 1) {
+		while (x[j] == 1 && j < size) {
 			mapL[j] = -1;
 			j++;
 		}
-		pL[i] = p[j];
+		pL[i] = spPointCopy(p[j]);
 		mapL[j] = i;
 
 		j++;
-		while (x[j] == 1) {
+		while (x[j] == 1 && j < size) {
 			mapL[j] = -1;
 			j++;
 		}
@@ -157,14 +157,14 @@ void kdArraySplit(KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //TO
 	// compute the mapping from point index in kdArr to point index in kdRight
 	j = 0;
 	for (i = 0; i < sizeR; i++) {
-		while (x[j] == 0) {
+		while (x[j] == 0 && j < size) {
 			mapR[j] = -1;
 			j++;
 		}
-		pR[i] = p[j];
+		pR[i] = spPointCopy(p[j]);
 		mapR[j] = i;
 		j++;
-		while (x[j] == 0) {
+		while (x[j] == 0 && j < size) {
 			mapR[j] = -1;
 			j++;
 		}

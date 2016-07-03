@@ -16,9 +16,6 @@ extern "C" {
 // For Debbuging:
 // 	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
-
-
-
 int main(int argc, char **argv) {
 
 	// Declare all variables
@@ -50,17 +47,15 @@ int main(int argc, char **argv) {
 	configMsg = (SP_CONFIG_MSG *) malloc(sizeof(SP_CONFIG_MSG));
 	SPConfig config = spConfigCreate(argv[1], configMsg);
 
-
-
 	// Check for errors
 	if (config == NULL) {
 		printf("File: %s\n", argv[1]);
 		printErrorType(configMsg);
-		free (configMsg);
+		free(configMsg);
 		return 0;
 	}
 
-	printf("%d, %s\n",__LINE__, __func__); //TODO remove
+	printf("%d, %s\n", __LINE__, __func__); //TODO remove
 	numOfImages = spConfigGetNumOfImages(config, configMsg);
 	PCADim = spConfigGetPCADim(config, configMsg);
 
@@ -69,7 +64,7 @@ int main(int argc, char **argv) {
 		printf("time to extract! :)\n");
 		printConfig(config);
 		imgProc = new sp::ImageProc(config);
-		printf("%d, %s\n",__LINE__, __func__); //TODO remove
+		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
 		featureArr = (SPPoint**) malloc(sizeof(SPPoint*) * numOfImages);
 		numOfFeatures = (int*) malloc(sizeof(int) * numOfImages);
@@ -80,7 +75,8 @@ int main(int argc, char **argv) {
 			// Create image path
 			spConfigGetImagePath(imagePath, config, i);
 			// Get image features
-			featureArr[i] = imgProc->getImageFeatures(imagePath, i, &(numOfFeatures[i]));
+			featureArr[i] = imgProc->getImageFeatures(imagePath, i,
+					&(numOfFeatures[i]));
 
 			// Increase array size
 			featureArrSize += numOfFeatures[i];
@@ -99,50 +95,55 @@ int main(int argc, char **argv) {
 			fprintf(imageFeatureFile, "%d\n", i);
 			fprintf(imageFeatureFile, "%d\n", numOfFeatures[i]);
 
-			printf("%d, %s\n",__LINE__, __func__); //TODO remove
+			printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
 			// Print all features to file
-			for (j = 0; j < numOfFeatures[i]; j++) {
+			for (j = 1; j < numOfFeatures[i]; j++) {
 				for (k = 0; k < PCADim; k++) {
-					fprintf(imageFeatureFile, "%lf,", spPointGetAxisCoor(featureArr[i][j],k));
+					fprintf(imageFeatureFile, "%lf,",
+							spPointGetAxisCoor(featureArr[i][j], k));
 				}
 				fprintf(imageFeatureFile, "\n,");
 			}
 			fclose(imageFeatureFile);
 		}
 
-		feature1DimArr = (SPPoint*)malloc(featureArrSize*sizeof(SPPoint));
+		feature1DimArr = (SPPoint*) malloc(featureArrSize * sizeof(SPPoint));
 		k = 0;
-		for (i = 1 ; i < numOfImages ; i++)
-		{
-			for (j = 0 ; j < numOfFeatures[i] ; j++)
-			{
+		for (i = 0; i < numOfImages; i++) {
+			for (j = 0; j < numOfFeatures[i]; j++) {
 				feature1DimArr[k] = spPointCopy(featureArr[i][j]);
 				k++;
 			}
 		}
 
-		printf("%d, %s\n",__LINE__, __func__); //TODO remove
-
+		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
 		// Now we just need to create the KDTree.
 		KDTree = kdTreeInit(feature1DimArr, featureArrSize, PCADim,
 				spConfigGetSplitMethod(config, configMsg));
-		printf("%d, %s\n",__LINE__, __func__); //TODO remove
+		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
-		for (i = 0 ; i < featureArrSize ; i++)
-		{
-			free(feature1DimArr[i]);
+		for (i = 0; i < featureArrSize; i++) {
+			spPointDestroy(feature1DimArr[i]);
 		}
 		free(feature1DimArr);
-		free(numOfFeatures);
+		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
-		for (i = 0 ; i < numOfImages ; i++)
-		{
+
+		for (i = 1; i < numOfImages; i++) {
+			for (j = 0; j < numOfFeatures[i]; i++)
+				spPointDestroy(featureArr[i][j]);
+		}
+
+		free(numOfFeatures);
+		printf("%d, %s\n", __LINE__, __func__); //TODO remove
+
+		for (i = 1; i < numOfImages; i++) {
 			free(featureArr[i]);
 		}
 		free(featureArr);
-		printf("%d, %s\n",__LINE__, __func__); //TODO remove
+		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
 	}
 
@@ -153,7 +154,7 @@ int main(int argc, char **argv) {
 		printf("YAY");
 
 	}
-	printf("%d, %s\n",__LINE__, __func__); //TODO remove
+	printf("%d, %s\n", __LINE__, __func__); //TODO remove
 	// Enter the main loop
 	while (true) {
 		char query[LINE_LENGTH];
