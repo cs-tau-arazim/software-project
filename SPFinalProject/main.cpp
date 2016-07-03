@@ -17,6 +17,8 @@ extern "C" {
 // 	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
 
+
+
 int main(int argc, char **argv) {
 
 	// Declare all variables
@@ -73,7 +75,7 @@ int main(int argc, char **argv) {
 		numOfFeatures = (int*) malloc(sizeof(int) * numOfImages);
 
 		// For all images:
-		for (i = 1; i < numOfImages; i++) { // TODO change to 0!!!!!!!!!
+		for (i = 0; i < numOfImages; i++) { // TODO change to 0!!!!!!!!!
 
 			// Create image path
 			spConfigGetImagePath(imagePath, config, i);
@@ -96,6 +98,8 @@ int main(int argc, char **argv) {
 			imageFeatureFile = fopen(imageFeaturePath, "w");
 			fprintf(imageFeatureFile, "%d\n", i);
 			fprintf(imageFeatureFile, "%d\n", numOfFeatures[i]);
+
+			printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
 			// Print all features to file
 			for (j = 0; j < numOfFeatures[i]; j++) {
@@ -149,7 +153,7 @@ int main(int argc, char **argv) {
 		printf("YAY");
 
 	}
-
+	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 	// Enter the main loop
 	while (true) {
 		char query[LINE_LENGTH];

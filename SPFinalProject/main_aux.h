@@ -23,4 +23,6 @@ void printErrorType(SP_CONFIG_MSG * configMsg);
 //TODO doc
 int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* features, int numOfFeatures, int numOfImages);
 
+void arrayTest();
+
 #endif /* MAIN_AUX_H_ */

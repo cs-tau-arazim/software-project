@@ -5,7 +5,7 @@
 #include <assert.h>
 
 /** Type for defining the kdArray **/
-struct kd_array_t{
+struct kd_array_t {
 	SPPoint* points;
 	int* data;
 	int size;
@@ -13,17 +13,15 @@ struct kd_array_t{
 };
 
 void set(KDArray kdArr, int i, int j, int val);
-int cmpCoor (const void * point1, const void * point2);
+int cmpCoor(const void * point1, const void * point2);
 
-KDArray kdArrayInitEmpty ()
-{
+KDArray kdArrayInitEmpty() {
 	KDArray newKDArray;
-	newKDArray = (KDArray) malloc (sizeof (*newKDArray));
-	if (newKDArray == NULL)
-		return NULL;
+	newKDArray = (KDArray) malloc(sizeof(*newKDArray));
+	if (newKDArray == NULL )
+		return NULL ;
 	return newKDArray;
 }
-
 
 /**
  * Initializes the kd-array with the data given by arr
@@ -33,55 +31,49 @@ KDArray kdArrayInitEmpty ()
  * NULL if memory allocation failed or arr == NULL or size < 1 or dim < 1
  * the new KDArray otherwise
  */
-KDArray kdArrayInit (SPPoint* arr, int size, int dim)
-{
+KDArray kdArrayInit(SPPoint* arr, int size, int dim) {
 	KDArray newKDArray;
 	int i, j;
 	if (arr == NULL || size < 1 || dim < 1)
-		return NULL;
+		return NULL ;
 
-	newKDArray = (KDArray) malloc (sizeof (*newKDArray));
-	if (newKDArray == NULL)
-		return NULL;
+	newKDArray = (KDArray) malloc(sizeof(*newKDArray));
+	if (newKDArray == NULL )
+		return NULL ;
 
 	newKDArray->dim = dim;
 	newKDArray->size = size;
-	newKDArray->data = (int*)malloc(size*dim*sizeof(int));
-	if (newKDArray->data == NULL)
-		return NULL;
-	newKDArray->points = (SPPoint*)malloc(size*sizeof(SPPoint));
-	if (newKDArray->points == NULL)
-		return NULL;
-	for (i = 0 ; i < size ; i++)
-	{
+	newKDArray->data = (int*) malloc(size * dim * sizeof(int));
+	if (newKDArray->data == NULL )
+		return NULL ;
+	newKDArray->points = (SPPoint*) malloc(size * sizeof(SPPoint));
+	if (newKDArray->points == NULL )
+		return NULL ;
+	for (i = 0; i < size; i++) {
 		newKDArray->points[i] = spPointCopy(arr[i]);
-		if (newKDArray->points[i] == NULL)
-			return NULL;
+		if (newKDArray->points[i] == NULL )
+			return NULL ;
 	}
 
-	for (i = 0 ; i < dim ; i++)
-	{
-		double** ithCoor = (double**) malloc (size*sizeof (double*));
-		if (ithCoor == NULL)
-			return NULL;
+	for (i = 0; i < dim; i++) {
+		double** ithCoor = (double**) malloc(size * sizeof(double*));
+		if (ithCoor == NULL )
+			return NULL ;
 
-		for (j = 0 ; j < size ; j++)
-		{
-			ithCoor[j] = (double*) malloc (2*sizeof (double));
-			if (ithCoor == NULL)
-				return NULL;
+		for (j = 0; j < size; j++) {
+			ithCoor[j] = (double*) malloc(2 * sizeof(double));
+			if (ithCoor == NULL )
+				return NULL ;
 
 			ithCoor[j][0] = spPointGetAxisCoor(arr[j], i);
-			ithCoor[j][1] = (double)j;
+			ithCoor[j][1] = (double) j;
 
 		}
-		qsort(ithCoor, size, sizeof(ithCoor[0]),cmpCoor );
-		for (j = 0 ; j < size ; j++)
-		{
-			set(newKDArray, i, j, (int)ithCoor[j][1]);
+		qsort(ithCoor, size, sizeof(ithCoor[0]), cmpCoor);
+		for (j = 0; j < size; j++) {
+			set(newKDArray, i, j, (int) ithCoor[j][1]);
 		}
-		for (j = 0 ; j < size ; j++)
-		{
+		for (j = 0; j < size; j++) {
 			free(ithCoor[j]);
 		}
 		free(ithCoor);
@@ -98,10 +90,10 @@ KDArray kdArrayInit (SPPoint* arr, int size, int dim)
  * @assert kdLeft == NULL && kdRight == NULL
  * does nothing if kdArr is NULL or coor < 0 or allocation failed
  */
-void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //TODO need to free mem when allocation fails?
+void kdArraySplit(KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //TODO need to free mem when allocation fails?
 {
-	printf("%d, %s\n",__LINE__, __func__); //TODO remove
-	int i, j, k, size, dim, sizeL, sizeR; 
+	//printf("%d, %s\n",__LINE__, __func__); //TODO remove
+	int i, j, k, size, dim, sizeL, sizeR;
 	int* x;
 	int* mapL;
 	int* mapR;
@@ -109,65 +101,74 @@ void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 	SPPoint* pL;
 	SPPoint* pR;
 
-	if (kdArr == NULL || kdLeft == NULL || kdRight == NULL ||coor < 0)
+	assert(kdArr->size > 1);
+
+	if (kdArr == NULL || kdLeft == NULL || kdRight == NULL || coor < 0)
 		return;
-	size = kdArr->size; 
-	dim = kdArr->dim; 
-	sizeL = (size+1)/2;
-	sizeR = size/2; 
+
+	size = kdArr->size;
+	dim = kdArr->dim;
+	sizeL = (size + 1) / 2;
+	sizeR = size / 2;
 	p = kdArr->points;
-	
-	x = (int*)malloc(size*sizeof(int));
-	if (x == NULL)
+
+	x = (int*) malloc(size * sizeof(int));
+	if (x == NULL )
 		return;
 
 	// x[i] = 1 iff the ith point is in the right sub tree
-	for (i = sizeL; i < size ; i++)
-	{
+	for (i = sizeL; i < size; i++) {
 		x[kdArrayGet(kdArr, coor, i)] = 1;
 	}
+	for (i = 0; i < sizeL; i++) {
+		x[kdArrayGet(kdArr, coor, i)] = 0;
+	}
 
-	pL = (SPPoint*)malloc(sizeL*sizeof(SPPoint));
-	if (pL == NULL)
+	pL = (SPPoint*) malloc(sizeL * sizeof(SPPoint));
+	if (pL == NULL )
 		return;
-	pR = (SPPoint*)malloc(sizeR*sizeof(SPPoint));
-	if (pR == NULL)
+	pR = (SPPoint*) malloc(sizeR * sizeof(SPPoint));
+	if (pR == NULL )
 		return;
-	mapL = (int*)malloc(size*sizeof(int));
-	if (mapL == NULL)
+	mapL = (int*) malloc(size * sizeof(int));
+	if (mapL == NULL )
 		return;
-	mapR = (int*)malloc(size*sizeof(int));
-	if (mapR == NULL)
+	mapR = (int*) malloc(size * sizeof(int));
+	if (mapR == NULL )
 		return;
 
 	// compute the mapping from point index in kdArr to point index in kdLeft
 	j = 0;
-	for (i = 0 ; i < sizeL ; i++)
-	{
-		while (x[j] == 1)
-		{
+	for (i = 0; i < sizeL; i++) {
+		while (x[j] == 1) {
 			mapL[j] = -1;
 			j++;
 		}
 		pL[i] = p[j];
 		mapL[j] = i;
+
 		j++;
+		while (x[j] == 1) {
+			mapL[j] = -1;
+			j++;
+		}
 	}
 
 	// compute the mapping from point index in kdArr to point index in kdRight
 	j = 0;
-	for (i = 0 ; i < sizeR ; i++)
-	{
-		while (x[j] == 0)
-		{
+	for (i = 0; i < sizeR; i++) {
+		while (x[j] == 0) {
 			mapR[j] = -1;
 			j++;
 		}
 		pR[i] = p[j];
 		mapR[j] = i;
 		j++;
+		while (x[j] == 0) {
+			mapR[j] = -1;
+			j++;
+		}
 	}
-
 
 	kdLeft->dim = dim;
 	kdRight->dim = dim;
@@ -178,25 +179,23 @@ void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 	kdLeft->points = pL;
 	kdRight->points = pR;
 
-	printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
+	//printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
 
-	kdLeft->data = (int*)malloc(sizeL*dim*sizeof(int));
-	printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
+	kdLeft->data = (int*) malloc(sizeL * dim * sizeof(int));
+	// TODO check if NULL
+	//printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
 
-	kdRight->data = (int*)malloc(sizeR*dim*sizeof(int));
-	printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
-
+	kdRight->data = (int*) malloc(sizeR * dim * sizeof(int));
+	// TODO check if NULL
+	//printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
 
 	// create kdLeft using mapL
-	for (k = 0; k < dim ; ++k)
-	{
+	for (k = 0; k < dim; ++k) {
 		j = 0;
-		for (i = 0 ; i < sizeL ; i++)
-		{
+		for (i = 0; i < sizeL; i++) {
 			int curr = kdArrayGet(kdArr, k, j);
 			//printf("%d,,%d, %d, %d, %s, %d\n",k,i,j,__LINE__, __func__, curr); //TODO remove
-			while (mapL[curr] == -1)
-			{	
+			while (mapL[curr] == -1) {
 				j++;
 				curr = kdArrayGet(kdArr, k, j);
 			}
@@ -206,74 +205,79 @@ void kdArraySplit (KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //T
 		}
 	}
 
-
 	// create kdRight using mapR
-	for (k = 0; k <  dim ; ++k)
-	{
+	for (k = 0; k < dim; ++k) {
 		j = 0;
-		for (i = 0 ; i < sizeR ; i++)
-		{
+		for (i = 0; i < sizeR; i++) {
 			int curr = kdArrayGet(kdArr, k, j);
-			while (mapR[curr] == -1)
-			{	
+			while (mapR[curr] == -1) {
 				j++;
 				curr = kdArrayGet(kdArr, k, j);
 			}
 			set(kdRight, k, i, mapR[curr]);
+			j++;
 		}
 	}
-	printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
+	//printf("%d, %s, %d\n",__LINE__, __func__,size); //TODO remove
 
 	free(x);
-	printf("%d, %s\n",__LINE__, __func__); //TODO remove
+	//printf("%d, %s\n",__LINE__, __func__); //TODO remove
 	free(mapL);
-	printf("%d, %s\n",__LINE__, __func__); //TODO remove
+	//printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
 	free(mapR);
-	printf("%d, %s\n",__LINE__, __func__); //TODO remove
+	//printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
 	kdArrayDestroy(kdArr);
 }
 
-void kdArrayDestroy (KDArray kdArr)
-{
+void kdArrayDestroy(KDArray kdArr) {
 	free(kdArr->data);
 	free(kdArr->points);
 	free(kdArr);
 }
 
-SPPoint* kdArrayGetPoints (KDArray kdArr)
-{
+SPPoint* kdArrayGetPoints(KDArray kdArr) {
 	return kdArr->points;
 }
 
-int kdArrayGet(KDArray kdArr, int i, int j)
-{
-	if (kdArr == NULL || i < 0 || j < 0 || i >= kdArr->dim || j >= kdArr->size)
+int kdArrayGet(KDArray kdArr, int i, int j) {
+	if (kdArr == NULL || i < 0 || j < 0 || i >= kdArr->dim
+			|| j >= kdArr->size) {
+		printf("%d, %s\n", __LINE__, __func__); //TODO remove
+
 		return -1;
+	}
 	//printf("%d, %s\n",__LINE__, __func__); //TODO remove
-	return kdArr->data[i*kdArr->size + j];
+	return kdArr->data[i * (kdArr->size) + j];
 }
 
-int kdArrayGetSize(KDArray kdArr)
-{
-	if (kdArr == NULL)
+int kdArrayGetSize(KDArray kdArr) {
+	if (kdArr == NULL )
 		return 0;
 	return kdArr->size;
 }
 
-void set(KDArray kdArr, int i, int j, int val)
-{
+void set(KDArray kdArr, int i, int j, int val) {
 	if (kdArr == NULL || i < 0 || j < 0 || i >= kdArr->dim || j >= kdArr->size)
 		return;
-	kdArr->data[i*kdArr->size + j] = val;
+	kdArr->data[i * kdArr->size + j] = val;
 }
 
-int cmpCoor (const void * point1, const void * point2)
-{
-	double *p1 = (double *)point1;
-	double *p2 = (double *)point2;
-	return (int)(p1[0] - p2[0]); // TODO check if inverse
+int cmpCoor(const void * point1, const void * point2) {
+	double *p1 = *(double **) point1;
+	double *p2 = *(double **) point2;
+	return (int) (p1[0] - p2[0]); // TODO check if inverse
 }
 
+void printArray(KDArray kdArr) {
+	int i, j;
+	for (i = 0; i < kdArr->dim; i++) {
+		for (j = 0; j < kdArr->size; j++) {
+			printf("%d ", kdArrayGet(kdArr, i, j));
+		}
+		printf("\n");
+	}
+	printf("\n");
+}
 

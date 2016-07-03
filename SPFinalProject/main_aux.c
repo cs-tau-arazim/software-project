@@ -6,7 +6,6 @@
  */
 
 #include "main_aux.h"
-
 #include <stdlib.h>
 
 
@@ -108,8 +107,34 @@ int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* featur
 
 int cmpCounts (const void * point1, const void * point2)
 {
-	int *p1 = (int *)point1;
-	int *p2 = (int *)point2;
+	int *p1 = *(int **)point1;
+	int *p2 = *(int **)point2;
 	return (p1[0] - p2[0]); // TODO check if inverse
 }
 
+void arrayTest ()
+{
+	SPPoint p1,p2,p3,p4,p5;
+	KDArray arr,left,right;
+	double arr1[] = {1,2}, arr2[] = {123,70}, arr3[] = {2,7}, arr4[] = {9,11}, arr5[] = {3,4};
+	p1 = spPointCreate(arr1, 2, 1);
+	p2 = spPointCreate(arr2, 2, 1);
+	p3 = spPointCreate(arr3, 2, 2);
+	p4 = spPointCreate(arr4, 2, 2);
+	p5 = spPointCreate(arr5, 2, 3);
+	SPPoint pointArr[] ={p1,p2,p3,p4,p5};
+	arr = kdArrayInit(pointArr, 5, 2);
+	if(arr == NULL)
+		printf("%d, %s\n",__LINE__, __func__); //TODO remove
+
+	printf("original:\n");
+	printArray(arr);
+	left = kdArrayInitEmpty();
+	right = kdArrayInitEmpty();
+	kdArraySplit(arr, 0, left, right);
+	printf("after split:\n");
+	printf("left:\n");
+	printArray(left);
+	printf("right:\n");
+	printArray(right);
+}

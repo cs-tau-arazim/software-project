@@ -24,7 +24,7 @@ main.d: ../main.cpp ../SPImageProc.h \
  /usr/local/lib/opencv-3.1.0/include/opencv2/core/optim.hpp \
  /usr/local/lib/opencv-3.1.0/include/opencv2/imgcodecs.hpp ../SPConfig.h \
  ../SPLogger.h ../SPPoint.h ../main_aux.h ../KDTreeNode.h \
- ../SPBPriorityQueue.h ../SPListElement.h ../SPList.h
+ ../SPBPriorityQueue.h ../SPListElement.h ../SPList.h ../KDArray.h
 
 ../SPImageProc.h:
 
@@ -91,3 +91,5 @@ main.d: ../main.cpp ../SPImageProc.h \
 ../SPListElement.h:
 
 ../SPList.h:
+
+../KDArray.h:

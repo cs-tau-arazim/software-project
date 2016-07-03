@@ -6,6 +6,8 @@
  */
 #include "SPPoint.h"
 #include "SPBPriorityQueue.h"
+#include "KDArray.h"
+#include "SPPoint.h"
 
 
 #ifndef KDTREENODE_H_
@@ -34,6 +36,8 @@ void kdTreeNodeDestroy (KDTreeNode kdTreeNode);
  * TODO doc
  */
 void nearestNeighbors (KDTreeNode curr, SPBPQueue bpq, SPPoint p);
+
+void printTree (KDTreeNode kdTree);
 
 
 #endif /* KDTREENODE_H_ */
