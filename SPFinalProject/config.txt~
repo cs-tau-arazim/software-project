@@ -12,4 +12,6 @@ spNumOfFeatures = 100
 spExtractionMode = true 
 	spMinimalGUI = false
    spNumOfSimilarImages = 5 
+spKNN = 5
+spKDTreeSplitMethod = INCREMENTAL
 spLoggerFilename = stdout

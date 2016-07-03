@@ -13,4 +13,5 @@ spExtractionMode = true
 	spMinimalGUI = false
    spNumOfSimilarImages = 5 
 spKNN = 5
+spKDTreeSplitMethod = MAX_SPREAD
 spLoggerFilename = stdout
