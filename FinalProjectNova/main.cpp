@@ -60,7 +60,7 @@ int main(int argc, char **argv) {
 
 
 	featureArr = (SPPoint**) malloc(sizeof(SPPoint*) * numOfImages);
-	numOfFeatures = (int*) malloc(sizeof(int) * numOfImages);
+	numOfFeatures = (int*) malloc(sizeof(int) *numOfImages);
 
 
 	// Check extraction mode
@@ -71,13 +71,16 @@ int main(int argc, char **argv) {
 		printConfig(config);
 
 		// For all images:
-		for (i = 1; i < numOfImages; i++) { // TODO change to 0!!!!!!!!!
+		for (i = 0; i < numOfImages; i++) {
 
 			// Create image path
 			spConfigGetImagePath(imagePath, config, i);
 			// Get image features
 			featureArr[i] = imgProc->getImageFeatures(imagePath, i, &(numOfFeatures[i]));
 
+			printf("path: %s\n", imagePath);
+			k = spPointGetAxisCoor(featureArr[i][0],0);
+			printf("coor = %d\n",k);
 			// Increase array size
 			featureArrSize += numOfFeatures[i];
 
@@ -90,7 +93,7 @@ int main(int argc, char **argv) {
 			printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
 			// Print all features to file
-			for (j = 1; j < numOfFeatures[i]; j++) {
+			for (j = 0; j < numOfFeatures[i]; j++) {
 				for (k = 0; k < PCADim; k++) {
 					fprintf(imageFeatureFile, "%lf,",
 							spPointGetAxisCoor(featureArr[i][j], k));
@@ -132,7 +135,7 @@ int main(int argc, char **argv) {
 
 		// For all images:
 		tempDoubleArr = (double*) malloc(sizeof(double) * PCADim);
-		for (i = 1; i < numOfImages; i++) { // TODO change to 0!!!!!!!!!
+		for (i = 0; i < numOfImages; i++) { // TODO change to 0!!!!!!!!!
 			int imIndex;
 			// Find feature file with data
 			spConfigGetImageFeatPath(imageFeaturePath, config, i);
@@ -168,7 +171,7 @@ int main(int argc, char **argv) {
 
 		feature1DimArr = (SPPoint*) malloc(featureArrSize * sizeof(SPPoint));
 		k = 0;
-		for (i = 1; i < numOfImages; i++) {
+		for (i = 0; i < numOfImages; i++) {
 			for (j = 0; j < numOfFeatures[i]; j++) {
 				feature1DimArr[k] = spPointCopy(featureArr[i][j]);
 				k++;
@@ -183,14 +186,14 @@ int main(int argc, char **argv) {
 	}
 
 
-	for (i = 1; i < numOfImages; i++) {
+	for (i = 0; i < numOfImages; i++) {
 		for (j = 0; j < numOfFeatures[i]; j++) {
 			spPointDestroy(featureArr[i][j]);
 		}
 	}
 	free(numOfFeatures);
 
-	for (i = 1; i < numOfImages; i++) {
+	for (i = 0; i < numOfImages; i++) {
 		free(featureArr[i]);
 	}
 	free(featureArr);
