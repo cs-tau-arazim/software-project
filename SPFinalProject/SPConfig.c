@@ -60,6 +60,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 	// Define variables
 	int res = 0;
 	int i;
+	int lineNum = 0;
 	int cmpRes;
 	int assignRes = 0;
 	FILE * configFilePtr;
@@ -156,7 +157,8 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 
 					// Check if succeeded
 					if (assignRes != 0) {
-
+						// print line nubmer
+						printf("Error in line #%d", lineNum);
 						// Integer error
 						if (i == 3 || i == 4 || i == 6 || i == 8 || i == 10
 								|| i == 12) {
@@ -173,6 +175,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 				}
 			}
 		}
+		lineNum++;
 	}
 
 	// Now we just need to check if any which values were not set yet
