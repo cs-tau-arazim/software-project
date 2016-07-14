@@ -1,7 +1,7 @@
 CC = gcc
 CPP = g++
 #put your object files here
-OBJS = main.o SPImageProc.o SPPoint.o 
+OBJS = main.o main_aux.o SPImageProc.o SPConfig.o SPLogger.o KDTreeNode.o KDArray.o SPBPriorityQueue.o SPList.o SPListElement.o SPPoint.o 
 #The executabel filename
 EXEC = SPCBIR
 INCLUDEPATH=/usr/local/lib/opencv-3.1.0/include/
@@ -17,28 +17,28 @@ C_COMP_FLAG = -std=c99 -Wall -Wextra \
 -Werror -pedantic-errors -DNDEBUG
 
 $(EXEC): $(OBJS)
-	$(C++) $(OBJS) -L$(LIBPATH) $(LIBS) -o $@
+	$(CPP) $(OBJS) -L$(LIBPATH) $(LIBS) -o $@
 main.o: main.cpp main_aux.h SPImageProc.h
-	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+	$(CPP) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
 main_aux.o: main_aux.c main_aux.h KDTreeNode.h SPConfig.h
-	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+	$(CC) $(C_COMP_FLAG) -c $*.c
 SPImageProc.o: SPImageProc.cpp SPImageProc.h SPConfig.h SPPoint.h SPLogger.h
-	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+	$(CPP) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
 SPConfig.o: SPConfig.c SPConfig.h SPLogger.h
-	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+	$(CC) $(C_COMP_FLAG) -c $*.c
 SPLogger.o: SPLogger.c SPLogger.h
-	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+	$(CC) $(C_COMP_FLAG) -c $*.c
 KDTreeNode.o: KDTreeNode.c KDTreeNode.h SPBPriorityQueue.h KDArray.h
-	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+	$(CC) $(C_COMP_FLAG) -c $*.c
 KDArray.o: KDArray.c KDArray.h SPPoint.h
-	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+	$(CC) $(C_COMP_FLAG) -c $*.c
 SPBPriorityQueue.o: SPBPriorityQueue.c SPBPriorityQueue.h SPList.h
-	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+	$(CC) $(C_COMP_FLAG) -c $*.c
 SPList.o: SPList.c SPList.h SPListElement.h
-	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+	$(CC) $(C_COMP_FLAG) -c $*.c
 SPListElement.o: SPListElement.c SPListElement.h
-	$(C++) $(CPP_COMP_FLAG) -I$(INCLUDEPATH) -c $*.cpp
+	$(CC) $(C_COMP_FLAG) -c $*.c
 SPPoint.o: SPPoint.c SPPoint.h 
-	$(CC) $(CPP_COMP_FLAG) -c $*.c
+	$(CC) $(C_COMP_FLAG) -c $*.c
 clean:
 	rm -f $(OBJS) $(EXEC)
