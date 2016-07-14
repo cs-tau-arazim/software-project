@@ -24,7 +24,6 @@ int main(int argc, char **argv) {
 	SP_CONFIG_MSG * configMsg;
 	SPPoint ** featureArr;
 	SPPoint * feature1DimArr;
-	SPPoint tempPoint;
 	sp::ImageProc *imgProc;
 	KDTreeNode KDTree;
 
@@ -64,6 +63,7 @@ int main(int argc, char **argv) {
 
 	numOfImages = spConfigGetNumOfImages(config, configMsg);
 	PCADim = spConfigGetPCADim(config, configMsg);
+	imgProc = new sp::ImageProc(config);
 
 	// Check extraction mode
 	if (spConfigIsExtractionMode(config, configMsg) == true) {
@@ -72,7 +72,7 @@ int main(int argc, char **argv) {
 		printf("time to extract! :)\n");
 		printConfig(config);
 
-		imgProc = new sp::ImageProc(config);
+
 		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
 		featureArr = (SPPoint**) malloc(sizeof(SPPoint*) * numOfImages);
@@ -169,12 +169,14 @@ int main(int argc, char **argv) {
 
 		// For all images:
 		for (i = 1; i < numOfImages; i++) { // TODO change to 0!!!!!!!!!
-
+			int imIndex;
 			// Find feature file with data
 			spConfigGetImageFeatPath(imageFeaturePath, config, i);
 			imageFeatureFile = fopen(imageFeaturePath, "r");
 
-			fscanf(imageFeatureFile, "%d\n", &i);
+			fscanf(imageFeatureFile, "%d\n", &imIndex);
+			assert(i == imIndex);
+
 			fscanf(imageFeatureFile, "%d\n", &numOfFeatures[i]);
 
 			printf("%d, %s\n", __LINE__, __func__); //TODO remove
@@ -189,14 +191,17 @@ int main(int argc, char **argv) {
 			// Get all features from file
 			for (j = 0; j < numOfFeatures[i]; j++) {
 				for (k = 0; k < PCADim; k++) {
-					fscanf(imageFeatureFile, "&lf,",(tempDoubleArr + k));
+					fscanf(imageFeatureFile, "%lf,",&(tempDoubleArr[k]));
 				}
 				fscanf(imageFeatureFile, "\n");
 				featureArr[i][j] = spPointCreate(tempDoubleArr, PCADim, i);
+				printf("%d, ", spPointGetDimension(featureArr[i][j]));
 			}
 			fclose(imageFeatureFile);
 			free(tempDoubleArr);
 		}
+
+
 
 		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
@@ -213,9 +218,9 @@ int main(int argc, char **argv) {
 
 		// Now we just need to create the KDTree.
 		KDTree = kdTreeInit(feature1DimArr, featureArrSize, PCADim,
-				spConfigGetSplitMethod(config, configMsg));
+			spConfigGetSplitMethod(config, configMsg));
 
-
+		// TODO free 2d array
 		for (i = 0; i < featureArrSize; i++) {
 			spPointDestroy(feature1DimArr[i]);
 		}
@@ -250,6 +255,7 @@ int main(int argc, char **argv) {
 		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
 		features = imgProc->getImageFeatures(query, numOfImages, &numOfQueryFeatures);
+		//printf("%d", spPointGetDimension(features[3]));
 
 		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
