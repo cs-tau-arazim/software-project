@@ -42,7 +42,7 @@ int main(int argc, char **argv) {
 
 	// TODO check if config file received through cmd
 	if (argc != 2) {
-		printf("ERROR");
+		printf("ERROR\n");
 		return 0;
 	}
 
