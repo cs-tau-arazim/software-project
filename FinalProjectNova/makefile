@@ -6,8 +6,8 @@ OBJS = main.o main_aux.o SPImageProc.o SPConfig.o SPLogger.o KDTreeNode.o KDArra
 EXEC = SPCBIR
 INCLUDEPATH=/usr/local/lib/opencv-3.1.0/include/
 LIBPATH=/usr/local/lib/opencv-3.1.0/lib/
-LIBS= -lopencv_core -lopencv_features2d -lopencv_imgcodecs -lopencv_imgproc\
--lopencv_highgui -lopencv_flann -lopencv_cudaarithm -lopencv_xfeatures2d
+LIBS=-lopencv_xfeatures2d -lopencv_features2d \
+-lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc -lopencv_core
 
 
 CPP_COMP_FLAG = -std=c++11 -Wall -Wextra \
