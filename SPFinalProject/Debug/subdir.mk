@@ -18,6 +18,19 @@ C_SRCS += \
 ../SPPoint.c \
 ../main_aux.c 
 
+O_SRCS += \
+../KDArray.o \
+../KDTreeNode.o \
+../SPBPriorityQueue.o \
+../SPConfig.o \
+../SPImageProc.o \
+../SPList.o \
+../SPListElement.o \
+../SPLogger.o \
+../SPPoint.o \
+../main.o \
+../main_aux.o 
+
 OBJS += \
 ./KDArray.o \
 ./KDTreeNode.o \
