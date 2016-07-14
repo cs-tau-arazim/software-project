@@ -45,9 +45,11 @@ KDArray kdArrayInit(SPPoint* arr, int size, int dim) {
 	newKDArray->data = (int*) malloc(size * dim * sizeof(int));
 	if (newKDArray->data == NULL )
 		return NULL ;
+
 	newKDArray->points = (SPPoint*) malloc(size * sizeof(SPPoint));
 	if (newKDArray->points == NULL )
 		return NULL ;
+
 	for (i = 0; i < size; i++) {
 		newKDArray->points[i] = spPointCopy(arr[i]);
 		if (newKDArray->points[i] == NULL )
@@ -217,7 +219,7 @@ void kdArraySplit(KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //TO
 
 	free(mapR);
 
-	kdArrayDestroy(kdArr);
+
 }
 
 void kdArrayDestroy(KDArray kdArr) {

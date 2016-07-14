@@ -18,7 +18,6 @@ extern "C" {
 
 int main(int argc, char **argv) {
 
-
 	// Declare all variables
 
 	SP_CONFIG_MSG * configMsg;
@@ -37,19 +36,13 @@ int main(int argc, char **argv) {
 	int* numOfFeatures;
 	int featureArrSize = 0;
 
-	printf("Hello World\n");
-
-	// TODO check if config file received through cmd
 	if (argc != 2) {
 		printf("ERROR\n");
 		return 0;
 	}
 
-	printf("%d, %s\n",__LINE__, __func__); //TODO remove
-
 	// create SPConfig element
 	configMsg = (SP_CONFIG_MSG *) malloc(sizeof(SP_CONFIG_MSG));
-	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
 	SPConfig config = spConfigCreate(argv[1], configMsg);
 
@@ -65,6 +58,11 @@ int main(int argc, char **argv) {
 	PCADim = spConfigGetPCADim(config, configMsg);
 	imgProc = new sp::ImageProc(config);
 
+
+	featureArr = (SPPoint**) malloc(sizeof(SPPoint*) * numOfImages);
+	numOfFeatures = (int*) malloc(sizeof(int) *numOfImages);
+
+
 	// Check extraction mode
 	if (spConfigIsExtractionMode(config, configMsg) == true) {
 
@@ -72,21 +70,17 @@ int main(int argc, char **argv) {
 		printf("time to extract! :)\n");
 		printConfig(config);
 
-
-		printf("%d, %s\n", __LINE__, __func__); //TODO remove
-
-		featureArr = (SPPoint**) malloc(sizeof(SPPoint*) * numOfImages);
-		numOfFeatures = (int*) malloc(sizeof(int) * numOfImages);
-
 		// For all images:
-		for (i = 1; i < numOfImages; i++) { // TODO change to 0!!!!!!!!!
+		for (i = 0; i < numOfImages; i++) {
 
 			// Create image path
 			spConfigGetImagePath(imagePath, config, i);
 			// Get image features
-			featureArr[i] = imgProc->getImageFeatures(imagePath, i,
-					&(numOfFeatures[i]));
+			featureArr[i] = imgProc->getImageFeatures(imagePath, i, &(numOfFeatures[i]));
 
+			printf("path: %s\n", imagePath);
+			k = spPointGetAxisCoor(featureArr[i][0],0);
+			printf("coor = %d\n",k);
 			// Increase array size
 			featureArrSize += numOfFeatures[i];
 
@@ -99,7 +93,7 @@ int main(int argc, char **argv) {
 			printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
 			// Print all features to file
-			for (j = 1; j < numOfFeatures[i]; j++) {
+			for (j = 0; j < numOfFeatures[i]; j++) {
 				for (k = 0; k < PCADim; k++) {
 					fprintf(imageFeatureFile, "%lf,",
 							spPointGetAxisCoor(featureArr[i][j], k));
@@ -127,48 +121,21 @@ int main(int argc, char **argv) {
 				spConfigGetSplitMethod(config, configMsg));
 
 
-		for (i = 0; i < featureArrSize; i++) {
-			spPointDestroy(feature1DimArr[i]);
-		}
-		free(feature1DimArr);
-
-
-		/* TODO free
-		for (i = 1; i < numOfImages; i++) {
-			for (j = 0; j < numOfFeatures[i]; i++)
-				spPointDestroy(featureArr[i][j]);
-		}
-
-		free(numOfFeatures);
-		*/
-
-		printf("%d, %s\n", __LINE__, __func__); //TODO remove
-
-		/* TODO free
-		for (i = 0; i < numOfImages; i++) {
-			free(featureArr[i]);
-		}
-		free(featureArr);
-		*/
 		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
 
 	}
 
 	// Non-Extraction Mode- here we need to create the KD-Tree from the feature files.
-
 	else {
 		printf("YAY");
 		// start
 		printf("time to NOT extract! :)\n");
 		printConfig(config);
 
-		featureArr = (SPPoint**) malloc(sizeof(SPPoint*) * numOfImages);
-		numOfFeatures = (int*) malloc(sizeof(int) * numOfImages);
-
-
 		// For all images:
-		for (i = 1; i < numOfImages; i++) { // TODO change to 0!!!!!!!!!
+		tempDoubleArr = (double*) malloc(sizeof(double) * PCADim);
+		for (i = 0; i < numOfImages; i++) { // TODO change to 0!!!!!!!!!
 			int imIndex;
 			// Find feature file with data
 			spConfigGetImageFeatPath(imageFeaturePath, config, i);
@@ -185,29 +152,26 @@ int main(int argc, char **argv) {
 			featureArrSize += numOfFeatures[i];
 
 			// create array of points
-			featureArr[i] = (SPPoint*) malloc(sizeof(SPPoint) *  numOfFeatures[i]);
+			featureArr[i] = (SPPoint*) malloc(sizeof(SPPoint) * numOfFeatures[i]);
 
-			tempDoubleArr = (double*) malloc(sizeof(double)*PCADim);
+
 			// Get all features from file
 			for (j = 0; j < numOfFeatures[i]; j++) {
 				for (k = 0; k < PCADim; k++) {
-					fscanf(imageFeatureFile, "%lf,",&(tempDoubleArr[k]));
+					fscanf(imageFeatureFile, "%lf,", &(tempDoubleArr[k]));
 				}
 				fscanf(imageFeatureFile, "\n");
 				featureArr[i][j] = spPointCreate(tempDoubleArr, PCADim, i);
-				printf("%d, ", spPointGetDimension(featureArr[i][j]));
 			}
 			fclose(imageFeatureFile);
-			free(tempDoubleArr);
 		}
-
-
+		free(tempDoubleArr);
 
 		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
 		feature1DimArr = (SPPoint*) malloc(featureArrSize * sizeof(SPPoint));
 		k = 0;
-		for (i = 1; i < numOfImages; i++) {
+		for (i = 0; i < numOfImages; i++) {
 			for (j = 0; j < numOfFeatures[i]; j++) {
 				feature1DimArr[k] = spPointCopy(featureArr[i][j]);
 				k++;
@@ -218,14 +182,27 @@ int main(int argc, char **argv) {
 
 		// Now we just need to create the KDTree.
 		KDTree = kdTreeInit(feature1DimArr, featureArrSize, PCADim,
-			spConfigGetSplitMethod(config, configMsg));
-
-		// TODO free 2d array
-		for (i = 0; i < featureArrSize; i++) {
-			spPointDestroy(feature1DimArr[i]);
-		}
-		free(feature1DimArr);
+				spConfigGetSplitMethod(config, configMsg));
 	}
+
+
+	for (i = 0; i < numOfImages; i++) {
+		for (j = 0; j < numOfFeatures[i]; j++) {
+			spPointDestroy(featureArr[i][j]);
+		}
+	}
+	free(numOfFeatures);
+
+	for (i = 0; i < numOfImages; i++) {
+		free(featureArr[i]);
+	}
+	free(featureArr);
+
+	for (i = 0; i < featureArrSize; i++) {
+		spPointDestroy(feature1DimArr[i]);
+	}
+	free(feature1DimArr);
+
 
 	// Enter the main loop
 	while (true) {
@@ -243,9 +220,7 @@ int main(int argc, char **argv) {
 		strtok(query, "\n");
 
 		if (strcmp("#", query) == 0) {
-			printf(EXITING);
-			// TODO free all mem
-			return 0;
+			break;
 		}
 		printf("%s", query);
 		numOfImages = spConfigGetNumOfImages(config, configMsg);
@@ -254,12 +229,14 @@ int main(int argc, char **argv) {
 
 		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
-		features = imgProc->getImageFeatures(query, numOfImages, &numOfQueryFeatures);
+		features = imgProc->getImageFeatures(query, numOfImages,
+				&numOfQueryFeatures);
 		//printf("%d", spPointGetDimension(features[3]));
 
 		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
-		closestImages = bestImages(numOfBestImages, spKNN, KDTree, features, numOfQueryFeatures, numOfImages);
+		closestImages = bestImages(numOfBestImages, spKNN, KDTree, features,
+				numOfQueryFeatures, numOfImages);
 
 		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
@@ -285,9 +262,19 @@ int main(int argc, char **argv) {
 
 		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
+		for (i = 0 ; i< numOfQueryFeatures ; i++)
+		{
+			spPointDestroy(features[i]);
+		}
 		free(features);
 		free(closestImages);
 	}
+
+	printf(EXITING);
+	kdTreeNodeDestroy(KDTree);
+	free(configMsg);
+	free(config);
+	delete imgProc;
 	return 0;
 
 }

@@ -126,6 +126,12 @@ int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* featur
 
 	printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
+	for (j = 0 ; j < numOfImages ; j++)
+	{
+		free(closeFeaturesCount[j]);
+	}
+	free(closeFeaturesCount);
+
 	return bestImages;
 
 }
