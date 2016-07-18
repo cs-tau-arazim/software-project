@@ -51,7 +51,7 @@ void sp::ImageProc::initFromConfig(const SPConfig config) {
 		spLoggerPrintError(NUM_OF_FEATS_ERROR, __FILE__, __func__, __LINE__);
 		throw Exception();
 	}
-	minimalGui = spConfigMinialGui(config, &msg);
+	minimalGui = spConfigMinimalGui(config, &msg);
 	if (msg != SP_CONFIG_SUCCESS) {
 		spLoggerPrintError(MINIMAL_GUI_ERROR, __FILE__, __func__, __LINE__);
 		throw Exception();
@@ -105,9 +105,7 @@ void sp::ImageProc::preprocess(const SPConfig config) {
 		char pcaPath[STRING_LENGTH + 1] = { '\0' };
 		getImagesMat(images, config);
 		getFeatures(images, features);
-		printf("%d, %s, %d\n",__LINE__, __func__, pcaDim); //TODO remove
 		pca = PCA(features, Mat(), CV_PCA_DATA_AS_ROW, pcaDim);
-		printf("%d, %s\n",__LINE__, __func__); //TODO remove
 		if (spConfigGetPCAPath(pcaPath, config) != SP_CONFIG_SUCCESS) {
 			spLoggerPrintError(PCA_FILE_NOT_RESOLVED, __FILE__, __func__,
 			__LINE__);
@@ -155,9 +153,7 @@ sp::ImageProc::ImageProc(const SPConfig config) {
 		bool preprocMode = false;
 		initFromConfig(config);
 		if ((preprocMode = spConfigIsExtractionMode(config, &msg))) {
-			printf("%d, %s\n",__LINE__, __func__); //TODO remove
 			preprocess(config);
-			printf("%d, %s\n",__LINE__, __func__); //TODO remove
 		} else {
 			initPCAFromFile(config);
 		}
@@ -167,7 +163,8 @@ sp::ImageProc::ImageProc(const SPConfig config) {
 	}
 }
 
-SPPoint* sp::ImageProc::getImageFeatures(const char* imagePath,int index,int* numOfFeats) {
+SPPoint* sp::ImageProc::getImageFeatures(const char* imagePath, int index,
+		int* numOfFeats) {
 	vector<KeyPoint> keypoints;
 	Mat descriptor, img, points;
 	double* pcaSift = NULL;

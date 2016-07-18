@@ -37,8 +37,6 @@ KDTreeNode kdTreeInit(SPPoint* arr, int size, int dim, int splitMethod) {
 	mat = kdArrayInit(arr, size, dim);
 
 	kdt = constructTree(mat, size, dim, splitMethod, dim);
-	printf("%d, %s\n", __LINE__, __func__); //TODO remove
-
 	kdArrayDestroy(mat);
 	return kdt;
 
