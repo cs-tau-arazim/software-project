@@ -324,7 +324,7 @@ int setSpNumOfImages(SPConfig config, char * bufferParam) {
 
 int setSpPCADimension(SPConfig config, char * bufferParam) {
 	int num = atoi(bufferParam);
-	if (num < 10 || num > 128)
+	if (num < 10 || num > 28)
 		return 1;
 
 	config->spPCADimension = num;

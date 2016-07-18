@@ -5,7 +5,7 @@
 #include "SPImageProc.h"
 
 #define ENTER_QUERY "Please enter an image path:\n"
-#define EXITING "Exiting..."
+#define EXITING "Exiting...\n"
 #define BEST_CANDIDATES "Best candidates for - %s - are:\n"
 #define LINE_LENGTH 1024
 
@@ -126,7 +126,7 @@ int main(int argc, char **argv) {
 	else {
 		// start
 		printf("time to NOT extract! :)\n"); // TODO REMOVE
-		printConfig(config);
+		//printConfig(config); //TODO REMOVE
 
 		// For all images:
 		tempDoubleArr = (double*) malloc(sizeof(double) * PCADim);
@@ -203,11 +203,13 @@ int main(int argc, char **argv) {
 		printf(ENTER_QUERY);
 		fgets(query, LINE_LENGTH, stdin);
 
-		strtok(query, "\n");
-
-		if (strcmp("#", query) == 0) {
+		if (strcmp("\n", query) == 0) {
 			break;
 		}
+
+		strtok(query, "\n");
+
+
 		numOfImages = spConfigGetNumOfImages(config, configMsg);
 		spKNN = spConfigGetSPKNN(config, configMsg);
 		numOfBestImages = spConfigGetNumOfSimilarImages(config, configMsg);
