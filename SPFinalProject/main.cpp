@@ -264,6 +264,7 @@ int main(int argc, char **argv) {
 
 		for (i = 0 ; i< numOfQueryFeatures ; i++)
 		{
+			printf("feat num: %d\n", i);
 			spPointDestroy(features[i]);
 		}
 		free(features);

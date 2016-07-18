@@ -39,7 +39,7 @@ SPPoint spPointCreate(double* data, int dim, int index)
 {
 	double* newData;
 	SPPoint p;
-	if (dim <= 0 || index <= 0 || data == NULL) // check edge cases
+	if (dim <= 0 || index < 0 || data == NULL) // check edge cases
 		return NULL;
 
 	newData = (double*)malloc(dim*sizeof(double)); // allocate data
