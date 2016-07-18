@@ -62,8 +62,6 @@ int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* featur
 	if (closeFeaturesCount == NULL)
 		return NULL;
 
-	printf("%d, %s\n", __LINE__, __func__); //TODO remove
-
 	for (j = 0 ; j < numOfImages ; j++)
 	{
 		closeFeaturesCount[j] = (int*) malloc (2*sizeof (int));
@@ -74,57 +72,36 @@ int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* featur
 		closeFeaturesCount[j][1] = j;
 	}
 
-
-	printf("%d, %s\n", __LINE__, __func__); //TODO remove
-
 	for (i = 0 ; i < numOfFeatures ; i++)
 	{
 		bpq = spBPQueueCreate(spKNN);
 		if (bpq == NULL)
 			return NULL;
 
-		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 		nearestNeighbors(root, bpq, features[i]);
-		printf("%d, %s, %d\n", __LINE__, __func__, spKNN); //TODO remove
 		for (j = 0 ; j < spKNN ; j++)
 		{
-			printf("%d, %s\n", __LINE__, __func__); //TODO remove
 			int index;
 			SPListElement curr = spBPQueuePeek(bpq);
-			printf("%d, %s\n", __LINE__, __func__); //TODO remove
 			index = spListElementGetIndex(curr);
-			printf("%d, %s, %d\n", __LINE__, __func__, index); //TODO remove
 			closeFeaturesCount[index][0]++;
-			printf("%d, %s\n", __LINE__, __func__); //TODO remove
 			spBPQueueDequeue(bpq);
-			printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
 			spListElementDestroy(curr);
-			printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
 		}
-		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
 		spBPQueueDestroy(bpq);
-		printf("%d, %s\n", __LINE__, __func__); //TODO remove
-
 	}
-
-	printf("%d, %s\n", __LINE__, __func__); //TODO remove
-
 
 	qsort(closeFeaturesCount, numOfImages, sizeof(closeFeaturesCount[0]),cmpCounts );
 
 	bestImages = (int*)malloc(numOfBestImages*sizeof(int));
 
-	printf("%d, %s\n", __LINE__, __func__); //TODO remove
-
 	for(i = 0 ; i < numOfBestImages ; i++)
 	{
 		bestImages[i] = closeFeaturesCount[i][1];
 	}
-
-	printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
 	for (j = 0 ; j < numOfImages ; j++)
 	{
@@ -140,7 +117,7 @@ int cmpCounts (const void * point1, const void * point2)
 {
 	int *p1 = *(int **)point1;
 	int *p2 = *(int **)point2;
-	return -(p1[0] - p2[0]); // TODO check if inverse
+	return -(p1[0] - p2[0]);
 }
 
 void arrayTest ()

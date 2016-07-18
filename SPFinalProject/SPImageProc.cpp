@@ -105,9 +105,7 @@ void sp::ImageProc::preprocess(const SPConfig config) {
 		char pcaPath[STRING_LENGTH + 1] = { '\0' };
 		getImagesMat(images, config);
 		getFeatures(images, features);
-		printf("%d, %s, %d\n",__LINE__, __func__, pcaDim); //TODO remove
 		pca = PCA(features, Mat(), CV_PCA_DATA_AS_ROW, pcaDim);
-		printf("%d, %s\n",__LINE__, __func__); //TODO remove
 		if (spConfigGetPCAPath(pcaPath, config) != SP_CONFIG_SUCCESS) {
 			spLoggerPrintError(PCA_FILE_NOT_RESOLVED, __FILE__, __func__,
 			__LINE__);
@@ -155,9 +153,7 @@ sp::ImageProc::ImageProc(const SPConfig config) {
 		bool preprocMode = false;
 		initFromConfig(config);
 		if ((preprocMode = spConfigIsExtractionMode(config, &msg))) {
-			printf("%d, %s\n",__LINE__, __func__); //TODO remove
 			preprocess(config);
-			printf("%d, %s\n",__LINE__, __func__); //TODO remove
 		} else {
 			initPCAFromFile(config);
 		}
