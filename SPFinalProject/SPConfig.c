@@ -107,14 +107,20 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 
 		strtok(bufferLine, "\n");
 
+		// check vaild form
 		res = checkValid(bufferLine, bufferVar, bufferParam);
 
+		// invalid form
 		if (res == 2) {
 			(*msg) = SP_CONFIG_INVALID_STRING;
 			free(config);
+			printf("Error in line #%d", lineNum);
 			return NULL ;
 		}
+
 		// if (res == 1) , ignore comment and move on
+
+		// vaild form
 		if (res == 0) {
 			// compare with all variables
 			for (i = 0; i < varArraySize; i++) {

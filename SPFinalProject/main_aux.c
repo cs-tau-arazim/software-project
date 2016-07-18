@@ -10,15 +10,57 @@
 
 
 int cmpCounts (const void * point1, const void * point2);
+
+
+/*
+ * Helper function-
+ * receives argc and argv directly from main, and sets configPath as appropriate path,
+ * based on command line arguments. returns 0 on success, 1 on fail (invalid command line).
+ */
+int getConfigPath(int argc, char** argv, char * configPath) {
+	// check cases
+	if (argc == 1) {
+			strcpy(configPath, "spcbir.config");
+			return 0;
+	}
+	else if (argc != 3) {
+		printf("Invalid command line: use -c <config_filename>");
+		return 1;
+	}
+	else {
+		if (strcmp(argv[1],"-c") != 0) {
+			printf("Invalid command line: use -c <config_filename>");
+			return 1;
+		}
+		else {
+			strcpy(configPath, argv[2]);
+			return 0;
+		}
+	}
+}
+
+
+
+
+
 /**
  * Helper function to print the appropriate message
  * for each error received by spConfigCreate.
  */
-void printErrorType(SP_CONFIG_MSG * configMsg) {
-	if ((*configMsg) == SP_CONFIG_INVALID_ARGUMENT)
-		printf("Message: No configuration file");
-	if ((*configMsg) == SP_CONFIG_CANNOT_OPEN_FILE)
-		printf("Message: Invalid configuration file");
+void printConfigError(SP_CONFIG_MSG * configMsg, char * configPath) {
+	// (*configMsg) == SP_CONFIG_INVALID_ARGUMENT cannot happen in this code's control flow.
+
+	// File failure
+	if ((*configMsg) == SP_CONFIG_CANNOT_OPEN_FILE) {
+		// check which file we failed to open
+		if (strcmp(configPath, "spcbir.config") == 0) {
+			printf("The default configuration file spcbir.config couldn’t be opened");
+		}
+		else {
+			printf("The configuration file %s couldn’t be opened", configPath);
+		}
+	}
+
 	if ((*configMsg) == SP_CONFIG_ALLOC_FAIL)
 		printf("Message: Memory allocation failure occurred");
 

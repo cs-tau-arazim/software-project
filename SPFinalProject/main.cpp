@@ -7,14 +7,13 @@
 #define ENTER_QUERY "Please enter an image path:\n"
 #define EXITING "Exiting..."
 #define BEST_CANDIDATES "Best candidates for - %s - are:\n"
+#define LINE_LENGTH 1024
+
 extern "C" {
 #include "main_aux.h"
 }
 
-#define LINE_LENGTH 1024
 
-// For Debbuging:
-// 	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
 int main(int argc, char **argv) {
 
@@ -29,6 +28,7 @@ int main(int argc, char **argv) {
 	int i, j, k, numOfImages;
 	int PCADim;
 	double * tempDoubleArr;
+	char configPath[LINE_LENGTH];
 	char imagePath[LINE_LENGTH];
 	char imageFeaturePath[LINE_LENGTH];
 	FILE * imageFeatureFile;
@@ -36,32 +36,39 @@ int main(int argc, char **argv) {
 	int* numOfFeatures;
 	int featureArrSize = 0;
 
-	if (argc != 2) {
-		printf("ERROR\n");
+	// ***********************
+	// Part 1 - Configuration
+	// ***********************
+
+	// Get config path and check for failure
+	if (getConfigPath(argc, argv, configPath)) {
+		printf("Invalid command line : use -c <config_filename>");
 		return 0;
 	}
 
 	// create SPConfig element
 	configMsg = (SP_CONFIG_MSG *) malloc(sizeof(SP_CONFIG_MSG));
 
-	SPConfig config = spConfigCreate(argv[1], configMsg);
+	SPConfig config = spConfigCreate(configPath, configMsg);
 
 	// Check for errors
 	if (config == NULL) {
-		printf("File: %s\n", argv[1]);
-		printErrorType(configMsg);
+		printf("Error!"); // TODO REMOVE
+		printConfigError(configMsg, configPath);
 		free(configMsg);
 		return 0;
 	}
+
+	// ***********************
+	// Part 2 - Extraction
+	// ***********************
 
 	numOfImages = spConfigGetNumOfImages(config, configMsg);
 	PCADim = spConfigGetPCADim(config, configMsg);
 	imgProc = new sp::ImageProc(config);
 
-
 	featureArr = (SPPoint**) malloc(sizeof(SPPoint*) * numOfImages);
-	numOfFeatures = (int*) malloc(sizeof(int) *numOfImages);
-
+	numOfFeatures = (int*) malloc(sizeof(int) * numOfImages);
 
 	// Check extraction mode
 	if (spConfigIsExtractionMode(config, configMsg) == true) {
@@ -76,9 +83,10 @@ int main(int argc, char **argv) {
 			// Create image path
 			spConfigGetImagePath(imagePath, config, i);
 			// Get image features
-			featureArr[i] = imgProc->getImageFeatures(imagePath, i, &(numOfFeatures[i]));
+			featureArr[i] = imgProc->getImageFeatures(imagePath, i,
+					&(numOfFeatures[i]));
 
-			k = spPointGetAxisCoor(featureArr[i][0],0);
+			k = spPointGetAxisCoor(featureArr[i][0], 0);
 
 			// Increase array size
 			featureArrSize += numOfFeatures[i];
@@ -88,7 +96,6 @@ int main(int argc, char **argv) {
 			imageFeatureFile = fopen(imageFeaturePath, "w");
 			fprintf(imageFeatureFile, "%d\n", i);
 			fprintf(imageFeatureFile, "%d\n", numOfFeatures[i]);
-
 
 			// Print all features to file
 			for (j = 0; j < numOfFeatures[i]; j++) {
@@ -139,8 +146,8 @@ int main(int argc, char **argv) {
 			featureArrSize += numOfFeatures[i];
 
 			// create array of points
-			featureArr[i] = (SPPoint*) malloc(sizeof(SPPoint) * numOfFeatures[i]);
-
+			featureArr[i] = (SPPoint*) malloc(
+					sizeof(SPPoint) * numOfFeatures[i]);
 
 			// Get all features from file
 			for (j = 0; j < numOfFeatures[i]; j++) {
@@ -168,7 +175,6 @@ int main(int argc, char **argv) {
 				spConfigGetSplitMethod(config, configMsg));
 	}
 
-
 	for (i = 0; i < numOfImages; i++) {
 		for (j = 0; j < numOfFeatures[i]; j++) {
 			spPointDestroy(featureArr[i][j]);
@@ -185,7 +191,6 @@ int main(int argc, char **argv) {
 		spPointDestroy(feature1DimArr[i]);
 	}
 	free(feature1DimArr);
-
 
 	// Enter the main loop
 	while (true) {
@@ -215,7 +220,6 @@ int main(int argc, char **argv) {
 		closestImages = bestImages(numOfBestImages, spKNN, KDTree, features,
 				numOfQueryFeatures, numOfImages);
 
-
 		minimalGui = spConfigMinimalGui(config, configMsg);
 
 		if (!minimalGui) {
@@ -237,9 +241,7 @@ int main(int argc, char **argv) {
 			}
 		}
 
-
-		for (i = 0 ; i< numOfQueryFeatures ; i++)
-		{
+		for (i = 0; i < numOfQueryFeatures; i++) {
 			spPointDestroy(features[i]);
 		}
 		free(features);

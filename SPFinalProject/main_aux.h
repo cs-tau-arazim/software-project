@@ -14,11 +14,20 @@
 
 #include "KDTreeNode.h"
 #include "SPConfig.h"
+
+/*
+ * Helper function-
+ * receives argc and argv directly from main, and sets configPath as appropriate path,
+ * based on command line arguments. returns 0 on success, 1 on fail (invalid command line).
+ */
+int getConfigPath(int argc, char** argv, char * configPath);
+
+
 /**
  * Helper function to print the appropriate message
  * for each error received by spConfigCreate.
  */
-void printErrorType(SP_CONFIG_MSG * configMsg);
+void printConfigError(SP_CONFIG_MSG * configMsg, char * configPath);
 
 //TODO doc
 int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* features, int numOfFeatures, int numOfImages);
