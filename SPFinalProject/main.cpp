@@ -240,7 +240,7 @@ int main(int argc, char **argv) {
 
 		printf("%d, %s\n", __LINE__, __func__); //TODO remove
 
-		minimalGui = spConfigMinialGui(config, configMsg);
+		minimalGui = spConfigMinimalGui(config, configMsg);
 
 		if (!minimalGui) {
 			int i;

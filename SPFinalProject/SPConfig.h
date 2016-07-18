@@ -128,7 +128,7 @@ bool spConfigIsExtractionMode(const SPConfig config, SP_CONFIG_MSG* msg);
  * - SP_CONFIG_INVALID_ARGUMENT - if config == NULL
  * - SP_CONFIG_SUCCESS - in case of success
  */
-bool spConfigMinialGui(const SPConfig config, SP_CONFIG_MSG* msg);
+bool spConfigMinimalGui(const SPConfig config, SP_CONFIG_MSG* msg);
 
 /*
  * Returns the number of images set in the configuration file, i.e the value
@@ -274,7 +274,6 @@ SP_CONFIG_MSG spConfigGetImageFeatPath(char* imagePath, const SPConfig config,
 		int index);
 
 
-
 /**
  * The function stores in pcaPath the full path of the pca file.
  * For example given the values of:
@@ -287,7 +286,6 @@ SP_CONFIG_MSG spConfigGetImageFeatPath(char* imagePath, const SPConfig config,
  *
  * @param imagePath - an address to store the result in, it must contain enough space.
  * @param config - the configuration structure
- * @param index - the index of the image.
  * @return
  *  - SP_CONFIG_INVALID_ARGUMENT - if imagePath == NULL or config == NULL
  *  - SP_CONFIG_SUCCESS - in case of success
