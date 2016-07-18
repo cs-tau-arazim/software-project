@@ -18,7 +18,6 @@ extern "C" {
 int main(int argc, char **argv) {
 
 	// Declare all variables
-
 	SP_CONFIG_MSG * configMsg;
 	SPPoint ** featureArr;
 	SPPoint * feature1DimArr;
@@ -42,7 +41,7 @@ int main(int argc, char **argv) {
 
 	// Get config path and check for failure
 	if (getConfigPath(argc, argv, configPath)) {
-		printf("Invalid command line : use -c <config_filename>");
+		printf("Invalid command line : use -c <config_filename>\n");
 		return 0;
 	}
 
@@ -53,7 +52,7 @@ int main(int argc, char **argv) {
 
 	// Check for errors
 	if (config == NULL) {
-		printf("Error!"); // TODO REMOVE
+		printf("Error!\n"); // TODO REMOVE
 		printConfigError(configMsg, configPath);
 		free(configMsg);
 		return 0;

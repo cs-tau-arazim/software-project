@@ -61,7 +61,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 	int res = 0;
 	int i;
 	int lineNum = 0;
-	int cmpRes;
+	bool cmpRes = false;
 	int assignRes = 0;
 	FILE * configFilePtr;
 	char bufferVar[LINE_LENGTH];
@@ -101,6 +101,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 
 	// Set all default values at the beginning
 	setDefaultValues(config);
+	printf("reached %s, line %d\n", __func__, __LINE__); // TODO REM
 
 	// Iterate the file's lines
 	while (fgets(bufferLine, LINE_LENGTH, configFilePtr) != NULL ) {
@@ -114,7 +115,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 		if (res == 2) {
 			(*msg) = SP_CONFIG_INVALID_STRING;
 			free(config);
-			printf("Error in line #%d", lineNum);
+			printf("FORM Error in line #%d\n", lineNum);
 			return NULL ;
 		}
 
@@ -122,12 +123,13 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 
 		// vaild form
 		if (res == 0) {
+			cmpRes = false; // flag for whether we found a match
 			// compare with all variables
 			for (i = 0; i < varArraySize; i++) {
-				cmpRes = strcmp(bufferVar, varArray[i]);
 				// find match
-				if (cmpRes == 0) {
-					// update boolean flag
+				if (strcmp(bufferVar, varArray[i]) == 0) {
+					// update boolean flags
+					cmpRes = true;
 					if (i <= 3)
 						setArray[i] = true;
 
@@ -164,7 +166,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 					// Check if succeeded
 					if (assignRes != 0) {
 						// print line nubmer
-						printf("Error in line #%d", lineNum);
+						printf("Error in line #%d\n", lineNum);
 						// Integer error
 						if (i == 3 || i == 4 || i == 6 || i == 8 || i == 10
 								|| i == 12) {
@@ -179,6 +181,13 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 					}
 					break;
 				}
+			}
+			// if no match was found
+			if (cmpRes == false) {
+				printf("Error in line #%d\n", lineNum);
+				(*msg) = SP_CONFIG_INVALID_STRING;
+				free(config);
+				return NULL ;
 			}
 		}
 		lineNum++;
@@ -240,29 +249,35 @@ int checkValid(char * bufferLine, char * var, char * param) {
 	char varIn[LINE_LENGTH];
 	char paramIn[LINE_LENGTH];
 	char * endCheck;
+	char * lineCut;
 	const char split[3] = " =\t";
 
+	// Empty line
 	if (bufferLine == NULL || strcmp(bufferLine, "\n") == 0)
 		return 1;
 
 	// Get strings
-	strcpy(varIn, strtok(bufferLine, split));
-	strcpy(paramIn, strtok(NULL, split));
-	endCheck = (char*) strtok(NULL, split);
 
-	if (varIn == NULL )
-		return 1;
+	if ((lineCut = strtok(bufferLine, split)) == NULL)
+		return 1; // empty line
+	else
+		strcpy(varIn, lineCut);
 
 	// Check if comment
 	if (varIn[0] == '#')
 		return 1;
 
+	// If not enough strings, should error
+	if ((lineCut = strtok(NULL, split)) == NULL)
+		return 2; // invalid line form
+	else
+		strcpy(paramIn, lineCut);
+
+	endCheck = (char*) strtok(NULL, split);
+
+
 	// If there are more strings, should error
 	if (endCheck != NULL )
-		return 2;
-
-	// If not enough strings, should error
-	if (paramIn == NULL )
 		return 2;
 
 	// Else, set pointers var and param and then return success
