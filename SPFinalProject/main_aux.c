@@ -161,3 +161,27 @@ void treeTest() {
 	printTree(tree);
 
 }
+
+void free2dPoints (SPPoint ** points, int size, int * rowsSizes)
+{
+	int i,j;
+	for (i = 0 ; i < size ; i ++)
+	{
+		for (j = 0 ; j < rowsSizes[i] ; j++)
+		{
+			spPointDestroy(points[i][j]);
+		}
+		free(points[i]);
+	}
+	free(points);
+}
+
+void free1dPoints (SPPoint * points, int size)
+{
+	int i;
+	for (i = 0 ; i < size ; i ++)
+	{
+		spPointDestroy(points[i]);
+	}
+	free(points);
+}

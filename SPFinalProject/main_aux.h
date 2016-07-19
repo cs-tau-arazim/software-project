@@ -27,4 +27,8 @@ void arrayTest();
 
 void treeTest ();
 
+void free2dPoints (SPPoint ** points, int size, int * rowsSizes);
+
+void free1dPoints (SPPoint * points, int size);
+
 #endif /* MAIN_AUX_H_ */
