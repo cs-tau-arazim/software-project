@@ -5,12 +5,18 @@
 
 #define LINE_LENGTH 1024
 
-/*
- * SPConfig.c
- *
- *  Created on: Jun 27, 2016
- *      Author: Gal
- */
+#define MSG_DIR_NOT_SET "Message: Parameter spImagesDirectory is not set\n"
+#define MSG_PREFIX_NOT_SET "Message: Parameter spImagesPrefix is not set\n"
+#define MSG_SUFFIX_NOT_SET "Message: Parameter spImagesSuffix is not set\n"
+#define MSG_NUM_NOT_SET "Message: Parameter spNumOfImages is not set\n"
+#define MSG_INVALID_LINE "Message: Invalid configuration Line\n"
+#define MSG_INVALID_VALUE "Message: Invalid value - constraint not met\n"
+
+#define INVALID_FILENAME "Error: Invalid filename\n"
+#define FILE_OPEN_FAIL "The configuration file %s couldn't be opened\n"
+#define DEFAULT_FILE_OPEN_FAIL "The default configuration file spcbir.config couldn't be opened\n"
+#define ALLOCATION_ERROR "Allocation Error - failed to allocate memory for configuration file\n"
+
 
 struct sp_config_t {
 	char spImagesDirectory[LINE_LENGTH];
@@ -59,43 +65,39 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 
 	// Define variables
 	int res = 0;
-	int i;
-	int lineNum = 0;
-	int cmpRes;
-	int assignRes = 0;
+	int lineNum = 1;
 	FILE * configFilePtr;
-	char bufferVar[LINE_LENGTH];
-	char bufferParam[LINE_LENGTH];
 	char bufferLine[LINE_LENGTH];
-
-	// Array for scanning the input and comparing with possible values
-	const char * const varArray[] = { "spImagesDirectory", "spImagesPrefix",
-			"spImagesSuffix", "spNumOfImages", "spPCADimension",
-			"spPCAFilename", "spNumOfFeatures", "spExtractionMode",
-			"spNumOfSimilarImages", "spKDTreeSplitMethod", "spKNN",
-			"spMinimalGUI", "spLoggerLevel", "spLoggerFilename" };
 
 	// Array for which variables were set
 	bool setArray[] = { false, false, false, false };
 
-	const int varArraySize = 14;
-	assert(msg != NULL);
 	// assertion
+	assert(msg != NULL);
 
+	// Edge cases
 	if (filename == NULL ) {
 		(*msg) = SP_CONFIG_INVALID_ARGUMENT;
+		printf(INVALID_FILENAME);
 		return NULL ;
 	}
 
 	configFilePtr = fopen(filename, "r");
-	if (configFilePtr == NULL ) { // edge case
+	if (configFilePtr == NULL ) {
 		(*msg) = SP_CONFIG_CANNOT_OPEN_FILE;
+		if (strcmp(filename, "spcbir.config") == 0)
+			printf(DEFAULT_FILE_OPEN_FAIL);
+		else
+			printf(FILE_OPEN_FAIL, filename);
 		return NULL ;
 	}
 
+	// Allocate Config
 	SPConfig config = (SPConfig) malloc(sizeof(*config));
 	if (config == NULL ) { // Allocation failure
 		(*msg) = SP_CONFIG_ALLOC_FAIL;
+		printf(ALLOCATION_ERROR);
+		fclose(configFilePtr);
 		return NULL ;
 	}
 
@@ -104,76 +106,16 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 
 	// Iterate the file's lines
 	while (fgets(bufferLine, LINE_LENGTH, configFilePtr) != NULL ) {
-
 		strtok(bufferLine, "\n");
+		// Get the relevant info
+		res = extractInfoFromLine(config, msg, bufferLine, lineNum, filename,
+				setArray);
+		// if error occured
 
-		res = checkValid(bufferLine, bufferVar, bufferParam);
-
-		if (res == 2) {
-			(*msg) = SP_CONFIG_INVALID_STRING;
+		if (res == 1) {
 			free(config);
+			fclose(configFilePtr);
 			return NULL ;
-		}
-		// if (res == 1) , ignore comment and move on
-		if (res == 0) {
-			// compare with all variables
-			for (i = 0; i < varArraySize; i++) {
-				cmpRes = strcmp(bufferVar, varArray[i]);
-				// find match
-				if (cmpRes == 0) {
-					// update boolean flag
-					if (i <= 3)
-						setArray[i] = true;
-
-					if (i == 0) {
-						assignRes = setSpImagesDirectory(config, bufferParam);
-					} else if (i == 1)
-						assignRes = setSpImagesPrefix(config, bufferParam);
-					else if (i == 2)
-						assignRes = setSpImagesSuffix(config, bufferParam);
-					else if (i == 3)
-						assignRes = setSpNumOfImages(config, bufferParam);
-					else if (i == 4)
-						assignRes = setSpPCADimension(config, bufferParam);
-					else if (i == 5)
-						assignRes = setSpPCAFilename(config, bufferParam);
-					else if (i == 6)
-						assignRes = setSpNumOfFeatures(config, bufferParam);
-					else if (i == 7)
-						assignRes = setSpExtractionMode(config, bufferParam);
-					else if (i == 8)
-						assignRes = setSpNumOfSimilarImages(config,
-								bufferParam);
-					else if (i == 9)
-						assignRes = setSpKDTreeSplitMethod(config, bufferParam);
-					else if (i == 10)
-						assignRes = setSpKNN(config, bufferParam);
-					else if (i == 11)
-						assignRes = setSpMinimalGUI(config, bufferParam);
-					else if (i == 12)
-						assignRes = setSpLoggerLevel(config, bufferParam);
-					else if (i == 13)
-						assignRes = setSpLoggerFilename(config, bufferParam);
-
-					// Check if succeeded
-					if (assignRes != 0) {
-						// print line nubmer
-						printf("Error in line #%d", lineNum);
-						// Integer error
-						if (i == 3 || i == 4 || i == 6 || i == 8 || i == 10
-								|| i == 12) {
-							(*msg) = SP_CONFIG_INVALID_INTEGER;
-							free(config);
-							return NULL ;
-						} else {
-							(*msg) = SP_CONFIG_INVALID_STRING;
-							free(config);
-							return NULL ;
-						}
-					}
-					break;
-				}
-			}
 		}
 		lineNum++;
 	}
@@ -182,27 +124,45 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 	if (setArray[0] == false) {
 		(*msg) = SP_CONFIG_MISSING_DIR;
 		free(config);
+		fclose(configFilePtr);
+		printConfigError(filename, lineNum, MSG_DIR_NOT_SET);
 		return NULL ;
 	}
 	if (setArray[1] == false) {
 		(*msg) = SP_CONFIG_MISSING_PREFIX;
 		free(config);
+		fclose(configFilePtr);
+		printConfigError(filename, lineNum, MSG_PREFIX_NOT_SET);
 		return NULL ;
 	}
 	if (setArray[2] == false) {
-		(*msg) = SP_CONFIG_MISSING_DIR;
+		(*msg) = SP_CONFIG_MISSING_SUFFIX;
 		free(config);
+		fclose(configFilePtr);
+		printConfigError(filename, lineNum, MSG_SUFFIX_NOT_SET);
 		return NULL ;
 	}
 	if (setArray[3] == false) {
 		(*msg) = SP_CONFIG_MISSING_NUM_IMAGES;
 		free(config);
+		fclose(configFilePtr);
+		printConfigError(filename, lineNum, MSG_NUM_NOT_SET);
 		return NULL ;
 	}
 
 	// Success!
 	fclose(configFilePtr);
 	return config;
+}
+
+/**
+ * Helper function to print the appropriate message
+ * for each error received by spConfigCreate.
+ */
+void printConfigError(const char * filename, int lineNum, char * message) {
+	printf("File: %s\n", filename);
+	printf("Line: %d\n", lineNum);
+	printf("%s", message);
 }
 
 /**
@@ -224,6 +184,113 @@ void setDefaultValues(SPConfig config) {
 }
 
 /*
+ * The function receives the line we intend on scanning, and some othre relevant parameters.
+ * it reads the line and checks whether it is a vaild configuration line.
+ * If vaild - updates relevant field in config and returns 0.
+ * If invalid - updates (msg) to be the correct output message, and returns -1.
+ */
+int extractInfoFromLine(SPConfig config, SP_CONFIG_MSG * msg, char * bufferLine,
+		int lineNum, const char * filename, bool * setArray) {
+	int res, i, assignRes;
+	bool cmpRes;
+	char bufferVar[LINE_LENGTH];
+	char bufferParam[LINE_LENGTH];
+
+	// Array for scanning the input and comparing with possible values
+	const char * const varArray[] = { "spImagesDirectory", "spImagesPrefix",
+			"spImagesSuffix", "spNumOfImages", "spPCADimension",
+			"spPCAFilename", "spNumOfFeatures", "spExtractionMode",
+			"spNumOfSimilarImages", "spKDTreeSplitMethod", "spKNN",
+			"spMinimalGUI", "spLoggerLevel", "spLoggerFilename" };
+
+	const int varArraySize = 14;
+
+	// check valid form
+	res = checkValid(bufferLine, bufferVar, bufferParam);
+
+	// (res == 2) means invalid form
+	if (res == 2) {
+		(*msg) = SP_CONFIG_INVALID_STRING;
+		printConfigError(filename, lineNum, MSG_INVALID_LINE);
+		return 1;
+	}
+
+	// if (res == 1) , ignore comment line and move on
+
+	// (res == 0) means vaild form
+	if (res == 0) {
+		cmpRes = false; // flag for whether we found a match
+		// compare with all variables
+		for (i = 0; i < varArraySize; i++) {
+			// find match
+			if (strcmp(bufferVar, varArray[i]) == 0) {
+
+				// update boolean flags
+				cmpRes = true;
+				if (i <= 3)
+					setArray[i] = true;
+
+				// check which variable should be updated
+				if (i == 0)
+					assignRes = setSpImagesDirectory(config, bufferParam);
+				else if (i == 1)
+					assignRes = setSpImagesPrefix(config, bufferParam);
+				else if (i == 2)
+					assignRes = setSpImagesSuffix(config, bufferParam);
+				else if (i == 3)
+					assignRes = setSpNumOfImages(config, bufferParam);
+				else if (i == 4)
+					assignRes = setSpPCADimension(config, bufferParam);
+				else if (i == 5)
+					assignRes = setSpPCAFilename(config, bufferParam);
+				else if (i == 6)
+					assignRes = setSpNumOfFeatures(config, bufferParam);
+				else if (i == 7)
+					assignRes = setSpExtractionMode(config, bufferParam);
+				else if (i == 8)
+					assignRes = setSpNumOfSimilarImages(config, bufferParam);
+				else if (i == 9)
+					assignRes = setSpKDTreeSplitMethod(config, bufferParam);
+				else if (i == 10)
+					assignRes = setSpKNN(config, bufferParam);
+				else if (i == 11)
+					assignRes = setSpMinimalGUI(config, bufferParam);
+				else if (i == 12)
+					assignRes = setSpLoggerLevel(config, bufferParam);
+				else if (i == 13)
+					assignRes = setSpLoggerFilename(config, bufferParam);
+
+				// Check if assignment failed
+				if (assignRes != 0) {
+					// print Error
+					printConfigError(filename, lineNum, MSG_INVALID_VALUE);
+
+					// Integer error
+					if (i == 3 || i == 4 || i == 6 || i == 8 || i == 10
+							|| i == 12) {
+						(*msg) = SP_CONFIG_INVALID_INTEGER;
+						return 1;
+					}
+					// String error
+					else {
+						(*msg) = SP_CONFIG_INVALID_STRING;
+						return 1;
+					}
+				}
+				break;
+			}
+		}
+		// if no match was found
+		if (cmpRes == false) {
+			(*msg) = SP_CONFIG_INVALID_STRING;
+			printConfigError(filename, lineNum, MSG_INVALID_LINE);
+			return 1;
+		}
+	}
+	return 0;
+}
+
+/*
  * checks bufferLine is in correct format.
  * If comment or empty- returns 1, leaves var and param untouched.
  * If invalid- returns 2, leaves var and param untouched.
@@ -234,29 +301,34 @@ int checkValid(char * bufferLine, char * var, char * param) {
 	char varIn[LINE_LENGTH];
 	char paramIn[LINE_LENGTH];
 	char * endCheck;
+	char * lineCut;
 	const char split[3] = " =\t";
 
+	// Empty line
 	if (bufferLine == NULL || strcmp(bufferLine, "\n") == 0)
 		return 1;
 
 	// Get strings
-	strcpy(varIn, strtok(bufferLine, split));
-	strcpy(paramIn, strtok(NULL, split));
-	endCheck = (char*) strtok(NULL, split);
 
-	if (varIn == NULL )
-		return 1;
+	if ((lineCut = strtok(bufferLine, split)) == NULL )
+		return 1; // empty line
+	else
+		strcpy(varIn, lineCut);
 
 	// Check if comment
 	if (varIn[0] == '#')
 		return 1;
 
+	// If not enough strings, should error
+	if ((lineCut = strtok(NULL, split)) == NULL )
+		return 2; // invalid line form
+	else
+		strcpy(paramIn, lineCut);
+
+	endCheck = (char*) strtok(NULL, split);
+
 	// If there are more strings, should error
 	if (endCheck != NULL )
-		return 2;
-
-	// If not enough strings, should error
-	if (paramIn == NULL )
 		return 2;
 
 	// Else, set pointers var and param and then return success
@@ -671,7 +743,6 @@ SP_CONFIG_MSG spConfigGetImageFeatPath(char* imagePath, const SPConfig config,
 	return SP_CONFIG_SUCCESS;
 }
 
-
 /**
  * The function stores in pcaPath the full path of the pca file.
  * For example given the values of:
@@ -709,7 +780,6 @@ void spConfigDestroy(SPConfig config) {
 		return;
 	free(config);
 }
-
 
 /**
  * SPCOnfig printer for debugging.

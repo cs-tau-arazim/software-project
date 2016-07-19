@@ -7,48 +7,37 @@
 
 #include "main_aux.h"
 #include <stdlib.h>
+#include <string.h>
+
+#define INVALID_CMD_LINE "Invalid command line : use -c <config_filename>\n"
 
 
 int cmpCounts (const void * point1, const void * point2);
-/**
- * Helper function to print the appropriate message
- * for each error received by spConfigCreate.
+
+
+/*
+ * Helper function-
+ * receives argc and argv directly from main, and sets configPath as appropriate path,
+ * based on command line arguments. returns 0 on success, 1 on fail (invalid command line).
  */
-void printErrorType(SP_CONFIG_MSG * configMsg) {
-	if ((*configMsg) == SP_CONFIG_INVALID_ARGUMENT)
-		printf("Message: No configuration file");
-	if ((*configMsg) == SP_CONFIG_CANNOT_OPEN_FILE)
-		printf("Message: Invalid configuration file");
-	if ((*configMsg) == SP_CONFIG_ALLOC_FAIL)
-		printf("Message: Memory allocation failure occurred");
-
-	if ((*configMsg) == SP_CONFIG_INVALID_INTEGER) {
-		printf("Line: ??????"); // LINE CHECK MEANING
-		printf("Message: Invalid value - constraint not met");
+int getConfigPath(int argc, char** argv, char * configPath) {
+	// check cases
+	if (argc == 1) {
+			strcpy(configPath, "spcbir.config");
+			return 0;
 	}
-
-	if ((*configMsg) == SP_CONFIG_INVALID_INTEGER
-			|| (*configMsg) == SP_CONFIG_INVALID_STRING) {
-		printf("Line: ??????"); // LINE CHECK MEANING
-		printf("Message: Invalid value - constraint not met");
+	else if (argc != 3) {
+		return 1;
 	}
-	if ((*configMsg) == SP_CONFIG_MISSING_DIR) {
-		printf("Line: ??????"); // LINE CHECK MEANING
-		printf("Message: Parameter spImagesDirectory is not set");
+	else {
+		if (strcmp(argv[1],"-c") != 0) {
+			return 1;
+		}
+		else {
+			strcpy(configPath, argv[2]);
+			return 0;
+		}
 	}
-	if ((*configMsg) == SP_CONFIG_MISSING_PREFIX) {
-		printf("Line: ??????"); // LINE CHECK MEANING
-		printf("Message: Parameter spImagesPrefix is not set");
-	}
-	if ((*configMsg) == SP_CONFIG_MISSING_SUFFIX) {
-		printf("Line: ??????"); // LINE CHECK MEANING
-		printf("Message: Parameter spImagesSuffix is not set");
-	}
-	if ((*configMsg) == SP_CONFIG_MISSING_NUM_IMAGES) {
-		printf("Line: ??????"); // LINE CHECK MEANING
-		printf("Message: Parameter spNumOfImages is not set");
-	}
-
 }
 
 int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* features, int numOfFeatures, int numOfImages)

@@ -51,73 +51,6 @@ typedef struct sp_config_t* SPConfig;
  */
 SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg);
 
-
-/**
- * Helper function to print the appropriate message
- * for each error received by spConfigCreate.
- */
-void printConfigError(const char * filename, int lineNum, char * message);
-
-
-/**
- * receives an SPConfig type,
- * and sets all of its default values as stated in the project documentation.
- */
-void setDefaultValues(SPConfig config);
-
-
-/*
- * checks bufferLine is in correct format.
- * If comment or empty- returns 1, leaves var and param untouched.
- * If invalid- returns 2, leaves var and param untouched.
- * If bufferLine is NULL, also returns 2.
- * If valid- returns 0, puts in var the variable and puts the parameter in param.
- */
-int checkValid(char * bufferLine, char * var, char * param);
-
-
-/*
- * The function receives the line we intend on scanning, and some othre relevant parameters.
- * it reads the line and checks whether it is a vaild configuration line.
- * If vaild - updates relevant field in config and returns 0.
- * If invalid - updates (msg) to be the correct output message, and returns -1.
- */
-int extractInfoFromLine(SPConfig config, SP_CONFIG_MSG * msg, char * bufferLine, int lineNum, const char * filename, bool * setArray);
-/**
- * Group of "set" functions for each field.
- * each has its own edge cases,
- * and returns 0 on success or 1 on fail.
- */
-int setSpImagesDirectory(SPConfig config, char * bufferParam);
-
-int setSpImagesPrefix(SPConfig config, char * bufferParam);
-
-int setSpImagesSuffix(SPConfig config, char * bufferParam);
-
-int setSpNumOfImages(SPConfig config, char * bufferParam);
-
-int setSpPCADimension(SPConfig config, char * bufferParam);
-
-int setSpPCAFilename(SPConfig config, char * bufferParam);
-
-int setSpNumOfFeatures(SPConfig config, char * bufferParam);
-
-int setSpExtractionMode(SPConfig config, char * bufferParam);
-
-int setSpNumOfSimilarImages(SPConfig config, char * bufferParam);
-
-int setSpKDTreeSplitMethod(SPConfig config, char * bufferParam);
-
-int setSpKNN(SPConfig config, char * bufferParam);
-
-int setSpMinimalGUI(SPConfig config, char * bufferParam);
-
-int setSpLoggerLevel(SPConfig config, char * bufferParam);
-
-int setSpLoggerFilename(SPConfig config, char * bufferParam);
-
-
-
 /*
  * Returns true if spExtractionMode = true, false otherwise.
  *
@@ -137,7 +70,7 @@ bool spConfigIsExtractionMode(const SPConfig config, SP_CONFIG_MSG* msg);
  * @param config - the configuration structure
  * @assert msg != NULL
  * @param msg - pointer in which the msg returned by the function is stored
- * @return true if spMinimalGUI = true, false otherwise.
+ * @return true if spExtractionMode = true, false otherwise.
  *
  * - SP_CONFIG_INVALID_ARGUMENT - if config == NULL
  * - SP_CONFIG_SUCCESS - in case of success
@@ -172,34 +105,6 @@ int spConfigGetNumOfImages(const SPConfig config, SP_CONFIG_MSG* msg);
  */
 int spConfigGetNumOfFeatures(const SPConfig config, SP_CONFIG_MSG* msg);
 
-/*
- * Returns the number of images to consider close. i.e the value
- * of spNumOfSimilarImages.
- *
- * @param config - the configuration structure
- * @assert msg != NULL
- * @param msg - pointer in which the msg returned by the function is stored
- * @return positive integer in success, negative integer otherwise.
- *
- * - SP_CONFIG_INVALID_ARGUMENT - if config == NULL
- * - SP_CONFIG_SUCCESS - in case of success
- */
-int spConfigGetNumOfSimilarImages(const SPConfig config, SP_CONFIG_MSG* msg);
-
-/*
- * Returns the number of features to consider close. i.e the value
- * of spKNN.
- *
- * @param config - the configuration structure
- * @assert msg != NULL
- * @param msg - pointer in which the msg returned by the function is stored
- * @return positive integer in success, negative integer otherwise.
- *
- * - SP_CONFIG_INVALID_ARGUMENT - if config == NULL
- * - SP_CONFIG_SUCCESS - in case of success
- */
-int spConfigGetSPKNN(const SPConfig config, SP_CONFIG_MSG* msg);
-
 /**
  * Returns the dimension of the PCA. i.e the value of spPCADimension.
  *
@@ -212,22 +117,6 @@ int spConfigGetSPKNN(const SPConfig config, SP_CONFIG_MSG* msg);
  * - SP_CONFIG_SUCCESS - in case of success
  */
 int spConfigGetPCADim(const SPConfig config, SP_CONFIG_MSG* msg);
-
-
-/**
- * Returns the split Method given in the SPConfig type.
- * * returns an INT and not an enum-
- * this way, RANDOM = 0, MAX_SPREAD = 1 and INCREMENTAL = 2.
- *
- * @param config - the configuration structure
- * @assert msg != NULL
- * @param msg - pointer in which the msg returned by the function is stored
- * @return positive integer in success, negative integer otherwise.
- *
- * - SP_CONFIG_INVALID_ARGUMENT - if config == NULL
- * - SP_CONFIG_SUCCESS - in case of success
- */
-int spConfigGetSplitMethod(const SPConfig config, SP_CONFIG_MSG* msg);
 
 /**
  * Given an index 'index' the function stores in imagePath the full path of the
@@ -257,37 +146,6 @@ int spConfigGetSplitMethod(const SPConfig config, SP_CONFIG_MSG* msg);
 SP_CONFIG_MSG spConfigGetImagePath(char* imagePath, const SPConfig config,
 		int index);
 
-
-
-/**
- * Given an index 'index' the function stores in imagePath the full path of the
- * ith image's FEATURE.
- *
- * For example:
- * Given that the value of:
- *  spImagesDirectory = "./images/"
- *  spImagesPrefix = "img"
- *  spImagesSuffix = ".png"
- *  spNumOfImages = 17
- *  index = 10
- *
- * The functions stores "./images/img10.feats" to the address given by imagePath.
- * Thus the address given by imagePath must contain enough space to
- * store the resulting string.
- *
- * @param imagePath - an address to store the result in, it must contain enough space.
- * @param config - the configuration structure
- * @param index - the index of the image.
- *
- * @return
- * - SP_CONFIG_INVALID_ARGUMENT - if imagePath == NULL or config == NULL
- * - SP_CONFIG_INDEX_OUT_OF_RANGE - if index >= spNumOfImages
- * - SP_CONFIG_SUCCESS - in case of success
- */
-SP_CONFIG_MSG spConfigGetImageFeatPath(char* imagePath, const SPConfig config,
-		int index);
-
-
 /**
  * The function stores in pcaPath the full path of the pca file.
  * For example given the values of:
@@ -311,12 +169,5 @@ SP_CONFIG_MSG spConfigGetPCAPath(char* pcaPath, const SPConfig config);
  * If config == NULL nothig is done.
  */
 void spConfigDestroy(SPConfig config);
-
-
-/**
- * SPCOnfig printer for debugging.
- */
-void printConfig(SPConfig config);
-
 
 #endif /* SPCONFIG_H_ */

@@ -21,21 +21,23 @@
 #define ALLOC_ERROR_MSG "Allocation error"
 #define INVALID_ARG_ERROR "Invalid arguments"
 
+#define INVALID_CMD_LINE "Invalid command line : use -c <config_filename>\n"
+#define LINE_LENGTH 1024
+
+
 extern "C" {
 #include "SPLogger.h"
 #include "main_aux.h"
 }
 
-#define LINE_LENGTH 1024
 
-// For Debbuging:
-// 	printf("%d, %s\n",__LINE__, __func__); //TODO remove
 
 int main(int argc, char **argv) {
 
 	// Declare all variables
 
 	SP_CONFIG_MSG configMsg = SP_CONFIG_SUCCESS;
+
 	SPPoint ** featureArr;
 	SPPoint * feature1DimArr;
 	sp::ImageProc *imgProc;
@@ -44,6 +46,7 @@ int main(int argc, char **argv) {
 	int i, j, k, numOfImages;
 	int PCADim;
 	double * tempDoubleArr;
+	char configPath[LINE_LENGTH];
 	char imagePath[LINE_LENGTH];
 	char imageFeaturePath[LINE_LENGTH];
 	FILE * imageFeatureFile;
@@ -51,12 +54,17 @@ int main(int argc, char **argv) {
 	int* numOfFeatures;
 	int featureArrSize = 0;
 
-	if (argc != 2) {
-		printf("ERROR\n");
+	// ***********************
+	// Part 1 - Configuration
+	// ***********************
+
+	// Get config path and check for failure
+	if (getConfigPath(argc, argv, configPath) != 0) {
+		printf(INVALID_CMD_LINE);
 		return 0;
 	}
 
-	SPConfig config = spConfigCreate(argv[1], &configMsg);
+	SPConfig config = spConfigCreate(argv[2], &configMsg);
 
 	if (configMsg != SP_CONFIG_SUCCESS) {
 		return 0;
@@ -96,6 +104,12 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 
+
+	// ***********************
+	// Part 2 - Extraction
+	// ***********************
+
+
 	// Check extraction mode
 	if (spConfigIsExtractionMode(config, &configMsg) == true) {
 
@@ -129,6 +143,7 @@ int main(int argc, char **argv) {
 				free(numOfFeatures);
 				return 0;
 			}
+
 
 			k = spPointGetAxisCoor(featureArr[i][0], 0);
 
@@ -213,6 +228,7 @@ int main(int argc, char **argv) {
 				free(config);
 				free(featureArr);
 				delete imgProc;
+				free(numOfFeatures);
 				return 0;
 			}
 			imageFeatureFile = fopen(imageFeaturePath, "r");

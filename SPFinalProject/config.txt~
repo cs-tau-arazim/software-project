@@ -1,15 +1,18 @@
+        
+#
+
 #this is a valid configuration file 
 #The following variables don’t have default values and must be set 
 spImagesDirectory         =           ./GOTImages/ 
 spImagesPrefix=img 
 spImagesSuffix = .jpg
-spNumOfImages =       25
+#spNumOfImages =       25
 
 #the following variables have default values, if not set the default value is choosen 
 spPCADimension = 28
 spPCAFilename = pca.yml 
 spNumOfFeatures = 100 
-spExtractionMode = true 
+spExtractionMode = false 
 	spMinimalGUI = false
    spNumOfSimilarImages = 5 
 spKNN = 5
