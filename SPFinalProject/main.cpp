@@ -265,8 +265,12 @@ int main(int argc, char **argv) {
 	free1dPoints(feature1DimArr, featureArrSize);
 	free(numOfFeatures);
 
-	// Enter the main loop
+	// ***********************
+	// Part 3 - Main Loop
+	// ***********************
+
 	while (true) {
+		// Define variables in beginning of scope
 		char query[LINE_LENGTH];
 		SPPoint* features;
 		int numOfBestImages, spKNN, numOfQueryFeatures, numOfImages;
@@ -277,24 +281,25 @@ int main(int argc, char **argv) {
 		printf(ENTER_QUERY);
 		fgets(query, LINE_LENGTH, stdin);
 
+		// Check if no query was given
 		if (strcmp("\n", query) == 0) {
 			break;
 		}
-
 		strtok(query, "\n");
 
+		// Get variables from configuration file
 		numOfImages = spConfigGetNumOfImages(config, &configMsg);
 		spKNN = spConfigGetSPKNN(config, &configMsg);
 		numOfBestImages = spConfigGetNumOfSimilarImages(config, &configMsg);
+		minimalGui = spConfigMinimalGui(config, &configMsg);
 
+		// Extract Features
 		features = imgProc->getImageFeatures(query, numOfImages,
 				&numOfQueryFeatures);
-		//printf("%d", spPointGetDimension(features[3]));
 
+		// Get closest images
 		closestImages = bestImages(numOfBestImages, spKNN, KDTree, features,
 				numOfQueryFeatures, numOfImages);
-
-		minimalGui = spConfigMinimalGui(config, &configMsg);
 
 		if (!minimalGui) {
 			int i;
@@ -315,6 +320,7 @@ int main(int argc, char **argv) {
 			}
 		}
 
+		// Free query features
 		for (i = 0; i < numOfQueryFeatures; i++) {
 			spPointDestroy(features[i]);
 		}
