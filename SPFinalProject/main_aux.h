@@ -23,6 +23,22 @@
 int getConfigPath(int argc, char** argv, char * configPath);
 
 
+/**
+ * The function receives an imageFeaturePath path and relevant parameters,
+ * and extracts the info relevant to the specific image into the file.
+ * returns 0 on success and 1 on failure.
+ */
+int writeFeaturesToFile(SPPoint ** featureArr, char * imageFeaturePath, int i, int numOfFeatures, int PCADim);
+
+
+/**
+ * The function receives an imageFeaturePath path and relevant parameters,
+ * and extracts the info relevant FROM the specific file INTO the featureArr.
+ *  * returns 0 on success and 1 on failure.
+ */
+int readFeaturesFromFile(SPPoint ** featureArr, char * imageFeaturePath, int i, int * numOfFeatures, int PCADim, int * featureArrSize, double * tempDoubleArr);
+
+
 //TODO doc
 int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* features, int numOfFeatures, int numOfImages);
 

@@ -12305,3 +12305,24 @@ java.io.FileNotFoundException: /IMG_ETOOL_DELETE
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+
+!ENTRY org.eclipse.ui 4 4 2016-07-19 17:32:21.435
+!MESSAGE Conflicting handlers for org.eclipse.ptp.rm.lml.monitor.ui.addMonitor: {org.eclipse.ptp.rm.lml.monitor.ui.handlers.AddMonitorHandler} vs {org.eclipse.ptp.rm.lml.monitor.ui.handlers.AddMonitorHandler}
+
+!ENTRY org.eclipse.ui 2 2 2016-07-19 17:32:22.691
+!MESSAGE Invalid preference category path: org.eclipse.linuxtools.rpm.ui.editor.mainpage (bundle: org.eclipse.linuxtools.rpmstubby, page: org.eclipse.linuxtools.rpmstubby.preferences.stubbyPreferencePage)
+
+!ENTRY org.eclipse.ui 4 4 2016-07-19 17:32:22.723
+!MESSAGE Conflicting handlers for org.eclipse.ptp.pldt.openshmem.command4: {org.eclipse.ptp.pldt.openshmem.actions.RunAnalyseOpenSHMEMcommandHandler} vs {org.eclipse.ptp.pldt.openshmem.actions.RunAnalyseOpenSHMEMcommandHandler}
+
+!ENTRY org.eclipse.ui 4 4 2016-07-19 17:32:22.742
+!MESSAGE Conflicting handlers for org.eclipse.ptp.rm.lml.monitor.ui.removeMonitor: {org.eclipse.ptp.rm.lml.monitor.ui.handlers.RemoveMonitorHandler} vs {org.eclipse.ptp.rm.lml.monitor.ui.handlers.RemoveMonitorHandler}
+
+!ENTRY org.eclipse.ui 4 4 2016-07-19 17:32:22.808
+!MESSAGE Conflicting handlers for org.eclipse.ptp.rm.lml.monitor.ui.startMonitor: {org.eclipse.ptp.rm.lml.monitor.ui.handlers.StartMonitorHandler} vs {org.eclipse.ptp.rm.lml.monitor.ui.handlers.StartMonitorHandler}
+
+!ENTRY org.eclipse.ui 4 4 2016-07-19 17:32:22.982
+!MESSAGE Conflicting handlers for org.eclipse.ptp.rm.lml.monitor.ui.refreshMonitor: {org.eclipse.ptp.rm.lml.monitor.ui.handlers.RefreshMonitorHandler} vs {org.eclipse.ptp.rm.lml.monitor.ui.handlers.RefreshMonitorHandler}
+
+!ENTRY org.eclipse.ui 4 4 2016-07-19 17:32:23.014
+!MESSAGE Conflicting handlers for org.eclipse.ptp.rm.lml.monitor.ui.stopMonitor: {org.eclipse.ptp.rm.lml.monitor.ui.handlers.StopMonitorHandler} vs {org.eclipse.ptp.rm.lml.monitor.ui.handlers.StopMonitorHandler}

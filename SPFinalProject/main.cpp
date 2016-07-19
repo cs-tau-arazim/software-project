@@ -18,6 +18,9 @@
 #define IMAGE_PATH_ERROR "Image path couldn't be resolved"
 #define IMAGE_NOT_EXIST_MSG ": Images doesn't exist"
 #define MINIMAL_GUI_NOT_SET_WARNING "Cannot display images in non-Minimal-GUI mode"
+#define FILE_WRITE_ERROR "Failed to write to feature file"
+#define FILE_READ_ERROR "Failed to read from feature file"
+
 #define ALLOC_ERROR_MSG "Allocation error"
 #define INVALID_ARG_ERROR "Invalid arguments"
 
@@ -40,7 +43,7 @@ int main(int argc, char **argv) {
 	sp::ImageProc *imgProc;
 	KDTreeNode KDTree;
 
-	int i, j, k, numOfImages;
+	int i, j, k, res, numOfImages;
 	int PCADim;
 	double * tempDoubleArr;
 	char configPath[LINE_LENGTH];
@@ -157,19 +160,15 @@ int main(int argc, char **argv) {
 				return 0;
 			}
 
-			imageFeatureFile = fopen(imageFeaturePath, "w");
-			fprintf(imageFeatureFile, "%d\n", i);
-			fprintf(imageFeatureFile, "%d\n", numOfFeatures[i]);
-
-			// Print all features to file
-			for (j = 0; j < numOfFeatures[i]; j++) {
-				for (k = 0; k < PCADim; k++) {
-					fprintf(imageFeatureFile, "%lf,",
-							spPointGetAxisCoor(featureArr[i][j], k));
-				}
-				fprintf(imageFeatureFile, "\n");
+			// Write data to file
+			res = writeFeaturesToFile(featureArr, imageFeaturePath, i,
+					numOfFeatures[i], PCADim);
+			// Check for errors
+			if (res == 1) {
+				spLoggerPrintError(FILE_WRITE_ERROR, __FILE__, __func__,
+						__LINE__);
 			}
-			fclose(imageFeatureFile);
+
 		}
 
 		feature1DimArr = (SPPoint*) malloc(featureArrSize * sizeof(SPPoint));
@@ -211,8 +210,9 @@ int main(int argc, char **argv) {
 		// start
 		printf("time to NOT extract! :)\n"); // TODO REMOVE
 
-		// For all images:
 		tempDoubleArr = (double*) malloc(sizeof(double) * PCADim);
+
+		// For all images:
 		for (i = 0; i < numOfImages; i++) {
 			int imIndex;
 			// Find feature file with data
@@ -226,29 +226,16 @@ int main(int argc, char **argv) {
 				free(numOfFeatures);
 				return 0;
 			}
-			imageFeatureFile = fopen(imageFeaturePath, "r");
 
-			fscanf(imageFeatureFile, "%d\n", &imIndex);
-			assert(i == imIndex);
+			// Read data from file
+			res = readFeaturesFromFile(featureArr, imageFeaturePath, i,
+					numOfFeatures, PCADim, &featureArrSize, tempDoubleArr);
 
-			fscanf(imageFeatureFile, "%d\n", &numOfFeatures[i]);
-
-			// Increase array size
-			featureArrSize += numOfFeatures[i];
-
-			// create array of points
-			featureArr[i] = (SPPoint*) malloc(
-					sizeof(SPPoint) * numOfFeatures[i]);
-
-			// Get all features from file
-			for (j = 0; j < numOfFeatures[i]; j++) {
-				for (k = 0; k < PCADim; k++) {
-					fscanf(imageFeatureFile, "%lf,", &(tempDoubleArr[k]));
-				}
-				fscanf(imageFeatureFile, "\n");
-				featureArr[i][j] = spPointCreate(tempDoubleArr, PCADim, i);
+			// Check for errors
+			if (res == 1) {
+				spLoggerPrintError(FILE_WRITE_ERROR, __FILE__, __func__,
+						__LINE__);
 			}
-			fclose(imageFeatureFile);
 		}
 		free(tempDoubleArr);
 
