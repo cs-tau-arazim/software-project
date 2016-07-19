@@ -6,14 +6,14 @@
 spImagesDirectory         =           ./GOTImages/ 
 spImagesPrefix=img 
 spImagesSuffix = .jpg
-spNumOfImages =       25
+#spNumOfImages =       25
 
 #the following variables have default values, if not set the default value is choosen 
 spPCADimension = 28
 spPCAFilename = pca.yml 
 spNumOfFeatures = 100 
 spExtractionMode = false 
-	spMinimalGUI = falser
+	spMinimalGUI = false
    spNumOfSimilarImages = 5 
 spKNN = 5
 spKDTreeSplitMethod = MAX_SPREAD

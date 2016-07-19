@@ -86,9 +86,9 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 	if (configFilePtr == NULL ) {
 		(*msg) = SP_CONFIG_CANNOT_OPEN_FILE;
 		if (strcmp(filename, "spcbir.config") == 0)
-			printf(FILE_OPEN_FAIL, filename);
+			printf(DEFAULT_FILE_OPEN_FAIL, filename);
 		else
-			printf(DEFAULT_FILE_OPEN_FAIL);
+			printf(FILE_OPEN_FAIL);
 		return NULL ;
 	}
 
@@ -139,10 +139,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 		(*msg) = SP_CONFIG_MISSING_SUFFIX;
 		free(config);
 		fclose(configFilePtr);
-		printf("File: %s\n", filename);
-		printf("Line: %d\n", lineNum);
 		printConfigError(filename, lineNum, MSG_SUFFIX_NOT_SET);
-
 		return NULL ;
 	}
 	if (setArray[3] == false) {
