@@ -19,6 +19,9 @@ struct kd_tree_node_t {
 	SPPoint data;
 };
 
+/*
+ * Private method for kdTreeInit, recursively called
+ */
 KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod,
 		int lastLevelDim);
 

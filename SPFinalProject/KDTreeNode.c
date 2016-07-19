@@ -130,10 +130,10 @@ KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod,
 void kdTreeNodeDestroy(KDTreeNode kdTreeNode) {
 	if (kdTreeNode == NULL )
 		return;
-	kdTreeNodeDestroy(kdTreeNode->left);
-	kdTreeNodeDestroy(kdTreeNode->right);
 	if (kdTreeNode->data != NULL )
 		spPointDestroy(kdTreeNode->data);
+	kdTreeNodeDestroy(kdTreeNode->left);
+	kdTreeNodeDestroy(kdTreeNode->right);
 	free(kdTreeNode);
 	return;
 }

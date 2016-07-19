@@ -46,6 +46,8 @@ int main(int argc, char **argv) {
 	char configPath[LINE_LENGTH];
 	char imagePath[LINE_LENGTH];
 	char imageFeaturePath[LINE_LENGTH];
+	char loggerFileName[LINE_LENGTH];
+	int level;
 	FILE * imageFeatureFile;
 
 	int* numOfFeatures;
@@ -67,7 +69,12 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 
-	// TODO Logger
+	/*
+	configMsg = spConfigGetLoggerFileName(loggerFileName, config);
+	level = spConfigGetLoggerLevel(&level, config);
+	spLoggerCreate(loggerFileName, level);
+	*/
+
 	numOfImages = spConfigGetNumOfImages(config, &configMsg);
 	if (configMsg != SP_CONFIG_SUCCESS) {
 		spLoggerPrintError(NUM_OF_IMAGES_ERROR, __FILE__, __func__, __LINE__);
@@ -248,6 +255,8 @@ int main(int argc, char **argv) {
 		}
 	}
 
+	assert(k == featureArrSize);
+
 	// Now we just need to create the KDTree.
 	KDTree = kdTreeInit(feature1DimArr, featureArrSize, PCADim,
 			spConfigGetSplitMethod(config, &configMsg));
@@ -328,10 +337,12 @@ int main(int argc, char **argv) {
 		free(closestImages);
 	}
 
-	printf(EXITING);
+
 	kdTreeNodeDestroy(KDTree);
 	free(config);
 	delete imgProc;
+
+	printf(EXITING);
 	return 0;
 
 }
