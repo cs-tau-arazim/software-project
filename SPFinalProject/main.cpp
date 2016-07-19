@@ -7,6 +7,7 @@
 #define ENTER_QUERY "Please enter an image path:\n"
 #define EXITING "Exiting...\n"
 #define BEST_CANDIDATES "Best candidates for - %s - are:\n"
+#define INVALID_CMD_LINE "Invalid command line : use -c <config_filename>\n"
 #define LINE_LENGTH 1024
 
 extern "C" {
@@ -41,7 +42,7 @@ int main(int argc, char **argv) {
 
 	// Get config path and check for failure
 	if (getConfigPath(argc, argv, configPath)) {
-		printf("Invalid command line : use -c <config_filename>\n");
+		printf(INVALID_CMD_LINE);
 		return 0;
 	}
 
@@ -52,8 +53,6 @@ int main(int argc, char **argv) {
 
 	// Check for errors
 	if (config == NULL) {
-		printf("Error!\n"); // TODO REMOVE
-		printConfigError(configMsg, configPath);
 		free(configMsg);
 		return 0;
 	}

@@ -23,12 +23,6 @@
 int getConfigPath(int argc, char** argv, char * configPath);
 
 
-/**
- * Helper function to print the appropriate message
- * for each error received by spConfigCreate.
- */
-void printConfigError(SP_CONFIG_MSG * configMsg, char * configPath);
-
 //TODO doc
 int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* features, int numOfFeatures, int numOfImages);
 

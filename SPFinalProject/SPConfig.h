@@ -53,6 +53,13 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg);
 
 
 /**
+ * Helper function to print the appropriate message
+ * for each error received by spConfigCreate.
+ */
+void printConfigError(const char * filename, int lineNum, char * message);
+
+
+/**
  * receives an SPConfig type,
  * and sets all of its default values as stated in the project documentation.
  */
@@ -69,6 +76,13 @@ void setDefaultValues(SPConfig config);
 int checkValid(char * bufferLine, char * var, char * param);
 
 
+/*
+ * The function receives the line we intend on scanning, and some othre relevant parameters.
+ * it reads the line and checks whether it is a vaild configuration line.
+ * If vaild - updates relevant field in config and returns 0.
+ * If invalid - updates (msg) to be the correct output message, and returns -1.
+ */
+int extractInfoFromLine(SPConfig config, SP_CONFIG_MSG * msg, char * bufferLine, int lineNum, const char * filename, bool * setArray);
 /**
  * Group of "set" functions for each field.
  * each has its own edge cases,
