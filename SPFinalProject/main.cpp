@@ -24,13 +24,10 @@
 #define INVALID_CMD_LINE "Invalid command line : use -c <config_filename>\n"
 #define LINE_LENGTH 1024
 
-
 extern "C" {
 #include "SPLogger.h"
 #include "main_aux.h"
 }
-
-
 
 int main(int argc, char **argv) {
 
@@ -104,11 +101,9 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 
-
 	// ***********************
 	// Part 2 - Extraction
 	// ***********************
-
 
 	// Check extraction mode
 	if (spConfigIsExtractionMode(config, &configMsg) == true) {
@@ -126,8 +121,8 @@ int main(int argc, char **argv) {
 				spLoggerPrintError(IMAGE_PATH_ERROR, __FILE__, __func__,
 						__LINE__);
 				free(config);
-				free(featureArr);
 				free(numOfFeatures);
+				free2dPoints(featureArr, i, numOfFeatures);
 				delete imgProc;
 				return 0;
 			}
@@ -136,14 +131,14 @@ int main(int argc, char **argv) {
 			featureArr[i] = imgProc->getImageFeatures(imagePath, i,
 					&(numOfFeatures[i]));
 			if (featureArr[i] == NULL) {
+				spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__,
+						__LINE__);
 				free(config);
-				free(featureArr);
 				delete imgProc;
 				free2dPoints(featureArr, i, numOfFeatures);
 				free(numOfFeatures);
 				return 0;
 			}
-
 
 			k = spPointGetAxisCoor(featureArr[i][0], 0);
 
@@ -156,7 +151,6 @@ int main(int argc, char **argv) {
 				spLoggerPrintError(IMAGE_PATH_ERROR, __FILE__, __func__,
 						__LINE__);
 				free(config);
-				free(featureArr);
 				delete imgProc;
 				free2dPoints(featureArr, i + 1, numOfFeatures);
 				free(numOfFeatures);
@@ -178,38 +172,6 @@ int main(int argc, char **argv) {
 			fclose(imageFeatureFile);
 		}
 
-		feature1DimArr = (SPPoint*) malloc(featureArrSize * sizeof(SPPoint));
-		if (feature1DimArr == NULL) {
-			spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__, __LINE__);
-			free(config);
-			free(featureArr);
-			delete imgProc;
-			free2dPoints(featureArr, i + 1, numOfFeatures);
-			free(numOfFeatures);
-			return 0;
-		}
-
-		k = 0;
-		for (i = 0; i < numOfImages; i++) {
-			for (j = 0; j < numOfFeatures[i]; j++) {
-				feature1DimArr[k] = spPointCopy(featureArr[i][j]);
-				k++;
-			}
-		}
-
-		// Now we just need to create the KDTree.
-		KDTree = kdTreeInit(feature1DimArr, featureArrSize, PCADim,
-				spConfigGetSplitMethod(config, &configMsg));
-		if (KDTree == NULL) {
-			// TODO print to logger in tree func
-			free(config);
-			free(featureArr);
-			delete imgProc;
-			free2dPoints(featureArr, i + 1, numOfFeatures);
-			free(numOfFeatures);
-			return 0;
-		}
-
 	}
 
 	// Non-Extraction Mode- here we need to create the KD-Tree from the feature files.
@@ -224,10 +186,11 @@ int main(int argc, char **argv) {
 			// Find feature file with data
 			spConfigGetImageFeatPath(imageFeaturePath, config, i);
 			if (configMsg != SP_CONFIG_SUCCESS) {
-				spLoggerPrintError(IMAGE_PATH_ERROR, __FILE__, __func__, __LINE__);
+				spLoggerPrintError(IMAGE_PATH_ERROR, __FILE__, __func__,
+						__LINE__);
 				free(config);
-				free(featureArr);
 				delete imgProc;
+				free2dPoints(featureArr, i, numOfFeatures);
 				free(numOfFeatures);
 				return 0;
 			}
@@ -244,6 +207,15 @@ int main(int argc, char **argv) {
 			// create array of points
 			featureArr[i] = (SPPoint*) malloc(
 					sizeof(SPPoint) * numOfFeatures[i]);
+			if (featureArr[i] == NULL) {
+				spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__,
+						__LINE__);
+				free(config);
+				delete imgProc;
+				free2dPoints(featureArr, i, numOfFeatures);
+				free(numOfFeatures);
+				return 0;
+			}
 
 			// Get all features from file
 			for (j = 0; j < numOfFeatures[i]; j++) {
@@ -256,37 +228,42 @@ int main(int argc, char **argv) {
 			fclose(imageFeatureFile);
 		}
 		free(tempDoubleArr);
-
-		feature1DimArr = (SPPoint*) malloc(featureArrSize * sizeof(SPPoint));
-		k = 0;
-		for (i = 0; i < numOfImages; i++) {
-			for (j = 0; j < numOfFeatures[i]; j++) {
-				feature1DimArr[k] = spPointCopy(featureArr[i][j]);
-				k++;
-			}
-		}
-
-		// Now we just need to create the KDTree.
-		KDTree = kdTreeInit(feature1DimArr, featureArrSize, PCADim,
-				spConfigGetSplitMethod(config, &configMsg));
 	}
 
+	feature1DimArr = (SPPoint*) malloc(featureArrSize * sizeof(SPPoint));
+	if (feature1DimArr == NULL) {
+		spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__, __LINE__);
+		free(config);
+		delete imgProc;
+		free2dPoints(featureArr, numOfImages, numOfFeatures);
+		free(numOfFeatures);
+		return 0;
+	}
+
+	k = 0;
 	for (i = 0; i < numOfImages; i++) {
 		for (j = 0; j < numOfFeatures[i]; j++) {
-			spPointDestroy(featureArr[i][j]);
+			feature1DimArr[k] = spPointCopy(featureArr[i][j]);
+			k++;
 		}
 	}
+
+	// Now we just need to create the KDTree.
+	KDTree = kdTreeInit(feature1DimArr, featureArrSize, PCADim,
+			spConfigGetSplitMethod(config, &configMsg));
+	if (KDTree == NULL) {
+		// TODO print to logger in tree func
+		free(config);
+		delete imgProc;
+		free2dPoints(featureArr, numOfImages, numOfFeatures);
+		free1dPoints(feature1DimArr, featureArrSize);
+		free(numOfFeatures);
+		return 0;
+	}
+
+	free2dPoints(featureArr, numOfImages, numOfFeatures);
+	free1dPoints(feature1DimArr, featureArrSize);
 	free(numOfFeatures);
-
-	for (i = 0; i < numOfImages; i++) {
-		free(featureArr[i]);
-	}
-	free(featureArr);
-
-	for (i = 0; i < featureArrSize; i++) {
-		spPointDestroy(feature1DimArr[i]);
-	}
-	free(feature1DimArr);
 
 	// Enter the main loop
 	while (true) {
