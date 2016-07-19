@@ -124,8 +124,8 @@ int main(int argc, char **argv) {
 				spLoggerPrintError(IMAGE_PATH_ERROR, __FILE__, __func__,
 						__LINE__);
 				free(config);
-				free(featureArr);
 				free(numOfFeatures);
+				free2dPoints(featureArr, i, numOfFeatures);
 				delete imgProc;
 				return 0;
 			}
@@ -134,8 +134,9 @@ int main(int argc, char **argv) {
 			featureArr[i] = imgProc->getImageFeatures(imagePath, i,
 					&(numOfFeatures[i]));
 			if (featureArr[i] == NULL) {
+				spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__,
+						__LINE__);
 				free(config);
-				free(featureArr);
 				delete imgProc;
 				free2dPoints(featureArr, i, numOfFeatures);
 				free(numOfFeatures);
@@ -153,7 +154,6 @@ int main(int argc, char **argv) {
 				spLoggerPrintError(IMAGE_PATH_ERROR, __FILE__, __func__,
 						__LINE__);
 				free(config);
-				free(featureArr);
 				delete imgProc;
 				free2dPoints(featureArr, i + 1, numOfFeatures);
 				free(numOfFeatures);
@@ -169,38 +169,6 @@ int main(int argc, char **argv) {
 						__LINE__);
 			}
 
-		}
-
-		feature1DimArr = (SPPoint*) malloc(featureArrSize * sizeof(SPPoint));
-		if (feature1DimArr == NULL) {
-			spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__, __LINE__);
-			free(config);
-			free(featureArr);
-			delete imgProc;
-			free2dPoints(featureArr, i + 1, numOfFeatures);
-			free(numOfFeatures);
-			return 0;
-		}
-
-		k = 0;
-		for (i = 0; i < numOfImages; i++) {
-			for (j = 0; j < numOfFeatures[i]; j++) {
-				feature1DimArr[k] = spPointCopy(featureArr[i][j]);
-				k++;
-			}
-		}
-
-		// Now we just need to create the KDTree.
-		KDTree = kdTreeInit(feature1DimArr, featureArrSize, PCADim,
-				spConfigGetSplitMethod(config, &configMsg));
-		if (KDTree == NULL) {
-			// TODO print to logger in tree func
-			free(config);
-			free(featureArr);
-			delete imgProc;
-			free2dPoints(featureArr, i + 1, numOfFeatures);
-			free(numOfFeatures);
-			return 0;
 		}
 
 	}
@@ -221,8 +189,8 @@ int main(int argc, char **argv) {
 				spLoggerPrintError(IMAGE_PATH_ERROR, __FILE__, __func__,
 						__LINE__);
 				free(config);
-				free(featureArr);
 				delete imgProc;
+				free2dPoints(featureArr, i, numOfFeatures);
 				free(numOfFeatures);
 				return 0;
 			}
@@ -235,44 +203,54 @@ int main(int argc, char **argv) {
 			if (res == 1) {
 				spLoggerPrintError(FILE_WRITE_ERROR, __FILE__, __func__,
 						__LINE__);
+				free(config);
+				delete imgProc;
+				free2dPoints(featureArr, i, numOfFeatures);
+				free(numOfFeatures);
+				return 0;
 			}
 		}
-		free(tempDoubleArr);
+	}
+	free(tempDoubleArr);
 
-		feature1DimArr = (SPPoint*) malloc(featureArrSize * sizeof(SPPoint));
-		k = 0;
-		for (i = 0; i < numOfImages; i++) {
-			for (j = 0; j < numOfFeatures[i]; j++) {
-				feature1DimArr[k] = spPointCopy(featureArr[i][j]);
-				k++;
-			}
-		}
-
-		// Now we just need to create the KDTree.
-		KDTree = kdTreeInit(feature1DimArr, featureArrSize, PCADim,
-				spConfigGetSplitMethod(config, &configMsg));
+	feature1DimArr = (SPPoint*) malloc(featureArrSize * sizeof(SPPoint));
+	if (feature1DimArr == NULL) {
+		spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__, __LINE__);
+		free(config);
+		delete imgProc;
+		free2dPoints(featureArr, numOfImages, numOfFeatures);
+		free(numOfFeatures);
+		return 0;
 	}
 
+	k = 0;
 	for (i = 0; i < numOfImages; i++) {
 		for (j = 0; j < numOfFeatures[i]; j++) {
-			spPointDestroy(featureArr[i][j]);
+			feature1DimArr[k] = spPointCopy(featureArr[i][j]);
+			k++;
 		}
 	}
+
+// Now we just need to create the KDTree.
+	KDTree = kdTreeInit(feature1DimArr, featureArrSize, PCADim,
+			spConfigGetSplitMethod(config, &configMsg));
+	if (KDTree == NULL) {
+		// TODO print to logger in tree func
+		free(config);
+		delete imgProc;
+		free2dPoints(featureArr, numOfImages, numOfFeatures);
+		free1dPoints(feature1DimArr, featureArrSize);
+		free(numOfFeatures);
+		return 0;
+	}
+
+	free2dPoints(featureArr, numOfImages, numOfFeatures);
+	free1dPoints(feature1DimArr, featureArrSize);
 	free(numOfFeatures);
 
-	for (i = 0; i < numOfImages; i++) {
-		free(featureArr[i]);
-	}
-	free(featureArr);
-
-	for (i = 0; i < featureArrSize; i++) {
-		spPointDestroy(feature1DimArr[i]);
-	}
-	free(feature1DimArr);
-
-	// ***********************
-	// Part 3 - Main Loop
-	// ***********************
+// ***********************
+// Part 3 - Main Loop
+// ***********************
 
 	while (true) {
 		// Define variables in beginning of scope
