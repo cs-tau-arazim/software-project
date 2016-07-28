@@ -257,7 +257,10 @@ int spConfigGetSplitMethod(const SPConfig config, SP_CONFIG_MSG* msg);
 SP_CONFIG_MSG spConfigGetImagePath(char* imagePath, const SPConfig config,
 		int index);
 
+// TODO doc
+SP_CONFIG_MSG spConfigGetLoggerFileName(char* name ,const SPConfig config);
 
+SP_CONFIG_MSG spConfigGetLoggerLevel(int* level, const SPConfig config);
 
 /**
  * Given an index 'index' the function stores in imagePath the full path of the

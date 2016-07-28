@@ -1,30 +1,19 @@
+        
+#
+
 #this is a valid configuration file 
 #The following variables don’t have default values and must be set 
-<<<<<<< HEAD
-spImagesDirectory         =           ./images/ 
-spImagesPrefix=img 
-spImagesSuffix = .png 
-spNumOfImages =       17
-
-#the following variables have default values, if not set the default value is choosen 
-spPCADimension = 100
-spPCAFilename = pca.yml 
-spNumOfFeatures = 100 
-spExtractionMode = false 
-	spMinimalGUI = true
-=======
 spImagesDirectory         =           ./GOTImages/ 
 spImagesPrefix=img 
 spImagesSuffix = .jpg
 spNumOfImages =       25
 
 #the following variables have default values, if not set the default value is choosen 
-spPCADimension = 28
+spPCADimension = 15
 spPCAFilename = pca.yml 
 spNumOfFeatures = 100 
-spExtractionMode = true 
-	spMinimalGUI = false
->>>>>>> c292a2559e61ff4522d2bdfb651a2c29a707ed4a
+spExtractionMode = false 
+	spMinimalGUI = true
    spNumOfSimilarImages = 5 
 spKNN = 5
 spKDTreeSplitMethod = MAX_SPREAD

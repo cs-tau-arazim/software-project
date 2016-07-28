@@ -8,6 +8,7 @@
 #include "main_aux.h"
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 
 #define INVALID_CMD_LINE "Invalid command line : use -c <config_filename>\n"
 
@@ -39,6 +40,72 @@ int getConfigPath(int argc, char** argv, char * configPath) {
 		}
 	}
 }
+
+/**
+ * The function receives an imageFeaturePath path and relevant parameters,
+ * and extracts the info relevant to the specific image into the file.
+ *  * returns 0 on success and 1 on failure.
+ */
+int writeFeaturesToFile(SPPoint ** featureArr, char * imageFeaturePath, int i, int numOfFeatures, int PCADim) {
+	FILE * imageFeatureFile;
+	int j, k, failCheck;
+	imageFeatureFile = fopen(imageFeaturePath, "w");
+	if (imageFeatureFile == NULL)
+		return 1;
+	fprintf(imageFeatureFile, "%d\n", i);
+	fprintf(imageFeatureFile, "%d\n", numOfFeatures);
+
+	// Print all features to file
+	for (j = 0; j < numOfFeatures; j++) {
+		for (k = 0; k < PCADim; k++) {
+			fprintf(imageFeatureFile, "%lf,",
+					spPointGetAxisCoor(featureArr[i][j], k));
+		}
+		fprintf(imageFeatureFile, "\n");
+	}
+	failCheck = fclose(imageFeatureFile);
+	if (failCheck != 0)
+		return 1;
+	return 0;
+}
+
+/**
+ * The function receives an imageFeaturePath path and relevant parameters,
+ * and extracts the info relevant FROM the specific file INTO the featureArr.
+ *  * returns 0 on success and 1 on failure.
+ */
+int readFeaturesFromFile(SPPoint ** featureArr, char * imageFeaturePath, int i, int * numOfFeatures, int PCADim, int * featureArrSize, double * tempDoubleArr) {
+	FILE * imageFeatureFile;
+	int imIndex, j, k, failCheck;
+	imageFeatureFile = fopen(imageFeaturePath, "r");
+	if (imageFeatureFile == NULL)
+		return 1;
+	fscanf(imageFeatureFile, "%d\n", &imIndex);
+	assert(i == imIndex);
+
+	fscanf(imageFeatureFile, "%d\n", &numOfFeatures[i]);
+
+	// Increase array size
+	*featureArrSize += numOfFeatures[i];
+
+	// create array of points
+	featureArr[i] = (SPPoint*) malloc(
+			sizeof(SPPoint) * numOfFeatures[i]);
+
+	// Get all features from file
+	for (j = 0; j < numOfFeatures[i]; j++) {
+		for (k = 0; k < PCADim; k++) {
+			fscanf(imageFeatureFile, "%lf,", &(tempDoubleArr[k]));
+		}
+		fscanf(imageFeatureFile, "\n");
+		featureArr[i][j] = spPointCreate(tempDoubleArr, PCADim, i);
+	}
+	failCheck = fclose(imageFeatureFile);
+	if (failCheck != 0)
+		return 1;
+	return 0;
+}
+
 
 int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* features, int numOfFeatures, int numOfImages)
 {

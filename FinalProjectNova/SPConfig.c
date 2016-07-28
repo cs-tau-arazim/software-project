@@ -697,6 +697,26 @@ SP_CONFIG_MSG spConfigGetImagePath(char* imagePath, const SPConfig config,
 	return SP_CONFIG_SUCCESS;
 }
 
+SP_CONFIG_MSG spConfigGetLoggerFileName(char* name ,const SPConfig config)
+{
+	if (config == NULL  || name == NULL)
+	{
+		return SP_CONFIG_INVALID_ARGUMENT;
+	}
+	sprintf(name,"%s", config->spLoggerFilename);
+	return SP_CONFIG_SUCCESS;
+}
+
+SP_CONFIG_MSG spConfigGetLoggerLevel(int* level, const SPConfig config)
+{
+	if (config == NULL  )
+	{
+		return SP_CONFIG_INVALID_ARGUMENT;
+	}
+	*level = config->spLoggerLevel;
+	return SP_CONFIG_SUCCESS;
+}
+
 /**
  * Given an index 'index' the function stores in imagePath the full path of the
  * ith image's FEATURE.

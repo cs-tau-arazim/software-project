@@ -174,7 +174,7 @@ void nearestNeighbors(KDTreeNode curr, SPBPQueue bpq, SPPoint p) {
 	/* If the candidate hypersphere crosses this splitting plane, look on the
 	 * other side of the plane by examining the other subtree*/
 	coorDis = abs(spPointGetAxisCoor(p, curr->dim) - curr->val);
-	if (!spBPQueueIsFull(bpq) || coorDis < spBPQueueMaxValue(bpq)) {
+	if (!spBPQueueIsFull(bpq) || coorDis*coorDis < spBPQueueMaxValue(bpq)) {
 		if (isLeft)
 			nearestNeighbors(curr->right, bpq, p);
 		else

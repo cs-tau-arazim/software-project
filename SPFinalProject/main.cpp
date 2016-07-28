@@ -49,9 +49,9 @@ int main(int argc, char **argv) {
 	char configPath[LINE_LENGTH];
 	char imagePath[LINE_LENGTH];
 	char imageFeaturePath[LINE_LENGTH];
-	char loggerFileName[LINE_LENGTH];
-	int level;
-	FILE * imageFeatureFile;
+	//char loggerFileName[LINE_LENGTH];
+	//int level;
+	//FILE * imageFeatureFile;
 
 	int* numOfFeatures;
 	int featureArrSize = 0;
@@ -66,7 +66,7 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 
-	SPConfig config = spConfigCreate(argv[2], &configMsg);
+	SPConfig config = spConfigCreate(configPath, &configMsg);
 
 	if (configMsg != SP_CONFIG_SUCCESS) {
 		return 0;
@@ -189,7 +189,7 @@ int main(int argc, char **argv) {
 
 		// For all images:
 		for (i = 0; i < numOfImages; i++) {
-			int imIndex;
+			//int imIndex;
 			// Find feature file with data
 			spConfigGetImageFeatPath(imageFeaturePath, config, i);
 			if (configMsg != SP_CONFIG_SUCCESS) {

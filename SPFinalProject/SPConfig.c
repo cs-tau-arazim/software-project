@@ -699,11 +699,11 @@ SP_CONFIG_MSG spConfigGetImagePath(char* imagePath, const SPConfig config,
 
 SP_CONFIG_MSG spConfigGetLoggerFileName(char* name ,const SPConfig config)
 {
-	if (config == NULL  )
+	if (config == NULL  || name == NULL)
 	{
 		return SP_CONFIG_INVALID_ARGUMENT;
 	}
-	name = config->spLoggerFilename;
+	sprintf(name,"%s", config->spLoggerFilename);
 	return SP_CONFIG_SUCCESS;
 }
 
