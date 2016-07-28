@@ -442,6 +442,7 @@ int extractInfoFromLine(SPConfig config, SP_CONFIG_MSG * msg, char * bufferLine,
  * If bufferLine is NULL, also returns 2.
  * If valid- returns 0, puts in var the variable and puts the parameter in param.
  */
+/*
 int checkValid(char * bufferLine, char * var, char * param) {
 	char varIn[LINE_LENGTH];
 	char paramIn[LINE_LENGTH];
@@ -481,7 +482,7 @@ int checkValid(char * bufferLine, char * var, char * param) {
 	strcpy(param, paramIn);
 
 	return 0;
-}
+}*/
 
 /**
  * Group of "set" functions for each field.

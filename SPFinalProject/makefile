@@ -30,7 +30,7 @@ SPLogger.o: SPLogger.c SPLogger.h
 	$(CC) $(C_COMP_FLAG) -c $*.c
 KDTreeNode.o: KDTreeNode.c KDTreeNode.h SPBPriorityQueue.h KDArray.h
 	$(CC) $(C_COMP_FLAG) -c $*.c
-KDArray.o: KDArray.c KDArray.h SPPoint.h
+KDArray.o: KDArray.c KDArray.h SPLogger.h SPPoint.h
 	$(CC) $(C_COMP_FLAG) -c $*.c
 SPBPriorityQueue.o: SPBPriorityQueue.c SPBPriorityQueue.h SPList.h
 	$(CC) $(C_COMP_FLAG) -c $*.c

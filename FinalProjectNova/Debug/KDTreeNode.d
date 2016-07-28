@@ -1,5 +1,5 @@
 KDTreeNode.d: ../KDTreeNode.c ../KDTreeNode.h ../SPBPriorityQueue.h \
- ../SPList.h ../SPListElement.h ../KDArray.h ../SPPoint.h
+ ../SPList.h ../SPListElement.h ../KDArray.h ../SPPoint.h ../SPLogger.h
 
 ../KDTreeNode.h:
 
@@ -12,3 +12,5 @@ KDTreeNode.d: ../KDTreeNode.c ../KDTreeNode.h ../SPBPriorityQueue.h \
 ../KDArray.h:
 
 ../SPPoint.h:
+
+../SPLogger.h:

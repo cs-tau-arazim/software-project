@@ -49,8 +49,8 @@ int main(int argc, char **argv) {
 	char configPath[LINE_LENGTH];
 	char imagePath[LINE_LENGTH];
 	char imageFeaturePath[LINE_LENGTH];
-	//char loggerFileName[LINE_LENGTH];
-	//int level;
+	char loggerFileName[LINE_LENGTH];
+	int level;
 	//FILE * imageFeatureFile;
 
 	int* numOfFeatures;
@@ -66,22 +66,30 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 
-	SPConfig config = spConfigCreate(argv[2], &configMsg);
+	SPConfig config = spConfigCreate(configPath, &configMsg);
 
 	if (configMsg != SP_CONFIG_SUCCESS) {
 		return 0;
 	}
 
-	/*
-	configMsg = spConfigGetLoggerFileName(loggerFileName, config);
-	level = spConfigGetLoggerLevel(&level, config);
-	spLoggerCreate(loggerFileName, level);
-	*/
+
+	 configMsg = spConfigGetLoggerFileName(loggerFileName, config);
+
+	 configMsg = spConfigGetLoggerLevel(&level, config);
+	 if (strcmp(loggerFileName, "stdout") == 0)
+	 {
+		 spLoggerCreate(NULL, (SP_LOGGER_LEVEL)level);
+	 }
+	 else
+	 {
+		 spLoggerCreate(loggerFileName, (SP_LOGGER_LEVEL)level);
+	 }
 
 	numOfImages = spConfigGetNumOfImages(config, &configMsg);
 	if (configMsg != SP_CONFIG_SUCCESS) {
 		spLoggerPrintError(NUM_OF_IMAGES_ERROR, __FILE__, __func__, __LINE__);
 		free(config);
+		spLoggerDestroy();
 		return 0;
 	}
 
@@ -89,6 +97,7 @@ int main(int argc, char **argv) {
 	if (configMsg != SP_CONFIG_SUCCESS) {
 		spLoggerPrintError(PCA_DIM_ERROR_MSG, __FILE__, __func__, __LINE__);
 		free(config);
+		spLoggerDestroy();
 		return 0;
 	}
 
@@ -98,6 +107,7 @@ int main(int argc, char **argv) {
 	if (featureArr == NULL) {
 		spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__, __LINE__);
 		free(config);
+		spLoggerDestroy();
 		delete imgProc;
 		return 0;
 	}
@@ -107,6 +117,7 @@ int main(int argc, char **argv) {
 		spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__, __LINE__);
 		free(config);
 		free(featureArr);
+		spLoggerDestroy();
 		delete imgProc;
 		return 0;
 	}
@@ -119,8 +130,6 @@ int main(int argc, char **argv) {
 	if (spConfigIsExtractionMode(config, &configMsg) == true) {
 
 		// start
-		printf("time to extract! :)\n"); // TODO REMOVE
-		//printConfig(config); // TODO REMOVE
 
 		// For all images:
 		for (i = 0; i < numOfImages; i++) {
@@ -132,6 +141,7 @@ int main(int argc, char **argv) {
 						__LINE__);
 				free(config);
 				free(numOfFeatures);
+				spLoggerDestroy();
 				free2dPoints(featureArr, i, numOfFeatures);
 				delete imgProc;
 				return 0;
@@ -144,6 +154,7 @@ int main(int argc, char **argv) {
 				spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__,
 						__LINE__);
 				free(config);
+				spLoggerDestroy();
 				delete imgProc;
 				free2dPoints(featureArr, i, numOfFeatures);
 				free(numOfFeatures);
@@ -161,6 +172,7 @@ int main(int argc, char **argv) {
 				spLoggerPrintError(IMAGE_PATH_ERROR, __FILE__, __func__,
 						__LINE__);
 				free(config);
+				spLoggerDestroy();
 				delete imgProc;
 				free2dPoints(featureArr, i + 1, numOfFeatures);
 				free(numOfFeatures);
@@ -183,7 +195,6 @@ int main(int argc, char **argv) {
 	// Non-Extraction Mode- here we need to create the KD-Tree from the feature files.
 	else {
 		// start
-		printf("time to NOT extract! :)\n"); // TODO REMOVE
 
 		tempDoubleArr = (double*) malloc(sizeof(double) * PCADim);
 
@@ -197,6 +208,7 @@ int main(int argc, char **argv) {
 						__LINE__);
 				free(config);
 				delete imgProc;
+				spLoggerDestroy();
 				free2dPoints(featureArr, i, numOfFeatures);
 				free(numOfFeatures);
 				return 0;
@@ -211,6 +223,7 @@ int main(int argc, char **argv) {
 				spLoggerPrintError(FILE_WRITE_ERROR, __FILE__, __func__,
 						__LINE__);
 				free(config);
+				spLoggerDestroy();
 				delete imgProc;
 				free2dPoints(featureArr, i, numOfFeatures);
 				free(numOfFeatures);
@@ -224,6 +237,7 @@ int main(int argc, char **argv) {
 	if (feature1DimArr == NULL) {
 		spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__, __LINE__);
 		free(config);
+		spLoggerDestroy();
 		delete imgProc;
 		free2dPoints(featureArr, numOfImages, numOfFeatures);
 		free(numOfFeatures);
@@ -238,18 +252,15 @@ int main(int argc, char **argv) {
 		}
 	}
 
-
 	assert(k == featureArrSize);
-
-
 
 	// Now we just need to create the KDTree.
 	KDTree = kdTreeInit(feature1DimArr, featureArrSize, PCADim,
 			spConfigGetSplitMethod(config, &configMsg));
 	if (KDTree == NULL) {
-		// TODO print to logger in tree func
 		free(config);
 		delete imgProc;
+		spLoggerDestroy();
 		free2dPoints(featureArr, numOfImages, numOfFeatures);
 		free1dPoints(feature1DimArr, featureArrSize);
 		free(numOfFeatures);
@@ -277,7 +288,7 @@ int main(int argc, char **argv) {
 		fgets(query, LINE_LENGTH, stdin);
 
 		// Check if no query was given
-		if (strcmp("\n", query) == 0) {
+		if (strcmp("<>\n", query) == 0) {
 			break;
 		}
 		strtok(query, "\n");
@@ -292,6 +303,15 @@ int main(int argc, char **argv) {
 		features = imgProc->getImageFeatures(query, numOfImages,
 				&numOfQueryFeatures);
 
+		// check for errors. Error printing is handled within SPImageProc
+		if (features == NULL) {
+			kdTreeNodeDestroy(KDTree);
+			free(config);
+			spLoggerDestroy();
+			delete imgProc;
+			return 0;
+		}
+
 		// Get closest images
 		closestImages = bestImages(numOfBestImages, spKNN, KDTree, features,
 				numOfQueryFeatures, numOfImages);
@@ -302,7 +322,7 @@ int main(int argc, char **argv) {
 			for (i = 0; i < numOfBestImages; i++) {
 				char imagePath[LINE_LENGTH];
 
-				spConfigGetImagePath(imagePath, config, closestImages[i]); // TODO check if fails
+				spConfigGetImagePath(imagePath, config, closestImages[i]);
 				printf("%s\n", imagePath);
 			}
 			printf("\n");
@@ -310,7 +330,7 @@ int main(int argc, char **argv) {
 			for (i = 0; i < numOfBestImages; i++) {
 				char imagePath[LINE_LENGTH];
 
-				spConfigGetImagePath(imagePath, config, closestImages[i]); // TODO check if fails
+				spConfigGetImagePath(imagePath, config, closestImages[i]);
 				imgProc->showImage(imagePath);
 			}
 		}
@@ -323,10 +343,11 @@ int main(int argc, char **argv) {
 		free(closestImages);
 	}
 
-
+	// Free remaining resources and exit.
 	kdTreeNodeDestroy(KDTree);
 	free(config);
 	delete imgProc;
+	spLoggerDestroy();
 
 	printf(EXITING);
 	return 0;

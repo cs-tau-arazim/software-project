@@ -34,7 +34,7 @@ KDTreeNode kdTreeInit (SPPoint* arr, int size, int dim, int splitMethod );
 
 
 /**
- * Frees all memory resources associate with kdTreeNode.
+ * Frees all memory resources associated with kdTreeNode.
  * If kdTreeNode == NULL nothig is done.
  */
 void kdTreeNodeDestroy (KDTreeNode kdTreeNode);

@@ -11,6 +11,7 @@
 #include <assert.h>
 
 #define INVALID_CMD_LINE "Invalid command line : use -c <config_filename>\n"
+#define ALLOC_ERROR_MSG "Allocation error"
 
 
 int cmpCounts (const void * point1, const void * point2);
@@ -106,7 +107,19 @@ int readFeaturesFromFile(SPPoint ** featureArr, char * imageFeaturePath, int i, 
 	return 0;
 }
 
-
+/**
+ * the function return the numOfBestImages closet images to the query image
+ *
+ * @param numOfBestImages - the number of images to return
+ * @param spKNN - the number of features to consider close to each of the query features
+ * @param root - the root of the kd-Tree with contains all the features of all the images in the database
+ * @param features - features of the query image
+ * @param numOfFeatures - the size of features
+ * @param numOfImages - the number of image in the database
+ *
+ * @return NULL if memory allocation failed
+ * an array of the closet images otherwise
+ */
 int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* features, int numOfFeatures, int numOfImages)
 {
 	SPBPQueue bpq;
@@ -116,7 +129,10 @@ int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* featur
 
 	closeFeaturesCount = (int**) malloc (numOfImages*sizeof (int*));
 	if (closeFeaturesCount == NULL)
+	{
+		spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__, __LINE__);
 		return NULL;
+	}
 
 	for (j = 0 ; j < numOfImages ; j++)
 	{
@@ -176,6 +192,11 @@ int cmpCounts (const void * point1, const void * point2)
 	return -(p1[0] - p2[0]);
 }
 
+/**
+ * A helper function, used in the debugging phase.
+ *
+ * Runs some basic functions using the KDArray module, in order to confirm that the module works properly.
+ */
 void arrayTest ()
 {
 	SPPoint p1,p2,p3,p4,p5;
@@ -201,6 +222,11 @@ void arrayTest ()
 	printArray(right);
 }
 
+/**
+ * A helper function, used in the debugging phase.
+ *
+ * Runs some basic functions using the KDTreeNode module, in order to confirm that the module works properly.
+ */
 void treeTest() {
 
 	SPPoint p1,p2,p3,p4,p5;
@@ -218,6 +244,12 @@ void treeTest() {
 
 }
 
+/**
+ * The function receives a two-dimensional array of points, the size of the array,
+ * and an array containing the specific size of each sub-array.
+ *
+ * It destroys all the points contained in the arrays. It also frees all the inner arrays and the outer array.
+ */
 void free2dPoints (SPPoint ** points, int size, int * rowsSizes)
 {
 	int i,j;
@@ -232,6 +264,11 @@ void free2dPoints (SPPoint ** points, int size, int * rowsSizes)
 	free(points);
 }
 
+/**
+ * The function receives a one-dimensional array of points, and the size of the array.
+ *
+ * It destroys all the points contained in the arrays, and frees the array.
+ */
 void free1dPoints (SPPoint * points, int size)
 {
 	int i;

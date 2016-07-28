@@ -39,15 +39,48 @@ int writeFeaturesToFile(SPPoint ** featureArr, char * imageFeaturePath, int i, i
 int readFeaturesFromFile(SPPoint ** featureArr, char * imageFeaturePath, int i, int * numOfFeatures, int PCADim, int * featureArrSize, double * tempDoubleArr);
 
 
-//TODO doc
+/**
+ * the function return the numOfBestImages closet images to the query image
+ *
+ * @param numOfBestImages - the number of images to return
+ * @param spKNN - the number of features to consider close to each of the query features
+ * @param root - the root of the kd-Tree with contains all the features of all the images in the database
+ * @param features - features of the query image
+ * @param numOfFeatures - the size of features
+ * @param numOfImages - the number of image in the database
+ *
+ * @return NULL if memory allocation failed
+ * an array of the closet images otherwise
+ */
 int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* features, int numOfFeatures, int numOfImages);
 
+/**
+ * A helper function, used in the debugging phase.
+ *
+ * Runs some basic functions using the KDArray module, in order to confirm that the module works properly.
+ */
 void arrayTest();
 
+/**
+ * A helper function, used in the debugging phase.
+ *
+ * Runs some basic functions using the KDTreeNode module, in order to confirm that the module works properly.
+ */
 void treeTest ();
 
+/**
+ * The function receives a two-dimensional array of points, the size of the array,
+ * and an array containing the specific size of each sub-array.
+ *
+ * It destroys all the points contained in the arrays. It also frees all the inner arrays and the outer array.
+ */
 void free2dPoints (SPPoint ** points, int size, int * rowsSizes);
 
+/**
+ * The function receives a one-dimensional array of points, and the size of the array.
+ *
+ * It destroys all the points contained in the arrays, and frees the array.
+ */
 void free1dPoints (SPPoint * points, int size);
 
 #endif /* MAIN_AUX_H_ */

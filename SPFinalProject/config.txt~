@@ -5,7 +5,7 @@
 #The following variables don’t have default values and must be set 
 spImagesDirectory         =           ./GOTImages/ 
 spImagesPrefix=img 
-#spImagesSuffix = .jpg
+spImagesSuffix = .jpg
 spNumOfImages =       25
 
 #the following variables have default values, if not set the default value is choosen 
