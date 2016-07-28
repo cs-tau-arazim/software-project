@@ -11,6 +11,8 @@
 #include <assert.h>
 #include <time.h>
 
+#define ALLOC_ERROR_MSG "Allocation error"
+
 struct kd_tree_node_t {
 	int dim;
 	double val;
@@ -25,17 +27,29 @@ struct kd_tree_node_t {
 KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod,
 		int lastLevelDim);
 
-/*
- * splitMethod:
- * 0 - RANDOM
- * 1 - MAX_SPREAD
- * 2 - INCREMENTAL
+/**
+ * Given an array of points the function creates a kd-tree containing the points.
+ *
+ * @param arr - the array of SPPoints
+ * @param size - the size of arr
+ * @param dim - the dimension of the points in arr
+ * @param splitMethod - the method to construct
+ * the tree: 0 - RANDOM, 1 - MAX_SPREAD, 2 - INCREMENTAL
+ *
+ * @assert dim = point->dim for each point in arr;
+ *
+ * @return
+ * NULL if arr == NULL or size < 1 or dim <1 or splitMethod
+ * isn't between 0 and 2.
+ * the new kd-tree otherwise
  */
 KDTreeNode kdTreeInit(SPPoint* arr, int size, int dim, int splitMethod) {
 	KDTreeNode kdt;
+
 	if (arr == NULL || size < 1 || dim < 1 || splitMethod < 0
 			|| splitMethod > 2)
 		return NULL ;
+
 	KDArray mat;
 	mat = kdArrayInit(arr, size, dim);
 
@@ -45,6 +59,9 @@ KDTreeNode kdTreeInit(SPPoint* arr, int size, int dim, int splitMethod) {
 
 }
 
+/**
+ * A recursive function to construct the kd-tree
+ */
 KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod,
 		int lastLevelDim) {
 	KDTreeNode newNode;
@@ -58,9 +75,12 @@ KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod,
 
 	newNode = (KDTreeNode) malloc(sizeof(*newNode));
 	if (newNode == NULL )
+	{
+		spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__, __LINE__);
 		return NULL ;
+	}
 
-	if (size == 1) {
+	if (size == 1) { // creates a new leaf which represents a point
 		newNode->dim = -1;
 		newNode->val = -1;
 		newNode->left = NULL;
@@ -69,10 +89,10 @@ KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod,
 		return newNode;
 	}
 
-	if (splitMethod == 0) {
+	if (splitMethod == 0) { // RANDOM
 		srand(time(NULL ));
 		splitDim = rand() % dim;
-	} else if (splitMethod == 1) {
+	} else if (splitMethod == 1) { // MAX SPREAD
 		double maxSpread;
 		int i;
 
@@ -91,7 +111,7 @@ KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod,
 				splitDim = i;
 			}
 		}
-	} else if (splitMethod == 2) {
+	} else if (splitMethod == 2) { // INCREMENTAL
 		splitDim = (lastLevelDim + 1) % dim;
 	}
 
@@ -105,6 +125,7 @@ KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod,
 		return NULL ;
 	}
 
+	// compute the median to split according to it
 	medianVal = spPointGetAxisCoor(p[kdArrayGet(mat, splitDim, (size - 1) / 2)],
 			splitDim);
 
@@ -113,20 +134,28 @@ KDTreeNode constructTree(KDArray mat, int size, int dim, int splitMethod,
 	newNode->dim = splitDim;
 	newNode->val = medianVal;
 
+	// recursively create the left sub-tree
 	newNode->left = constructTree(left, kdArrayGetSize(left), dim, splitMethod,
 			splitDim);
 
+	// recursively create the right sub-tree
 	newNode->right = constructTree(right, kdArrayGetSize(right), dim,
 			splitMethod, splitDim);
 
-	newNode->data = NULL;
+	newNode->data = NULL; // not a leaf
 
+	// free data not needed anymore
 	kdArrayDestroy(left);
 	kdArrayDestroy(right);
 
 	return newNode;
 }
 
+
+/**
+ * Frees all memory resources associate with kdTreeNode.
+ * If kdTreeNode == NULL nothig is done.
+ */
 void kdTreeNodeDestroy(KDTreeNode kdTreeNode) {
 	if (kdTreeNode == NULL )
 		return;
@@ -138,6 +167,16 @@ void kdTreeNodeDestroy(KDTreeNode kdTreeNode) {
 	return;
 }
 
+
+/**
+ * Given a kd-tree and a point p, the function stores the nearest neighbors of p to bpq
+ *
+ * @param curr - the kd-tree containing the points
+ * @param bpq - the bounded priority queue to store the nearest neighbors in
+ * @param p - the point to find the nearest neighbors to
+ *
+ * does nothing if curr == NULL or bpq == NULL or p == NULL
+ */
 void nearestNeighbors(KDTreeNode curr, SPBPQueue bpq, SPPoint p) {
 	SPListElement node;
 	SPPoint q;
@@ -183,6 +222,9 @@ void nearestNeighbors(KDTreeNode curr, SPBPQueue bpq, SPPoint p) {
 
 }
 
+/**
+ * prints the tree for debuging
+ */
 void printTree(KDTreeNode kdTree) {
 	int i;
 	if (kdTree == NULL ) {

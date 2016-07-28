@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <assert.h>
 
+#define ALLOC_ERROR_MSG "Allocation error"
+
 /** Type for defining the kdArray **/
 struct kd_array_t {
 	SPPoint* points;
@@ -18,14 +20,22 @@ KDArray kdArrayInitEmpty() {
 	KDArray newKDArray;
 	newKDArray = (KDArray) malloc(sizeof(*newKDArray));
 	if (newKDArray == NULL )
-		return NULL ;
+	{
+		spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__, __LINE__);
+		return NULL;
+	}
 	return newKDArray;
 }
 
 /**
  * Initializes the kd-array with the data given by arr
  *
+ * @param arr - the array of SPPoints
+ * @param size - the size of arr
+ * @param dim - the dimension of the points in arr
+ *
  * @assert dim = point->dim for each point in arr;
+ *
  * @return
  * NULL if memory allocation failed or arr == NULL or size < 1 or dim < 1
  * the new KDArray otherwise

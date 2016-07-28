@@ -1,4 +1,4 @@
-        
+     	 	 	 		      
 #
 
 #this is a valid configuration file 
@@ -12,7 +12,7 @@ spNumOfImages =       25
 spPCADimension = 28
 spPCAFilename = pca.yml 
 spNumOfFeatures = 100 
-spExtractionMode = true 
+spExtractionMode = false 
 	spMinimalGUI = true
    spNumOfSimilarImages = 5 
 spKNN = 5
