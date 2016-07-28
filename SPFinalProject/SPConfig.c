@@ -192,7 +192,7 @@ void setDefaultValues(SPConfig config) {
 /*
  int extractInfoFromLine(SPConfig config, SP_CONFIG_MSG * msg, char * bufferLine,
  int lineNum, const char * filename, bool * setArray) {
- int res, i, assignRes;
+ int res, i, assignRes; TODO delete
  bool cmpRes;
  char bufferVar[LINE_LENGTH];
  char bufferParam[LINE_LENGTH];
