@@ -72,7 +72,7 @@ int writeFeaturesToFile(SPPoint ** featureArr, char * imageFeaturePath, int i, i
 /**
  * The function receives an imageFeaturePath path and relevant parameters,
  * and extracts the info relevant FROM the specific file INTO the featureArr.
- *  * returns 0 on success and 1 on failure.
+ * returns 0 on success and 1 on failure.
  */
 int readFeaturesFromFile(SPPoint ** featureArr, char * imageFeaturePath, int i, int * numOfFeatures, int PCADim, int * featureArrSize, double * tempDoubleArr) {
 	FILE * imageFeatureFile;
@@ -107,6 +107,19 @@ int readFeaturesFromFile(SPPoint ** featureArr, char * imageFeaturePath, int i, 
 }
 
 
+/**
+ * Returns the closest images to the query image.
+ * 
+ * Input:
+ * numOfBestImages - the number of images to return
+ * spKNN - the number of features to consider close
+ * root - the root of the database kdtree
+ * features - the features of the query image
+ * numOfFeatures - the size of features
+ * numOfImages - the total number of images
+ * 
+ * Returns NULL in case of allocation failure.
+ */
 int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* features, int numOfFeatures, int numOfImages)
 {
 	SPBPQueue bpq;
@@ -169,6 +182,11 @@ int* bestImages(int numOfBestImages, int spKNN, KDTreeNode root, SPPoint* featur
 
 }
 
+/**
+ * Comparator function used for comparing integers with indexes.
+ * Compares integers according to their value (index 0) in reverse order.
+ * used for calling the qsort function for sorting lists of points.
+ */
 int cmpCounts (const void * point1, const void * point2)
 {
 	int *p1 = *(int **)point1;
@@ -176,6 +194,10 @@ int cmpCounts (const void * point1, const void * point2)
 	return -(p1[0] - p2[0]);
 }
 
+/**
+ * Tester function for the KDArray module.
+ * Checks for baisc functionality of the module, and was used for debugging.
+ */
 void arrayTest ()
 {
 	SPPoint p1,p2,p3,p4,p5;
@@ -201,6 +223,10 @@ void arrayTest ()
 	printArray(right);
 }
 
+/**
+ * Tester function for the KDTreeNode module.
+ * Checks for baisc functionality of the module, and was used for debugging.
+ */
 void treeTest() {
 
 	SPPoint p1,p2,p3,p4,p5;
@@ -218,6 +244,10 @@ void treeTest() {
 
 }
 
+/**
+ * The function receives a two-dimentional array of points, its size, and a list of its subarray's sizes.
+ * It frees the array, its subarrays and destorys all the points inside it.
+ */
 void free2dPoints (SPPoint ** points, int size, int * rowsSizes)
 {
 	int i,j;
@@ -232,6 +262,10 @@ void free2dPoints (SPPoint ** points, int size, int * rowsSizes)
 	free(points);
 }
 
+/**
+ * The function receives an array of points and its size.
+ * It frees the array and destorys all the points inside it.
+ */
 void free1dPoints (SPPoint * points, int size)
 {
 	int i;
