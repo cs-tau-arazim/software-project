@@ -126,18 +126,13 @@ KDArray kdArrayInit(SPPoint* arr, int size, int dim) {
  *
  * does nothing if one of the arrays is NULL or coor < 0 or allocation failed
  */
-void kdArraySplit(KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //TODO need to free mem when allocation fails?
+void kdArraySplit(KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight)
 {
 	int i, j, k, size, dim, sizeL, sizeR;
-	int* x;
-	int* mapL;
-	int* mapR;
-	SPPoint* p;
-	SPPoint* pL;
-	SPPoint* pR;
+	int * x, * mapL, * mapR;
+	SPPoint * p, * pL, * pR;
 
 	assert(kdArr->size > 1);
-
 	if (kdArr == NULL || kdLeft == NULL || kdRight == NULL || coor < 0)
 		return;
 
@@ -161,6 +156,7 @@ void kdArraySplit(KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //TO
 		x[kdArrayGet(kdArr, coor, i)] = 0;
 	}
 
+	// A lot of error handeling in case of malloc failure.
 	pL = (SPPoint*) malloc(sizeL * sizeof(SPPoint));
 	if (pL == NULL ) {
 		spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__, __LINE__);
@@ -235,7 +231,7 @@ void kdArraySplit(KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //TO
 	kdRight->points = pR;
 
 	kdLeft->data = (int*) malloc(sizeL * dim * sizeof(int));
-	if (kdLeft->data == NULL ) {
+	if (kdLeft->data == NULL ) {	// Check for malloc failure
 		spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__, __LINE__);
 		free(x);
 		free(pL);
@@ -245,7 +241,7 @@ void kdArraySplit(KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //TO
 	}
 
 	kdRight->data = (int*) malloc(sizeR * dim * sizeof(int));
-	if (kdRight->data == NULL ) {
+	if (kdRight->data == NULL ) {	// Check for malloc failure
 		spLoggerPrintError(ALLOC_ERROR_MSG, __FILE__, __func__, __LINE__);
 		free(x);
 		free(pL);
@@ -282,12 +278,11 @@ void kdArraySplit(KDArray kdArr, int coor, KDArray kdLeft, KDArray kdRight) //TO
 			j++;
 		}
 	}
-
+	
 	// free unneeded memory
 	free(x);
 	free(mapL);
 	free(mapR);
-
 }
 
 
