@@ -195,7 +195,8 @@ int extractInfoFromLine(SPConfig config, SP_CONFIG_MSG * msg, char * bufferLine,
 	bool cmpRes;
 	char bufferVar[LINE_LENGTH] = { 0 };
 	char bufferParam[LINE_LENGTH] = { 0 };
-
+	if (bufferLine[strlen(bufferLine) - 1] != '\n')
+		strcat(bufferLine, "\n");
 	// Array for scanning the input and comparing with possible values
 	const char * const varArray[] = { "spImagesDirectory", "spImagesPrefix",
 			"spImagesSuffix", "spNumOfImages", "spPCADimension",
@@ -205,7 +206,7 @@ int extractInfoFromLine(SPConfig config, SP_CONFIG_MSG * msg, char * bufferLine,
 
 	const int varArraySize = 14;
 	i = 0;
-	while (bufferLine[i] == ' ' || bufferLine[i] == '\t') // Ignore whitespace before variable name
+	while (bufferLine[i] == ' ' || bufferLine[i] == '\t' || bufferLine[i] == '\r') // Ignore whitespace before variable name
 		i++;
 	if (bufferLine[i] == '#' || bufferLine[i] == '\n') // Either comment or empty line
 		return 0;
@@ -213,7 +214,7 @@ int extractInfoFromLine(SPConfig config, SP_CONFIG_MSG * msg, char * bufferLine,
 	while (bufferLine[i] != ' ' && bufferLine[i] != '\t' && bufferLine[i] != '=') // Read variable name
 	{
 		// If line ends amidst variable name
-		if (bufferLine[i] == '\n') {
+		if (bufferLine[i] == '\n' || bufferLine[i] == '\r') {
 			printConfigError(filename, lineNum, MSG_INVALID_LINE);
 			*msg = SP_CONFIG_INVALID_STRING;
 			return 1;
@@ -228,11 +229,7 @@ int extractInfoFromLine(SPConfig config, SP_CONFIG_MSG * msg, char * bufferLine,
 			{
 		printConfigError(filename, lineNum, MSG_INVALID_LINE);
 		*msg = SP_CONFIG_INVALID_STRING;
-		printf("check1\n"); // todo remove
-
 		return 1;
-		printf("check1\n"); // todo remove
-
 	}
 	i++;
 
@@ -241,7 +238,7 @@ int extractInfoFromLine(SPConfig config, SP_CONFIG_MSG * msg, char * bufferLine,
 	varValueStart = i;
 
 	while (bufferLine[i] != ' ' && bufferLine[i] != '\t'
-			&& bufferLine[i] != '\n') // Read variable value
+			&& bufferLine[i] != '\n' && bufferLine[i] != '\r') // Read variable value
 		i++;
 
 	varValueLen = i - varValueStart;
@@ -249,7 +246,7 @@ int extractInfoFromLine(SPConfig config, SP_CONFIG_MSG * msg, char * bufferLine,
 	while (bufferLine[i] == ' ' || bufferLine[i] == '\t') // Ignore whitespace after variable value
 		i++;
 
-	if (bufferLine[i] != '\n') // Next non-whitespace character must be new line
+	if (bufferLine[i] != '\n' && bufferLine[i] != '\r') // Next non-whitespace character must be new line
 			{
 		printConfigError(filename, lineNum, MSG_INVALID_LINE);
 		*msg = SP_CONFIG_INVALID_STRING;

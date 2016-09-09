@@ -1,0 +1,11 @@
+---ERROR---
+- file: SPImageProc.cpp
+- function: getImageFeatures
+- line: 180
+- message: vdfhfj : Images doesn't exist
+---ERROR---
+- file: main.cpp
+- function: main
+- line: 310
+- message: PCA dimension couldn't be resolved
+
