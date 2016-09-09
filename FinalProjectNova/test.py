@@ -31,7 +31,6 @@ def get_config_param(config, param, default = ""):
 
 def open_exe(argv):
     exe_list = argv[1:]
-    print("running " + " ".join(exe_list) + "...")
     return Popen(exe_list, stdout=PIPE, stderr=STDOUT, stdin=PIPE)
 
 
@@ -57,14 +56,14 @@ def send_input(proc, config):
             proc.stdin.write(bytes(line, 'UTF-8'))
 
     if ver < 3:
-        proc.stdin.write('<>')
+        proc.stdin.write('<>\n')
     else:
         proc.stdin.write(bytes('<>', 'UTF-8'))
 
 
 def output_to_dict(out):
     if ver >= 3:
-        out=out.decode('UTF-8')
+        out =out.decode('UTF-8')
     
     lines = out.replace("\r\n", "\n").split("\n")
     query = ""
@@ -173,11 +172,14 @@ def main(argv):
     proc = open_exe(argv);
 
     config = get_config(argv)
+    print "inserting inputs into program"
     send_input(proc, config)
     
+    print "creating a image dictionary out of program's output"
     results = output_to_dict(proc.communicate()[0])
+    
+    print "generating HTML file"
     html = dict_to_html(config, results)
-
     f = open(os.path.splitext(config)[0] + ".html", "w")
     f.write(html)
     f.close()
@@ -188,10 +190,10 @@ if __name__ == "__main__":
         args = sys.argv
     else:
         if ver < 3:
-            command = raw_input("Enter Command line: ").strip().split(" ")
+            command = raw_input("Enter Command line: ").split(" ")
         else:
             command = input("Enter Command line: ").strip().split(" ")
         args = sys.argv + command
-    print("sarting...")
+    print("starting...")
     main(args)
     print("done!")
