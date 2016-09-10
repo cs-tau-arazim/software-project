@@ -105,7 +105,6 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 
 	// Iterate the file's lines
 	while (fgets(bufferLine, LINE_LENGTH, configFilePtr) != NULL ) {
-		//strtok(bufferLine, "\n"); todo check
 		// Get the relevant info
 		res = extractInfoFromLine(config, msg, bufferLine, lineNum, filename,
 				setArray);
